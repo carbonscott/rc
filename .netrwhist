@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/scott/Documents/Wiki'
+let g:netrw_dirhist_2='/home/scott/Documents/Wiki/Chemistry'
+let g:netrw_dirhist_3='/home/scott/Documents/Wiki/Chemistry/201507'
+let g:netrw_dirhist_4='/home/scott/Documents'
+let g:netrw_dirhist_5='/home/scott/Documents/Wiki'
+let g:netrw_dirhist_6='/home/scott/Documents/Wiki/Chemistry'
+let g:netrw_dirhist_7='/home/scott/Documents/Wiki'
+let g:netrw_dirhist_8='/home/scott/Documents/Wiki/EnVocabulary'
+let g:netrw_dirhist_9='/home/scott'

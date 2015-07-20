@@ -1,0 +1,2 @@
+def DupLine(CursePos):
+	CursePos = 
