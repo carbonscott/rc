@@ -1,4 +1,4 @@
-"=============Customize Vim=============
+"=============CUSTOMIZE VIM=============
 " mapleader
 let mapleader = "["
 source ~/.vim/runtimepath.vim
@@ -27,9 +27,12 @@ nnoremap <s-h> 0
 vnoremap <s-h> 0
 nnoremap <s-l> $
 vnoremap <s-l> $
-nnoremap <c-k> zz
-nnoremap <c-l> zt
-nnoremap <c-j> zb
+nnoremap <c-k>k zz
+nnoremap <c-k>l zt
+nnoremap <c-k>j zb
+" nnoremap <c-l> zt
+" nnoremap <c-j> zb
+
 "====== open mindnote.md =======
 nnoremap <silent> [q :rightbelow 13 split ~/.vim/mindnote.md<CR><c-w>k
 "delete buffer
@@ -80,6 +83,10 @@ nnoremap [bb :BuffersToggle<CR>
 "======= own develop ======
 "set runtimepath+=~/.vim/bundle/vim-quote
 set cursorline
+"noh mapped by keystrokes
+nnoremap [o :noh<CR>
+nnoremap [mk :set hlsearch<CR>
+nnoremap [mj :set nohlsearch<CR>
 "save file
 map <c-m> :w<CR>
 map <c-h> :q<CR>
@@ -107,8 +114,6 @@ set laststatus=2
 set statusline+=%F
 set formatoptions+=Mm
 
-"colorscheme
-"colorscheme Monokai
 "highlight
 hi ColorColumn guibg=pink
 highlight SpecialKey guifg=gray 
@@ -177,6 +182,9 @@ nnoremap <c-\> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "=============INSTALL OF Airline=============
 Bundle 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#show_message = 0
+let g:airline#extensions#whitespace#checks = []
+let g:airline_theme='light'
 "==================================================
 
 "=============INSTALL OF Syntastic=============
@@ -214,5 +222,10 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " 
 "======================================================================================
+"colorscheme
+colorscheme matrix
+" setting for matrix colorscheme
+hi CursorLine guibg=#113311 guifg=white
+
 
 
