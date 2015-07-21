@@ -56,36 +56,3 @@ snippet '(.*)\|' "Create Column"  r
 `!p snip.rv = match.group(1)` | ${1:col1} 
 endsnippet
 
-# Thinking snippet
-snippet /tk/ "thinking pattern" r
-
-${1:Subject of thinking}
-${1/./=/g}
-
-STATE, TRANSFORM, INTERPRET
----------------------------
-
-${2:==== build mode ====
-What statements could be made about it in your eyes? 
-What derivatives could be transformed from it?
-What derivatives could be interpreted from it? 
-Implicitly invoke copy, paste, 
-transformation, and interpret.
-Statement is the thinking unit. 
-Transform and Interpret are statement
-builder.
-}
-
-VOCABULARY
-----------
-
-${3:==== systematic & learning mode ====
-In order to build good statment, use a 
-vocabulary about it, check every items,
-avoid to ignore something unfamiliar
-but reachable and significant.
-If it is beyond your ability to interpret
-and not an item in your current vocabulary,
-start learning it somewhere.}
-
-endsnippet

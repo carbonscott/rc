@@ -107,7 +107,7 @@ alias c='cd'
 alias f='fg'
 alias b='bg'
 alias gp='egrep'
-alias gv='gvim'
+alias vv='gvim'
 
 #tmux color
 export TERM="screen-256color"

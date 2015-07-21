@@ -17,7 +17,7 @@ noremap [p :tabp<CR>
 noremap <F7> :set list<CR>
 noremap <F8> :set nolist<CR>
 " buffer next, previous
-noremap <F4> :ls<CR>
+noremap <F4> :ls<CR>:buffer 
 noremap <F2> :bp<CR>
 noremap <F3> :bn<CR>
 noremap [du :diffupdate<CR>
@@ -90,6 +90,16 @@ nnoremap [mj :set nohlsearch<CR>
 "save file
 map <c-m> :w<CR>
 map <c-h> :q<CR>
+"map the folder key
+nnoremap + zf
+vnoremap + zf
+nnoremap = zo
+nnoremap - zc
+nnoremap _ zd
+vnoremap _ zd
+
+"show file info
+nnoremap <f5> :file<CR>
 
 set wildmenu
 set rnu
@@ -110,7 +120,8 @@ set wrap
 set linebreak
 set textwidth=0
 "set StatusLine 
-set laststatus=2
+"set laststatus=2
+set laststatus=0
 set statusline+=%F
 set formatoptions+=Mm
 
@@ -226,6 +237,7 @@ filetype plugin indent on    " required
 colorscheme matrix
 " setting for matrix colorscheme
 hi CursorLine guibg=#113311 guifg=white
+
 
 
 
