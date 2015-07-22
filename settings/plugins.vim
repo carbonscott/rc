@@ -70,6 +70,17 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/tabular'
 "============================================
 
+"=============INSTALL OF ctrlp=============
+Plugin 'kien/ctrlp.vim'
+let g:ctrlp_map = '[aa'
+let g:ctrlp_show_hidden = 1
+
+nnoremap [ab :CtrlPBuffer<CR>
+nnoremap [af :CtrlPMixed<CR>
+nnoremap [al :CtrlPLine<CR>
+
+"============================================
+
 	" ~~~~~~ALL OF YOUR PLUGINS MUST BE ADDED BEFORE THE FOLLOWING LINE~~~~~~~~~~~~
 	"                                         ~~~~~~    
 call vundle#end()            " required

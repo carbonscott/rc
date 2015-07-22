@@ -27,4 +27,6 @@ set textwidth=0
 set laststatus=0
 set statusline+=%F
 set formatoptions+=Mm
+"ignore searching these files
+set wildignore += "*.a, *.o, *.bmp, *.jpg, *.png, *.ico, *.swp, *.tmp, *.git"
 
