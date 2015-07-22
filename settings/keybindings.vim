@@ -96,3 +96,8 @@ vnoremap _ zd
 "show file info
 nnoremap <f5> :file<CR>
 
+"quickfix window switch
+":. => current line in command line mode
+":cc goto line
+nnoremap [cw :cw<CR>:setlocal nornu<CR>
+nnoremap [<CR> :.cc<CR>

@@ -74,6 +74,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '[aa'
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = 0
 
 nnoremap [ab :CtrlPBuffer<CR>
 nnoremap [af :CtrlPMixed<CR>

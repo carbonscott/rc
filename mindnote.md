@@ -1,5 +1,5 @@
 # Psychology about thinking
-* Are you **ready** to start thinking?
+* Are you ready to start thinking?
 * How well you understand this problem?
   * build mode
 	+ representation (state mode) to build thinking unit
