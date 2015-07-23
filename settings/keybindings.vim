@@ -22,9 +22,14 @@ nnoremap <s-h> 0
 vnoremap <s-h> 0
 nnoremap <s-l> $
 vnoremap <s-l> $
-nnoremap <c-k>k zz
-nnoremap <c-k>l zt
-nnoremap <c-k>j zb
+"navigate escalted
+nnoremap <c-h> 10h
+nnoremap <c-l> 10l
+nnoremap <c-j> 5j
+nnoremap <c-k> 5k
+"nnoremap <c-k>k zz
+"nnoremap <c-k>l zt
+"nnoremap <c-k>j zb
 " nnoremap <c-l> zt
 " nnoremap <c-j> zb
 
@@ -61,9 +66,9 @@ nnoremap <s-h> 0
 vnoremap <s-h> 0
 nnoremap <s-l> $
 vnoremap <s-l> $
-nnoremap <c-k> zz
-nnoremap <c-l> zt
-nnoremap <c-j> zb
+" nnoremap <c-k> zz
+" nnoremap <c-l> zt
+" nnoremap <c-j> zb
 
 "====== treat <> as paired brackets =======
 set matchpairs+=<:>
@@ -88,8 +93,8 @@ nnoremap [o :noh<CR>
 nnoremap [mk :set hlsearch<CR>
 nnoremap [mj :set nohlsearch<CR>
 "save file
-map <c-m> :w<CR>
-map <c-h> :q<CR>
+nnoremap <c-m> :w<CR>
+nnoremap <c-q> :q<CR>
 "map the folder key
 nnoremap + zf
 vnoremap + zf
