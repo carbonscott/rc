@@ -33,10 +33,15 @@ nnoremap <silent> [q :rightbelow 13 split ~/.vim/mindnote.md<CR><c-w>k
 "delete buffer
 nnoremap <silent> [bd :bd<CR>
 "resize window
-nnoremap <silent> [l :vertical resize +2<CR>
-nnoremap <silent> [h :vertical resize -2<CR>
-nnoremap <silent> [k :resize -2<CR>
-nnoremap <silent> [j :resize +2<CR>
+"nnoremap <silent> [l :vertical resize +2<CR>
+"nnoremap <silent> [h :vertical resize -2<CR>
+"nnoremap <silent> [k :resize -2<CR>
+"nnoremap <silent> [j :resize +2<CR>
+nnoremap <silent> <c-right> :vertical resize +2<CR>
+nnoremap <silent> <c-left> :vertical resize -2<CR>
+nnoremap <silent> <c-down> :resize -2<CR>
+nnoremap <silent> <c-up> :resize +2<CR>
+
 "underline a single line
 nnoremap <silent> [ul yypv0$r-
 " map when insert
