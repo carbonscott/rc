@@ -101,3 +101,7 @@ nnoremap <f5> :file<CR>
 ":cc goto line
 nnoremap [cw :cw<CR>:setlocal nornu<CR>
 nnoremap [<CR> :.cc<CR>
+
+
+"ab for [ ]
+ab [ [ ]

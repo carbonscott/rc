@@ -1,0 +1,47 @@
+[33mcommit 7b75272427cad03905eeceb53b8bbd0555e3b208[m
+Author: Scott <wangimagine@gmail.com>
+Date:   Thu Jul 23 01:49:11 2015 +0800
+
+    cwindow, cc+{line number, e.g. . current line} support in vim, also add keybinds in keybinds.vim
+
+[33mcommit 08e13df783de7ddac402a9275b83f646678bf884[m
+Author: Scott <wangimagine@gmail.com>
+Date:   Wed Jul 22 20:51:14 2015 +0800
+
+    ctrlp is added and setup in plugins.vim
+
+[33mcommit 709b6f2819300ed007372d0f123d48ef72173df5[m
+Author: Scott <wangimagine@gmail.com>
+Date:   Wed Jul 22 20:09:44 2015 +0800
+
+    git push through perl
+
+[33mcommit f235feec79a7cd34a9aa76e6a107b68338837c0a[m
+Author: Scott <wangimagine@gmail.com>
+Date:   Wed Jul 22 18:00:38 2015 +0800
+
+    git push through perl
+
+[33mcommit ce3d14810d643216312a721678adb1e244517a91[m
+Author: Scott <wangimagine@gmail.com>
+Date:   Wed Jul 22 17:38:25 2015 +0800
+
+    rewrite vimrc files, add settings directory in .vim branch
+
+[33mcommit 5e411624f4afb02eee0b8061fca143721ed3c1bb[m
+Author: Scott <wangimagine@gmail.com>
+Date:   Tue Jul 21 10:56:19 2015 +0800
+
+    update buffer switching
+
+[33mcommit 8c76c1c0b02bdaf1e2260208c4a154dc47cfac0b[m
+Author: Scott <wangimagine@gmail.com>
+Date:   Mon Jul 20 16:58:54 2015 +0800
+
+    first commit
+
+[33mcommit 06946368c5135c7630696c4fdeee645c631643c7[m
+Author: Scott <wangimagine@gmail.com>
+Date:   Mon Jul 20 16:56:55 2015 +0800
+
+    first commit
