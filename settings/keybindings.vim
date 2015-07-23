@@ -27,6 +27,11 @@ nnoremap <c-h> 10h
 nnoremap <c-l> 10l
 nnoremap <c-j> 5j
 nnoremap <c-k> 5k
+vnoremap <c-h> 10h
+vnoremap <c-l> 10l
+vnoremap <c-j> 5j
+vnoremap <c-k> 5k
+
 "nnoremap <c-k>k zz
 "nnoremap <c-k>l zt
 "nnoremap <c-k>j zb
