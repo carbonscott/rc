@@ -45,11 +45,11 @@ nnoremap <c-\> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "==================================================
 
 "=============INSTALL OF Airline=============
-Bundle 'bling/vim-airline'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#whitespace#show_message = 0
-let g:airline#extensions#whitespace#checks = []
-let g:airline_theme='light'
+"Bundle 'bling/vim-airline'
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#whitespace#show_message = 0
+"let g:airline#extensions#whitespace#checks = []
+"let g:airline_theme='light'
 "==================================================
 
 "=============INSTALL OF Syntastic=============

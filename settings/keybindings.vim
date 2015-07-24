@@ -77,17 +77,7 @@ vnoremap <s-l> $
 
 "====== treat <> as paired brackets =======
 set matchpairs+=<:>
-"====== open mindnote.md =======
-nnoremap <silent> [q :rightbelow 13 split ~/.vim/mindnote.md<CR><c-w>k
-"delete buffer
-nnoremap <silent> [bd :bd<CR>
-"resize window
-nnoremap <silent> [l :vertical resize +2<CR>
-nnoremap <silent> [h :vertical resize -2<CR>
-nnoremap <silent> [k :resize -2<CR>
-nnoremap <silent> [j :resize +2<CR>
-"underline a single line
-nnoremap <silent> [ul yypv0$r-
+
 "BuffersToggle
 nnoremap [bb :BuffersToggle<CR>
 "======= own develop ======
@@ -99,7 +89,7 @@ nnoremap [mk :set hlsearch<CR>
 nnoremap [mj :set nohlsearch<CR>
 "save file
 nnoremap <c-m> :w<CR>
-nnoremap <c-q> :q<CR>
+nnoremap <c-x> :q<CR>
 "map the folder key
 nnoremap + zf
 vnoremap + zf
