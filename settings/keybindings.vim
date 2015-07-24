@@ -57,7 +57,7 @@ nnoremap <silent> [ul yypv0$r-
 " map when insert
 inoremap <c-h> <ESC>i
 "inoremap <c-a> <c-o>a
-inoremap <F6> <c-k>
+inoremap <c-d> <c-k>
 inoremap <F7> <c-o>:set list<CR>
 inoremap <F8> <c-o>:set nolist<CR>
 inoremap <c-j> <c-o>j
