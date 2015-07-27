@@ -109,4 +109,4 @@ nnoremap [<CR> :.cc<CR>
 
 
 "ab for [ ]
-ab [ [ ]
+"ab [ [ ]
