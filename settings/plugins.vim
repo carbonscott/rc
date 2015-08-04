@@ -42,6 +42,16 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 nnoremap <c-\> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"close preview windows after insertion
+let g:ycm_autoclose_preview_window_after_insertion = 1
+"==================================================
+"=============INSTALL OF davidhalter/jedi-vim =============
+" Bundle 'davidhalter/jedi-vim'
+" let g:jedi#auto_initialization = 0
+" let g:jedi#auto_vim_configuration = 0
+" let g:jedi#use_splits_not_buffers = "left"
+" let g:jedi#show_call_signatures = "1"
+" autocmd FileType python setlocal completeopt-=preview
 "==================================================
 
 "=============INSTALL OF Airline=============
@@ -60,7 +70,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 "=============INSTALL OF vim-colorscheme=============
 Plugin 'flazz/vim-colorschemes'

@@ -42,6 +42,8 @@ vnoremap <c-k> 5k
 nnoremap <silent> [q :rightbelow 13 split ~/.vim/mindnote.md<CR><c-w>k
 "delete buffer
 nnoremap <silent> [bd :bd<CR>
+"close files
+nnoremap <silent> [bx :q<CR>
 "resize window
 "nnoremap <silent> [l :vertical resize +2<CR>
 "nnoremap <silent> [h :vertical resize -2<CR>
@@ -89,7 +91,7 @@ nnoremap [mk :set hlsearch<CR>
 nnoremap [mj :set nohlsearch<CR>
 "save file
 nnoremap <c-m> :w<CR>
-nnoremap <c-x> :q<CR>
+" nnoremap <c-q> :q<CR>
 "map the folder key
 nnoremap + zf
 vnoremap + zf
