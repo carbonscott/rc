@@ -101,7 +101,7 @@ nnoremap _ zd
 vnoremap _ zd
 
 "show file info
-nnoremap <f5> :file<CR>
+nnoremap <f5> :!./%<CR>
 
 "quickfix window switch
 ":. => current line in command line mode
