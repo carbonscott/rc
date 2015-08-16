@@ -23,12 +23,12 @@ vnoremap <s-h> 0
 nnoremap <s-l> $
 vnoremap <s-l> $
 "navigate escalted
-nnoremap <c-h> 10h
-nnoremap <c-l> 10l
+nnoremap <c-h> 5h
+nnoremap <c-l> 5l
 nnoremap <c-j> 5j
 nnoremap <c-k> 5k
-vnoremap <c-h> 10h
-vnoremap <c-l> 10l
+vnoremap <c-h> 5h
+vnoremap <c-l> 5l
 vnoremap <c-j> 5j
 vnoremap <c-k> 5k
 
@@ -112,3 +112,4 @@ nnoremap [<CR> :.cc<CR>
 
 "ab for [ ]
 "ab [ [ ]
+ab perl Perl
