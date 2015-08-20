@@ -6,3 +6,7 @@ use warnings;
 use feature 'say';
 
 endsnippet
+
+snippet /openpl/ "open file" r
+open(my $${1:file handler name}, "${2:<}", ${3:filename});
+endsnippet
