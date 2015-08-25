@@ -56,3 +56,35 @@ snippet '(.*)\|' "Create Column"  r
 `!p snip.rv = match.group(1)` | ${1:col1} 
 endsnippet
 
+# Insert Formula
+snippet 'informula' "Description" r
+\begin{equation}\label{${1:equation label}}
+${2:equation here}
+\end{equation}
+endsnippet
+
+# Insert Pictures
+snippet 'inpic' "Insert Picture" r
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.6]{${1:File Name}}
+	\caption{${2:Figure Caption}}
+	\label{${3:Figure Label}}
+\end{figure}
+endsnippet
+
+# Insert begin block
+snippet 'bb' "Description" r
+\begin{${1:something}}
+${2:content}
+\end{$1}
+endsnippet
+
+snippet 'intable' "Description" r
+\begin{center}
+\begin{tabular}{ c c }
+${1:a11} & ${2:a12} \\\\
+${3:a21} & ${4:a22}  
+\end{tabular}
+\end{center}
+endsnippet
