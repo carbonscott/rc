@@ -31,7 +31,15 @@ endsnippet
 #Inline Link
 snippet rl "Add an reference link" b
 [${1:Content}][${2:URL}]
+
 [$2]: ${3:Reference Link}
+endsnippet
+
+#Inline FootNotes
+snippet infoot "Add an Footnotes" b
+${1:Content}[^${2:URL}]
+
+[^$2]: ${3:Footnote}
 endsnippet
 
 #Mathematical formula input
