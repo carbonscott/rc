@@ -1,13 +1,12 @@
 
+
 #Head Snippet
 snippet h "Header snippet for markdown document" b
-${1:title}
-${1/./=/g}
-<!--
-title: $1
-author: ${2:carbonscott}
+---
+title: ${1:title}
+author: ${2:Cong Wang}
 date: `!v strftime("%c")`
--->
+---
 endsnippet
 
 #Subtitle
@@ -65,14 +64,14 @@ snippet '(.*)\|' "Create Column"  r
 endsnippet
 
 # Insert Formula
-snippet 'informula' "Description" r
+snippet 'ifm' "Description" r
 \begin{equation}\label{${1:equation label}}
 ${2:equation here}
 \end{equation}
 endsnippet
 
 # Insert Pictures
-snippet 'inpic' "Insert Picture" r
+snippet 'ipi' "Insert Picture" r
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.6]{${1:File Name}}
@@ -88,11 +87,23 @@ ${2:content}
 \end{$1}
 endsnippet
 
-snippet 'intable' "Description" r
+snippet 'itb' "Description" r
 \begin{center}
 \begin{tabular}{ c c }
 ${1:a11} & ${2:a12} \\\\
 ${3:a21} & ${4:a22}  
 \end{tabular}
 \end{center}
+endsnippet
+
+snippet 'ifr' "Description" r
+\\${1:frac}{${2:a1}}{${3:a2}}
+endsnippet
+
+
+snippet 'matb' "Description" r
+\left( \begin{array}{${1:cc}}
+${2:a} & ${3:b} \\\\
+${4:c} & ${5:d} 
+\end{array} \right)
 endsnippet
