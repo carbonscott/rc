@@ -23,14 +23,14 @@ vnoremap <s-h> 0
 nnoremap <s-l> $
 vnoremap <s-l> $
 "navigate escalted
-nnoremap <c-h> 5h
-nnoremap <c-l> 5l
-nnoremap <c-j> 5j
-nnoremap <c-k> 5k
-vnoremap <c-h> 5h
-vnoremap <c-l> 5l
-vnoremap <c-j> 5j
-vnoremap <c-k> 5k
+nnoremap <c-h> 2h
+nnoremap <c-l> 2l
+nnoremap <c-j> 2j
+nnoremap <c-k> 2k
+vnoremap <c-h> 2h
+vnoremap <c-l> 2l
+vnoremap <c-j> 2j
+vnoremap <c-k> 2k
 
 "nnoremap <c-k>k zz
 "nnoremap <c-k>l zt
