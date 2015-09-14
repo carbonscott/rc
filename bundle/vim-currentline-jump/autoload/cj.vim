@@ -1,7 +1,7 @@
 function! cj#ljumper()
 	let s:pat = input('Keyword to search: ')
 	"execute "normal V\?\\%Vexe\<CR>\<ESC>"
-	"let @/=s:pat
+	let @/=s:pat
 	set ignorecase
 	if search(s:pat, 'bn', line(".")) == 0
 		echo "Pattern Not Found!"
@@ -14,7 +14,7 @@ endfunction
 function! cj#rjumper()
 	let s:pat = input('Keyword to search: ')
 	"execute "normal V\?\\%Vexe\<CR>\<ESC>"
-	"let @/=s:pat
+	let @/=s:pat
 	set ignorecase
 	if search(s:pat, 'n', line(".")) == 0
 		echo "Pattern Not Found!"
