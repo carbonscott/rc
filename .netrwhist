@@ -1,8 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/scott/Documents/.History'
 let g:netrw_dirhist_2='/home/scott/Coding/Perl/PerlTutorial'
 let g:netrw_dirhist_3='/home/scott/Documents/Blog/Perl'
 let g:netrw_dirhist_4='/home/scott'
 let g:netrw_dirhist_5='/home/scott/Downloads/gruvbox-master/autoload'
 let g:netrw_dirhist_6='/home/scott'
+let g:netrw_dirhist_7='/home/scott/.vim/bundle/vim-easymotion'
+let g:netrw_dirhist_8='/home/scott/.vim/bundle/vim-easymotion/autoload'

@@ -93,6 +93,12 @@ nnoremap [af :CtrlPMixed<CR>
 nnoremap [al :CtrlPLine<CR>
 
 "============================================
+"=============INSTALL OF ctrlp=============
+Bundle 'easymotion/vim-easymotion'
+map [w [[w
+map [j [[j
+map [k [[k
+"============================================
 
 	" ~~~~~~ALL OF YOUR PLUGINS MUST BE ADDED BEFORE THE FOLLOWING LINE~~~~~~~~~~~~
 	"                                         ~~~~~~    
