@@ -1,3 +1,5 @@
+"
+syntax on
 "highlight
 hi ColorColumn guibg=pink
 highlight SpecialKey guifg=gray 

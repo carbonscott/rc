@@ -30,20 +30,20 @@ let g:UltiSnipsEditSplit="vertical"
 "=============================================
 
 "=============INSTALL OF YouCompleteMe=============
-Bundle 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_confirm_extra_conf = 0
-let g:tex_flavor='latex'
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-"let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-nnoremap <c-\> :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"close preview windows after insertion
-let g:ycm_autoclose_preview_window_after_insertion = 1
+" Bundle 'Valloric/YouCompleteMe'
+" let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_confirm_extra_conf = 0
+" let g:tex_flavor='latex'
+" " make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+" "let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" nnoremap <c-\> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" "close preview windows after insertion
+" let g:ycm_autoclose_preview_window_after_insertion = 1
 "==================================================
 "=============INSTALL OF davidhalter/jedi-vim =============
 " Bundle 'davidhalter/jedi-vim'
