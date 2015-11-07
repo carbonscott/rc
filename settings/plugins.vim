@@ -94,11 +94,16 @@ nnoremap [al :CtrlPLine<CR>
 
 "============================================
 "=============INSTALL OF ctrlp=============
-Bundle 'easymotion/vim-easymotion'
-map [w [[w
-map [j [[j
-map [k [[k
+"Bundle 'easymotion/vim-easymotion'
+"map [w [[w
+"map [j [[j
+"map [k [[k
 "============================================
+"
+"=============INSTALL OF Dracula Colorscheme=============
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+"============================================
+
 
 	" ~~~~~~ALL OF YOUR PLUGINS MUST BE ADDED BEFORE THE FOLLOWING LINE~~~~~~~~~~~~
 	"                                         ~~~~~~    

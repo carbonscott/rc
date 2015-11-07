@@ -14,8 +14,8 @@ au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 "colorscheme visualstudio
 colorscheme github
 " setting for matrix colorscheme
-" colorscheme matrix
-" hi CursorLine guibg=#113311 guifg=white
+"colorscheme matrix
+"hi CursorLine guibg=#113311 guifg=white
 
 
 
