@@ -18,7 +18,11 @@ my ($project) = @ARGV;
 system("mkdir -p $project");
 my @dirs = qw(chapters figures);
 $_ = $project."/".$_ for @dirs;
-my @files = qw(header.sty make.pl);
+
+# add files in the argument of qw {
+my @files = qw(header.sty make.pl refresh.pl);
+# }
+
 my @files2 = @files;
 $_ = $project."/".$_ for @files;
 

@@ -45,4 +45,6 @@ endfunction
 
 vnoremap <silent> <F6> :call moveanywhere#edge()<CR>
 
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
 
