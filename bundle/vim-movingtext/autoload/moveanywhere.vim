@@ -10,41 +10,64 @@ endfunction
 
 function! moveanywhere#copyvisual()
 	silent
-	execute "normal! gvy"
+	execute "normal! gvd"
 	let l:textvisual = @"
+	return l:textvisual
 	"echo l:textvisual
 endfunction
 "vnoremap <silent> <F6> :call copytext#copyvisual()<CR>
 
-function! moveanywhere#edge()
-	let l:visualpos = [getpos("'<")[1:2],getpos("'>")[1:2]]
-	" left boundary
-	" l:leftmostcol = number
-	let l:leftmostcol = 0
-	if l:visualpos[0][1] < l:visualpos[1][1]
-		let l:leftmostcol = l:visualpos[0][1]
-		echo l:leftmostcol
+function! moveanywhere#left()
+	" getpos("'<"): return [bufnum, lnum, col, off]
+	let l:cursor_visualpos = [getpos("'<")[1:2],getpos("'>")[1:2]]
+	" [t who is more left]{
+	" [v l:cursor_leftmost_col]
+	let l:cursor_leftmost_col = 0
+	" [v l:cursor_visualpos] => {
+	" l:cursor_visualpos[0][1] 
+	" l:cursor_visualpos[1][1] 
+	" }
+	if l:cursor_visualpos[0][1] < l:cursor_visualpos[1][1]
+		let l:cursor_leftmost_col = l:cursor_visualpos[0][1]
 	else
-		let l:leftmostcol = l:visualpos[1][1]
-		echo "elseif"
-		echo l:leftmostcol
+		let l:cursor_leftmost_col = l:cursor_visualpos[1][1]
 	endif
-	" right boundary
-	let l:rightmostcol = 0
-	if l:visualpos[0][1] < l:visualpos[1][1]
-		let l:rightmostcol = l:visualpos[0][1]
-		echo l:rightmostcol
+	"}
+	" [v l:cursor_top_row] 
+	let l:cursor_top_row = 0
+	" getting the top row number in visual block
+	" [t which is top?] {
+	if l:cursor_visualpos[0][0] < l:cursor_visualpos[1][0]
+		l:cursor_top_row = l:cursor_visualpos[0][0]
 	else
-		let l:rightmostcol = l:visualpos[1][1]
-		echo "elseif"
-		echo l:rightmostcol
+		l:cursor_top_row = l:cursor_visualpos[1][0]
 	endif
-	" top boundary
-	" bottom boundary
+	" }
+	
+	" [f copy the right text] {
+	let l:textvisual = moveanywhere#copyvisual()
+	echo l:textvisual
+	" }
+
+	" [f move cursor to the right position]
+	" move the cursor 2 more left from the top left position
+	" cursor([lnum, col])
+	" paste
+	call moveanywhere#insert(l:textvisual, [l:cursor_top_row, l:cursor_leftmost_col - 2])
 endfunction
 
-vnoremap <silent> <F6> :call moveanywhere#edge()<CR>
+vnoremap <silent> <F6> :call moveanywhere#left()<CR>
 
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"aaaaaaa"aaaaaaa"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"abbacbbba
+"abbacbbba
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 

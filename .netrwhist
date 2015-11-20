@@ -1,11 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/scott/.vim/bundle/vim-currentline-jump/plugin'
-let g:netrw_dirhist_2='/home/scott/.vim/bundle/vim-currentline-jump'
-let g:netrw_dirhist_3='/home/scott/.vim/bundle/vim-currentline-jump/autoload'
-let g:netrw_dirhist_4='/home/scott/.vim/bundle/vim-currentline-jump'
-let g:netrw_dirhist_5='/home/scott/.vim/bundle/vim-currentline-jump/plugin'
-let g:netrw_dirhist_6='/home/scott/.vim/bundle/vim-currentline-jump'
-let g:netrw_dirhist_7='/home/scott/.vim/bundle/vim-currentline-jump/plugin'
-let g:netrw_dirhist_8='/home/scott/.vim/bundle/vim-currentline-jump'
-let g:netrw_dirhist_9='/home/scott/.vim/bundle/vim-currentline-jump/autoload'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/scott/.vim/bundle/vim-wordsubstitute'
+let g:netrw_dirhist_2='/home/scott/.vim/bundle/vim-wordsubstitute/autoload'
+let g:netrw_dirhist_3='/home/scott/.config/fcitx/conf'
+let g:netrw_dirhist_4='/home/scott/.config/fcitx'
