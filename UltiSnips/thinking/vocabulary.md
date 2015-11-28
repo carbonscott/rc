@@ -12,6 +12,8 @@
 
 * Vocabulary;
 	* Complete Set of Components;
+	* Go through everyone;
+	* Expand limited vocabluary;
 * Trial and Error;
 	* Convergent thinking;
 
