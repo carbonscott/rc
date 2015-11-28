@@ -1,3 +1,5 @@
+`Commit to it without fear, wisdom is the second thing.`
+
 # Logic Thinking
 
 * State: descriptive assumption (static); 
