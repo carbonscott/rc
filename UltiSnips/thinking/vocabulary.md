@@ -12,7 +12,7 @@
 
 * Vocabulary;
 	* Complete Set of Components;
-	* Complex can be made up of or constructed by Simple Components;
+	* Complex can be made up of or constructed by Reusable Components;
 	* Go through everyone;
 	* Expand limited vocabluary;
 * Trial and Error;
