@@ -34,5 +34,3 @@
 * Lateral thinking; Thinking by connection;
 * Vertical thinking; Thinking by Analysis or Perspective;
 
-
-
