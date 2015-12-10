@@ -66,13 +66,14 @@ function! quote#user_input()
 	" let s:indent_on = input('indent?(y/n): ')
 endfunction
 
+
 function! quote#fun2() 
 	let s:cursor_1 = getpos("'<")
 	let s:cursor_2 = getpos("'>")
 	call quote#fun2sub1()
 	call quote#user_input()
 	while 1
-		let s:indent_on = input('indent?(y/n): ')
+		let s:indent_on = 'n'
 		" TEST if s:indent_on carries any values?
 		if !exists("s:indent_on") || s:indent_on == ""
 			let s:indent_on = 'n'
@@ -87,6 +88,28 @@ function! quote#fun2()
 		endif
 	endwhile
 endfunction
+
+" function! quote#fun2() 
+" 	let s:cursor_1 = getpos("'<")
+" 	let s:cursor_2 = getpos("'>")
+" 	call quote#fun2sub1()
+" 	call quote#user_input()
+" 	while 1
+" 		let s:indent_on = input('indent?(y/n): ')
+" 		" TEST if s:indent_on carries any values?
+" 		if !exists("s:indent_on") || s:indent_on == ""
+" 			let s:indent_on = 'n'
+" 		endif
+" 		if s:indent_on == 'n'
+" 			call quote#tagadd()
+" 			break
+" 		endif
+" 		if s:indent_on == 'y'
+" 			call quote#tagadd2()
+" 			break
+" 		endif
+" 	endwhile
+" endfunction
 
 " TEST: how to create user input in vim
 "
