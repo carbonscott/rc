@@ -109,6 +109,18 @@ nnoremap <f5> :!./%<CR>
 nnoremap [cw :cw<CR>:setlocal nornu<CR>
 nnoremap [<CR> :.cc<CR>
 
+"rebind the number from 6 to 0 to be reached from <c-1> to <c-5> {
+nnoremap [1 6
+nnoremap [2 7
+nnoremap [3 8
+nnoremap [4 9
+nnoremap [5 0
+vnoremap [1 6
+vnoremap [2 7
+vnoremap [3 8
+vnoremap [4 9
+vnoremap [5 0
+"}
 
 "ab for [ ]
 "ab [ [ ]
