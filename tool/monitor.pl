@@ -42,9 +42,9 @@ my %xrandr = (
 	delmode => 'xrandr --delmode DP-1 ' . $info_num,
 );
 
-#say $xrandr{newmode};
-#say $xrandr{addmode};
-#say $xrandr{output};
+say $xrandr{newmode};
+say $xrandr{addmode};
+say $xrandr{output};
 #say $xrandr{delmode};
 
 system($xrandr{newmode});
