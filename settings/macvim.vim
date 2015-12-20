@@ -3,6 +3,10 @@ set macmeta
 inoremap <M-[> <c-[>
 vnoremap <M-[> <c-[>
 onoremap <M-[> <c-[>
+cnoremap <M-[> <c-[>
+
+inoremap <M-u> <c-u>
+inoremap <M-w> <c-w>
 
 nnoremap <M-d> <c-d>
 vnoremap <M-d> <c-d>
