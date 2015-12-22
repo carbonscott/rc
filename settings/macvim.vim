@@ -13,6 +13,18 @@ vnoremap <M-d> <c-d>
 nnoremap <M-u> <c-u>
 vnoremap <M-u> <c-u>
 
+inoremap <M-o> <c-o>
+inoremap <M-n> <c-n>
+inoremap <M-p> <c-p>
+inoremap <M-r> <c-r>
+nnoremap <M-r> <c-r>
+nnoremap <M-v> <c-v>
+
+"inoremap <M-x> <c-x>
+"set cpo+=<
+inoremap <special> <M-i> <C-X><C-F>
+inoremap <special> <M-b> <C-X><C-N>
+
 "key mapping: ->
 noremap <F9> :set hlsearch<CR>
 noremap <F10> :set nohlsearch<CR>

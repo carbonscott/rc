@@ -7,7 +7,7 @@ source ~/.vim/runtimepath.vim
 set wildmenu
 set rnu
 "set guifont=Monaco\ 10
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
