@@ -33,6 +33,9 @@ nnoremap <M-x> <c-x>
 nnoremap <M-w> <c-w>
 vnoremap <M-w> <c-w>
 
+vnoremap <M-g> <c-g>
+snoremap <M-g> <c-g>
+
 "inoremap <M-x> <c-x>
 "set cpo+=<
 inoremap <special> <M-i> <C-X><C-F>
