@@ -26,6 +26,9 @@ inoremap <M-t> <c-t>
 nnoremap <M-e> <c-e>
 nnoremap <M-y> <c-y>
 
+nnoremap <M-a> <c-a>
+nnoremap <M-x> <c-x>
+
 "inoremap <M-x> <c-x>
 "set cpo+=<
 inoremap <special> <M-i> <C-X><C-F>
