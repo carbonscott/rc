@@ -6,3 +6,32 @@ __author__      = "carbonscott"
 __date__        = "`!v strftime("%c")`"
 endsnippet
 
+snippet /def/ "define a function in python" r
+def ${1:name_of_function}(${2:arg}): #{
+	${3:statements_of_function}
+#}
+endsnippet
+
+snippet /if/ "define a function in python" r
+if ${1:test}: #{
+	${2:statements_of_test}
+#}
+endsnippet
+
+snippet /elif/ "define a function in python" r
+elif ${1:test}: #{
+	${2:statements_of_test}
+#}
+endsnippet
+
+snippet /else/ "define a function in python" r
+else: #{
+	${1:statements_of_test}
+#}
+endsnippet
+ 
+snippet /for/ "define a function in python" r
+for ${1:iteration_counter} in ${2:iteration_list}: #{
+	${3:statements_of_iteration}
+#}
+endsnippet

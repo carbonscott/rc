@@ -4,6 +4,7 @@ inoremap <M-[> <c-[>
 vnoremap <M-[> <c-[>
 onoremap <M-[> <c-[>
 cnoremap <M-[> <c-[>
+snoremap <M-[> <c-[>
 
 inoremap <M-u> <c-u>
 inoremap <M-w> <c-w>
@@ -28,6 +29,9 @@ nnoremap <M-y> <c-y>
 
 nnoremap <M-a> <c-a>
 nnoremap <M-x> <c-x>
+
+nnoremap <M-w> <c-w>
+vnoremap <M-w> <c-w>
 
 "inoremap <M-x> <c-x>
 "set cpo+=<
