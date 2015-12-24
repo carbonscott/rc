@@ -42,3 +42,14 @@ class ${1:class_name}(${2:object}): #{
 #}
 endsnippet
 
+snippet /try/ "Description" r
+try: #{
+	${1:error_handling_statement}
+#}
+except ${2:error_type}: #{
+	${3:error_handling_statement}
+#}
+finally: #{
+	${4:error_handling_statement}
+#}
+endsnippet
