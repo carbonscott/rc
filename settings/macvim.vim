@@ -36,6 +36,8 @@ vnoremap <M-w> <c-w>
 vnoremap <M-g> <c-g>
 snoremap <M-g> <c-g>
 
+cnoremap <M-d> <c-d>
+
 "inoremap <M-x> <c-x>
 "set cpo+=<
 inoremap <special> <M-i> <C-X><C-F>
