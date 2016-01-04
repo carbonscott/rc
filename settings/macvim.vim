@@ -6,6 +6,12 @@ onoremap <M-[> <c-[>
 cnoremap <M-[> <c-[>
 snoremap <M-[> <c-[>
 
+inoremap <D-[> <c-[>
+vnoremap <D-[> <c-[>
+onoremap <D-[> <c-[>
+cnoremap <D-[> <c-[>
+snoremap <D-[> <c-[>
+
 inoremap <M-u> <c-u>
 inoremap <M-w> <c-w>
 
