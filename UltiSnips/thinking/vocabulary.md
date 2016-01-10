@@ -38,5 +38,5 @@
 * Trial and Error;
 * Name a type -- a container for information organized;
 * Name sth belonged to a type and for users to call; 
-	* Two things belonged to same type;
-	* Identifiers are needed to distingush them when they are used;
+	* Two things belonged to same type for instance;
+	* Identifiers are needed to distinguish them when they are used;
