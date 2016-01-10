@@ -36,5 +36,6 @@
 # Simplify -- Convergent thinking
 
 * Trial and Error;
-* Name a type;
+* Name a type -- a container for information organized;
+* Name sth for user to call;
 
