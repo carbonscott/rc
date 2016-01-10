@@ -15,8 +15,6 @@
 	* Complex can be made up of or constructed by Simple or Reusable Components;
 	* Go through everyone;
 	* Expand limited vocabluary;
-* Trial and Error;
-	* Convergent thinking;
 
 # Critical Thinking
 
@@ -29,9 +27,13 @@
 * Professional/Expert Thinking;
 * Combination of different thinking;
 
-# Associative Thinking
+# Associative Thinking -- Divergent thinking
 
 * Divergent thinking: Try to connect to one thing with different or deep level examples;
 * Lateral thinking; Thinking by connection;
 * Vertical thinking; Thinking by Analysis or Perspective;
+
+# Simplify -- Convergent thinking
+	* Trial and Error;
+	* Name a type;
 
