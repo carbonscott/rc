@@ -34,6 +34,7 @@
 * Vertical thinking; Thinking by Analysis or Perspective;
 
 # Simplify -- Convergent thinking
-	* Trial and Error;
-	* Name a type;
+
+* Trial and Error;
+* Name a type;
 
