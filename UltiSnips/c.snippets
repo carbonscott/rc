@@ -56,8 +56,10 @@ endsnippet
 
 snippet /malloc/ "memory allocation" r
 malloc(sizeof(${1:/*type*/})*${2:/*number of such typed object*/});
-free(${3:/*name of pointer who manages it*/});
-$3 = NULL;
+if ($3 != NULL) {
+	free(${3:/*name of pointer who manages it*/});
+	$3 = NULL;
+}
 endsnippet
 
 snippet /swi/ "switch statement" r
