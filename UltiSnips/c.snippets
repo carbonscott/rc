@@ -56,6 +56,11 @@ endsnippet
 
 snippet /malloc/ "memory allocation" r
 malloc(sizeof(${1:/*type*/})*${2:/*number of such typed object*/});
+if ($3 == NULL) {
+	printf("Memory Error: Not Allocated!");
+	exit(1);
+}
+
 if ($3 != NULL) {
 	free(${3:/*name of pointer who manages it*/});
 	$3 = NULL;
