@@ -125,3 +125,5 @@ vnoremap [5 0
 "ab for [ ]
 "ab [ [ ]
 ab perl Perl
+
+nnoremap [s a    <c-[>
