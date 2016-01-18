@@ -92,3 +92,15 @@ snippet /comm/ "comments" r
 *     ${1:comments here}
 *************************************/
 endsnippet
+
+snippet /fopen/ "open file" r
+FILE * ${1:ptr_file} = fopen("${2:filename}", "${3:w}");
+if ($1 == NULL) {
+	printf("File is not open correctly!");
+	exit(1);
+}
+
+if ($1 != NULL) fclose($1);
+$1 = NULL;
+endsnippet
+
