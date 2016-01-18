@@ -111,3 +111,11 @@ if ($1 == NULL) {
 }
 endsnippet
 
+snippet /ifndef/ "debug duplication of header" r
+#ifndef __${1:filename}_h__
+#define __$1_h__
+${2:contents}
+#endif
+endsnippet
+
+
