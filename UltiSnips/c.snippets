@@ -104,3 +104,10 @@ if ($1 != NULL) fclose($1);
 $1 = NULL;
 endsnippet
 
+snippet /check/ "check NULL pointer" r
+if ($1 == NULL) {
+	printf("${2:Pointer is pointing to NULL}\n");
+	exit(1);
+}
+endsnippet
+
