@@ -104,6 +104,10 @@ nnoremap [al :CtrlPLine<CR>
 "=============INSTALL OF Dracula Colorscheme=============
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 "============================================
+"=============INSTALL OF Taglish=============
+Plugin 'vim-scripts/taglist.vim'
+"============================================
+
 
 
 	" ~~~~~~ALL OF YOUR PLUGINS MUST BE ADDED BEFORE THE FOLLOWING LINE~~~~~~~~~~~~

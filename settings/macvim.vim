@@ -9,6 +9,9 @@ snoremap <M-[> <c-[>
 nnoremap <M-]> <c-]>
 nnoremap <M-i> <c-i>
 nnoremap <M-t> <c-t>
+vnoremap <M-]> <c-]>
+vnoremap <M-i> <c-i>
+vnoremap <M-t> <c-t>
 
 inoremap <D-[> <c-[>
 vnoremap <D-[> <c-[>
@@ -24,6 +27,8 @@ vnoremap <M-d> <c-d>
 nnoremap <M-u> <c-u>
 vnoremap <M-u> <c-u>
 
+nnoremap <M-o> <c-o>
+vnoremap <M-o> <c-o>
 inoremap <M-o> <c-o>
 inoremap <M-n> <c-n>
 inoremap <M-p> <c-p>
