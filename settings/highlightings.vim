@@ -11,7 +11,8 @@ au insertenter * hi CursorLineNR cterm=bold ctermbg=2
 au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
 "colorscheme
-colorscheme PaperColor
+"colorscheme PaperColor
+colorscheme solarized
 "colorscheme visualstudio
 "colorscheme xemacs
 " setting for matrix colorscheme

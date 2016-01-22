@@ -1,4 +1,7 @@
-`Commit to it without fear, wisdom is the second thing.`
+# Responsible for your code
+
+* `Clear Frustrated, Rerefresh Love and passion, break down impossible into
+  something possible.`
 
 # Logic Thinking
 
@@ -13,6 +16,7 @@
 * Vocabulary;
 	* Complete Set of Components;
 	* Complex can be made up of or constructed by Simple or Reusable Components;
+	* Break down Impossible into something possible;
 	* Go through everyone;
 	* Expand limited vocabluary;
 
@@ -36,7 +40,17 @@
 # Simplify -- Convergent thinking
 
 * Trial and Error;
+* Find associated tweakable parameters that monitors all the trial and error states;
+	* keep aware of the difference of each trials;
+	* do error checking as much as possible;
+	* such as a number indicating assumption states;
 * Name a type -- a container for information organized;
 * Name sth belonged to a type and for users to call; 
 	* Two things belonged to same type for instance;
 	* Identifiers are needed to distinguish them when they are used;
+
+
+# Language -- Literal Relation
+
+* from, according to, into;
+* point to, specified by, A within B (A is specified in declaratoin of B);
