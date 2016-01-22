@@ -1,7 +1,8 @@
 # Responsible for your code
 
 * `Clear Frustrated, Rerefresh Love and passion, break down impossible into
-  something possible. Do it faster with confidence(Frustration, Love)!`
+  something possible. Do it faster with confidence(Frustration, Love) to meet
+  expectation!`
 
 # Logic Thinking
 
