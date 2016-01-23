@@ -75,6 +75,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 "autocmd FileType python silent! SyntasticToggleMode<CR>
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+let g:syntastic_mode_map = { 'passive_filetypes': ['c'] }
 "=============INSTALL OF vim-colorscheme=============
 Plugin 'flazz/vim-colorschemes'
 "==================================================
