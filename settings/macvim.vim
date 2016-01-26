@@ -56,6 +56,9 @@ cnoremap <M-h> <c-h>
 cnoremap <M-j> <c-j>
 cnoremap <M-k> <c-k>
 cnoremap <M-l> <c-l>
+cnoremap <M-u> <c-u>
+cnoremap <M-r> <c-r>
+cnoremap <M-w> <c-w>
 
 onoremap <M-d> <c-d>
 onoremap <M-h> <c-h>
