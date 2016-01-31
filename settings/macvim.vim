@@ -48,6 +48,7 @@ nnoremap <M-x> <c-x>
 nnoremap <M-w> <c-w>
 vnoremap <M-w> <c-w>
 
+nnoremap <M-g> <c-g>
 vnoremap <M-g> <c-g>
 snoremap <M-g> <c-g>
 

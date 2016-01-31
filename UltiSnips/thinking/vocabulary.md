@@ -21,6 +21,12 @@
 	* Go through everyone;
 	* Expand limited vocabluary;
 
+# Algorithmatic Thinking
+
+* Sequence: one after another;
+* Selection: conditioning by test;
+* Repition: keep changing sth until it is in some range;
+
 # Critical Thinking
 
 * Anti-systematic thinking in some cases, a special trial, like using logic, to go beyond vocabulary;

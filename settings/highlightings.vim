@@ -12,6 +12,7 @@ au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
 "colorscheme
 "colorscheme PaperColor
+set background=dark
 colorscheme solarized
 "colorscheme visualstudio
 "colorscheme xemacs
