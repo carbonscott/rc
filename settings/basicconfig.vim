@@ -6,6 +6,7 @@ source ~/.vim/runtimepath.vim
 " settings
 set wildmenu
 set rnu
+set nonumber
 " For macvim #{
 set guifont=Monaco:h13
 " #}
@@ -21,7 +22,6 @@ set guioptions-=m
 set guioptions-=r
 set guioptions-=L
 set autoindent
-set number
 set wrap
 set linebreak
 set textwidth=0
