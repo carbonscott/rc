@@ -12,8 +12,11 @@ au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
 "colorscheme
 "colorscheme PaperColor
+if has("gui_macvim")
+	colorscheme solarized
+endif
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 "colorscheme visualstudio
 "colorscheme xemacs
 " setting for matrix colorscheme
