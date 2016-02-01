@@ -69,9 +69,11 @@ onoremap <M-l> <c-l>
 
 "inoremap <M-x> <c-x>
 "set cpo+=<
-inoremap <special> <M-i> <C-X><C-F>
-inoremap <special> <M-b> <C-X><C-N>
-
+"inoremap <special> <M-i> <C-X><C-F>
+"inoremap <special> <M-b> <C-X><C-N>
+inoremap <special> <M-]> <C-X><C-O>
+inoremap <special> <M-i> <C-X><C-N>
+   
 "key mapping: ->
 noremap <F9> :set hlsearch<CR>
 noremap <F10> :set nohlsearch<CR>
