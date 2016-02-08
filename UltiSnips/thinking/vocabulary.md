@@ -25,7 +25,7 @@
 
 * Sequence: one after another;
 * Selection: conditioning by test;
-* Repition: keep changing sth until it is in some range;
+* Repition: keep changing sth until it is in another range;
 
 # Critical Thinking
 
