@@ -15,7 +15,7 @@ au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 if has("gui_macvim")
 	colorscheme solarized
 endif
-set background=light
+set background=dark
 "colorscheme solarized
 "colorscheme visualstudio
 "colorscheme xemacs

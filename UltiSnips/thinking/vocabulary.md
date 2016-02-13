@@ -7,7 +7,7 @@
 # Logic Thinking
 
 * State: descriptive assumption (static); 
-	* List of examples, and abstract the definition and then make it a stated assumption;
+	* List of examples, and abstract (remove dependency) the definition and then make it a stated assumption;
 * Transition relation: transformation assumption (dynamic); This is the relation that connects the new state and the original state;
 	* Recursion: a special transformation rule; `I can solve it` because `I can solve it`.
 	* Based on example and abstract the relation between stated assumptions;
@@ -51,7 +51,8 @@
 	* keep aware of the difference of each trials;
 	* do error checking as much as possible;
 	* such as a number indicating assumption states;
-* Name a type -- a container for information organized;
+* Abstract things (remove dependency) and Name a type -- a container for information
+  organized;
 * Name sth belonged to a type and for users to call; 
 	* Two things belonged to same type for instance;
 	* Identifiers are needed to distinguish them when they are used;
