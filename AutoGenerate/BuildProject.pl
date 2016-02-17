@@ -16,11 +16,12 @@ Usage: BuildProject {Project Name}
 
 my ($project) = @ARGV;
 system("mkdir -p $project");
-my @dirs = qw(chapters figures);
+
+my @dirs = qw(chapters figures materials test); # dirs to create
 $_ = $project."/".$_ for @dirs;
 
 # add files in the argument of qw {
-my @files = qw(header.sty make.pl refresh.pl);
+my @files = qw(header.sty make.pl refresh.pl); # files to cp
 # }
 
 my @files2 = @files;
