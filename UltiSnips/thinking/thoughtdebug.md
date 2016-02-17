@@ -17,7 +17,7 @@
 ### Vocabulary Error
 
 * Traverse Not Complete;
-* Vocabulary Dependence Error;
+* Out of Vocabulary;
 
 ## Reasons
 
