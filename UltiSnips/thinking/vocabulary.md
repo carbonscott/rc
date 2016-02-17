@@ -1,8 +1,7 @@
 # Responsible for your code
 
-* `Clear Frustrated, Rerefresh Love and passion, break down impossible into
-  something possible. Do it faster with confidence(Frustration, Love) to meet
-  expectation!`
+* `Clear Frustration, Rerefresh Love and Passion, Do it, try to break down
+  impossible into something possible.`
 
 # Logic Thinking
 
@@ -14,12 +13,11 @@
 
 # Systematic Thinking
 
-* Vocabulary;
-	* Complete Set of Components;
+* Vocabulary: Complete Set of Components;
 	* Complex can be made up of or constructed by Simple or Reusable Components;
+	* Go through every one in the vocabulary;
+	* Expand limited vocabulary;
 	* Break down Impossible into something possible;
-	* Go through everyone;
-	* Expand limited vocabluary;
 
 # Algorithmatic Thinking
 
@@ -51,14 +49,9 @@
 	* keep aware of the difference of each trials;
 	* do error checking as much as possible;
 	* such as a number indicating assumption states;
-* Abstract things (remove dependency) and Name a type -- a container for information
+* Abstract things (Remove Dependency) and Name a type -- a container for information
   organized;
 * Name sth belonged to a type and for users to call; 
 	* Two things belonged to same type for instance;
 	* Identifiers are needed to distinguish them when they are used;
 
-
-# Language -- Literal Relation
-
-* from, according to, into;
-* point to, specified by, A within B (A is specified in declaratoin of B);
