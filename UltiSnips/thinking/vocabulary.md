@@ -55,3 +55,11 @@
 	* Two things belonged to same type for instance;
 	* Identifiers are needed to distinguish them when they are used;
 
+# Creative -- Make your own game
+
+* Ask Question;
+* Design a solvable problem;
+* Make hypothesises;
+
+You can never say you are familiar with sth until you can be creative on top of
+that.
