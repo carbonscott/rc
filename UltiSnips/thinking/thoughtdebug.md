@@ -46,14 +46,19 @@ processing it out of my own I/O ability. It is also one of the major reason why 
 is better to break something down into something in a level we can process. I have
 to **do something on top of different levels because of my limited I/O speed**. The
 very first implication of building things on top of different levels is to **expand
-my vocabulary** as much as I can.
+my vocabulary** as much as I can, which means I have more things to build upon and
+take advantages of the combination fully upon.
 
 ### What can I do with my I/O speed itself?
 
-**Find a good way to represent/code information**. For me, the best few ways are: 
+* **Find a good way to represent/code information**. 
+	For me, the best few ways are: 
 
-* Visualize
-* Impersonate
+	* Visualize
+	* Impersonate
+	* Any kinds of Rehearse
+
+* **expand vocabulary**
 
 ### What can I say about dependence?
 
@@ -61,3 +66,8 @@ my vocabulary** as much as I can.
 * Recursion is the repetitive form of **combination**.
 * Abstraction means to **remove** certain **dependence** out of a **comparison**.
 
+### How to live with learning curve for me? 
+
+* Get to know it and find a good way to **represent** it for me;
+* Add it to vocabulary;
+* Play with it by being **Creative**;
