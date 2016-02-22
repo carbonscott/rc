@@ -56,6 +56,7 @@ take advantages of the combination fully upon.
 
 	* Visualize
 	* Impersonate
+	* Examplize
 	* Any kinds of Rehearse
 
 * **expand vocabulary**
@@ -65,6 +66,7 @@ take advantages of the combination fully upon.
 * Combination is the simplest **dependence**, like put things together.
 * Recursion is the repetitive form of **combination**.
 * Abstraction means to **remove** certain **dependence** out of a **comparison**.
+* Examplization means to **add** certain **dependence** out of an **example**.
 
 ### How to live with learning curve for me? 
 

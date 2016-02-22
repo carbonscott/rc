@@ -63,3 +63,8 @@
 
 You can never say you are familiar with sth until you can be creative on top of
 that.
+
+# Case study -- Learn from examples
+
+Cases have more side unawared but useuful information for me. It might help me
+better represent the data before I am able to abstract it.
