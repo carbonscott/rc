@@ -8,6 +8,7 @@ autocmd BufNewFile,BufRead *.md :set filetype=markdown
 autocmd BufNewFile,BufRead *.md :source ~/.vim/settings/highlightmd.vim
 autocmd FileType markdown :set colorcolumn=86 
 autocmd FileType markdown :source ~/.vim/settings/highlightmd.vim
+autocmd filetype c,cpp,hpp,h :set formatoptions+=j
 "=======================================
 
 
