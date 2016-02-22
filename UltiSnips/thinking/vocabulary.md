@@ -66,5 +66,5 @@ that.
 
 # Case study -- Learn from examples
 
-Cases have more side unawared but useuful information for me. It might help me
+Cases have more unawared but useuful side information for me. It might help me
 better represent the data before I am able to abstract it.
