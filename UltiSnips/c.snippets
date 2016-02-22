@@ -95,6 +95,10 @@ snippet /comm/ "comments" r
 *************************************/
 endsnippet
 
+snippet //*/ "inline comments" r
+/*${1:inline comments}*/
+endsnippet
+
 snippet /fopen/ "open file" r
 FILE * ${1:ptr_file} = fopen("${2:filename}", "${3:w}");
 if ($1 == NULL) {
