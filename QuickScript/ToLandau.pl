@@ -7,7 +7,7 @@ use feature 'say';
 die("Error:\n./ToLandau.pl [source]") unless @ARGV == 1;
 
 my ($source) = @ARGV;
-my $dest = 'root@landau.chem.uic.edu:/home/scott/';
+my $dest = 'root@landau.chem.uic.edu:/home/scott/test';
 
 my $command = './Rsync.pl';
 
