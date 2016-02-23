@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use feature 'say';
 
-die("Error\n./Rsync.pl [source] [dest]") unless @ARGV == 2;
+# die("Error:\n./Rsync.pl [source] [dest]") unless @ARGV == 2;
 
 my ($source, $dest) = @ARGV;
 

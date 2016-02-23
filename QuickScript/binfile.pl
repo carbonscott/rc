@@ -11,9 +11,9 @@ File List:
 * remote_vim
 =cut
 
-my @file_to_bin = qw(ToLandau remote_vim);
+my @file_to_bin = qw(ToLandau remote_vim Rsync);
 for my $file (@file_to_bin) {
-	my $command = 'ln -s '.$file.'.pl '.'/usr/local/bin/'.$file;
+	my $command = 'ln -s /Users/Scott/.vim/QuickScript/'.$file.'.pl '.'/usr/local/bin/'.$file;
 	say($command);
 	system($command);
 }
