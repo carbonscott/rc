@@ -57,7 +57,7 @@ take advantages of the combination fully upon.
 	* Visualize
 	* Impersonate
 	* Examplize
-	* Any kinds of Rehearse
+	* Any kinds of thinking model listed in `vocabulary.md`
 
 * **expand vocabulary**
 
