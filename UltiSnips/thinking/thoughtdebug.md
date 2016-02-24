@@ -59,7 +59,9 @@ take advantages of the combination fully upon.
 	* Examplize
 	* Any kinds of thinking model listed in `vocabulary.md`
 
-* **expand vocabulary**
+* **Expand vocabulary**
+
+If the above things are worth *adding to my vocabulary*, then do it.
 
 ### What can I say about dependence?
 
