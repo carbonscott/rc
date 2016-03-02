@@ -5,13 +5,12 @@
 
 # Representation/Observation Technique
 
-* BREAK things DOWN to different observor. Abstractly, it is like to observe a
-  vector in terms of basis vectors.
-* Observor is sth from vocabulary?
+* BREAK things DOWN to different components to find dependence. It is like to
+  observe a vector in terms of basis vectors, and it helps user to focus on
+  manageable things.
 * Vocabulary makes user observe/recognize and figure out combination;
-* Identify dependence from observors;
 * Remove redundence from observors;
-* Vocabulary for meta thinking and non-meta thinking;
+* Vocabulary for Meta-Thinking and Non-Meta Thinking;
 
 # Expanding Vocabulary for Meta Thinking 
 
