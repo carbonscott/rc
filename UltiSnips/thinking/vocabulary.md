@@ -11,8 +11,11 @@
 * Vocabulary makes user observe/recognize and figure out combination;
 * Identify dependence from observors;
 * Remove redundence from observors;
+* Vocabulary for meta thinking and non-meta thinking;
 
-# Logic Thinking
+# Expanding Vocabulary for Meta Thinking 
+
+## Logic Thinking
 
 * State: descriptive assumption (static); 
 	* List of examples, and abstract (remove dependency) the definition and then make it a stated assumption;
@@ -20,7 +23,7 @@
 	* Recursion: a special transformation rule; `I can solve it` because `I can solve it`.
 	* Based on example and abstract the relation between stated assumptions;
 
-# Systematic Thinking
+## Systematic Thinking
 
 * Vocabulary: Complete Set of Components;
 	* Complex can be made up of or constructed by Simple or Reusable Components;
@@ -28,30 +31,30 @@
 	* Expand limited vocabulary;
 	* Break down Impossible into something possible;
 
-# Algorithmatic Thinking
+## Algorithmatic Thinking
 
 * Sequence: one after another;
 * Selection: conditioning by test;
 * Repition: keep changing sth until it is in another range;
 
-# Critical Thinking
+## Critical Thinking
 
 * Anti-systematic thinking in some cases, a special trial, like using logic, to go beyond vocabulary;
 * To be different;
 
-# Strategic Thinking
+## Strategic Thinking
 
 * I don't understand it well, it is related to organization.
 * Professional/Expert Thinking;
 * Combination of different thinking;
 
-# Associative Thinking -- Divergent thinking
+## Associative Thinking -- Divergent thinking
 
 * Divergent thinking: Try to connect to one thing with different or deep level examples;
 * Lateral thinking; Thinking by connection;
 * Vertical thinking; Thinking by Analysis or Perspective;
 
-# Simplify -- Convergent thinking
+## Simplify -- Convergent thinking
 
 * Trial and Error;
 * Find associated tweakable parameters that monitors all the trial and error states;
@@ -64,7 +67,7 @@
 	* Two things belonged to same type for instance;
 	* Identifiers are needed to distinguish them when they are used;
 
-# Creative -- Make your own game
+## Creative -- Make your own game
 
 * Ask Question;
 * Design a solvable problem;
@@ -73,7 +76,7 @@
 You can never say you are familiar with sth until you can be creative on top of
 that.
 
-# Case study -- Learn from examples
+## Case study -- Learn from examples
 
 Cases have more unawared but useuful side information for me. It might help me
 better represent the data before I am able to abstract it.
