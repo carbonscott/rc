@@ -3,6 +3,13 @@
 * `Clear Frustration, Rerefresh Love and Passion, Do it, try to break down
   impossible into something possible.`
 
+# Representation/Observation Technique
+
+* BREAK things DOWN to different observor. Abstractly, it is like to observe a
+  vector in terms of basis vectors.
+* Identify dependence from observors;
+* Remove redundence from observors;
+
 # Logic Thinking
 
 * State: descriptive assumption (static); 

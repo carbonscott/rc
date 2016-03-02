@@ -6,6 +6,7 @@
 
 * Dependence Error/Abstraction Error:
 	* Abstraction := Remove Dependence here;
+	* Redundence := Insignificant dependence;
 * Memory Error;
 
 ### Reconstruction Error
@@ -51,7 +52,7 @@ take advantages of the combination fully upon.
 
 ### What can I do with my I/O speed itself?
 
-* **Find a good way to represent/code information**. 
+* **Find a good way to represent/observe information**. 
 	For me, the best few ways are: 
 
 	* Visualize
