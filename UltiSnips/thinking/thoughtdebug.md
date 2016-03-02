@@ -66,6 +66,9 @@ If the above things are worth *adding to my vocabulary*, then do it.
 
 ### What can I say about dependence?
 
+* BREAK DOWN things to different components from vocabulary to find dependence. It
+  is like to observe a vector in terms of basis vectors, and it helps user to focus
+  on manageablea (dependence to vocabulary is established) things.
 * Combination is the simplest **dependence**, like put things together.
 * Recursion is the repetitive form of **combination**.
 * Abstraction means to **remove** certain **dependence** out of a **comparison**.
