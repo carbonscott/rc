@@ -7,6 +7,8 @@
 
 * BREAK things DOWN to different observor. Abstractly, it is like to observe a
   vector in terms of basis vectors.
+* Observor is sth from vocabulary?
+* Vocabulary makes user observe/recognize and figure out combination;
 * Identify dependence from observors;
 * Remove redundence from observors;
 
