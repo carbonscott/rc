@@ -86,9 +86,9 @@ nnoremap [bb :BuffersToggle<CR>
 "set runtimepath+=~/.vim/bundle/vim-quote
 set cursorline
 "noh mapped by keystrokes
-nnoremap [o :noh<CR>
-nnoremap [mk :set hlsearch<CR>
-nnoremap [mj :set nohlsearch<CR>
+"nnoremap [o :noh<CR>
+"nnoremap [mk :set hlsearch<CR>
+"nnoremap [mj :set nohlsearch<CR>
 "save file
 nnoremap <c-m> :w<CR>
 " nnoremap <c-q> :q<CR>
@@ -127,3 +127,4 @@ vnoremap [5 0
 ab perl Perl
 
 nnoremap [s a    <c-[>
+
