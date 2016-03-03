@@ -35,3 +35,4 @@ set wildignore += "*.a, *.o, *.bmp, *.jpg, *.png, *.ico, *.swp, *.tmp, *.git, *.
 set ruler
 set formatoptions+=j "Make the comments notation invisible while joining or spliting lines
 set backspace=indent,eol,start
+set virtualedit=all
