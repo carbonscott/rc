@@ -5,9 +5,9 @@
 
 # Representation/Observation Technique
 
-* BREAK DOWN things to different components from vocabulary to find dependence. It
-  is like to observe a vector in terms of basis vectors, and it helps user to focus
-  on manageablea (dependence to vocabulary is established) things.
+* BREAK DOWN things to different INDEPENDENT components from vocabulary to find
+  dependence. It is like to observe a vector in terms of basis vectors, and it helps
+  user to focus on manageablea (dependence to vocabulary is established) things.
 * Vocabulary makes user observe/recognize and figure out combination;
 * Remove redundence from observors;
 * Vocabulary for Meta-Thinking and Non-Meta Thinking;
