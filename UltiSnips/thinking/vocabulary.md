@@ -7,7 +7,7 @@
 
 * BREAK DOWN things to different INDEPENDENT components from vocabulary. Make it
   readable to do two key steps in thinking algorithm: 
-  * dependence: main vs components
+  * add dependence: main vs components
   * remove dependence: component vs component
   It is like to observe a vector in terms of basis vectors, and it helps user to
   focus on manageablea (dependence to vocabulary is established) things.
