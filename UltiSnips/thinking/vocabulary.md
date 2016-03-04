@@ -12,6 +12,12 @@
 * Remove redundence from observors;
 * Vocabulary for Meta-Thinking and Non-Meta Thinking;
 
+# Three List
+
+* Observable
+* Breakable
+* Remainder (not break down yet)
+
 # Expanding Vocabulary for Meta Thinking 
 
 ## Logic Thinking
