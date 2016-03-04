@@ -9,7 +9,6 @@
   readable to do two key steps in thinking algorithm: 
   * add dependence: main vs components
   * remove dependence: component vs component
-
 * It is like to observe a vector in terms of basis vectors, and it helps user to
   focus on manageablea (dependence to vocabulary is established) things.
 * Vocabulary makes user observe/recognize and figure out combination;
