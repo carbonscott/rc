@@ -96,8 +96,11 @@ better represent the data before I am able to abstract it.
 * Simple Examplize;
 * Make analogy;
 
-## Checking 
+## Checking Awareness
 
 * Exception Awareness;
 * Wrong dependence assigned;
+	* if the dependence is really assigned, what can be determined by this
+	  assignment?
+
 
