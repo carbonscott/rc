@@ -95,3 +95,9 @@ better represent the data before I am able to abstract it.
 
 * Simple Examplize;
 * Make analogy;
+
+## Checking 
+
+* Exception Awareness;
+* Wrong dependence assigned;
+
