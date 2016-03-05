@@ -13,13 +13,17 @@
   focus on manageablea (dependence to vocabulary is established) things.
 * Vocabulary makes user observe/recognize and figure out combination;
 * Remove redundence from observors;
-* Vocabulary for Meta-Thinking and Non-Meta Thinking;
+* Vocabulary for Meta-Thinking and Non-Meta Thinking.
+* **Expand vocabulary** for either Meta-Thinking or Non-Meta Thinking.
 
 # Three List
 
 * Observable
 * Breakable
 * Remainder (not break down yet)
+	* No dependence to the vocabulary found
+	* Exception due to diversity
+	* Break-down components are not independent
 
 # Expanding Vocabulary for Meta Thinking 
 

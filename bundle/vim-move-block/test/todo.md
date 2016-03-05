@@ -49,3 +49,13 @@ setpos('.',[0,lnum1,col1_a,0])
 P
 
 [ ] swapline is done, next is swap block based on swap line
+
+
+
+## Bugs
+
+line1: -------------
+line2: ------------------
+
+when move line2 to line1's position, the original algorithm copied the line1
+according to the length of line2, which is an error.
