@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/scott/.vim/bundle/vim-wordsubstitute'
-let g:netrw_dirhist_2='/home/scott/.vim/bundle/vim-wordsubstitute/autoload'
-let g:netrw_dirhist_3='/home/scott/.config/fcitx/conf'
-let g:netrw_dirhist_4='/home/scott/.config/fcitx'
-let g:netrw_dirhist_5='/home/scott/.config/autostart'
-let g:netrw_dirhist_6='/Users/Scott/Dropbox/Books/Vim/VimDoc'
-let g:netrw_dirhist_7='/Users/Scott/Dropbox/TIL/Perl/chapters'
-let g:netrw_dirhist_8='/Users/Scott/Dropbox/TIL'
-let g:netrw_dirhist_9='/Users/Scott/Dropbox/TIL/Parallel/test'
+let g:netrw_dirhist_cnt =0
