@@ -14,7 +14,9 @@
 * Vocabulary makes user observe/recognize and figure out combination;
 * Remove redundence from observors;
 * Vocabulary for Meta-Thinking and Non-Meta Thinking.
-* **Expand vocabulary** for either Meta-Thinking or Non-Meta Thinking.
+* **Expand vocabulary** for either Meta-Thinking or Non-Meta Thinking, and for each
+  module-associated vocabulary.
+	* Example Pool in Case Study Module
 
 # Three List
 
