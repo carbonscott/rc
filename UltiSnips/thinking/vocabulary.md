@@ -88,8 +88,8 @@
 ## Creative -- Make your own game
 
 * Ask Question;
-* Design a solvable problem;
-* Make hypothesises;
+* Design a solvable problem/exercise;
+* Make hypothesises and check what-if;
 
 You can never say you are familiar with sth until you can be creative on top of
 that.
