@@ -5,8 +5,8 @@
 
 # Representation/Observation Technique
 
-* BREAK DOWN things to different INDEPENDENT components from vocabulary. Make it
-  readable to do two key steps in thinking algorithm: 
+* BREAK DOWN things to different INDEPENDENT components associated with vocabulary.
+  Make it readable to do two key steps in thinking algorithm: 
   * add dependence: main vs components
   * remove dependence: component vs component
 * It is like to observe a vector in terms of basis vectors, and it helps user to
@@ -17,6 +17,10 @@
 * **Expand vocabulary** for either Meta-Thinking or Non-Meta Thinking, and for each
   module-associated vocabulary.
 	* Example Pool in Case Study Module
+	* Unconcious Vocabulary: 
+		* First Nature;
+		* Second Natrue;
+		* Nature Under Construction;
 
 # Three List
 
