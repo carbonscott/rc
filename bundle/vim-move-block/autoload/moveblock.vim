@@ -14,9 +14,9 @@ function! moveblock#mb(choice)
 			\.s:paste_mode
 			\.'gv'.s:next.'o'.s:next.'o'         
 			"\.':set virtualedit='.s:pre_virtualedit.'\<CR>'
-			" use another map to turn off virtualedit
-			" use another map to be used as move and recorded
-			" in hash
+			" use another map to turn off virtualedit           
+			" use another map to be used as move and recorded   
+			" in hash                                           
 endfunction
 
 "vnoremap <expr> <LEFT> moveblock#mb('left')
