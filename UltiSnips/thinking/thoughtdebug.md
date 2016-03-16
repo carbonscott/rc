@@ -1,5 +1,10 @@
 # Thought Debug 
 
+## Types of bugs in Recognition
+
+* Breakable Error (with later Details)
+* Observable Error
+
 ## Types of bugs in Thought
 
 ### Recognition Error
