@@ -5,7 +5,8 @@
 
 # Representation/Observation Technique
 
-* BREAK DOWN things to different INDEPENDENT components associated with vocabulary.
+* BREAK DOWN things to different INDEPENDENT components associated with
+  vocabulary/thought container.
   Make it readable to do two key steps in thinking algorithm: 
   * add dependence: main vs components
   * remove dependence: component vs component
