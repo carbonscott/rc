@@ -58,4 +58,4 @@ line1: -------------
 line2: ------------------
 
 when move line2 to line1's position, the original algorithm copied the line1
-according to the length of line2, which is an error.
+according to the length of line2, which is an error.       
