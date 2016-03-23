@@ -11,7 +11,7 @@
 	* No dependence to the vocabulary found
 	* Exception due to diversity
 	* Break-down components are not independent
-* Choose the right one?: evaluate the most valued candidates from a list (set theory).
+* Choose the right one?: evaluate the most valued candidate from a list (set theory).
 	* what are the probable candidates?
 	* which one is the most valued?
 
@@ -47,6 +47,7 @@
 
 ## Systematic Thinking
 
+* Choose from candidates;
 * Vocabulary: Complete Set of Components;
 	* Complex can be made up of or constructed by Simple or Reusable Components;
 	* Go through every one in the vocabulary;
