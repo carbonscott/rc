@@ -3,6 +3,18 @@
 * `Clear Frustration, Rerefresh Love and Passion, Do it, try to break down
   impossible into something possible.`
 
+# Three List
+
+* Observable-Oriented
+* Breakable-Oriented
+* Remainder (not break down yet)
+	* No dependence to the vocabulary found
+	* Exception due to diversity
+	* Break-down components are not independent
+* Choose the right one?: evaluate the most valued candidates from a list (set theory).
+	* what are the probable candidates?
+	* which one is the most valued?
+
 # Representation/Observation Technique
 
 * BREAK DOWN things to different INDEPENDENT components associated with
@@ -22,15 +34,6 @@
 		* First Nature;
 		* Second Natrue;
 		* Nature Under Construction;
-
-# Three List
-
-* Observable
-* Breakable
-* Remainder (not break down yet)
-	* No dependence to the vocabulary found
-	* Exception due to diversity
-	* Break-down components are not independent
 
 # Expanding Vocabulary for Meta Thinking 
 
