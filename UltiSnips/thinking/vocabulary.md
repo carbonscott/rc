@@ -11,8 +11,9 @@
 	* No dependence to the vocabulary found
 	* Exception due to diversity
 	* Break-down components are not independent
-* Choose the right one?: evaluate the most valued candidate from a list (set theory).
-	* what are the probable candidates?
+* Choose the right one: choose the most valued candidate from a list.
+	* what are probable candidates?
+	* sort by value;
 	* which one is the most valued?
 
 # Representation/Observation Technique
