@@ -13,9 +13,9 @@
 	* Break-down components are not independent
 * Choose the right one: choose the **most valued candidate** from a **candidate
   container**.
-	* what are **probable** candidates?
-	* sort by value;
-	* which one is the most valued?
+	* Look for candidates: what are **probable** candidates?
+	* Sort them: sort by value;
+	* Find the choice: which one is the most valued?
 
 # Representation/Observation Technique
 
