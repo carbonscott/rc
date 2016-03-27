@@ -1,7 +1,18 @@
-# Responsible for your code
+# Solvability
 
-* `Clear Frustration, Rerefresh Love and Passion, Do it, try to break down
-  impossible into something possible.`
+* Solvability: 
+	* 0 candidate; 
+	* 1 candidate; 
+	* more than 1 candidates;
+* Solvability is one aspect of level to evaluate the ability to solve a problem.
+* Can we convert any question to a list of testing question? The benefit is that the
+  candidates can be only 'yes' or 'no'.
+	* apply to specific case
+* Social help: seeking from others; It works like loading an external module in my
+  thinking.
+* Productivity purpose: it is very necessary to build up an attitude about seeking
+  help from social activity to solve questions for which I am still at '0-candidate'
+  level. 
 
 # Three List
 
@@ -117,4 +128,7 @@ better represent the data before I am able to abstract it.
 	* if the dependence is really assigned, what can be determined by this
 	  assignment?
 
+# Responsible for your code
 
+* `Clear Frustration, Rerefresh Love and Passion, Do it, try to break down
+  impossible into something possible.`
