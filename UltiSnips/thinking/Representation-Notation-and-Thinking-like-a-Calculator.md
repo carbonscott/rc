@@ -6,7 +6,7 @@ date: Sun Mar 27 21:24:59 2016
 
 ## Question
 
-* `?x`: what `x`?
+* `?x`: what is `x`?
 * `??x`: why `x`?
 * `?>x`: how `x`?
 * `?_x`: where is `x`?
@@ -40,3 +40,4 @@ necessary, or is it simplified?
 
 * `?x` returns info about which **set/sets** it belongs to and a **description** of
   itself.
+* *What to do* sth can be converted to `?>make/do sth`?
