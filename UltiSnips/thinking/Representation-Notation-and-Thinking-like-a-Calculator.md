@@ -6,7 +6,7 @@ date: Sun Mar 27 21:24:59 2016
 
 ## Question
 
-* `?x`: what is `x`?
+* `?x`: what `x`?
 * `??x`: why `x`?
 * `?>x`: how `x`?
 * `?_x`: where is `x`?
