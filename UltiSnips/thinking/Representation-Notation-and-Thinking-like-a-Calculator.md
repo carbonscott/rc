@@ -14,8 +14,8 @@ date: Sun Mar 27 21:24:59 2016
   understand it) 
 * Simplify what's stated:
 
-	> `range + container name`
-	> `number + name`
+	> * `range + container name`
+	> * `number + name`
 
 ## Set Theory
 
@@ -35,3 +35,8 @@ Once you can assign a set to something `x`, you can manipulate `x` then.
 
 To do the last two or not depend on its predictable or reusable purpose, like is it
 necessary, or is it simplified?
+
+## More about Notation
+
+* `?x` returns info about which **set/sets** it belongs to and a **description** of
+  itself.
