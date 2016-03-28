@@ -1,0 +1,37 @@
+---
+title: Notation for thinking and reading
+author: Cong Wang
+date: Sun Mar 27 21:24:59 2016
+---
+
+## Question
+
+* `?x`: what is `x`?
+* `??x`: why `x`?
+* `?>x`: how `x`?
+* `?_x`: where is `x`?
+* `(^[a-z]*[0-9]+)x`: mark an question point at `$1` (you have to check out regex to
+  understand it) 
+* Simplify what's stated:
+
+	> `range + container name`
+	> `number + name`
+
+## Set Theory
+
+Once you can assign a set to something `x`, you can manipulate `x` then. 
+
+### Basic Workflow
+
+* Identify Object Type `C` for two objects;
+* Try defined Operations for either relating object in the same set `C1` or the other
+  set `C2` to build up a relation between two objects;
+
+### Advanced Workflow
+
+* Build new operator from the old ones;
+* to define **Primitive** Operator;
+* to define a **Primitive** Set;
+
+To do the last two or not depend on its predictable or reusable purpose, like is it
+necessary, or is it simplified?
