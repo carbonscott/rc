@@ -12,14 +12,16 @@ date: Sun Mar 27 21:24:59 2016
 * `?_x`: where is `x`?
 * `(^[a-z]*[0-9]+)x`: mark an question point at `$1` (you have to check out regex to
   understand it) 
-* Simplify what's stated:
+* Simplify/Summarize what's stated:
 
-	> * `range + container name`
-	> * `number + name`
+	> * `range + items`; The items are usually sets/collections.
+
+	> * For example, `number + name`
 
 ## Set Theory
 
-Once you can assign a set to something `x`, you can manipulate `x` then. 
+* Once you can assign a set to something `x`, you can manipulate `x` then. 
+* The Set can be context-awared/based.
 
 ### Basic Workflow
 
