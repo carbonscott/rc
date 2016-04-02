@@ -9,7 +9,7 @@ date: Sun Mar 27 21:24:59 2016
 * `?x`: what is `x`?
 * `??x`: why `x`?
 * `?>x`: how `x`?
-* `?_x`: where is `x`?
+* `?_x`: where/when is `x`?
 * `(^[a-z]*[0-9]+)x`: mark an question point at `$1` (you have to check out regex to
   understand it) 
 * Simplify/Summarize what's stated:
@@ -42,4 +42,5 @@ necessary, or is it simplified?
 
 * `?x` returns info about which **set/sets** it belongs to and a **description** of
   itself.
+* `?>x`: returns steps of doing things.
 * *What to do* sth can be converted to `?>make/do sth`?
