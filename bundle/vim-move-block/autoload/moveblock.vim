@@ -1,13 +1,13 @@
 function! moveblock#mb(choice)
 	let s:choices = {
-				\'left':['h','hP'],
+				\'left':['h','hP'],           
 				\'right':['l','p'], 
 				\'up':['k',1],
 				\'down':['j',1]
 	\}
-	let s:pre_virtualedit = &virtualedit
-	set virtualedit=all
-	"visual! d
+	let s:pre_virtualedit = &virtualedit        "assign value based on test                
+	set virtualedit=all                         "  * teneary                               
+	"visual! d                                  "  * hash                                  
 	let s:next = s:choices[a:choice][0]
 	let s:paste_mode= s:choices[a:choice][1]
 	return 'd'
