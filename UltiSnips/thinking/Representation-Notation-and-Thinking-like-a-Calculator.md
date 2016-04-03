@@ -10,7 +10,8 @@ date: Sun Mar 27 21:24:59 2016
 * `??x`: why `x`?
 * `?>x`: how `x`?
 * `?_x`: where/when is `x`?
-* `?,x`: if `x` is true? 
+* `?:x`: if `x` is true? 
+* `?,x`: what/which candidates (placeholders/collection/set) for `x`?  
 * `(^[a-z]*[0-9]+)x`: mark an question point at `$1` (you have to check out regex to
   understand it) 
 * Simplify/Summarize what's stated:
