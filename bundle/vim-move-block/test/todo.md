@@ -59,3 +59,80 @@ line2: ------------------
 
 when move line2 to line1's position, the original algorithm copied the line1
 according to the length of line2, which is an error.       
+
+
+
+
+
+<!--
+----aaaa----
+----1111----
+----2222----
+----3333----  click arrow key to start moving
+----aaaa----  what can be got from visual info is 
+              * the position of block
+			  * the size of block
+
+              ?> move block <down>
+			  * get cursor from '< position
+			  * modify the line numnber by the lineNumber('>) + 1
+			  * delete the line to the right by length 
+				s:l_info[1][2] - s:l_info[0][2]
+			  * get cursor from '< b
+			  * modify the lineNumber('>)
+			  * P -- paste it --
+			  * 
+
+----aaaa----
+----1111----
+----2222----
+----3333----
+----aaaa----
+
+
+----aaaa----
+----1111----
+----2222----
+----3333----
+----aaaa----
+
+
+----aaaa----
+----1111----
+----2222----
+----3333----
+----aaaa----
+-->
+
+
+<!--
+?, actually the d does?
+  now, it means to delete the lines
+?, actually the P does?
+  it copies the lines that is selected later
+  still, some mechanism changed the register "a
+?: the cursor move matters?
+?, matters?
+  * gv in <down> -> no
+  * gv in return -> no
+
+if the func is invoked directly from call instead of mapping, it works
+-->
+
+
+
+<!--
+
+[0,102,15,0]
+[0,100,11,0]
+
+[117,16]
+[117,12]
+
+[119,12/16]
+
+-->
+
+
+
+
