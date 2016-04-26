@@ -25,4 +25,4 @@ endif
 "hi CursorLine guibg=#113311 guifg=white
 
 
-
+set nocursorline

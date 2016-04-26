@@ -19,6 +19,10 @@ date: Sun Mar 27 21:24:59 2016
 	> * `range + items`; The items are usually sets/collections.
 
 	> * For example, `number + name`
+* `$`: indicates single instance/object;
+* `%`: indicates dictionary;
+* `@`: indicates indexed collection;
+* `=>`: indicates a single mapping;
 
 ## Set Theory
 

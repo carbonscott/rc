@@ -129,4 +129,4 @@ ab perl Perl
 nnoremap [s a    <c-[>
 
 " remap increment due to tmux prefix key 
-nnoremap <c-b> <c-a>
+"nnoremap <c-b> <c-a>
