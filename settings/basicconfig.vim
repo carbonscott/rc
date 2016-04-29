@@ -10,7 +10,10 @@ set nonumber
 " For macvim #{
 set guifont=Monaco:h13
 " #}
+" For Linux #{
+set guifont=Monaco\ 13
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
+" #}
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4

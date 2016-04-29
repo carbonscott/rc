@@ -13,7 +13,11 @@ au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 "colorscheme
 "colorscheme PaperColor
 set background=dark
-if has("gui_macvim")
+if has("gui_macvim")   " for Mac
+	set background=light
+	colorscheme solarized
+endif
+if has("gui_running")  " for Linux
 	set background=light
 	colorscheme solarized
 endif
