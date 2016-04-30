@@ -11,7 +11,7 @@ set nonumber
 set guifont=Monaco:h13
 " #}
 " For Linux #{
-set guifont=Monaco\ 13
+"set guifont=Monaco\ 13
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
 " #}
 set tabstop=4
