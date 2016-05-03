@@ -16,12 +16,12 @@
 </div>
 <h2 id="question">Question</h2>
 <ul>
-<li><code>?x</code>: what is <code>x</code>?</li>
-<li><code>??x</code>: why <code>x</code>?</li>
-<li><code>?&gt;x</code>: how <code>x</code>?</li>
-<li><code>?_x</code>: where/when is <code>x</code>?</li>
-<li><code>?:x</code>: if <code>x</code> is true?</li>
-<li><code>?,x</code>: what/which candidates (placeholders/collection/set) for <code>x</code>?<br />
+<li><code>?x</code>:= what is <code>x</code>?</li>
+<li><code>??x</code>:= why <code>x</code>?</li>
+<li><code>?&gt;x</code>:= how <code>x</code>?</li>
+<li><code>?_x</code>:= where/when is <code>x</code>?</li>
+<li><code>?:x</code>:= if <code>x</code> is true?</li>
+<li><code>?,x</code>:= what/which candidates (placeholders/collection/set) for <code>x</code>?<br />
 </li>
 <li><code>(^[a-z]*[0-9]+)x</code>: mark an question point at <code>$1</code> (you have to check out regex to understand it)</li>
 <li><p>Simplify/Summarize what's stated:</p>
@@ -35,10 +35,16 @@
 <li>For example, <code>number + name</code></li>
 </ul>
 </blockquote></li>
-<li><code>$</code>: indicates single instance/object;</li>
-<li><code>%</code>: indicates dictionary;</li>
-<li><code>@</code>: indicates indexed collection;</li>
-<li><p><code>=&gt;</code>: indicates a single mapping;</p></li>
+<li><code>:=</code>:= <strong>represent</strong> notation;</li>
+<li><code>:</code>:= association notation;</li>
+<li><code>$</code>:= indicates single instance/object;</li>
+<li><code>%</code>:= indicates dictionary/mapping;</li>
+<li><code>@</code>:= indicates indexed collection/set;</li>
+<li><code>-&gt;</code>:= indicates a single mapping;</li>
+<li><code>A=&gt;B</code>:= if A is true, then B is true;</li>
+<li><code>!A</code>:= A is <strong>false</strong>;</li>
+<li><code>/@A</code>:= for all in A, for everyone in A;</li>
+<li><p><code>$&gt;A</code>:= at least (exists) one in A;</p></li>
 </ul>
 <h2 id="set-theory">Set Theory</h2>
 <ul>
@@ -47,8 +53,8 @@
 </ul>
 <h3 id="basic-workflow">Basic Workflow</h3>
 <ul>
-<li>Identify Object Type <code>C</code> for two objects;</li>
-<li>Try defined Operations for either relating object in the same set <code>C1</code> or the other set <code>C2</code> to build up a relation between two objects;</li>
+<li>Identify Object Type <code>@C</code> or <code>%C</code> for two objects;</li>
+<li>Try defined Operations for either relating object in the same set <code>@C1</code> or <code>%C1</code> or the other set <code>@C2</code> or <code>%C2</code> to build up a relation between two objects;</li>
 </ul>
 <h3 id="advanced-workflow">Advanced Workflow</h3>
 <ul>

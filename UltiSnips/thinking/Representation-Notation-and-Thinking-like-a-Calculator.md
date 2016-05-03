@@ -6,12 +6,12 @@ date: Sun Mar 27 21:24:59 2016
 
 ## Question
 
-* `?x`: what is `x`?
-* `??x`: why `x`?
-* `?>x`: how `x`?
-* `?_x`: where/when is `x`?
-* `?:x`: if `x` is true? 
-* `?,x`: what/which candidates (placeholders/collection/set) for `x`?  
+* `?x`:= what is `x`?
+* `??x`:= why `x`?
+* `?>x`:= how `x`?
+* `?_x`:= where/when is `x`?
+* `?:x`:= if `x` is true? 
+* `?,x`:= what/which candidates (placeholders/collection/set) for `x`?  
 * `(^[a-z]*[0-9]+)x`: mark an question point at `$1` (you have to check out regex to
   understand it) 
 * Simplify/Summarize what's stated:
@@ -19,10 +19,17 @@ date: Sun Mar 27 21:24:59 2016
 	> * `range + items`; The items are usually sets/collections.
 
 	> * For example, `number + name`
-* `$`: indicates single instance/object;
-* `%`: indicates dictionary;
-* `@`: indicates indexed collection;
-* `=>`: indicates a single mapping;
+
+* `:=`:= **represent** notation;
+* `:`:= association notation;
+* `$`:= indicates single instance/object;
+* `%`:= indicates dictionary/mapping;
+* `@`:= indicates indexed collection/set;
+* `->`:= indicates a single mapping;
+* `A=>B`:= if A is true, then B is true;
+* `!A`:= A is **false**;
+* `/@A`:= for all in A, for everyone in A; 
+* `$>A`:= at least (exists) one in A;
 
 ## Set Theory
 
@@ -31,9 +38,9 @@ date: Sun Mar 27 21:24:59 2016
 
 ### Basic Workflow
 
-* Identify Object Type `C` for two objects;
-* Try defined Operations for either relating object in the same set `C1` or the other
-  set `C2` to build up a relation between two objects;
+* Identify Object Type `@C` or `%C` for two objects;
+* Try defined Operations for either relating object in the same set `@C1` or `%C1`
+  or the other set `@C2` or `%C2` to build up a relation between two objects;
 
 ### Advanced Workflow
 
