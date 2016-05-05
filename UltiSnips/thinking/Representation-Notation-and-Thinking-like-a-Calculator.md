@@ -27,6 +27,7 @@ date: Sun Mar 27 21:24:59 2016
 	* group operator: group things together;
 	* `var(:parameters)`:= parameterize variable `var`; Interchangable with `:`
 	  association notation;
+	* `expression(#:comments expression inline)`;
 	* function/operation call;
 * `$`:= indicates single instance/object;
 * `%`:= indicates dictionary/mapping;
