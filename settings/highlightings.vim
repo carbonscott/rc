@@ -27,6 +27,7 @@ endif
 " setting for matrix colorscheme
 "colorscheme matrix
 "hi CursorLine guibg=#113311 guifg=white
-
-
 set nocursorline
+
+" use color for s notes
+source ~/.vim/settings/highlight_snote.md
