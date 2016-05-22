@@ -7,6 +7,8 @@ date: Sun Mar 27 21:24:59 2016
 ## Notation
 
 * `?x`:= what is `x` (looking for associated set for manipulating it)?
+	* looking for a defined associated set which `x` belongs to;
+	* looking for definition of set `x`;
 * `??x`:= why `x` (looking for a reason)? 
 * `?>x`:= how `x` (looking for an approach)?
 * `?,x`:= what's the state of `x` (asking for the specifications/fact)?
