@@ -4,6 +4,14 @@
 # localhost is used to configure the loopback interface
 # when the system is booting.  Do not change this entry.
 ##
-127.0.0.1	localhost
-255.255.255.255	broadcasthost
-::1             localhost 
+127.0.0.1		localhost
+255.255.255.255		broadcasthost
+::1                          localhost 
+
+
+# Remote PC
+#131.193.195.62 eagle
+10.19.194.196 eagle
+73.209.84.214 carbon-remote
+192.168.0.110 carbon-local
+131.193.196.116 galaxy

@@ -6,12 +6,15 @@ date: Sun Mar 27 21:24:59 2016
 
 ## Notation
 
-* `?x`:= what is `x`?
-* `??x`:= why `x`?
-* `?>x`:= how `x`?
-* `?_x`:= where/when is `x`?
+* `?x`:= what is `x` (looking for associated set for manipulating it)?
+* `??x`:= why `x` (looking for a reason)? 
+* `?>x`:= how `x` (looking for an approach)?
+* `?,x`:= what's the state of `x` (asking for the specifications/fact)?
+* `?_x`:= where/when is `x` (looking for the state)?
 * `?:x`:= if `x` is true? 
-* `?,x`:= what/which candidates (placeholders/collection/set) for `x`?  
+* `@(?|??|?>|?,|?_|?:)x`:= what/which candidates (placeholders/collection/set) for
+  `x` (while looking for sth as probable solution)? This action can be applied to
+  help decompose different types of questions.  
 * `(^[a-z]*[0-9]+)x`: mark an question point at `$1` (you have to check out regex to
   understand it) 
 * Simplify/Summarize what's stated:
