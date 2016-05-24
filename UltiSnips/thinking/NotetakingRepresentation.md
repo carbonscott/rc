@@ -7,14 +7,14 @@ date: Sun Mar 27 21:24:59 2016
 ## Notation
 
 * `?x`:= what is `x` (looking for associated set for manipulating it)?
-	* looking for a defined associated set which `x` belongs to;
-	* looking for definition of set `x`;
+	* looking for a defined **associated set** which `x` belongs to;
+	* looking for **definition** of set `x`;
+	* looking for **description** of entry `x`; 
 * `??x`:= why `x` (looking for a reason)? 
 * `?>x`:= how `x` (looking for an approach)?
-* `?,x`:= what's the state of `x` (asking for the specifications/fact)?
 * `?_x`:= where/when is `x` (looking for the state)?
 * `?:x`:= if `x` is true? 
-* `@(?|??|?>|?,|?_|?:)x`:= what/which candidates (placeholders/collection/set) for
+* `@(?|??|?>|?_|?:)x`:= what/which candidates (placeholders/collection/set) for
   `x` (while looking for sth as probable solution)? This action can be applied to
   help decompose different types of questions.  
 * `(^[a-z]*[0-9]+)x`: mark an question point at `$1` (you have to check out regex to
@@ -40,7 +40,7 @@ date: Sun Mar 27 21:24:59 2016
 * `->`:= indicates a single mapping;
 * `A=>B`:= if A is true, then B is true;
 * `!A`:= A is **false**;
-* `/@A`:= for all in A, for everyone in A; 
+* `@<A`:= for all in A, for everyone in A; 
 * `$>A`:= at least (exists) one in A;
 
 ## Set Theory
