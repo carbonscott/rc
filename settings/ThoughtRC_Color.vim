@@ -3,7 +3,7 @@ syntax match ThoughRC_Mapping_SuchThat /\(<=\)\|\(=>\)/
 syntax match ThoughRC_Mapping_BelongTo /\(<<\)\|\(>>\)/
 syntax match ThoughRC_Mapping_Associate /:/ "the sequence matters
 syntax match ThoughRC_Mapping_Represent /:=/
-syntax match ThoughRC_Mapping_Basic /->/
+syntax match ThoughRC_Mapping_Basic /\(->\)\|\(<-\)/
 syntax match ThoughRC_Mapping_Delimiter /,/
 syntax match ThoughRC_Mapping_Candidate /[@\$\%]/
 
