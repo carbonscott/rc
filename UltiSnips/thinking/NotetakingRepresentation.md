@@ -40,8 +40,6 @@ date: Sun Mar 27 21:24:59 2016
 * `->`:= indicates a single mapping;
 * `A=>B`:= if A is true, then B is true;
 * `!A`:= A is **false**;
-* `@<A`:= for all in A, for everyone in A; 
-* `$>A`:= at least (exists) one in A;
 
 ## Set Theory
 
@@ -50,9 +48,15 @@ date: Sun Mar 27 21:24:59 2016
 
 ### Basic Workflow
 
-* Identify Object Type `@C` or `%C` for two objects;
-* Try defined Operations for either relating object in the same set `@C1` or `%C1`
-  or the other set `@C2` or `%C2` to build up a relation between two objects;
+Use natural-language to express idea and reduced-language to look into it.
+`x:=Natural Language`;
+`y:=Reduced Language`;
+Use `$x` to express idea;
+Use `$y` to do `@things`;
+`@things:={filter possibilities, make question more answerable to the $asked}`;
+`%asked`:`query processor`;
+`$asked{example}:={"Google", "People who can answer it"}`
+
 
 ### Advanced Workflow
 
