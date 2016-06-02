@@ -24,7 +24,7 @@ Bundle 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-   
+
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 "=============================================
@@ -94,8 +94,15 @@ nnoremap [ab :CtrlPBuffer<CR>
 nnoremap [af :CtrlPMixed<CR>
 nnoremap [al :CtrlPLine<CR>
 
+"============================================
+"=============INSTALL OF ctrlp=============
+"Bundle 'easymotion/vim-easymotion'
+"map [w [[w
+"map [j [[j
+"map [k [[k
+"============================================
+"
 "=============INSTALL OF Dracula Colorscheme=============
-
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 "============================================
 "=============INSTALL OF Taglish=============

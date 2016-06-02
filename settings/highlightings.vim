@@ -34,4 +34,4 @@ set nocursorline
 
 " use color for s notes
 "source ~/.vim/settings/highlight_snote.md
-source /Users/Scott/.vim/settings/ThoughtRC_Color.vim
+"source /Users/Scott/.vim/settings/ThoughtRC_Color.vim
