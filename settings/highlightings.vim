@@ -1,14 +1,5 @@
 "
 syntax on
-"highlight
-hi ColorColumn guibg=pink
-highlight SpecialKey guifg=gray 
-highlight NonText guifg=gray 
-"set cursorline!
-"highlight CursorLine ctermbg=234
-highlight CursorLineNR cterm=bold ctermbg=12
-au insertenter * hi CursorLineNR cterm=bold ctermbg=2
-au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
 "colorscheme
 "colorscheme PaperColor
@@ -22,6 +13,17 @@ if has("gui_running")  " for Linux
 	set background=light
 	colorscheme darkZ
 endif
+
+"highlight
+hi ColorColumn guibg=pink
+highlight SpecialKey guifg=gray 
+highlight NonText guifg=gray 
+"set cursorline!
+"highlight CursorLine ctermbg=234
+highlight CursorLineNR cterm=bold ctermbg=12
+au insertenter * hi CursorLineNR cterm=bold ctermbg=2
+au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
+
 "colorscheme solarized
 "colorscheme visualstudio
 "colorscheme xemacs
@@ -32,4 +34,4 @@ set nocursorline
 
 " use color for s notes
 "source ~/.vim/settings/highlight_snote.md
-source ~/.vim/settings/ThoughtRC_Color.vim
+source /Users/Scott/.vim/settings/ThoughtRC_Color.vim
