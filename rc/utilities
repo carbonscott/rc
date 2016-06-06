@@ -1,1 +1,1 @@
-alias perlc="Perl -le "
+alias perlc="perl -le "
