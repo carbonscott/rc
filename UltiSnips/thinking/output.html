@@ -53,15 +53,24 @@
 <li><code>$</code>:= indicates single instance/object;</li>
 <li><code>%</code>:= indicates dictionary/mapping;</li>
 <li><code>@</code>:= indicates indexed collection/set;</li>
-<li><code>-&gt;</code>:= indicates a single mapping;</li>
+<li><code>A:-$function-&gt;B</code> or <code>A:-$function&gt;B</code>:= indicates a single mapping due to <code>$function</code>;</li>
+<li><code>B(:A)</code> or <code>B:=$function(A)</code>:= indicates a single mapping due to <code>$function</code>;</li>
 <li><code>A=&gt;B</code>:= if A is true, then B is true;</li>
-<li><p><code>!A</code>:= A is <strong>false</strong>;</p></li>
+<li><code>!A</code>:= A is <strong>false</strong>;</li>
+<li><p><code>A&lt;&lt;B</code>: A belongs to <strong>set</strong> B. Make catergorization;</p></li>
 </ul>
 <h2 id="set-theory">Set Theory</h2>
 <ul>
 <li>Once you can assign a set to something <code>x</code>, you can manipulate <code>x</code> then.</li>
 <li>The Set can be context-awared/based.</li>
 </ul>
+<h2 id="description-vs-relation">Description vs Relation</h2>
+<p>Operation can be categorized into two:</p>
+<ul>
+<li><strong>descriptive</strong>:instance doesn't necesarily have to be changed in a descriptive operation.;</li>
+<li><strong>relational</strong>: variables or a set of instances are interested in a relational opeation.;</li>
+</ul>
+<p>For instance, in language, verbs don't necessarily indicate a relational opeartion. For example, A kicks B. B and A don't own a relationship if we regards it as a descriptive operation, in which A and B are just instances and no more than them are interested in a kicking relation. However, in a statement like increasing the invest can win more profit, invesst is a variable because it can be increasing and profit is variable because it can be more. This is not a simple description but a relational opeartion, in which those instance means a bunch of things like different number of invest and different amount of profit.</p>
 <h3 id="basic-workflow">Basic Workflow</h3>
 <p>Use natural-language to express idea and reduced-language to look into it. <code>x:=Natural Language</code>; <code>y:=Reduced Language</code>; Use <code>$x</code> to express idea; Use <code>$y</code> to do <code>@things</code>; <code>@things:={filter possibilities, make question more answerable to the $asked}</code>; <code>%asked</code>:<code>query processor</code>; <code>$asked{example}:={&quot;Google&quot;, &quot;People who can answer it&quot;}</code></p>
 <h3 id="advanced-workflow">Advanced Workflow</h3>
