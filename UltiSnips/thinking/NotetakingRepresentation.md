@@ -37,7 +37,7 @@ date: Sun Mar 27 21:24:59 2016
 * `$`:= indicates single instance/object;
 * `%`:= indicates dictionary/mapping;
 * `@`:= indicates indexed collection/set;
-* `->`:= indicates a single mapping;
+* `:-$function->`:= indicates a single mapping due to `$function`;
 * `A=>B`:= if A is true, then B is true;
 * `!A`:= A is **false**;
 
