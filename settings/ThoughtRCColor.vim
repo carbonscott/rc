@@ -5,6 +5,7 @@ syntax match ThoughRC_Mapping_BelongTo "\(<<\)\|\(>>\)"
 syntax match ThoughRC_Mapping_Associate ":" "the sequence matters
 syntax match ThoughRC_Mapping_Represent ":="
 syntax region ThoughRC_Mapping_Basic start=":-" end="->"
+syntax region ThoughRC_Mapping_Basic_Short start=":-" end=">"
 syntax match ThoughRC_Mapping_Delimiter "[,;]"
 syntax match ThoughRC_Mapping_Candidate "[@\$\%]"
 syntax keyword ThoughRC_Return return
@@ -20,5 +21,6 @@ highlight ThoughRC_Mapping_Comments  term =bold ctermfg=14 guifg=#ffd855  gui=bo
 "highlight ThoughRC_Mapping_Delimiter term =bold ctermfg=14 guifg=#fda428 gui=bold
 highlight ThoughRC_Mapping_BelongTo  term =bold ctermfg=9 guifg=#508ff2 gui=bold
 highlight ThoughRC_Mapping_SuchThat  term =bold ctermfg=10 guifg=#798b00 gui=bold
-highlight ThoughRC_Mapping_Basic     term =bold ctermfg=2 guifg=#798b00 gui=bold
+highlight ThoughRC_Mapping_Basic     term =bold ctermfg=2 guifg=#7CEF00 gui=bold
+highlight ThoughRC_Mapping_Basic_Short     term =bold ctermfg=2 guifg=#7CEF00 gui=bold
 highlight ThoughRC_Mapping_Candidate term =bold ctermfg=13 guifg=#dd62bd gui=bold
