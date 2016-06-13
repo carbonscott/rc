@@ -127,7 +127,7 @@ vnoremap [5 0
 ab perl Perl
 
 nnoremap [s a    <c-[>
-nnoremap [fc :source ~/.vim/settings/ThoughtRC_Color.vim<CR>
+nnoremap  [fc :source ~/.vim/settings/ThoughtRCColor.vim<CR>
 
 " remap increment due to tmux prefix key 
 "nnoremap <c-b> <c-a>

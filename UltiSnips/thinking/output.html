@@ -71,20 +71,54 @@
 <li><strong>relational</strong>: variables or a set of instances are interested in a relational opeation.;</li>
 </ul>
 <p>For instance, in language, verbs don't necessarily indicate a relational opeartion. For example, A kicks B. B and A don't own a relationship if we regards it as a descriptive operation, in which A and B are just instances and no more than them are interested in a kicking relation. However, in a statement like increasing the invest can win more profit, invesst is a variable because it can be increasing and profit is variable because it can be more. This is not a simple description but a relational opeartion, in which those instance means a bunch of things like different number of invest and different amount of profit.</p>
-<h3 id="basic-workflow">Basic Workflow</h3>
-<p>Use natural-language to express idea and reduced-language to look into it. <code>x:=Natural Language</code>; <code>y:=Reduced Language</code>; Use <code>$x</code> to express idea; Use <code>$y</code> to do <code>@things</code>; <code>@things:={filter possibilities, make question more answerable to the $asked}</code>; <code>%asked</code>:<code>query processor</code>; <code>$asked{example}:={&quot;Google&quot;, &quot;People who can answer it&quot;}</code></p>
-<h3 id="advanced-workflow">Advanced Workflow</h3>
-<ul>
-<li>Build new operator from the old ones;</li>
-<li>to define <strong>Primitive</strong> Operator;</li>
-<li>to define a <strong>Primitive</strong> Set;</li>
-</ul>
-<p>To do the last two or not depend on its predictable or reusable purpose, like is it necessary, or is it simplified?</p>
-<h2 id="more-about-notation">More about Notation</h2>
-<ul>
-<li><code>?x</code> returns info about which <strong>set/sets</strong> it belongs to and a <strong>description</strong> of itself.</li>
-<li><code>?&gt;x</code>: returns steps of doing things.</li>
-<li><em>What to do</em> sth can be converted to <code>?&gt;make/do sth</code>?</li>
-</ul>
+<h3 id="three-typical-problems-about-pattern-finding">Three typical problems about pattern finding</h3>
+<pre><code>$type1:=?$x:@A:-$x-&gt;@B {
+  $isOk=0;
+  while ?:(scalar @assumptions&gt;0) {
+    $assumption:=shift @assumptions;
+    $x:=$assumption;
+    @A:-$x-&gt;@B&#39;;
+    if @B&#39;==@B {
+      $isOk=1;
+      break;
+    }
+  }
+  return $isOk, $x; 
+}</code></pre>
+<pre><code>?$x,@A:@A:-$x-&gt;@B {
+  push @A, $more_instance;
+  call @A:-$type1-&gt;@B;
+}</code></pre>
+<pre><code>?$x,@B:@A:-$x-&gt;@B {
+  push @B, $more_instance;
+  call @B:-$type1-&gt;@A;
+}</code></pre>
+<!--
+Use natural-language to express idea and reduced-language to look into it.
+`x:=Natural Language`;
+`y:=Reduced Language`;
+Use `$x` to express idea;
+Use `$y` to do `@things`;
+`@things:={filter possibilities, make question more answerable to the $asked}`;
+`%asked`:`query processor`;
+`$asked{example}:={"Google", "People who can answer it"}`
+
+
+### Advanced Workflow
+
+* Build new operator from the old ones;
+* to define **Primitive** Operator;
+* to define a **Primitive** Set;
+
+To do the last two or not depend on its predictable or reusable purpose, like is it
+necessary, or is it simplified?
+
+## More about Notation
+
+* `?x` returns info about which **set/sets** it belongs to and a **description** of
+  itself.
+* `?>x`: returns steps of doing things.
+* *What to do* sth can be converted to `?>make/do sth`?
+-->
 </body>
 </html>

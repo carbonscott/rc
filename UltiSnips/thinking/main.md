@@ -65,8 +65,41 @@ is variable because it can be more. This is not a simple description but a
 relational opeartion, in which those instance means a bunch of things like different
 number of invest and different amount of profit.
 
-### Basic Workflow
+### Three typical problems about pattern finding
 
+```
+$type1:=?$x:@A:-$x->@B {
+  $isOk=0;
+  while ?:(scalar @assumptions>0) {
+	$assumption:=shift @assumptions;
+	$x:=$assumption;
+	@A:-$x->@B';
+	if @B'==@B {
+	  $isOk=1;
+	  break;
+	}
+  }
+  return $isOk, $x; 
+}
+```
+
+```
+?$x,@A:@A:-$x->@B {
+  push @A, $more_instance;
+  call @A:-$type1->@B;
+}
+```
+
+```
+?$x,@B:@A:-$x->@B {
+  push @B, $more_instance;
+  call @B:-$type1->@A;
+}
+```
+
+
+
+<!--
 Use natural-language to express idea and reduced-language to look into it.
 `x:=Natural Language`;
 `y:=Reduced Language`;
@@ -92,3 +125,4 @@ necessary, or is it simplified?
   itself.
 * `?>x`: returns steps of doing things.
 * *What to do* sth can be converted to `?>make/do sth`?
+-->
