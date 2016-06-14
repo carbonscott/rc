@@ -97,7 +97,10 @@ $type1:=?$x:@A:-$x->@B {
 }
 ```
 
+### Factoring a thing
 
+Parameterizing/Factoring `$thing` to make its simple description as concrete as an
+`@factors`, which are extracted from `@instanecs`.
 
 <!--
 Use natural-language to express idea and reduced-language to look into it.
