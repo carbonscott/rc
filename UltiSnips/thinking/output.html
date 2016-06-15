@@ -62,16 +62,16 @@
 <h2 id="set-theory">Set Theory</h2>
 <ul>
 <li>Once you can assign a set to something <code>x</code>, you can manipulate <code>x</code> then.</li>
-<li>The Set can be context-awared/based.</li>
+<li>The Set can be context-aware/based.</li>
 </ul>
-<h2 id="description-vs-relation">Description vs Relation</h2>
+<h2 id="descriptive-vs-relational-operation">Descriptive vs Relational Operation</h2>
 <p>Operation can be categorized into two:</p>
 <ul>
-<li><strong>descriptive</strong>:instance doesn't necesarily have to be changed in a descriptive operation.;</li>
-<li><strong>relational</strong>: variables or a set of instances are interested in a relational opeation.;</li>
+<li><strong>descriptive</strong>:instance doesn't necessarily have to be changed in a descriptive operation.;</li>
+<li><strong>relational</strong>: variables or a set of instances are interested in a relational operation.;</li>
 </ul>
-<p>For instance, in language, verbs don't necessarily indicate a relational opeartion. For example, A kicks B. B and A don't own a relationship if we regards it as a descriptive operation, in which A and B are just instances and no more than them are interested in a kicking relation. However, in a statement like increasing the invest can win more profit, invesst is a variable because it can be increasing and profit is variable because it can be more. This is not a simple description but a relational opeartion, in which those instance means a bunch of things like different number of invest and different amount of profit.</p>
-<h3 id="three-typical-problems-about-pattern-finding">Three typical problems about pattern finding</h3>
+<p>In language, verbs don't necessarily indicate a relational operation. For example, A kicks B. B and A don't own a relationship if we regards it as a descriptive operation, in which A and B are just instances and no more than them are interested in a kicking relation. However, in a statement like increasing the invest can win more profit, invest is a variable because it can be increased and profit is a variable because it can be more. This is not a simple description but a relational operation, in which those instance means a bunch of things like different number of invest and different amount of profit.</p>
+<h3 id="three-typical-problems-about-pattern-finding-in-relational-operation">Three typical problems about pattern finding in relational operation</h3>
 <pre><code>$type1:=?$x:@A:-$x-&gt;@B {
   $isOk=0;
   while ?:(scalar @assumptions&gt;0) {
@@ -93,8 +93,8 @@
   push @B, $more_instance;
   call @B:-$type1-&gt;@A;
 }</code></pre>
-<h3 id="factoring-a-thing">Factoring a thing</h3>
-<p>Parameterizing/Factoring <code>$thing</code> to make its simple description an <code>@factors</code>, which are extracted from <code>@instanecs</code>.</p>
+<h3 id="factoring-a-descriptive-operation">Factoring a descriptive operation</h3>
+<p>Parameterizing/Factoring <code>$thing</code> to make its simple description as concrete as an <code>@factors</code>, which are extracted from <code>@instanecs</code>.</p>
 <!--
 Use natural-language to express idea and reduced-language to look into it.
 `x:=Natural Language`;

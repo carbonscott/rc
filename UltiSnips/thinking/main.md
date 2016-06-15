@@ -46,26 +46,26 @@ date: Sun Mar 27 21:24:59 2016
 ## Set Theory
 
 * Once you can assign a set to something `x`, you can manipulate `x` then. 
-* The Set can be context-awared/based.
+* The Set can be context-aware/based.
 
-## Description vs Relation
+## Descriptive vs Relational Operation
 
 Operation can be categorized into two:   
 
-* **descriptive**:instance doesn't necesarily have to be changed in a
+* **descriptive**:instance doesn't necessarily have to be changed in a
   descriptive operation.; 
-* **relational**: variables or a set of instances are interested in a relational opeation.; 
+* **relational**: variables or a set of instances are interested in a relational operation.; 
 
-For instance, in language, verbs don't necessarily indicate a relational opeartion.
-For example, A kicks B. B and A don't own a relationship if we regards it as a
-descriptive operation, in which A and B are just instances and no more than them are
-interested in a kicking relation. However, in a statement like increasing the invest
-can win more profit, invesst is a variable because it can be increasing and profit
-is variable because it can be more. This is not a simple description but a
-relational opeartion, in which those instance means a bunch of things like different
-number of invest and different amount of profit.
+In language, verbs don't necessarily indicate a relational operation.  For example,
+A kicks B. B and A don't own a relationship if we regards it as a descriptive
+operation, in which A and B are just instances and no more than them are interested
+in a kicking relation. However, in a statement like increasing the invest can win
+more profit, invest is a variable because it can be increased and profit is a variable
+because it can be more. This is not a simple description but a relational operation,
+in which those instance means a bunch of things like different number of invest and
+different amount of profit.
 
-### Three typical problems about pattern finding
+### Three typical problems about pattern finding in relational operation
 
 ```
 $type1:=?$x:@A:-$x->@B {
@@ -97,10 +97,14 @@ $type1:=?$x:@A:-$x->@B {
 }
 ```
 
-### Factoring a thing
+### Factoring a descriptive operation
 
-Parameterizing/Factoring `$thing` to make its simple description an `@factors`,
-which are extracted from `@instanecs`.
+Parameterizing/Factoring `$thing` to make its simple description as concrete as an
+`@factors`, which are extracted from `@instanecs`.
+
+
+
+
 
 <!--
 Use natural-language to express idea and reduced-language to look into it.
