@@ -14,6 +14,7 @@ syntax match ThoughRC_Mapping_Delimiter "[,;]"
 syntax match ThoughRC_Mapping_Candidate "[@\$\%]"
 syntax keyword ThoughRC_Return return
 syntax match ThoughRC_Mapping_Comments "#:"
+syntax region ThoughRC_Mapping_Comments_Block start="(#:" end=")"
 
 highlight ThoughRC_Question_1          term =bold ctermfg=14  guifg=#fda428 gui=bold
 highlight ThoughRC_Question_2          term =bold ctermfg=14  guifg=#fda428 gui=bold
@@ -22,6 +23,7 @@ highlight ThoughRC_Mapping_Associate term =bold ctermfg=14 guifg=#fda428 gui=bol
 highlight ThoughRC_Mapping_Represent term =bold ctermfg=14 guifg=#ffd855 gui=bold
 highlight ThoughRC_Mapping_Delimiter term =bold ctermfg=14 guifg=#ffd855  gui=bold
 highlight ThoughRC_Mapping_Comments  term =bold ctermfg=14 guifg=#ffd855  gui=bold
+highlight ThoughRC_Mapping_Comments_Block  term =bold ctermfg=14 guifg=#ffd855  gui=bold
 "highlight ThoughRC_Mapping_Delimiter term =bold ctermfg=14 guifg=#fda428 gui=bold
 highlight ThoughRC_Mapping_BelongTo  term =bold ctermfg=9 guifg=#508ff2 gui=bold
 highlight ThoughRC_Mapping_SuchThat  term =bold ctermfg=10 guifg=#798b00 gui=bold
