@@ -38,7 +38,8 @@ date: Sun Mar 27 21:24:59 2016
 * `%`:= indicates dictionary/mapping;
 * `@`:= indicates indexed collection/set;
 * `A:-$function->B` or `A:-$function>B`:= indicates a single mapping due to `$function`;
-* `B(:A)` or `B:=$function(A)`:= indicates a single mapping due to `$function`;
+* `B(:A)` or `B:=$function(A)`:= indicates a single mapping due to `$function` in relational operation;
+* `A:-$descriptive_opearator-:B`:= indicates a single mapping due to `$descriptive_opearator` in descriptive operation;
 * `A=>B`:= if A is true, then B is true;
 * `!A`:= A is **false**;
 * `A<<B`: A belongs to **set** B. Make catergorization;
