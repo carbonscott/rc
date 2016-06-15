@@ -14,4 +14,6 @@ autocmd BufNewFile,BufRead *.md :hi Error NONE
 "autocmd FileType markdown :source ~/.vim/settings/highlightmd.vim
 "=======================================
 
-
+"====== mkview and loadview ======
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
