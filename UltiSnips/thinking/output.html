@@ -55,6 +55,7 @@
 <li><code>@</code>:= indicates indexed collection/set;</li>
 <li><code>A:-$function-&gt;B</code> or <code>A:-$function&gt;B</code>:= indicates a single mapping due to <code>$function</code>;</li>
 <li><code>B(:A)</code> or <code>B:=$function(A)</code>:= indicates a single mapping due to <code>$function</code> in relational operation;</li>
+<li><code>B(:A1,A2)</code> could mean <code>A1:-$f1-&gt;B</code>, <code>A2:-$f2-&gt;B</code> or <code>A1,A2:-$f1,$f2-&gt;B</code>. For instance, <code>_:-$f1,$f2-&gt;_ := _:-$f1+$f2-&gt;_</code> .</li>
 <li><code>A:-$descriptive_opearator-:B</code>:= indicates a single mapping due to <code>$descriptive_opearator</code> in descriptive operation;</li>
 <li><code>A=&gt;B</code>:= if A is true, then B is true;</li>
 <li><code>!A</code>:= A is <strong>false</strong>;</li>
@@ -95,7 +96,7 @@
   call @B:-$type1-&gt;@A;
 }</code></pre>
 <h3 id="factoring-a-descriptive-operation">Factoring a descriptive operation</h3>
-<p>Parameterizing/Factoring <code>$thing</code> to convert it from descriptive operation to relational operation by <code>(:@factors)</code> or <code>(#:@factors)</code>, which are extracted from <code>@instanecs</code>.</p>
+<p>Parameterizing/Factoring <code>$thing</code> to convert it from something in descriptive operation to an variable in a relational operation by <code>$thing(:@factors)</code> or <code>$thing(#:@factors)</code>, which are extracted from <code>@instanecs</code>.</p>
 <!--
 Use natural-language to express idea and reduced-language to look into it.
 `x:=Natural Language`;

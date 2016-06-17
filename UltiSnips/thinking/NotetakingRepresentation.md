@@ -39,6 +39,9 @@ date: Sun Mar 27 21:24:59 2016
 * `@`:= indicates indexed collection/set;
 * `A:-$function->B` or `A:-$function>B`:= indicates a single mapping due to `$function`;
 * `B(:A)` or `B:=$function(A)`:= indicates a single mapping due to `$function` in relational operation;
+* `B(:A1,A2)` could mean `A1:-$f1->B`, `A2:-$f2->B` or
+  `A1,A2:-$f1,$f2->B`. For instance, `_:-$f1,$f2->_ := _:-$f1+$f2->_`
+  .
 * `A:-$descriptive_opearator-:B`:= indicates a single mapping due to `$descriptive_opearator` in descriptive operation;
 * `A=>B`:= if A is true, then B is true;
 * `!A`:= A is **false**;
@@ -57,14 +60,15 @@ Operation can be categorized into two:
   descriptive operation.; 
 * **relational**: variables or a set of instances are interested in a relational operation.; 
 
-In language, verbs don't necessarily indicate a relational operation.  For example,
-A kicks B. B and A don't own a relationship if we regards it as a descriptive
-operation, in which A and B are just instances and no more than them are interested
-in a kicking relation. However, in a statement like increasing the invest can win
-more profit, invest is a variable because it can be increased and profit is a variable
-because it can be more. This is not a simple description but a relational operation,
-in which those instance means a bunch of things like different number of invest and
-different amount of profit.
+In language, verbs don't necessarily indicate a relational operation.
+For example, A kicks B. B and A don't own a relationship if we regards
+it as a descriptive operation, in which A and B are just instances and
+no more than them are interested in a kicking relation. However, in a
+statement like increasing the invest can win more profit, invest is a
+variable because it can be increased and profit is a variable because
+it can be more. This is not a simple description but a relational
+operation, in which those instance means a bunch of things like
+different number of invest and different amount of profit.
 
 ### Three typical problems about pattern finding in relational operation
 
@@ -100,8 +104,9 @@ $type1:=?$x:@A:-$x->@B {
 
 ### Factoring a descriptive operation
 
-Parameterizing/Factoring `$thing` to convert it from descriptive operation to
-relational operation by `$thing(:@factors)` or `$thing(#:@factors)`, which are extracted from
+Parameterizing/Factoring `$thing` to convert it from something in
+descriptive operation to an variable in a relational operation by
+`$thing(:@factors)` or `$thing(#:@factors)`, which are extracted from
 `@instanecs`.
 
 

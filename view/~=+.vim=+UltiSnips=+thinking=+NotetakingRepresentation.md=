@@ -12,7 +12,7 @@ setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=86
+setlocal colorcolumn=70
 setlocal comments=fb:*,fb:-,fb:+,n:>
 setlocal commentstring=>\ %s
 setlocal complete=.,w,b,u,t,i
@@ -92,7 +92,7 @@ endif
 setlocal tabstop=4
 setlocal tagcase=
 setlocal tags=
-setlocal textwidth=84
+setlocal textwidth=70
 setlocal thesaurus=
 setlocal noundofile
 setlocal undolevels=-123456
@@ -101,12 +101,13 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 104 - ((5 * winheight(0) + 11) / 23)
+116,142fold
+let s:l = 42 - ((8 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-104
-normal! 054|
+42
+normal! 03|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
