@@ -100,8 +100,9 @@ $type1:=?$x:@A:-$x->@B {
 
 ### Factoring a descriptive operation
 
-Parameterizing/Factoring `$thing` to make its simple description as concrete as an
-`@factors`, which are extracted from `@instanecs`.
+Parameterizing/Factoring `$thing` to convert it from descriptive operation to
+relational operation by `(:@factors)` or `(#:@factors)`, which are extracted from
+`@instanecs`.
 
 
 
