@@ -77,10 +77,10 @@ descriptive operation to an variable in a relational operation by
 `$thing(:@factors)` or `$thing(#:@factors)`, which are extracted from
 `@instanecs`.
 
-## Symbolize: make an instance represented by a placeholder in symbol
+## Symbolize: make an instance be replaced by a placeholder in the form of a symbol
 
 ```
-  "my description":-symbolize->$x; (#:var:="variable")
+  "my description":-symbolize->$x; 
   $x:-value->"my description";
 ```
 
