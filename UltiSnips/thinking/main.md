@@ -70,10 +70,46 @@ it can be more. This is not a simple description but a relational
 operation, in which those instance means a bunch of things like
 different number of invest and different amount of profit.
 
-### Three typical problems about pattern finding in relational operation
+## Factoring a descriptive operation
+
+Parameterizing/Factoring `$thing` to convert it from something in
+descriptive operation to an variable in a relational operation by
+`$thing(:@factors)` or `$thing(#:@factors)`, which are extracted from
+`@instanecs`.
+
+## Placeholderize: make an instance represented by a placeholder
 
 ```
-$type1:=?$x:@A:-$x->@B {
+  "my description":-symbolize->$x; (#:var:="variable")
+  $x:-value->"my description";
+```
+
+<!--
+EXAMPLE
+
+?$x=>$x:-used as-:$"a tag for email from lela";
+
+$s(:$y);
+
+@y:"people in research":={
+  lela:@{kral, group, a professor in university, md, 
+  },
+  henry:@{kral group, researcher in Argone lab},
+  han:@{kral group, lab mate},
+  sanoj:@{kral group, lab mate},
+  petr:@{advisor, professor in university},
+};
+
+So, the problem type is the 3rd one. I need to find more instances
+about $"a tag for email from lela". 
+
+-->
+<!--
+
+### Two typical problems about pattern finding in relational operation
+
+```
+$type1:=?$x=>@A:-$x->@B {
   $isOk=0;
   while ?:(scalar @assumptions>0) {
 	$assumption:=shift @assumptions;
@@ -89,30 +125,14 @@ $type1:=?$x:@A:-$x->@B {
 ```
 
 ```
-?$x,@A:@A:-$x->@B {
-  push @A, $more_instance;
-  call @A:-$type1->@B;
-}
-```
-
-```
-?$x,@B:@A:-$x->@B {
+$type3:=?$x,@B=>@A:-$x->@B {
   push @B, $more_instance;
   call @B:-$type1->@A;
 }
 ```
 
-### Factoring a descriptive operation
 
-Parameterizing/Factoring `$thing` to convert it from something in
-descriptive operation to an variable in a relational operation by
-`$thing(:@factors)` or `$thing(#:@factors)`, which are extracted from
-`@instanecs`.
-
-
-
-
-
+-->
 <!--
 Use natural-language to express idea and reduced-language to look into it.
 `x:=Natural Language`;
@@ -139,4 +159,8 @@ necessary, or is it simplified?
   itself.
 * `?>x`: returns steps of doing things.
 * *What to do* sth can be converted to `?>make/do sth`?
+-->
+<!--
+interfaces can not be changed during usage.
+parameterize vs varize (find more instance about an variable)
 -->
