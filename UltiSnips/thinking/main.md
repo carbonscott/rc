@@ -77,12 +77,17 @@ descriptive operation to an variable in a relational operation by
 `$thing(:@factors)` or `$thing(#:@factors)`, which are extracted from
 `@instanecs`.
 
-## Placeholderize: make an instance represented by a placeholder
+## Symbolize: make an instance be replaced by a placeholder in the form of a symbol
 
 ```
-  "my description":-symbolize->$x; (#:var:="variable")
+  "my description":-symbolize->$x; 
   $x:-value->"my description";
 ```
+
+## Declaration, Evaluation
+
+**Automation** is only about **declaration**, **evaluation** and
+**context**.
 
 <!--
 EXAMPLE
@@ -104,6 +109,7 @@ So, the problem type is the 3rd one. I need to find more instances
 about $"a tag for email from lela". 
 
 -->
+
 <!--
 
 ### Two typical problems about pattern finding in relational operation

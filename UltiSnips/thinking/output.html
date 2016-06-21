@@ -75,9 +75,11 @@
 <p>In language, verbs don't necessarily indicate a relational operation. For example, A kicks B. B and A don't own a relationship if we regards it as a descriptive operation, in which A and B are just instances and no more than them are interested in a kicking relation. However, in a statement like increasing the invest can win more profit, invest is a variable because it can be increased and profit is a variable because it can be more. This is not a simple description but a relational operation, in which those instance means a bunch of things like different number of invest and different amount of profit.</p>
 <h2 id="factoring-a-descriptive-operation">Factoring a descriptive operation</h2>
 <p>Parameterizing/Factoring <code>$thing</code> to convert it from something in descriptive operation to an variable in a relational operation by <code>$thing(:@factors)</code> or <code>$thing(#:@factors)</code>, which are extracted from <code>@instanecs</code>.</p>
-<h2 id="placeholderize-make-an-instance-represented-by-a-placeholder">Placeholderize: make an instance represented by a placeholder</h2>
-<pre><code>  &quot;my description&quot;:-symbolize-&gt;$x; (#:var:=&quot;variable&quot;)
+<h2 id="symbolize-make-an-instance-be-replaced-by-a-placeholder-in-the-form-of-a-symbol">Symbolize: make an instance be replaced by a placeholder in the form of a symbol</h2>
+<pre><code>  &quot;my description&quot;:-symbolize-&gt;$x; 
   $x:-value-&gt;&quot;my description&quot;;</code></pre>
+<h2 id="declaration-evaluation">Declaration, Evaluation</h2>
+<p><strong>Automation</strong> is only about <strong>declaration</strong>, <strong>evaluation</strong> and <strong>context</strong>.</p>
 <!--
 EXAMPLE
 

@@ -84,6 +84,11 @@ descriptive operation to an variable in a relational operation by
   $x:-value->"my description";
 ```
 
+## Declaration, Evaluation
+
+**Automation** is only about **declaration**, **evaluation** and
+**context**.
+
 <!--
 EXAMPLE
 
@@ -104,6 +109,7 @@ So, the problem type is the 3rd one. I need to find more instances
 about $"a tag for email from lela". 
 
 -->
+
 <!--
 
 ### Two typical problems about pattern finding in relational operation
