@@ -11,7 +11,7 @@ syntax region ThoughRC_Mapping_Basic start=":-" end="\(->\)\|\(-:\)\|\(>\)"
 "syntax region ThoughRC_Relational_Basic_Short start=":-" end=">"
 "syntax region ThoughRC_Descriptive_Basic start=":-" end="-:"
 syntax match ThoughRC_Mapping_Delimiter "[,;]"
-syntax match ThoughRC_Mapping_Candidate "[@\$\%]"
+syntax match ThoughRC_Mapping_Candidate "[@\$\%&]"
 syntax keyword ThoughRC_Return return
 syntax match ThoughRC_Mapping_Comments "#:"
 syntax region ThoughRC_Mapping_Comments_Block start="(#:" end=")"

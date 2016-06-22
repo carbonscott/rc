@@ -42,6 +42,7 @@
 </blockquote></li>
 <li><code>:=</code>:= <strong>represent</strong> notation;</li>
 <li><code>:</code>:= association notation;</li>
+<li><code>;</code>:= step notation;</li>
 <li><code>,</code>:= list notation;</li>
 <li><code>()</code>:=
 <ul>
@@ -53,10 +54,13 @@
 <li><code>$</code>:= indicates single instance/object;</li>
 <li><code>%</code>:= indicates dictionary/mapping;</li>
 <li><code>@</code>:= indicates indexed collection/set;</li>
-<li><code>A:-$function-&gt;B</code> or <code>A:-$function&gt;B</code>:= indicates a single mapping due to <code>$function</code>;</li>
-<li><code>B(:A)</code> or <code>B:=$function(A)</code>:= indicates a single mapping due to <code>$function</code> in relational operation;</li>
-<li><code>B(:A1,A2)</code> could mean <code>A1:-$f1-&gt;B</code>, <code>A2:-$f2-&gt;B</code> or <code>A1,A2:-$f1,$f2-&gt;B</code>. For instance, <code>_:-$f1,$f2-&gt;_ := _:-$f1+$f2-&gt;_</code> .</li>
-<li><code>A:-$descriptive_opearator-:B</code>:= indicates a single mapping due to <code>$descriptive_opearator</code> in descriptive operation;</li>
+<li><code>&amp;</code>:= indicate procedure;</li>
+<li><code>A:-$function-&gt;B</code> or <code>A:-$function&gt;B</code>:= indicates a single relational mapping due to <code>$function</code>;</li>
+<li><code>B(:A)</code> or <code>B:=$function(A)</code>:= indicates a single relational mapping due to <code>$function</code> in relational operation;</li>
+<li><code>B(:A1,A2)</code> could mean <code>A1:-$f1-&gt;B</code>, <code>A2:-$f2-&gt;B</code> or <code>A1,A2:-$f1,$f2-&gt;B</code>. For instance, <code>_:-$f1,$f2-&gt;_ := _:-$f1+$f2-&gt;_</code>; It's complex, make it as simple as possible;</li>
+<li><code>A:-$descriptive_opearator-:B</code>:= indicates a single descriptive mapping due to <code>$descriptive_opearator</code> in descriptive operation. It is the simplest thing to be used as a step.;</li>
+<li><code>&amp;{s1;s2;s3;s4;}</code>:indicate a procedure(steps block) made of different steps;</li>
+<li>A <strong>step</strong> is made of either <strong>declaration</strong>, or <strong>evaluation</strong> under a certain <strong>context</strong>.</li>
 <li><code>A=&gt;B</code>:= if A is true, then B is true;</li>
 <li><code>!A</code>:= A is <strong>false</strong>;</li>
 <li><p><code>A&lt;&lt;B</code>: A belongs to <strong>set</strong> B. Make catergorization;</p></li>
@@ -78,87 +82,11 @@
 <h2 id="symbolize-make-an-instance-be-replaced-by-a-placeholder-in-the-form-of-a-symbol">Symbolize: make an instance be replaced by a placeholder in the form of a symbol</h2>
 <pre><code>  &quot;my description&quot;:-symbolize-&gt;$x; 
   $x:-value-&gt;&quot;my description&quot;;</code></pre>
-<h2 id="declaration-evaluation">Declaration, Evaluation</h2>
-<p><strong>Automation</strong> is only about <strong>declaration</strong>, <strong>evaluation</strong> and <strong>context</strong>.</p>
-<!--
-EXAMPLE
-
-?$x=>$x:-used as-:$"a tag for email from lela";
-
-$s(:$y);
-
-@y:"people in research":={
-  lela:@{kral, group, a professor in university, md, 
-  },
-  henry:@{kral group, researcher in Argone lab},
-  han:@{kral group, lab mate},
-  sanoj:@{kral group, lab mate},
-  petr:@{advisor, professor in university},
-};
-
-So, the problem type is the 3rd one. I need to find more instances
-about $"a tag for email from lela". 
-
--->
-<!--
-
-### Two typical problems about pattern finding in relational operation
-
-```
-$type1:=?$x=>@A:-$x->@B {
-  $isOk=0;
-  while ?:(scalar @assumptions>0) {
-    $assumption:=shift @assumptions;
-    $x:=$assumption;
-    @A:-$x->@B';
-    if @B'==@B {
-      $isOk=1;
-      break;
-    }
-  }
-  return $isOk, $x; 
-}
-```
-
-```
-$type3:=?$x,@B=>@A:-$x->@B {
-  push @B, $more_instance;
-  call @B:-$type1->@A;
-}
-```
-
-
--->
-<!--
-Use natural-language to express idea and reduced-language to look into it.
-`x:=Natural Language`;
-`y:=Reduced Language`;
-Use `$x` to express idea;
-Use `$y` to do `@things`;
-`@things:={filter possibilities, make question more answerable to the $asked}`;
-`%asked`:`query processor`;
-`$asked{example}:={"Google", "People who can answer it"}`
-
-
-### Advanced Workflow
-
-* Build new operator from the old ones;
-* to define **Primitive** Operator;
-* to define a **Primitive** Set;
-
-To do the last two or not depend on its predictable or reusable purpose, like is it
-necessary, or is it simplified?
-
-## More about Notation
-
-* `?x` returns info about which **set/sets** it belongs to and a **description** of
-  itself.
-* `?>x`: returns steps of doing things.
-* *What to do* sth can be converted to `?>make/do sth`?
--->
-<!--
-interfaces can not be changed during usage.
-parameterize vs varize (find more instance about an variable)
--->
+<h2 id="more-about-steps">More about steps</h2>
+<ul>
+<li>A <strong>step</strong> is made of either <strong>declaration</strong>, or <strong>evaluation</strong> under a certain <strong>context</strong>.</li>
+<li>Declaration states assumption.</li>
+<li>Evalution applies assumption under a certain Context.</li>
+</ul>
 </body>
 </html>

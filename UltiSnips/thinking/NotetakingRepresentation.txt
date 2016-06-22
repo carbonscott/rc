@@ -38,13 +38,13 @@ date: Sun Mar 27 21:24:59 2016
 * `$`:= indicates single instance/object;
 * `%`:= indicates dictionary/mapping;
 * `@`:= indicates indexed collection/set;
-* `&`:= indicate procedure;
+* `&`:= indicates procedure;
 * `A:-$function->B` or `A:-$function>B`:= indicates a single relational mapping due to `$function`;
 * `B(:A)` or `B:=$function(A)`:= indicates a single relational mapping due to `$function` in relational operation;
 * `B(:A1,A2)` could mean `A1:-$f1->B`, `A2:-$f2->B` or
   `A1,A2:-$f1,$f2->B`. For instance, `_:-$f1,$f2->_ := _:-$f1+$f2->_`; It's complex, make it as simple as possible;
 * `A:-$descriptive_opearator-:B`:= indicates a single descriptive mapping due to `$descriptive_opearator` in descriptive operation. It is the simplest thing to be used as a step.;
-* `&{s1;s2;s3;s4;}`:indicate a procedure(steps block) made of different steps;
+* `&{s1;s2;s3;s4;}`:indicates a procedure(steps block) made of different steps;
 * A **step** is made of either **declaration**, or **evaluation** under a certain **context**.
 * `A=>B`:= if A is true, then B is true;
 * `!A`:= A is **false**;
