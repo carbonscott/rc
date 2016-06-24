@@ -15,5 +15,5 @@ autocmd BufNewFile,BufRead *.md :hi Error NONE
 "=======================================
 
 "====== mkview and loadview ======
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
+"autocmd BufWinLeave * mkview
+"autocmd BufWinEnter * silent loadview 

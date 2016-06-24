@@ -1,5 +1,8 @@
 "
-syntax on
+"syntax on
+syntax off
+hi Normal ctermfg=Yellow
+"hi Normal ctermfg=Yellow cterm=bold
 
 "colorscheme
 "colorscheme PaperColor
