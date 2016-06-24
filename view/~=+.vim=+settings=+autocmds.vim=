@@ -98,8 +98,8 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'vim'
-setlocal syntax=vim
+if &syntax != ''
+setlocal syntax=
 endif
 setlocal tabstop=4
 setlocal tagcase=
@@ -113,15 +113,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-13,15fold
-17,19fold
-17
-normal! zo
-let s:l = 17 - ((16 * winheight(0) + 15) / 31)
+3,4fold
+10,11fold
+13,19fold
+let s:l = 1 - ((0 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-17
+1
 normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
