@@ -11,23 +11,23 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-"=============INSTALL OF Ultisnip=============
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-Bundle 'ervandew/supertab'
-Bundle 'honza/vim-snippets'
-
-" Snippets are separated from the engine. Add this if you want them:
-"Plugin 'honza/vim-snippets'
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-   
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-"=============================================
+": "=============INSTALL OF Ultisnip=============
+": " Track the engine.
+": Plugin 'SirVer/ultisnips'
+": Bundle 'ervandew/supertab'
+": Bundle 'honza/vim-snippets'
+": 
+": " Snippets are separated from the engine. Add this if you want them:
+": "Plugin 'honza/vim-snippets'
+": 
+": " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+": let g:UltiSnipsExpandTrigger="<tab>"
+": let g:UltiSnipsJumpForwardTrigger="<tab>"
+": let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+":    
+": " If you want :UltiSnipsEdit to split your window.
+": let g:UltiSnipsEditSplit="vertical"
+": "=============================================
 
 "=============INSTALL OF YouCompleteMe=============
 " Bundle 'Valloric/YouCompleteMe'
@@ -63,19 +63,19 @@ let g:UltiSnipsEditSplit="vertical"
 "==================================================
 
 "=============INSTALL OF Syntastic=============
-Bundle 'scrooloose/syntastic'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-"autocmd FileType python silent! SyntasticToggleMode<CR>
-let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
-let g:syntastic_mode_map = { 'passive_filetypes': ['c'] }
+": Bundle 'scrooloose/syntastic'
+": set statusline+=%#warningmsg#
+": set statusline+=%{SyntasticStatuslineFlag()}
+": set statusline+=%*
+": 
+": let g:syntastic_always_populate_loc_list = 1
+": let g:syntastic_auto_loc_list = 1
+": "let g:syntastic_check_on_open = 1
+": let g:syntastic_check_on_open = 0
+": let g:syntastic_check_on_wq = 0
+": "autocmd FileType python silent! SyntasticToggleMode<CR>
+": let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+": let g:syntastic_mode_map = { 'passive_filetypes': ['c'] }
 "=============INSTALL OF vim-colorscheme=============
 Plugin 'flazz/vim-colorschemes'
 "==================================================
@@ -102,12 +102,12 @@ Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plugin 'vim-scripts/taglist.vim'
 "============================================
 
-
-
 	" ~~~~~~ALL OF YOUR PLUGINS MUST BE ADDED BEFORE THE FOLLOWING LINE~~~~~~~~~~~~
 	"                                         ~~~~~~    
 call vundle#end()            " required
-filetype plugin indent on    " required
+"filetype plugin indent on    " required
+filetype plugin off
+filetype indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "

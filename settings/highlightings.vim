@@ -1,26 +1,26 @@
 "
 "syntax on
-syntax off
-hi Normal ctermfg=Yellow
 "hi Normal ctermfg=Yellow cterm=bold
 
 "colorscheme
 "colorscheme PaperColor
 set background=dark
 if has("gui_macvim")   " for Mac
-	set background=light
+	set background=dark
 	"colorscheme solarized
 	colorscheme darkZ
 	hi Normal guifg=Yellow
 endif
 if has("gui_running")  " for Linux
-	set background=light
+	set background=dark
 	colorscheme darkZ
 	hi Normal guifg=Yellow
 endif
+hi Normal ctermfg=Yellow
+"hi Normal guifg=Yellow
 
 "highlight
-hi ColorColumn guibg=pink
+hi ColorColumn guibg=pink 
 highlight SpecialKey guifg=gray 
 highlight NonText guifg=gray 
 "set cursorline!
@@ -40,3 +40,4 @@ set nocursorline
 " use color for s notes
 "source ~/.vim/settings/highlight_snote.md
 "source /Users/Scott/.vim/settings/ThoughtRC_Color.vim
+syntax off
