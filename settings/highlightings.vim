@@ -11,10 +11,12 @@ if has("gui_macvim")   " for Mac
 	set background=light
 	"colorscheme solarized
 	colorscheme darkZ
+	hi Normal guifg=Yellow
 endif
 if has("gui_running")  " for Linux
 	set background=light
 	colorscheme darkZ
+	hi Normal guifg=Yellow
 endif
 
 "highlight

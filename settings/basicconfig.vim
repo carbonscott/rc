@@ -8,7 +8,7 @@ set wildmenu
 set rnu
 set nonumber
 " For macvim #{
-set guifont=Monaco:h13
+set guifont=Monaco:h18
 " #}
 " For Linux #{
 "set guifont=Monaco\ 13
