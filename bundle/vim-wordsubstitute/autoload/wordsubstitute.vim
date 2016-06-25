@@ -16,9 +16,10 @@ function! wordsubstitute#run2()
 		endif
 		execute "normal! gv\"ay"
 
-		let s:visual_block = @a
+		let s:visual_block = '\<'.@a.'\>'
 		let s:input = input('Change to: ')
-		exec l:v_line_start.",".l:v_line_end."s/"."\\<".s:visual_block."\\>"."/".s:input."/g"
+		exec l:v_line_start.",".l:v_line_end."s/".s:visual_block."/".s:input."/g"
+		"exec l:v_line_start.",".l:v_line_end."s/"."\\<".s:visual_block."\\>"."/".s:input."/g"
 		"echo "normal! :"s:v_line_start.",".s:v_line_end."s/".s:visual_block."/".s:input."/g"
 		let s:is_run1 = 0
 	else
@@ -28,10 +29,8 @@ endfunction
 
 function! wordsubstitute#run3()
 	execute "normal! gv\"ay"
-	let @/ = @a
-	"set nohlsearch
+	let @/ = '\<'.@a.'\>'
 	let s:search_cmd = "normal! /".@/."/\<CR>"
 	execute s:search_cmd."N"
-	"set hlsearch
 endfunction
 
