@@ -1,0 +1,13 @@
+
+
+
+
+?@_:-folding function in vim-:folding result;
+
+@_:{
+  line number
+}
+
+
+change $un_matched color of text;
+fold lines whose number is more than 1 for $un_matched;
