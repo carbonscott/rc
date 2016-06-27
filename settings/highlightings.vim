@@ -29,6 +29,10 @@ highlight CursorLineNR cterm=bold ctermbg=12
 au insertenter * hi CursorLineNR cterm=bold ctermbg=2
 au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
+"#c:Search
+"#turn_off:hi Search term=reverse ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
+hi Search term=reverse ctermfg=White guifg=White ctermbg=NONE guibg=NONE
+
 "colorscheme solarized
 "colorscheme visualstudio
 "colorscheme xemacs

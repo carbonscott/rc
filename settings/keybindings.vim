@@ -131,3 +131,6 @@ nnoremap  [fc :source ~/.vim/settings/ThoughtRCColor.vim<CR>
 
 " remap increment due to tmux prefix key 
 "nnoremap <c-b> <c-a>
+
+nnoremap [vm :mkview<CR>
+nnoremap [vl :loadview<CR>
