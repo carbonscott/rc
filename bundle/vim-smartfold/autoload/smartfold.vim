@@ -12,6 +12,11 @@ function smartfold#run()
 	let s:search_term = deepcopy(s:search_term_orig)
 	"#t: echo "Complete search ".s:search_term_orig." is not found. Seach ".s:search_term." instead."
 	let s:ln_matched = search(s:search_term,'W')
+	if s:ln_matched == 0
+	  let s:ln_last = line('$')
+	  redraw
+	  echo "No string {".s:search_term."} is found"
+	endif
   endif
 
   while s:ln_matched != 0
@@ -28,13 +33,15 @@ function smartfold#run()
   endif
   "#c: eliminate all folds
   execute 'normal! zE'  
-  execute '/'.s:search_term.'/'
-  "#s: prime test if it is necessary to fold
+  "#a: activate highlight
+  "#c: execute '/'.s:search_term.'/'
 
-  for item in s:fold_position
-	execute item[0].','.item[1].'fold'
-	"#c: echo item[0].','.item[1].'fold'
-  endfor
+  if len(s:fold_position) > 0
+	for item in s:fold_position
+	  execute item[0].','.item[1].'fold'
+	  "#c: echo item[0].','.item[1].'fold'
+	endfor
+  endif
   let @/=s:search_term
   hi Search term=reverse ctermfg=White guifg=White ctermbg=NONE guibg=NONE
   set hlsearch!
