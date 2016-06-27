@@ -1,4 +1,7 @@
 function smartfold#run()
+	"#a: moving cursor back purpose
+	let s:current_cusor = getpos('.')
+
   call setpos('.',[0,1,1,0])
   let s:search_term_orig = input("Search for: ")
   let s:search_term = '\<'.s:search_term_orig.'\>'
@@ -45,6 +48,7 @@ function smartfold#run()
   let @/=s:search_term
   hi Search term=reverse ctermfg=White guifg=White ctermbg=NONE guibg=NONE
   set hlsearch!
+	call setpos('.',s:current_cusor)
 endfunction
 
 "#a: ?> [1,6] can be got;

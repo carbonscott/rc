@@ -14,9 +14,9 @@ set guifont=Monaco:h20
 "set guifont=Monaco\ 13
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
 " #}
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set mouse=a
 set nolist
 set listchars=tab:▸\~,eol:¬
