@@ -1,3 +1,29 @@
+function smartfold#run()
+  call setpos('.',[0,1,1,0])
+  let s:search_term = input("Search for: ")
+  let s:search_term = '\<'.s:search_term.'\>'
+  let s:ln_init=1
+  let s:ln_last=1
+  let s:fold_position = []
+
+  let s:ln_matched = search(s:search_term,'W')
+  while s:ln_matched != 0
+	if s:ln_matched-s:ln_last > 2 
+	  call add(s:fold_position,[s:ln_last,s:ln_matched-1])
+	endif
+	let s:ln_last = copy(s:ln_matched+1) "?:deepcopy;no:-assume-:?$result;
+	let s:ln_matched = search(s:search_term,'W')
+  endwhile
+  call add(s:fold_position,[s:ln_last,line('$')])
+  "#c: eliminate all folds
+  execute 'normal! zE'  
+  execute '/'.s:search_term.'/'
+  setlocal hlsearch
+  for item in s:fold_position
+	execute item[0].','.item[1].'fold'
+	"#c: echo item[0].','.item[1].'fold'
+  endfor
+endfunction
 
 "#a: ?> [1,6] can be got;
 "#a: $ln_last:=$init; 
@@ -27,37 +53,6 @@
 "#a: 	};
 "#a: 	true=># do nothing;
 "#a: } 
-call setpos('.',[0,1,1,0])
-let s:search_term = input("Search for: ")
-let s:search_term = '\<'.s:search_term.'\>'
-let s:ln_init=1
-let s:ln_last=1
-let s:fold_position = []
-
-let s:ln_matched = search(s:search_term,'W')
-while s:ln_matched != 0
-  if s:ln_matched-s:ln_last > 2 
-	call add(s:fold_position,[s:ln_last,s:ln_matched-1])
-  endif
-  let s:ln_last = copy(s:ln_matched+1) "?:deepcopy;no:-assume-:?$result;
-  let s:ln_matched = search(s:search_term,'W')
-endwhile
-"#c: echo "\n"
-"#c: echo "PROGRAM STOPS\n"
-call add(s:fold_position,[s:ln_last,line('$')])
-"#c: eliminate all folds
-execute 'normal! zE'  
-execute '/'.s:search_term.'/'
-setlocal hlsearch
-for item in s:fold_position
-  execute item[0].','.item[1].'fold'
-  "#c: echo item[0].','.item[1].'fold'
-endfor
-
-"#sample: let s:search_term = '\<'.s:search_term.'\>'
-"#sample: 
-"#sample: let s:search_line_num = search(s:search_term,'nW')
-"#sample: echo s:search_line_num
 
 "#t: hello testing      1 
 "#t: hello testing      2
