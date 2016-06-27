@@ -45,11 +45,11 @@ function smartfold#run()
 	  "#c: echo item[0].','.item[1].'fold'
 	endfor
   endif
-	call matchadd('Search',s:search_term)
+	let @/=s:search_term
 	call setpos('.',s:current_cusor)
 endfunction
 
-"let @/=s:search_term
+"call matchadd('Search',s:search_term)
 "hi Search term=reverse ctermfg=White guifg=White ctermbg=NONE guibg=NONE
 "#a: ?> [1,6] can be got;
 "#a: $ln_last:=$init; 
