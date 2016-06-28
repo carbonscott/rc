@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/Scott/Pockets/MoneyManage'
 let g:netrw_dirhist_2='/Users/Scott/Pockets/MoneyManage/chapters'
 let g:netrw_dirhist_3='/Users/Scott/Dropbox/TIL/OS'
 let g:netrw_dirhist_4='/Users/Scott/Dropbox/TIL/Vim/vim/chapters'
 let g:netrw_dirhist_5='/Users/Scott/Setting/Today'
 let g:netrw_dirhist_6='/Users/Scott/.vim/bundle/vim-blockjumper/autoload'
+let g:netrw_dirhist_7='/Users/Scott/.vim/bundle/vim-smartfold/plugin'

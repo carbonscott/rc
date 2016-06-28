@@ -1,1 +1,1 @@
-nnoremap [s :call smartfold#run()<CR>
+nnoremap [s :setlocal hls<CR>:call smartfold#run()<CR>
