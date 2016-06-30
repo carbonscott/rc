@@ -13,8 +13,8 @@ noremap <F7> :set list<CR>
 noremap <F8> :set nolist<CR>
 " buffer next, previous
 noremap <F4> :ls<CR>:buffer 
-noremap <F2> :bp<CR>
-noremap <F3> :bn<CR>
+nnoremap <F2> :hide bp<CR>
+nnoremap <F3> :hide bn<CR>
 noremap [du :diffupdate<CR>
 nnoremap [vw bve
 "======= map 0 and $ =====
