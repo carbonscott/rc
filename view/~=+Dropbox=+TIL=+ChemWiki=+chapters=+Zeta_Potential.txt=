@@ -15,9 +15,9 @@ setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=0
-setlocal comments=:#
-setlocal commentstring=#%s
+setlocal colorcolumn=
+setlocal comments=fb:-,fb:*
+setlocal commentstring=
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -27,14 +27,14 @@ setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
-setlocal define=[^A-Za-z_]
+setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal noexpandtab
-if &filetype != 'Perl'
-setlocal filetype=Perl
+if &filetype != 'text'
+setlocal filetype=text
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -53,13 +53,13 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=2
 setlocal imsearch=2
-setlocal include=\\<\\(use\\|require\\)\\>
-setlocal includeexpr=substitute(substitute(substitute(v:fname,'::','/','g'),'->*','',''),'$','.pm','')
-setlocal indentexpr=GetPerlIndent()
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=,0),0],0=or,0=and
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=perldoc\ -f
+setlocal keywordprg=
 setlocal linebreak
 setlocal nolisp
 setlocal lispwords=
@@ -73,7 +73,7 @@ setlocal nrformats=octal,hex
 setlocal nonumber
 setlocal numberwidth=4
 setlocal omnifunc=
-setlocal path=.,/usr/include,,,~/perl5/lib/perl5/5.18.2/darwin-thread-multi-2level,~/perl5/lib/perl5/5.18.2,~/perl5/lib/perl5/darwin-thread-multi-2level,~/perl5/lib/perl5,~/perl5/lib/perl5/5.18.2/darwin-thread-multi-2level,~/perl5/lib/perl5/5.18.2,~/perl5/lib/perl5/darwin-thread-multi-2level,~/perl5/lib/perl5,/Library/Perl/5.18/darwin-thread-multi-2level,/Library/Perl/5.18,/Network/Library/Perl/5.18/darwin-thread-multi-2level,/Network/Library/Perl/5.18,/Library/Perl/Updates/5.18.2,/System/Library/Perl/5.18/darwin-thread-multi-2level,/System/Library/Perl/5.18,/System/Library/Perl/Extras/5.18/darwin-thread-multi-2level,/System/Library/Perl/Extras/5.18,,
+setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -82,7 +82,7 @@ setlocal relativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
-setlocal shiftwidth=4
+setlocal shiftwidth=2
 setlocal noshortname
 setlocal nosmartindent
 setlocal softtabstop=4
@@ -94,8 +94,8 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'Perl'
-setlocal syntax=Perl
+if &syntax != 'text'
+setlocal syntax=text
 endif
 setlocal tabstop=4
 setlocal tagcase=
@@ -109,12 +109,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-1,5fold
-let s:l = 129 - ((14 * winheight(0) + 12) / 25)
+let s:l = 12 - ((11 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-129
+12
 normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
