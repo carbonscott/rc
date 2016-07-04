@@ -144,3 +144,4 @@ hi CurrentStep ctermfg=White
 nnoremap <silent> [hh :let map_current = matchaddpos("CurrentStep",[line('.')])<CR>
 nnoremap [hr :echo getmatches()<CR>
 nnoremap <silent> [hd :call matchdelete(map_current)<CR>
+nnoremap <silent> [hm :call matchdelete(
