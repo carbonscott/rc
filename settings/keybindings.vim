@@ -139,3 +139,8 @@ nnoremap  [fc :source ~/.vim/settings/ThoughtRCColor.vim<CR>
 nnoremap [vm :mkview<CR>
 nnoremap [vl :loadview<CR>
 
+" highlight lines
+hi CurrentStep ctermfg=White
+nnoremap <silent> [hh :let map_current = matchaddpos("CurrentStep",[line('.')])<CR>
+nnoremap [hr :echo getmatches()<CR>
+nnoremap <silent> [hd :call matchdelete(map_current)<CR>
