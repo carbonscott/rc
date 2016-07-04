@@ -68,6 +68,10 @@ inoremap <c-l> <c-o>a
 "inoremap <c-R> <c-o>e
 inoremap <c-f> <c-o>e<c-o>a
 inoremap <c-e> <c-o>b
+"======= cmd navigation =======
+cnoremap <c-h> <left>
+cnoremap <c-h> <left>
+
 "======= map 0 and $ =====
 "nnoremap <s-h> 0
 "vnoremap <s-h> 0
@@ -134,3 +138,4 @@ nnoremap  [fc :source ~/.vim/settings/ThoughtRCColor.vim<CR>
 
 nnoremap [vm :mkview<CR>
 nnoremap [vl :loadview<CR>
+
