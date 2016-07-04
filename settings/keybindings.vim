@@ -18,8 +18,8 @@ nnoremap <F3> :hide bn<CR>
 noremap [du :diffupdate<CR>
 nnoremap [vw bve
 "======= map 0 and $ =====
-nnoremap <s-h> 0
-vnoremap <s-h> 0
+nnoremap <s-h> g^
+vnoremap <s-h> g^
 nnoremap <s-l> g_
 vnoremap <s-l> g_
 "navigate escalted
