@@ -142,6 +142,14 @@ nnoremap [vl :loadview<CR>
 " highlight lines
 hi CurrentStep ctermfg=White
 nnoremap <silent> [hh :let map_current = matchaddpos("CurrentStep",[line('.')])<CR>
+vnoremap <silent> [hv :<c-u>let map_current = matchaddpos("CurrentStep", 
+																										 \[[
+																										 \  line('.'),
+																										 \  getpos("'<")[2],
+																										 \  getpos("'>")[2] + 1 - getpos("'<")[2]
+																										 \]]
+																										 \)<CR>
+"nnoremap <silent> [hv :let map_current = matchaddpos("CurrentStep", [[ line('.'), getpos("'<")[2], getpos("'>")[2] + 1 - getpos("'<")[2] ]])<CR>
 nnoremap [hr :echo getmatches()<CR>
 nnoremap <silent> [hd :call matchdelete(map_current)<CR>
 nnoremap <silent> [hm :call matchdelete(
