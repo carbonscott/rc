@@ -1,26 +1,15 @@
-"
-"syntax on
-"hi Normal ctermfg=Yellow cterm=bold
-
-"colorscheme
-"colorscheme PaperColor
 set background=dark
 if has("gui_macvim")   " for Mac
 	set background=dark
 	"colorscheme solarized
-	colorscheme darkZ
 	hi Normal guifg=Yellow
 endif
 if has("gui_running")  " for Linux
 	set background=dark
-	colorscheme darkZ
 	hi Normal guifg=Yellow
 endif
 hi Normal ctermfg=Yellow
-"hi Normal guifg=Yellow
 
-"highlight
-hi ColorColumn guibg=pink 
 highlight SpecialKey guifg=gray 
 highlight NonText guifg=gray 
 "set cursorline!
@@ -33,15 +22,11 @@ au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 "#turn_off:hi Search term=reverse ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
 hi Search term=reverse ctermfg=White guifg=White ctermbg=NONE guibg=NONE
 
-"colorscheme solarized
-"colorscheme visualstudio
-"colorscheme xemacs
-" setting for matrix colorscheme
-"colorscheme matrix
-"hi CursorLine guibg=#113311 guifg=white
 set nocursorline
 
-" use color for s notes
-"source ~/.vim/settings/highlight_snote.md
-"source /Users/Scott/.vim/settings/ThoughtRC_Color.vim
+hi ColorColumn ctermbg=magenta
+call matchadd('ColorColumn','\%70v',200)
+
 syntax off
+
+
