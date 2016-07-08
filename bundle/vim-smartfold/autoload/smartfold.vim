@@ -26,6 +26,7 @@ function smartfold#run()
 		let s:ln_matched = search(s:search_term,'W')
 		if s:ln_matched == 0
 			let s:ln_last = line('$')
+			call setpos('.',s:current_cusor)
 			redraw
 			echo "No string {".s:search_term."} is found"
 		endif
