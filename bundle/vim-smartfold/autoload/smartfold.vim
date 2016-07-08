@@ -6,7 +6,8 @@ function smartfold#run()
   let s:search_term_orig = input("Search for: ")
 
 	"#a: ?:empty string
-	if empty(s:search_term) 
+	if empty(s:search_term_orig) 
+		call setpos('.',s:current_cusor)
 		redraw
 		echo "No string to search!"
 		return 
