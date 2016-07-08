@@ -4,6 +4,14 @@ function smartfold#run()
 
   call setpos('.',[0,1,1,0])
   let s:search_term_orig = input("Search for: ")
+
+	"#a: ?:empty string
+	if empty(s:search_term) 
+		redraw
+		echo "No string to search!"
+		return 
+	endif
+
   let s:search_term = '\<'.s:search_term_orig.'\>'
   let s:ln_init=1
   let s:ln_last=1
