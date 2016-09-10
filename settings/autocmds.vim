@@ -25,3 +25,11 @@ augroup PerlSetup
 	" insert it above the line: `:0read` ...
 	autocmd BufNewFile *.pl :0read ~/.vim/templates/perl_head.txt
 augroup END
+
+"===== txt file expansion =====
+augroup TxtSetup
+	autocmd!
+	" use latex snippets if it is *.txt or *.md
+	autocmd BufNewFile *.txt,*.md :source ~/.vim/templates/latex.vim
+	autocmd BufRead *.txt,*.md :source ~/.vim/templates/latex.vim
+augroup END
