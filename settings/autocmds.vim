@@ -17,3 +17,11 @@ autocmd BufNewFile,BufRead *.md :hi Error NONE
 "====== mkview and loadview ======
 "autocmd BufWinLeave * mkview
 "autocmd BufWinEnter * silent loadview 
+
+"====== file operation =====
+"---- Perl ----
+augroup PerlSetup
+	autocmd!
+	" insert it above the line: `:0read` ...
+	autocmd BufNewFile *.pl :0read ~/.vim/templates/perl_head.txt
+augroup END
