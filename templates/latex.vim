@@ -10,10 +10,10 @@ let s:latex_begin = "\\begin{...}\r...\r\\end{...}"
 "============= operations for cursor position after expansion ============="
 " operations to move cursor to the right place...
 " * latex equation...
-let s:operation_eq = "<ESC>2<UP>0f{;l"
+let s:operation_eq = "<c-[>02<UP>f{;l"
 
 " * latex begin block...
-let s:operations_begin = "<ESC>2<UP>0f{l"
+let s:operations_begin = "<c-[>2<UP>0f{l"
 
 " ============ set up the command ===========
 let s:tex_eq = "iab teq ".
