@@ -3,6 +3,6 @@
 # heads ...
 use strict;
 use warnings;
-use feature (say);
+use feature qw(say);
 
 # implement your idea here ...

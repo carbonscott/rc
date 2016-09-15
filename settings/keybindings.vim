@@ -155,3 +155,6 @@ nmap <silent> [hs j:<c-u>call matchdelete(map_current)<CR>[hh
 nmap <silent> [hb k:<c-u>call matchdelete(map_current)<CR>[hh
 nmap <silent> [hk :<c-u>call matchdelete(map_current)<CR>[hh
 nnoremap [hm :call matchdelete(
+
+" quick double space
+nnoremap [<Space> i<Space><Space><c-[>i
