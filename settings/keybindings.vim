@@ -156,9 +156,12 @@ nmap <silent> [hb k:<c-u>call matchdelete(map_current)<CR>[hh
 nmap <silent> [hk :<c-u>call matchdelete(map_current)<CR>[hh
 nnoremap [hm :call matchdelete(
 
-" quick double space
+" quick double space...
 nnoremap [<Space> i<Space><Space><c-[>i
 inoremap {l {<Space><Space>}<Left><Left>
 inoremap (l {<Space><Space>}<Left><Left>
 inoremap [l {<Space><Space>}<Left><Left>
 
+" quote...
+inoremap "l ""<Left>
+inoremap 'l ''<Left>
