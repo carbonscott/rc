@@ -6,3 +6,4 @@ set runtimepath+=~/.vim/bundle/vim-misc
 set runtimepath+=~/.vim/bundle/vim-move-block
 set runtimepath+=~/.vim/bundle/vim-smartfold
 set runtimepath+=~/.vim/bundle/vim-clearhi
+set runtimepath+=~/.vim/bundle/vim-quickman

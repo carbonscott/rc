@@ -149,6 +149,7 @@ vnoremap <silent> [hv :<c-u>let map_current = matchaddpos("CurrentStep",
 																										 \  getpos("'>")[2] + 1 - getpos("'<")[2]
 																										 \]]
 																										 \)<CR>
+
 nnoremap [hr :echo getmatches()<CR>
 nnoremap <silent> [hd :call matchdelete(map_current)<CR>
 nmap <silent> [hs j:<c-u>call matchdelete(map_current)<CR>[hh
