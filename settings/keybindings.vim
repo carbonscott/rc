@@ -159,10 +159,14 @@ nnoremap [hm :call matchdelete(
 
 " quick double space...
 nnoremap [<Space> i<Space><Space><c-[>i
-inoremap {l {<Space><Space>}<Left><Left>
-inoremap (l (<Space><Space>)<Left><Left>
-inoremap [l [<Space><Space>]<Left><Left>
+inoremap {<Space> {<Space><Space>}<Left><Left>
+inoremap (<Space> (<Space><Space>)<Left><Left>
+inoremap [<Space> [<Space><Space>]<Left><Left>
+inoremap {} {}<Left>
+inoremap () ()<Left>
+inoremap [] []<Left>
 
 " quote...
-inoremap "l ""<Left>
-inoremap 'l ''<Left>
+inoremap "" ""<Left>
+inoremap '' ''<Left>
+
