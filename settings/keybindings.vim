@@ -170,3 +170,5 @@ inoremap [] []<Left>
 inoremap "" ""<Left>
 inoremap '' ''<Left>
 
+" speical letter
+inoremap [vv ^
