@@ -24,26 +24,37 @@ function! quickman#man(man_command)
 endfunction
 
 
-function! quickman#man(man_command)
+function! quickman#perldoc(perldoc_cmd)
 	" read command...
-	let s:read = "0read !man ".a:man_command
+	let read = "0read !man ".a:perldoc_cmd
 
 	" remove <c-v><c-h>: character...
-	let s:remove = "%s".
-							 \ "/\\S".
-							 \ "/".
-							 \ "/g"
+	let remove = [ 
+	\ "%s".
+  \ "/\\v\\d\\[m".
+  \ "/".
+  \ "/g",
+  \
+	\ "%s".
+  \ "/".
+  \ "/".
+  \ "/g",
+	\]
 
 	" execute command...
-	execute s:read
+	execute read
 
 	" refresh screen...
 	redraw
 
 	" search test...
-	let s:search = search("",)
+	let search = [search("",),search("\\v\\d\\[m",)]
 
 	" substitute it only when command is correct...
-	if s:search !=# 0 
-		execute s:remove
+	if search[0] !=# 0 && search[1] !=# 0
+		execute remove[0]
+		redraw
+		execute remove[1]
+		redraw
 	endif
+endfunction
