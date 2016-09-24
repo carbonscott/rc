@@ -1,6 +1,7 @@
 function! quickman#man(man_command)
 	" read command...
 	let s:read = "0read !man ".a:man_command
+	"let current_position = getpos(".")
 
 	" remove <c-v><c-h>: character...
 	let s:remove = "%s".
@@ -21,6 +22,7 @@ function! quickman#man(man_command)
 	if s:search !=# 0 
 		execute s:remove
 	endif
+	normal! gg
 endfunction
 
 
@@ -57,4 +59,5 @@ function! quickman#perldoc(perldoc_cmd)
 		execute remove[1]
 		redraw
 	endif
+	normal! gg
 endfunction
