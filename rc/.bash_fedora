@@ -1,0 +1,18 @@
+# alias
+alias t='touch'
+alias c='cd'
+alias f='fg'
+alias b='bg'
+alias gp='egrep'
+alias o='open'
+alias til="cd ~/Dropbox/TIL"
+alias book="cd ~/Dropbox/Books"
+alias clg="cd ~/Documents/College"
+alias todo="cd ~/Dropbox/Pockets/ProjectLists/"
+alias pocket="cd ~/Dropbox/Pockets/"
+alias today="cd ~/Setting/Today/"
+alias utilities="vv26 ~/.vim/rc/utilities"
+
+# Extra Source
+# source ~/Setting/today/bashrc_today
+# source ~/.vim/rc/utilities

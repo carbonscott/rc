@@ -21,7 +21,7 @@ while (!defined $commit || $commit eq '\n') {
 	$commit = <>;
 }
 chomp $commit;
-my $git_push = "git add . --all && git commit -m \"".$commit."\" && git push origin master";
+my $git_push = "git add . --all && git commit -m \"".$commit."\" && git push";
 say $git_push;
 system($git_push);
 if ($? == -1) {

@@ -169,6 +169,7 @@ inoremap [] []<Left>
 " quote...
 inoremap "" ""<Left>
 inoremap '' ''<Left>
+inoremap `` ``<Left>
 
 " speical letter
 inoremap [vv ^
