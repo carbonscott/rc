@@ -1,4 +1,5 @@
 # alias
+alias vi='/usr/bin/gvim -v'
 alias t='touch'
 alias c='cd'
 alias f='fg'
