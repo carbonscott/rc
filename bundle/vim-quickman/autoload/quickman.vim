@@ -38,7 +38,7 @@ function! quickman#perldoc(perldoc_cmd)
   \ "/g",
   \
 	\ "%s".
-  \ "/".
+  \ "/\\S".
   \ "/".
   \ "/g",
 	\]
@@ -50,12 +50,15 @@ function! quickman#perldoc(perldoc_cmd)
 	redraw
 
 	" search test...
-	let search = [search("",),search("\\v\\d\\[m",)]
+	let search = [search("\\v\\d\\[m",), search("",)]
 
 	" substitute it only when command is correct...
-	if search[0] !=# 0 && search[1] !=# 0
+	if search[0] !=# 0
 		execute remove[0]
 		redraw
+	endif
+
+	if search[1] !=# 0  
 		execute remove[1]
 		redraw
 	endif
