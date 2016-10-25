@@ -1,10 +1,10 @@
 "============= strings to expand ============="
 " set up the texts to complete...
 " * latex equation...
-let s:latex_eq = "\\begin{equation}\\label{...}\r...\r\\end{equation}" 
+let s:latex_eq = "\\begin{equation}\\label{____}\r____\r\\end{equation}" 
 
 " * latex begin block...
-let s:latex_begin = "\\begin{...}\r...\r\\end{...}"
+let s:latex_begin = "\\begin{____}\r____\r\\end{____}"
 
 
 "============= operations for cursor position after expansion ============="
