@@ -175,8 +175,8 @@ inoremap `` ``<Left>
 inoremap [vv ^
 
 " finding placeholder ____ 
-nnoremap [j :call search('____')<CR>
-nnoremap [k :call search('____','b')<CR>
-inoremap [j <c-o>:call search('____')<CR>
-inoremap [k <c-o>:call search('____','b')<CR>
+nnoremap <silent> [j :call search('____')<CR>
+nnoremap <silent> [k :call search('____','b')<CR>
+inoremap <silent> [j <c-o>:call search('____')<CR>
+inoremap <silent> [k <c-o>:call search('____','b')<CR>
 
