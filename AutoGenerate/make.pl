@@ -17,7 +17,7 @@ Usage: QuickAdd {files to compile}
 
 my %format = (
 	-pdf=>"-V fontsize=12pt -V documentclass=article -V mainfont=\"Times New Roman\" -H header.sty main.md -o output.pdf --latex-engine=xelatex",
-	-html=>"-s main.md -o output.html",
+	-html=>"--webtex -s main.md -o output.html",
 );
 my ($choice, @files) = @ARGV;
 my @allKeys = keys %format;
