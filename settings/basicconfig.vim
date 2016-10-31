@@ -39,3 +39,6 @@ set ruler
 set formatoptions+=j "Make the comments notation invisible while joining or spliting lines
 set backspace=indent,eol,start
 "set virtualedit=all
+
+" let find command do recursive search...
+set path+=**
