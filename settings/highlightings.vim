@@ -30,5 +30,6 @@ call matchadd('ColorColumn','\%70v',200)
 syntax off
 
 " color for completion...
+set t_Co=256
 hi Pmenu ctermbg=15 ctermfg=0
 hi PmenuSel ctermbg=33 ctermfg=15
