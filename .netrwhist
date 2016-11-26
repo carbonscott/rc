@@ -1,16 +1,9 @@
 let g:netrw_dirhistmax  =10
-<<<<<<< HEAD
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/Scott/Dropbox/Pockets/ConwayVimPresentation/materials/vimpoint/Vimpoint_Documentation.vpp'
-let g:netrw_dirhist_2='/Users/Scott/Dropbox/Pockets/ConwayVimPresentation/materials/vimpoint/example/subexample'
-let g:netrw_dirhist_3='/Users/Scott/Dropbox/Pockets/PerlModern/test'
-let g:netrw_dirhist_4='/Users/Scott/Dropbox/Pockets/PerlModern'
-let g:netrw_dirhist_5='/Users/Scott/Dropbox/Softwares/vim/runtime'
-let g:netrw_dirhist_6='/Users/Scott/Dropbox/Softwares/vim/READMEdir'
-let g:netrw_dirhist_7='/Users/Scott/.vim/bundle'
-let g:netrw_dirhist_8='/Users/Scott/.vim/bundle/vim-movingtext'
-let g:netrw_dirhist_9='/Users/Scott/Dropbox/Softwares/vim/READMEdir'
-=======
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/Scott/.config/mc'
->>>>>>> eb8703d19093cba5bebd37726bc16aaead8bcecb
+let g:netrw_dirhist_2='/home/Scott/Dropbox'
+let g:netrw_dirhist_3='/home/Scott/Dropbox/GitIt'
+let g:netrw_dirhist_4='/home/Scott/Dropbox'
+let g:netrw_dirhist_5='/home/Scott/Dropbox/GitIt'
+let g:netrw_dirhist_6='/home/Scott/Dropbox'
+let g:netrw_dirhist_7='/home/Scott/Dropbox/GitIt'
