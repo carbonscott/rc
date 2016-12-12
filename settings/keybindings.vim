@@ -165,7 +165,7 @@ inoremap [<Space> [<Space><Space>]<Left><Left>
 inoremap {} {}<Left>
 inoremap () ()<Left>
 inoremap [] []<Left>
-inoremap <lt> <lt>><Left>
+inoremap <lt>> <lt>><Left>
 
 " quote...
 inoremap "" ""<Left>
