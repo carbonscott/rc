@@ -94,7 +94,7 @@ set cursorline
 "nnoremap [mk :set hlsearch<CR>
 "nnoremap [mj :set nohlsearch<CR>
 "save file
-nnoremap <c-m> :w<CR>
+nnoremap <silent> <c-m> :update<CR>
 " nnoremap <c-q> :q<CR>
 "map the folder key
 nnoremap + zf
