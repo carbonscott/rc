@@ -181,3 +181,7 @@ nnoremap <silent> [k :call search('____','b')<CR>
 inoremap <silent> [j <c-o>:call search('____')<CR>
 inoremap <silent> [k <c-o>:call search('____','b')<CR>
 
+
+" adding whitespace by number
+inoremap <silent> [<space> <space>
+nnoremap <silent> [<space> i<space><space><c-[>
