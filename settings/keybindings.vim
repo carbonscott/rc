@@ -39,7 +39,7 @@ vnoremap <c-k> 2k
 " nnoremap <c-j> zb
 
 "====== open mindnote.md =======
-nnoremap <silent> [q :rightbelow 13 split ~/.vim/mindnote.md<CR><c-w>k
+"nnoremap <silent> [q :rightbelow 13 split ~/.vim/mindnote.md<CR><c-w>k
 "delete buffer
 nnoremap <silent> [bd :bd<CR>
 "close files
@@ -158,7 +158,7 @@ nmap <silent> [hk :<c-u>call matchdelete(map_current)<CR>[hh
 nnoremap [hm :call matchdelete(
 
 " quick double space...
-nnoremap [<Space> i<Space><Space><c-[>i
+" nnoremap [<Space> i<Space><Space><c-[>i
 inoremap {<Space> {<Space><Space>}<Left><Left>
 inoremap (<Space> (<Space><Space>)<Left><Left>
 inoremap [<Space> [<Space><Space>]<Left><Left>
@@ -183,5 +183,6 @@ inoremap <silent> [k <c-o>:call search('____','b')<CR>
 
 
 " adding whitespace by number
-inoremap <silent> [<space> <space>
-nnoremap <silent> [<space> i<space><space><c-[>
+nnoremap <silent> [<space> a<space><esc>
+" nnoremap <silent> [<space> :let s:n_space = input()<CR>:eval "normal ".s:n_space."a <CR>"
+" nnoremap <silent> [<space> :exe "normal ".input("How many chars to input: ","10")."a "
