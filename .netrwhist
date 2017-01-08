@@ -1,11 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/Scott/.config/mc'
-let g:netrw_dirhist_2='/home/Scott/Dropbox'
-let g:netrw_dirhist_3='/home/Scott/Dropbox/GitIt'
-let g:netrw_dirhist_4='/home/Scott/Dropbox'
-let g:netrw_dirhist_5='/home/Scott/Dropbox/GitIt'
-let g:netrw_dirhist_6='/home/Scott/Dropbox'
-let g:netrw_dirhist_7='/home/Scott/Dropbox/GitIt'
-let g:netrw_dirhist_8='/home/Scott'
-let g:netrw_dirhist_9='/home/Scott/.config'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/home/Scott/.dropbox'
+let g:netrw_dirhist_2='/home/Scott/.vim/settings'
