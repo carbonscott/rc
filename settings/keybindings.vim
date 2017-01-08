@@ -181,7 +181,6 @@ nnoremap <silent> [k :call search('____','b')<CR>
 inoremap <silent> [j <c-o>:call search('____')<CR>
 inoremap <silent> [k <c-o>:call search('____','b')<CR>
 
-
 " adding whitespace by number
 nnoremap <silent> [<space> a<space><esc>
 " nnoremap <silent> [<space> :let s:n_space = input()<CR>:eval "normal ".s:n_space."a <CR>"

@@ -8,10 +8,11 @@ set wildmenu
 set rnu
 set nonumber
 " For macvim #{
-" set guifont=Monaco:h20
+if has("gui_macvim") 
+	set guifont=Monaco:h20
+endif
 " #}
 " For Linux #{
-set guifont=Monaco\ 13
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
 " #}
 set tabstop=2

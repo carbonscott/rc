@@ -1,7 +1,5 @@
 if has("gui_macvim")   " for Mac
-	set background=dark
-	"colorscheme solarized
-	hi Normal guifg=Yellow
+	source ~/.vim/settings/highlighting_macvim.vim
 else
 	source ~/.vim/settings/highlighting_linux.vim
 endif
@@ -11,3 +9,4 @@ if has("gui_running")  " for Linux
 else
 	source ~/.vim/settings/highlighting_linux.vim
 endif
+
