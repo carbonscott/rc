@@ -6,12 +6,8 @@ else
 	source ~/.vim/settings/highlighting_linux.vim
 endif
 
-
 if has("gui_running")  " for Linux
-	set background=light
-	hi Normal guifg=Black
-	colorscheme default
+	source ~/.vim/settings/highlighting_gvim.vim
 else
 	source ~/.vim/settings/highlighting_linux.vim
 endif
-
