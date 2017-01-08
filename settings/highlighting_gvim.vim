@@ -11,3 +11,4 @@ call matchadd('ColorColumn','\%70v',200)
 
 syntax off
 
+finish
