@@ -1,0 +1,22 @@
+
+#~~~~~~~~~~~~~~~~~~~~
+# Working directories
+#~~~~~~~~~~~~~~~~~~~~
+
+export WORK=''
+
+## Goodnotes
+export WORK+=" /Users/Scott/Dropbox/GoodNotes "
+
+## Dropbox/Shared
+export WORK+=" /Users/Scott/Dropbox/Shared "
+
+## Dropbox/OfficeShared
+export WORK+=" /Users/Scott/Dropbox/OfficeShared "
+
+## Dropbox/TIL
+export WORK+=" /Users/Scott/Dropbox/TIL "
+
+## Dropbox/Pockets
+export WORK+=" /Users/Scott/Dropbox/Pockets "
+
