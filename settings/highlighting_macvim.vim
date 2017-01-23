@@ -1,8 +1,8 @@
-colorscheme darkblue
-set background=dark
-highlight SpecialKey guifg=gray 
-highlight NonText guifg=gray 
-highlight Normal guifg=Yellow
+colorscheme default
+set background=light
+"highlight SpecialKey guifg=gray 
+"highlight NonText guifg=gray 
+"highlight Normal guifg=Yellow
 
 set nocursorline
 

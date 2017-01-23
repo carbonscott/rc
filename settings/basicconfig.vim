@@ -17,7 +17,7 @@ endif
 " #}
 set tabstop=2
 set softtabstop=2
-set shiftwidth=2
+set shiftwidth=4
 set mouse=a
 set nolist
 set listchars=tab:▸\~,eol:¬
