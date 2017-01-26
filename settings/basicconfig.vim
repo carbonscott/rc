@@ -11,6 +11,9 @@ set nonumber
 if has("gui_macvim") 
 	set guifont=Monaco:h20
 endif
+if has("gui_running") 
+		set guifont=Monaco\ 20
+endif
 " #}
 " For Linux #{
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
