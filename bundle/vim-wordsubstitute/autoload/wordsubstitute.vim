@@ -16,7 +16,13 @@ function! wordsubstitute#run2()
 		endif
 		execute "normal! gv\"ay"
 
-		let s:visual_block = '\<'.@a.'\>'
+		let s:visual_block = @a
+		let s:visual_block = substitute(s:visual_block,
+																	\ '\([~./()\?\/\\]\)',
+																	\	'\="\\".submatch(0)',
+																	\ 'g'
+																	\)
+
 		let s:input = input('Change to: ')
 		exec l:v_line_start.",".l:v_line_end."s/".s:visual_block."/".s:input."/g"
 		"exec l:v_line_start.",".l:v_line_end."s/"."\\<".s:visual_block."\\>"."/".s:input."/g"
@@ -28,9 +34,17 @@ function! wordsubstitute#run2()
 endfunction
 
 function! wordsubstitute#run3()
-	execute "normal! gv\"ay"
-	let @/ = '\<'.@a.'\>'
-	let s:search_cmd = "normal! /".@/."/\<CR>"
-	execute s:search_cmd."N"
+		execute "normal! gv\"ay"
+
+		let s:search_block = @a
+		let s:search_block = substitute(s:search_block,
+																	\ '\([.~/()\?\/\\]\)',
+																	\	'\="\\".submatch(0)',
+																	\ 'g'
+																	\)
+
+		let @/ = s:search_block
+		let s:search_cmd = "normal! /".@/."/\<CR>"
+		execute s:search_cmd."N"
 endfunction
 
