@@ -7,7 +7,7 @@ set background=light
 set nocursorline
 
 hi ColorColumn guibg=Magenta
-call matchadd('ColorColumn','\%70v',200)
+call matchadd('ColorColumn','\%80v',200)
 
 "hi Pmenu guibg=15 guifg=0
 "hi PmenuSel guibg=33 guifg=15

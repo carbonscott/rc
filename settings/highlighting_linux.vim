@@ -11,7 +11,7 @@ hi Search term=reverse ctermfg=White guifg=White ctermbg=NONE guibg=NONE
 set nocursorline
 
 hi ColorColumn ctermbg=magenta
-call matchadd('ColorColumn','\%70v',200)
+call matchadd('ColorColumn','\%80v',200)
 
 syntax off
 
