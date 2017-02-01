@@ -4,7 +4,7 @@
 		highlight FunctionalOperator term=reverse ctermfg=LightCyan ctermbg=NONE 
 
 " define syntax rule...
-syntax match FunctionalOperator /\(->\)\|→\|:\|∈\|%\|@\|\^/
+syntax match FunctionalOperator /\(->\)\|→\|:\|∈\|%\|@\|\^\|\(\~>\)/
 syntax region  FunctionalOperator start="<" end=">"
 
 " others...
