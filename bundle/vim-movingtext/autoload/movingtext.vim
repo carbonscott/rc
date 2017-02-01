@@ -1,7 +1,8 @@
 function! movingtext#setup()
 	let s:current_line_num = line('.')
 	let s:current_cusor_num = getpos('.')
-" ## Selet block of text that can be manipulated
+
+" Selet block of text that can be manipulated
 "let s:current_line_num = 10
 	let s:block = [s:current_line_num, s:current_line_num + 2, 4,10]
 	let s:block_manipulate = [s:block[0] - 1, s:block[1] + 1, s:block[2] - 1, s:block[3] + 1]
@@ -50,22 +51,4 @@ function! movingtext#right()
 	endif
 endfunction
 
-call movingtext#right()
-"0123456789
-"012aaa123aa"0123456789
-"aaaaaaaaaaaaaaaaaaaa"0123456789
-"aa"aaaaaaaaaaaaaaaaaaaa"0123456789
-"aaaaaaaaaaaaaaaaaa"0123456789
-"aaaaaaaaaaaaaaaaaaaa"0123456789
-"aaaaaaaaaaaaaaaaaaaa"0123456789
-"aaaaaaaaaaaaaaaaaaaa"0123456789
-"aaaaaaaaaaaaaaaaaaaa"0123456789
-"aaaaaaaaaaasdfaaaaaaaaaaa12312342134aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1231234213412312342134a
-"01234.s:temp_con"0123456789
-"tent[i]\<CR>56789
-"0123456789
-"0123456789
-"0123456789
-"0123456789
-"01234asdf56789
-"0123456789
+# call movingtext#right()

@@ -186,3 +186,5 @@ nnoremap <silent> [<space> a<space><esc>
 " nnoremap <silent> [<space> :let s:n_space = input()<CR>:eval "normal ".s:n_space."a <CR>"
 " nnoremap <silent> [<space> :exe "normal ".input("How many chars to input: ","10")."a "
 
+" enable functional operator syntax...
+nnoremap [ff :source ~/.vim/settings/syntax.vim<CR>

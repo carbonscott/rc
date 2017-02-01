@@ -1,4 +1,4 @@
-function! moveblock#mb(choice) 
+function! moveblock#mb(choice)
 	let s:choices = {
 				\'left':['h','hP'],           
 				\'right':['l','p'], 
@@ -10,16 +10,13 @@ function! moveblock#mb(choice)
 	"visual! d                                  "  * hash                                  
 	let s:next = s:choices[a:choice][0]
 	let s:paste_mode= s:choices[a:choice][1]
-
-  echo s:next
-	echo s:paste_mode
-	echo 'd'
+	return 'd'
 			\.s:paste_mode
 			\.'gv'.s:next.'o'.s:next.'o'         
-
-"	return 'd'
-"			\.s:paste_mode
-"			\.'gv'.s:next.'o'.s:next.'o'         
+			"\.':set virtualedit='.s:pre_virtualedit.'\<CR>'                         
+			" use another map to turn off virtualedit                                
+			" use another map to be used as move and recorded                        
+			" in hash                                                                
 endfunction
 
 function! moveblock#swapline(choice) range                 
@@ -81,29 +78,9 @@ function! moveblock#swapline(choice) range
      	\.'o'.s:choices[a:choice][0].'o' 
 endfunction                                   
 
-vnoremap <UP> :call moveblock#mb('up')<CR>
+vnoremap <UP> :call moveblock#swapline('up')<CR>
    		\:normal! gvkoko<CR>
-vnoremap <DOWN> :call moveblock#mb('down')<CR>
+vnoremap <DOWN> :call moveblock#swapline('down')<CR>
    		\:normal! gvjojo<CR>
 vnoremap <expr> <LEFT> moveblock#mb('left')
 vnoremap <expr> <RIGHT> moveblock#mb('right')
-                   
-" vnoremap <UP> :call moveblock#swapline('up')<CR>
-"    		\:normal! gvkoko<CR>
-" vnoremap <DOWN> :call mov=======r===============
-" vnoremap <UP> :call moveblock#aaaaswapline('up')<CR>
-"    		\:normal! gvjojo<CR>    aaaa
-" vnoremap <expr> <LEFT> movebloaaaack#mb('left'
-" vnoremap <expr> <RIGHT> moveb==s==lock#mb('righ
-" sdf                                               
-" sdf                                       )           
-" sdfdsffbbb                                t')         
-" dsafdsbdsffbbfbbb                                     
-" bbafds                                                
-" bbafdsb                                               
-" sdffbba          bdsf                                 
-" sdb   afdsf                                           
-" sdafdsf                                               
-" sdafdsf                                               
-" sdafdsf                                               
-                   
