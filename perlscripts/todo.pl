@@ -10,7 +10,13 @@ use feature qw(say);
 # prepend time to the to-do list...
 my $current_time = localtime;
 my $decoration = "~"x(length($current_time));
-say $decoration  ."\n".
-		$current_time."\n".
-		$decoration;
+
+# new line before and after the time stampe...
+my $newline = "\n";
+
+say $newline.
+				$decoration  ."\n".
+				$current_time."\n".
+				$decoration  . 
+				$newline;
 
