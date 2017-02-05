@@ -1,0 +1,35 @@
+
+#~~~~~~~~~~~~~~~~~~~~
+# Working directories
+#~~~~~~~~~~~~~~~~~~~~
+
+## working directory
+alias work="cat /Users/Scott/Setting/working_directories"
+
+export WORK=''
+
+## Goodnotes
+export WORK+=" /Users/Scott/Dropbox/GoodNotes"
+
+## Dropbox/Shared
+export WORK+=" /Users/Scott/Dropbox/Shared"
+
+## Dropbox/OfficeShared
+export WORK+=" /Users/Scott/Dropbox/OfficeShared"
+
+## Dropbox/TIL
+export WORK+=" /Users/Scott/Dropbox/TIL"
+
+## Dropbox/Pockets
+export WORK+=" /Users/Scott/Dropbox/Pockets"
+
+## Dropbox/Books
+export WORK+=" /Users/Scott/Dropbox/Books"
+
+## Todoist
+export TODO=""
+export TODO+=" /Users/Scott/Dropbox/Pockets/Todoist/todo"
+
+## Notebook
+export NOTE=""
+export NOTE+=" /Users/Scott/Dropbox/Pockets/Notebook"

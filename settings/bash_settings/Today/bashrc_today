@@ -1,0 +1,24 @@
+#alias chem452='cd /Users/Scott/Dropbox/GoodNotes/Chemistry/Chem\ 452'
+#alias tilvim='cd /Users/Scott/Dropbox/TIL/Vim/vim'
+alias goodnote='cd /Users/Scott/Dropbox/GoodNotes'
+#alias bookperl='cd /Users/Scott/Dropbox/Books/Perl'
+#alias chemwiki='cd ~/Dropbox/TIL/ChemWiki/'
+#alias bookchem='cd ~/Dropbox/Books/Chem/'
+#alias english='cd ~/Dropbox/TIL/English/'
+#alias cl='cd ~/Dropbox/TIL/C/CLanguage/'
+alias pocket='cd ~/Dropbox/Pockets/'
+#alias unclu='cd ~/Dropbox/UnclutterFolder/'
+#alias dna='cd ~/Pockets/ResearchProject/'
+#alias carbon='open ~/Dropbox/Books/Notetaking-Notation_carbonscott.pdf'
+#alias vv26="mvim -c 'set guifont=Monaco:h26'"
+#alias v26="vim -c 'set guifont=Monaco:h26'"
+alias restore="cd ~/Dropbox/QuickRestore/"
+alias gitit="cd ~/Dropbox/GitIt/"
+#alias ta="cd /Users/Scott/Dropbox/College/TA/2016_Fall/"
+#alias cs401="cd /Users/Scott/Dropbox/College/Courses/CS401/"
+alias damian="cd /Users/Scott/Dropbox/Pockets/LearnFromDamian"
+alias vimchi="cd /Users/Scott/Dropbox/Pockets/vimchi"
+alias todo="cd ~/Dropbox/Pockets/Todoist/"
+alias task="perl ~/.vim/perlscripts/todo.pl"
+alias sb="source ~/.bash_profile"
+alias expression="less /Users/Scott/Dropbox/Pockets/Notebook/chapters/FunctionalExpression.txt"
