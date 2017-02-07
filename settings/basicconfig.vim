@@ -46,3 +46,6 @@ set backspace=indent,eol,start
 
 " let find command do recursive search...
 set path+=**
+
+" turn off viminfo...
+setlocal viminfo=
