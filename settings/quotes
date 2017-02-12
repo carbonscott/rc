@@ -1,5 +1,5 @@
 
-alias quote="cat ~/.vim/settings/quotes"
+alias quote="cat /Users/Scott/Setting/quotes"
 
 # If something can be DESCRIBED by language, it can be LEARNED.  
 
