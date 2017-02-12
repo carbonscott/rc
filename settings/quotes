@@ -1,5 +1,14 @@
 
-alias quote="cat /Users/Scott/Setting/quotes"
+alias quote="cat ~/.vim/settings/quotes"
+
+#==========
+# Inspiring
+#==========
+
+# Sucess      ~> Frustration
+# Frustration ~> Frustration
+
+# Don't sleep until you succeed.
 
 # If something can be DESCRIBED by language, it can be LEARNED.  
 
