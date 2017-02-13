@@ -49,6 +49,7 @@ setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatoptions=Mmcroqlj
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
@@ -84,7 +85,7 @@ setlocal shiftwidth=4
 setlocal noshortname
 setlocal signcolumn=auto
 setlocal nosmartindent
-setlocal softtabstop=2
+setlocal softtabstop=1
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
@@ -96,7 +97,7 @@ setlocal synmaxcol=3000
 if &syntax != ''
 setlocal syntax=
 endif
-setlocal tabstop=2
+setlocal tabstop=1
 setlocal tagcase=
 setlocal tags=
 setlocal textwidth=0
@@ -108,32 +109,23 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-13,24fold
-27,32fold
-50,71fold
-77,103fold
-109,122fold
-1,123fold
-125,146fold
-149,169fold
-149,170fold
-124,179fold
-1
-normal! zo
-124
-normal! zo
-149
-normal! zo
-149
-normal! zo
-149
-normal! zc
-let s:l = 149 - ((144 * winheight(0) + 42) / 84)
+8,9fold
+13,23fold
+27,31fold
+35,43fold
+51,75fold
+82,108fold
+115,127fold
+131,150fold
+155,181fold
+186,215fold
+219,226fold
+let s:l = 1 - ((0 * winheight(0) + 39) / 79)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-149
-normal! 01|
+1
+normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
