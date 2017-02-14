@@ -126,9 +126,9 @@ vnoremap [4 9
 vnoremap [5 0
 "}
 
-"ab for [ ]
-"ab [ [ ]
-ab perl Perl
+" ab for [ ]
+" ab [ [ ]
+" ab perl Perl
 
 nnoremap [s a    <c-[>
 nnoremap  [fc :source ~/.vim/settings/ThoughtRCColor.vim<CR>
