@@ -12,7 +12,7 @@ if has("gui_macvim")
 	set guifont=Monaco:h20
 endif
 if has("gui_running") 
-		set guifont=Monaco\ 16
+		set guifont=Monofur\ 16
 endif
 " #}
 " For Linux #{
@@ -45,7 +45,8 @@ set backspace=indent,eol,start
 "set virtualedit=all
 
 " let find command do recursive search...
-set path+=**
+" set path+=**
+set path=**
 
 " turn off viminfo...
 setlocal viminfo=
