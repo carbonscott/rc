@@ -1,0 +1,13 @@
+{
+  "mode.normal.tab_move_backward": "< gJ",
+  "mode.normal.tab_move_forward": "> gK",
+  "mode.normal.follow_previous": "",
+  "mode.normal.follow_next": "",
+  "mode.normal.window_new": "",
+  "mode.normal.esc": "<force><c-[> <force><escape>",
+  "mode.caret.exit": "<c-[> <escape>",
+  "mode.hints.exit": "<c-[> <escape>",
+  "mode.ignore.exit": "<c-[> <s-escape>",
+  "mode.find.exit": "<c-[> <escape>  <enter>",
+  "mode.marks.exit": "<c-[> <escape> "
+}
