@@ -7,17 +7,32 @@ alias quote="cat ~/.vim/settings/quotes"
 
 # Sucess      ~> Frustration
 # Frustration ~> Frustration
-
+#
 # Don't sleep until you succeed.
-
+#
 # If something can be DESCRIBED by language, it can be LEARNED.  
-
+#
 # If I feel hard to reach the SUPERSET, it is often due to that 
 # I haven't figured out the SUBSET to complete. 
-
+#
 # Sort subsets, get each subset perfectly done.
-
+#
 # Simplify what I see as subset, organize what I think about in terms of subsets.
-
+#
 # Vim is an editor, it's not emacs which does everything.
+
+# Category
+# --------
+# 
+# * `$ ~> @` : `$` is subset of `@`. 
+# 
+# Interpolation
+# -------------
+# 
+# * `$ : @` : `:` means where. 
+# 
+# 				An inline interpolation is declared. Some item in $ is going  to be
+# 				substituted by the item transformation rule in @.
+# 
+# * `% = ${transformed}` : `%` means the result of interpolation.
 
