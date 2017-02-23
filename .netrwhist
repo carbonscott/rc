@@ -1,7 +1,7 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/Scott/Dropbox/Pockets/Notebook/chapters'
-let g:netrw_dirhist_2='/usr/local/share/vim/vim80'
-let g:netrw_dirhist_3='/home/scott'
-let g:netrw_dirhist_4='/home/scott/.vim/bundle/vim-movingtext'
-let g:netrw_dirhist_5='/home/scott/.vim/bundle/vim-movingtext/autoload'
+let g:netrw_dirhist_1='/home/scott'
+let g:netrw_dirhist_2='/home/scott/Dropbox'
+let g:netrw_dirhist_3='/home/scott/Dropbox/TIL'
+let g:netrw_dirhist_4='/home/scott/Dropbox/TIL/Mind'
+let g:netrw_dirhist_5='/home/scott/Dropbox/TIL/Mind/chapters'
