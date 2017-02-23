@@ -1,5 +1,5 @@
 
-alias quote="cat ~/.vim/settings/quotes"
+alias quote="less ~/.vim/settings/quotes"
 
 #==========
 # Inspiring
