@@ -7,3 +7,4 @@ set runtimepath+=~/.vim/bundle/vim-smartfold
 set runtimepath+=~/.vim/bundle/vim-clearhi
 set runtimepath+=~/.vim/bundle/vim-quickman
 set runtimepath+=~/.vim/bundle/vim-colorschemes/
+set runtimepath+=~/.vim/bundle/vim-prompt/
