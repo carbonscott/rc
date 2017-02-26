@@ -23,11 +23,15 @@ function! prompt#csearch()
 		while (s:cmd ==# "") 
 
 				" search prompt with "search for file in path option enabled"...
-				let s:cmd = "normal! :find " . input("file> ","","file_in_path")
+				let s:file = input("file> ","","file_in_path")
+				let s:cmd = "normal! :find " . s:file
 
 				echon "\n"
 
-				execute s:cmd . "\<CR>"
+				" don't execute it if \<c-[> or \<esc> is entered...
+				if s:file !=# ""
+						execute s:cmd . "\<CR>"
+				endif
 
 				redraw
 
