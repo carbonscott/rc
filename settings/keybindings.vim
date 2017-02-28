@@ -69,8 +69,8 @@ inoremap <c-l> <c-o>a
 inoremap <c-f> <c-o>e<c-o>a
 inoremap <c-e> <c-o>b
 "======= cmd navigation =======
-" cnoremap <c-h> <left>
-" cnoremap <c-l> <right>
+cnoremap <c-h> <left>
+cnoremap <c-l> <right>
 
 "======= map 0 and $ =====
 "nnoremap <s-h> 0
