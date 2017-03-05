@@ -26,6 +26,8 @@ alias quote="less ~/.vim/settings/quotes"
 #
 # I am able to mimic it!
 #
+# Linux Design Goal: do one thing and do it well.
+#
 # Don't sleep until you succeed.  
 
 # Category
