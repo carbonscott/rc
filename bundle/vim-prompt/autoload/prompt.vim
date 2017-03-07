@@ -3,7 +3,7 @@ function! prompt#run()
 		while (1) 
 
 				" search prompt with "search for file in path option enabled"...
-				let s:cmd = "normal! :" . input("vim> ","","file_in_path")
+				let s:cmd = "normal! :" . input("vim> ","","expression")
 
 				echon "\n"
 
