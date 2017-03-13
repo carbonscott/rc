@@ -55,3 +55,13 @@ alias quote="less ~/.vim/settings/quotes"
 # ---
 # 8 > 9 .|subset| --> [logic value]
 # [logic value] := (true, false)
+#
+# rasie a question.|example| --> [what] : ^1
+#     - allow me to focus on what I need to care -- about rasing a question.
+#     - put the type of question I want to ask later -- in set [].
+#     - rephrase: what examples I can have about rasing a question?
+#     
+#     %^1: "." notation benefit over "^" notation .|compare| --> [what] : ^2
+#
+#         %^2: 
+#         - more standard
