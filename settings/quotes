@@ -5,9 +5,20 @@ alias quote="less ~/.vim/settings/quotes"
 # Inspiring
 #==========
 
-# Sucess      ~> Frustration
-# Frustration ~> Frustration
+# Sucess      .|subset| --> [Frustration]
+# Frustration .|subset| --> [Frustration]
 #                               
+# Thinking let me transform unexpected and tedious things into set of questions 
+# which can draw y attention and light up my passion. 
+#
+# Make one effort to solve one problem.
+#
+# Do I have passion to make it better and cool?
+# Do I have passion to make it work and cool?
+# 
+# About cool:
+#   - growing from subsets 
+#
 # Am I clear what I am doing.   
 #                               
 # Thinking is driven by many aspects. Keep myself clear about where I am going. 
@@ -30,13 +41,6 @@ alias quote="less ~/.vim/settings/quotes"
 #
 # Don't sleep until you succeed.  
 
-# Category
-# --------
-# 
-# * `$ ~> @` : `$` is subset of `@`. 
-# * `If $_ ~> @ --> %; Then it's likely that $a :~> @ --> %`.
-# * `@` is not figured out, but constructed from sorted building blocks/subsets. 
-# 
 # Interpolation
 # -------------
 # 
@@ -46,4 +50,8 @@ alias quote="less ~/.vim/settings/quotes"
 # 				substituted by the item transformation rule in @.
 # 
 # * `% = ${transformed}` : `%` means the result of interpolation.
-
+#
+# Set 
+# ---
+# 8 > 9 .|subset| --> [logic value]
+# [logic value] := (true, false)

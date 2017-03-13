@@ -9,7 +9,7 @@ alias work="cat /home/scott/Dropbox/Settings/working_directories"
 export WORK=''
 
 ## Goodnotes
-export WORK+=" /home/scott/Dropbox/GoodNotes"
+export WORK+=" /home/scott/Dropbox/01-GoodNotes"
 
 ## Dropbox/Shared
 export WORK+=" /home/scott/Dropbox/Shared"

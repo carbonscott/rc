@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/Scott/.vim/AutoGenerate'
 let g:netrw_dirhist_2='/home/Scott/.vim/bundle/vim-blockjumper'
 let g:netrw_dirhist_3='/home/Scott/.vim/bundle/vim-blockjumper/autoload'
+let g:netrw_dirhist_4='/home/scott/Dropbox/01-GoodNotes'
+let g:netrw_dirhist_5='/home/scott/.vim/bundle/vim-quickman'
+let g:netrw_dirhist_6='/home/scott/.vim/bundle/vim-quickman/autoload'
