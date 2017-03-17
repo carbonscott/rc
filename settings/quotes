@@ -28,24 +28,24 @@ alias quote="less ~/.vim/settings/quotes"
 # Interpolation
 # -------------
 # 
-# * `$ : @` : `:` means where. 
+# - `$ : @` : `:` means where. 
 # 
 # 				An inline interpolation is declared. Some item in $ is going  to be
 # 				substituted by the item transformation rule in @.
 # 
-# * `% = ${transformed}` : `%` means the result of interpolation.
-#
-# Set 
-# ---
-# 8 > 9 .|subset| --> [logic value]
-# [logic value] := (true, false)
-#
-# rasie a question.|example| --> [what] : ^1
-#     - allow me to focus on what I need to care -- about rasing a question.
-#     - put the type of question I want to ask later -- in set [].
-#     - rephrase: what examples I can have about rasing a question?
-#     
-#     %^1: "." notation benefit over "^" notation .|compare| --> [what] : ^2
-#
-#         %^2: 
-#         - more standard
+# - `% = ${transformed}` : `%` means the result of interpolation.
+
+# Postfix Modifier
+# ----------------
+# - Modifier List |a,b,c|
+# - properties: object.|property|
+# - interactive properties: object.|property|(...)
+# - inline properties definition: 
+#						-	(a + b) ~> |+,scalar sum,binary|
+# - ugly non-inline version of Modifier List:
+#   Just put bracket {} in the |modifier list|, like,
+#						-	(a + b) ~> |{ 
+#										 operator  : +,
+#											definition: scalar sum,
+#											property  : binary
+#        }|
