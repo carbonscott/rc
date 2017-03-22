@@ -4,7 +4,7 @@
 #~~~~~~~~~~~~~~~~~~~~
 
 ## working directory
-alias work="cat /home/scott/Dropbox/Settings/working_directories"
+alias work="cat ~/.vim/rc/working_directories"
 
 export WORK=''
 
