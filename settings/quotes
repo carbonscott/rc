@@ -43,11 +43,14 @@ alias quote="less ~/.vim/settings/quotes"
 # - properties: object.|property|
 # - interactive properties: object.|property|(...)
 # - inline properties definition: 
-#						-	(a + b) ~> |+,scalar sum,binary|
+#						-	(a + b) # +,scalar sum,binary
 # - ugly non-inline version of Modifier List:
 #   Just put bracket {} in the |modifier list|, like,
-#						-	(a + b) ~> |{ 
+#						-	(a + b) # ( 
 #										 operator  : +,
 #											definition: scalar sum,
 #											property  : binary
-#        }|
+#        )
+
+# Subset ~>
+# (sigma,v) ~> <symmetry operation>; 
