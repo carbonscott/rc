@@ -54,3 +54,14 @@ alias quote="less ~/.vim/settings/quotes"
 
 # Subset ~>
 # (sigma,v) ~> <symmetry operation>; 
+
+# Give space to mind, and use Delimiter for your mind
+#
+# Example
+#
+# argument 1  | AND:
+# ----------  | AND-implication(1,2)
+# argument 2  |
+#             | OR:
+#             | OR-implication(1,2)
+#             |
