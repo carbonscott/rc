@@ -65,3 +65,8 @@ alias quote="less ~/.vim/settings/quotes"
 #             | OR:
 #             | OR-implication(1,2)
 #             |
+#
+# 
+# Setup Question (good or bad)
+# Implementation Question (related to technique)
+# Make clear where I made mistakes.
