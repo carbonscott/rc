@@ -11,11 +11,11 @@ alias quote="less ~/.vim/settings/quotes"
 # 
 # To start challenging myself is the biggest challenge.
 # 
-# Thinking without paying effort is simply brainless.
-# 
 # Sequence matters because we are always doing things in steps. 
-#                               
+# --------                      
+#
 # Sort subsets, get each subset perfectly done.
+#      -------
 #
 # If I feel hard to reach the SUPERSET, it is often due to that 
 # I haven't figured out the SUBSET to complete. 
@@ -26,31 +26,9 @@ alias quote="less ~/.vim/settings/quotes"
 # Vim is an editor, it's not emacs which does everything.
 #
 # Linux Design Goal: do one thing and do it well.
-
-# Interpolation
-# -------------
+#
+# What questions is hard to answer.
+# ----                                                  
 # 
-# - `$ : @` : `:` means where. 
-# 
-# 				An inline interpolation is declared. Some item in $ is going  to be
-# 				substituted by the item transformation rule in @.
-# 
-# - `% = ${transformed}` : `%` means the result of interpolation.
-
-# Postfix Modifier
-# ----------------
-# - Modifier List |a,b,c|
-# - properties: object.|property|
-# - interactive properties: object.|property|(...)
-# - inline properties definition: 
-#						-	(a + b) # +,scalar sum,binary
-# - ugly non-inline version of Modifier List:
-#   Just put bracket {} in the |modifier list|, like,
-#						-	(a + b) # ( 
-#										 operator  : +,
-#											definition: scalar sum,
-#											property  : binary
-#        )
-
-# Subset ~>
-# (sigma,v) ~> <symmetry operation>; 
+# 'is it' questions is easier (results in yes or no) and keeps you trying new answer.
+# -------                           
