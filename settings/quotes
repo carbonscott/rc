@@ -30,43 +30,5 @@ alias quote="less ~/.vim/settings/quotes"
 # What questions is hard to answer.
 # ----                                                  
 # 
-<<<<<<< HEAD
-# 'is it' questions is easier (results in yes or no) and keeps you trying new answer.
+# 'is it' questions is more clear (results in yes or no) and keeps you trying new answer.
 # -------                           
-=======
-# - `% = ${transformed}` : `%` means the result of interpolation.
-
-# Postfix Modifier
-# ----------------
-# - Modifier List |a,b,c|
-# - properties: object.|property|
-# - interactive properties: object.|property|(...)
-# - inline properties definition: 
-#						-	(a + b) # +,scalar sum,binary
-# - ugly non-inline version of Modifier List:
-#   Just put bracket {} in the |modifier list|, like,
-#						-	(a + b) # ( 
-#										 operator  : +,
-#											definition: scalar sum,
-#											property  : binary
-#        )
-
-# Subset ~>
-# (sigma,v) ~> <symmetry operation>; 
-
-# Give space to mind, and use Delimiter for your mind
-#
-# Example
-#
-# argument 1  | AND:
-# ----------  | AND-implication(1,2)
-# argument 2  |
-#             | OR:
-#             | OR-implication(1,2)
-#             |
-#
-# 
-# Setup Question (good or bad)
-# Implementation Question (related to technique)
-# Make clear where I made mistakes.
->>>>>>> d37090e6169aa9c5317e805c3e5f6403a3c369b0
