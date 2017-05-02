@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/Scott/Dropbox/Pockets/Vim/materials/ctrlp.vim'
 let g:netrw_dirhist_2='/Users/Scott/Dropbox/Pockets/Vim/materials/ctrlp.vim/autoload'
 let g:netrw_dirhist_3='/Users/Scott/Dropbox/Pockets/Vim/materials/ctrlp.vim'
 let g:netrw_dirhist_4='/Users/Scott/Dropbox/Pockets/Vim/materials/ctrlp.vim/autoload'
 let g:netrw_dirhist_5='/Users/Scott/Dropbox/Pockets/Vim/materials/ctrlp.vim'
 let g:netrw_dirhist_6='/Users/Scott/Dropbox/Pockets/Vim/materials/ctrlp.vim/autoload'
+let g:netrw_dirhist_7='/Users/Scott/.vim/bundle/vim-currentline-jump/plugin'
