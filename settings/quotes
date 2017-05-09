@@ -5,23 +5,13 @@ alias quote="less ~/.vim/settings/quotes"
 # Inspiring
 #==========
 
-# Work Harder
-# 
-# Effort made will be paid off in terms of results. 
-# 
-# To start challenging myself is the biggest challenge.
+# Work More
 # 
 # Sequence matters because we are always doing things in steps. 
 # --------                      
 #
 # Sort subsets, get each subset perfectly done.
 #      -------
-#
-# If I feel hard to reach the SUPERSET, it is often due to that 
-# I haven't figured out the SUBSET to complete. 
-# 
-# What SUBSETs can tell me at least is that things should be narrowed down to 
-# simple COMPONENTs.
 #
 # Vim is an editor, it's not emacs which does everything.
 #
@@ -32,3 +22,15 @@ alias quote="less ~/.vim/settings/quotes"
 # 
 # 'is it' questions is more clear (results in yes or no) and keeps you trying new answer.
 # -------                           
+
+
+#=========
+# Thinking
+#=========
+
+# Ask about purpose.
+# Ask about categories.
+#   - Ask about similarities and differences.
+# Ask about orders.
+#   - sort
+# Categorder: category & order

@@ -10,11 +10,13 @@ my $selection = prompt 'Choose a type of log: ',
 																-menu => {
 																				schedule => "slog",
 																				note     => "nlog",
+																				quote    => "quote"
 																}, ">";
 
 my $commands = {
 				slog => "vi ~/Dropbox/00-Workflow/00-workflow.txt",
 				nlog => "vi ~/Dropbox/00-Workflow/10-notes.txt",
+				quote=> "vi ~/.vim/settings/quotes"
 };
 
 system($commands->{$selection}) == 0 or die("The command cannot be executed at ".$?);
