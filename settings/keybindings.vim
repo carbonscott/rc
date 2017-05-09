@@ -5,7 +5,7 @@ noremap [cl :clist<CR>
 noremap [cn :cnext<CR>
 noremap [cp :cprevious<CR>
 "tab
-noremap [t :tabnew<CR>
+" noremap [t :tabnew<CR>
 noremap [n :tabn<CR>
 "inoremap <c-Tab> <c-o>:tabn<CR>
 noremap [p :tabp<CR>
@@ -192,3 +192,6 @@ nnoremap <silent> [<space> i<space><esc>
 " enable functional operator syntax...
 nnoremap [ff :source ~/.vim/settings/syntax.vim<CR>
 
+" enable the todo list custom highlighting...
+let g:todo_done_switch = 0
+nnoremap <silent> [t :source ~/.vim/syntax/custom_highlight.vim<CR>
