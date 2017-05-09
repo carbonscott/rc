@@ -1,6 +1,8 @@
 
 alias quote="less ~/.vim/settings/quotes"
 
+# CATEGORDER
+
 #==========
 # Inspiring
 #==========
