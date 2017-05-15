@@ -175,6 +175,14 @@ inoremap "" ""<Left>
 inoremap '' ''<Left>
 inoremap `` ``<Left>
 
+cnoremap "" ""<Left>
+cnoremap '' ''<Left>
+cnoremap `` ``<Left>
+cnoremap () ()<Left>
+cnoremap [] []<Left>
+cnoremap <> <><Left>
+cnoremap {} {}<Left>
+
 " speical letter
 inoremap [vv ^
 
