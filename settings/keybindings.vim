@@ -191,17 +191,12 @@ nnoremap <silent> [j :call search('____')<CR>ve<c-g>
 snoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
 vnoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
 
-nnoremap <silent> [k :call search('____','b')<CR>
+nnoremap <silent> [k :call search('____','b')<CR>ve<c-g>
 snoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
 vnoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
 
 inoremap <silent> [j <c-[>:call search('____')<CR>ve<c-g>
-snoremap <silent> [j <c-[>:<c-u>call search('____')<CR>ve<c-g>
-vnoremap <silent> [j <c-[>:<c-u>call search('____')<CR>ve<c-g>
-
 inoremap <silent> [k <c-[>:call search('____','b')<CR>ve<c-g>
-snoremap <silent> [k <c-[>:<c-u>call search('____','b')<CR>ve<c-g>
-vnoremap <silent> [k <c-[>:<c-u>call search('____','b')<CR>ve<c-g>
 
 " adding whitespace by number
 nnoremap <silent> [<space> i<space><esc>
