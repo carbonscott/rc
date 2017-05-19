@@ -7,10 +7,10 @@ use feature qw(say);
 use IO::Prompter;
 
 my $commands = {
-				slog => "vi ~/Dropbox/00-Workflow/00-workflow.txt",
-				nlog => "vi ~/Dropbox/00-Workflow/10-notes.txt",
-				quote=> "vi ~/.vim/settings/quotes",
-				tif  => "vi ~/Dropbox/00-Workflow/20-today_I_found.txt",
+				slog => "vim ~/Dropbox/00-Workflow/00-workflow.txt",
+				nlog => "vim ~/Dropbox/00-Workflow/10-notes.txt",
+				quote=> "vim ~/.vim/settings/quotes",
+				tif  => "vim ~/Dropbox/00-Workflow/20-today_I_found.txt",
 				exit => "exit"
 };
 
