@@ -20,6 +20,6 @@ set t_Co=256
 hi Pmenu ctermbg=15 ctermfg=0
 hi PmenuSel ctermbg=33 ctermfg=15
 
-hi Folded ctermbg=black ctermfg=lightblue
+" hi Folded ctermbg=black ctermfg=lightblue ctermbg=darkgray
 
 finish

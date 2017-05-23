@@ -19,12 +19,7 @@ alias quote="less ~/.vim/settings/quotes"
 #
 # Linux Design Goal: do one thing and do it well.
 #
-# What questions is hard to answer, and often requires knowledge of context.
-# ----                                                  
-# 
-# 'is it' questions is more clear (results in yes or no) and keeps you trying new answer.
-# -------                           
-
+# Focus on quality by breaking down things and slowing down my action.
 
 #=========
 # Thinking
