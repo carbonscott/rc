@@ -8,3 +8,4 @@ set runtimepath+=~/.vim/bundle/vim-clearhi
 set runtimepath+=~/.vim/bundle/vim-quickman
 set runtimepath+=~/.vim/bundle/vim-colorschemes/
 set runtimepath+=~/.vim/bundle/vim-prompt/
+source ~/.vim/bundle/vim-smartinsert/autoload/smartinsert.vim
