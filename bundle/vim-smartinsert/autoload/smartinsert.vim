@@ -2,6 +2,7 @@ highlight CMT ctermfg=magenta
 highlight TRI ctermfg=blue 
 
 let g:SmartInsertCommentOn = 0
+let g:SmartInsertPlaceholder = "____"
 
 let g:SmartInsertTempalte = expand("<sfile>:p:h:h")."/template/template.vim"
 
@@ -103,10 +104,12 @@ function! SmartInsert()
 												let opt_formatoptions = &formatoptions
 												let &formatoptions = ""
 
-												" -- reformat text...
-												let pad_space = repeat(" ",pos_ns - 1)
-												let keyword_template[1:] = map(keyword_template[1:],
-																																				 \ 'pad_space.v:val')
+												" -- reformat text for the lines except the first one...
+												if len(keyword_template) > 1
+																let pad_space = repeat(" ",pos_ns - 1)
+																let keyword_template[1:] = map(keyword_template[1:],
+																																									\ 'pad_space.v:val')
+												endif
 
 												" -- insert text...
 												execute "normal! " .pos_ns. "|"
@@ -131,9 +134,12 @@ function! SmartInsert()
 
 				" put cursor to the first matched result...
 				if is_found == 1
+								let pos_current_line[2] = 1    " set the cursor to be at 1st column...
 								call setpos('.', pos_current_line)
-								call search('____')
-								execute "normal! "."veo"
+								let if_match = search(g:SmartInsertPlaceholder)
+								if if_match != 0
+												execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo"
+								endif
 				endif
 
 				return
@@ -149,4 +155,6 @@ finish
 drawback
 - SmartInsert  => let &fo-=ro
 - SmartInsert2 => set noautoindent
-
+- It cannot load itself in template files.
+- No distinguish between perl_for and tcl_for etc. Different names have to be used.
+- 
