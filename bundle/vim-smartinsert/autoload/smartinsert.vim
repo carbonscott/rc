@@ -73,6 +73,7 @@ endfunction
 " This function is to do the smart insert.
 function! SmartInsert()
 				let current_line = getline('.')
+				let pos_current_line = getpos('.')
 
 				if g:IsLoadedSmartInsert == 0
 								call ReadAndComplete()
@@ -121,10 +122,18 @@ function! SmartInsert()
 								endif
 				endfor
 
+				" read the template again to get the warning info...
 				if is_found == 0
 								let word_in_currentline = 
 														\	matchstr(current_line,'\\S\\+')
 								call ReadTemplate(word_in_currentline)
+				endif
+
+				" put cursor to the first matched result...
+				if is_found == 1
+								call setpos('.', pos_current_line)
+								call search('____')
+								execute "normal! "."veo"
 				endif
 
 				return
