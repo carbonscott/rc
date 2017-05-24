@@ -27,8 +27,9 @@ function! ReadAndComplete(leadword)
 				call filter(keywords,'v:val !~ "^\s*$"')
 				call uniq(sort(keywords))
 
-				let g:SmartInsertKeywords = keywords
-				let g:IsLoadedSmartInsert = 1
+				" let g:SmartInsertKeywords = keywords
+				call extend(g:SmartInsertKeywords, keywords)
+				" let g:IsLoadedSmartInsert = 1
 				
 				return
 endfunction
