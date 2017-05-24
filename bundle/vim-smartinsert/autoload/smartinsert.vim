@@ -141,7 +141,7 @@ function! SmartInsert()
 								call setpos('.', pos_current_line)
 								let if_match = search(g:SmartInsertPlaceholder)
 								if if_match != 0
-												execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo"
+												execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"
 								endif
 				endif
 
