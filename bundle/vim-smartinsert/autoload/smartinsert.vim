@@ -8,9 +8,10 @@ let g:SmartInsertTempalte = expand("<sfile>:p:h:h")."/template/template.vim"
 
 let g:IsLoadedSmartInsert = 0
 " This function is used to read all keywords in the template file.
-function! ReadAndComplete()
+function! ReadAndComplete(leadword)
 				let g:SmartInsertKeywords = []
 				let keyword_pattern = "|".".*"."|"
+				let line_pattern = a:leadword."\\s\\+"."|".".*"."|"
 
 				let file_array = readfile(g:SmartInsertTempalte)
 
@@ -19,7 +20,8 @@ function! ReadAndComplete()
 
 				let keywords = []
 				for item in file_array
-								let matched_str = matchstr(item,keyword_pattern)
+								let matched_line = matchstr(item,line_pattern)
+								let matched_str = matchstr(matched_line,keyword_pattern)
 								call add(keywords,strpart(matched_str,1,len(matched_str)-2))
 				endfor
 				call filter(keywords,'v:val !~ "^\s*$"')
@@ -39,8 +41,8 @@ function! WarningWithColor(info,color)
 endfunction
 
 " This function will be in use if the keyword is matched in the current line.
-function! ReadTemplate(trigger)
-				let to_search = "|".a:trigger."|"
+function! ReadTemplate(trigger,leadword)
+				let to_search = a:leadword."\\s\\+"."|".a:trigger."|"
 				let file_array = readfile(g:SmartInsertTempalte)
 
 				" offset line number due to comment...
@@ -63,7 +65,7 @@ function! ReadTemplate(trigger)
 								return [''] 
 				else
 								let i1 = match(file_array,to_search)
-								let i2 = match(file_array[i1:],'endtemplate')
+								let i2 = match(file_array[i1:],'end'.a:leadword)
 								let i2 += i1
 								let expand_array = file_array[i1+1:i2-1]
 								call map(expand_array,'v:val."\n"')
@@ -77,7 +79,7 @@ function! SmartInsert()
 				let pos_current_line = getpos('.')
 
 				if g:IsLoadedSmartInsert == 0
-								call ReadAndComplete()
+								call ReadAndComplete("template")
 				endif
 
 				" keep checking if the keyword is in the line...
@@ -87,7 +89,7 @@ function! SmartInsert()
 												" keyword is there...
 
 												" go to file again to get the template...
-												let keyword_template = ReadTemplate(keyword)
+												let keyword_template = ReadTemplate(keyword,"template")
 												if len(keyword_template) == 1 && keyword_template[0] ==# ''
 																let is_found = 0
 																break
@@ -129,7 +131,7 @@ function! SmartInsert()
 				if is_found == 0
 								let word_in_currentline = 
 														\	matchstr(current_line,'\\S\\+')
-								call ReadTemplate(word_in_currentline)
+								call ReadTemplate(word_in_currentline,"template")
 				endif
 
 				" put cursor to the first matched result...
