@@ -89,7 +89,7 @@ function! SmartInsert()
 												" go to file again to get the template...
 												let keyword_template = ReadTemplate(keyword)
 												if len(keyword_template) == 1 && keyword_template[0] ==# ''
-																let is_found = 1
+																let is_found = 0
 																break
 												endif
 
