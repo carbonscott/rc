@@ -7,11 +7,14 @@ let g:SmartInsertPlaceholder = "____"
 let g:SmartInsertTempalte = expand("<sfile>:p:h:h")."/template/template.vim"
 
 let g:IsLoadedSmartInsert = 0
+
 " This function is used to read all keywords in the template file.
 function! ReadAndComplete(leadword)
 				let g:SmartInsertKeywords = []
 				let keyword_pattern = "|".".*"."|"
-				let line_pattern = a:leadword."\\s\\+"."|".".*"."|"
+
+				" [TODO] Add beginning and end of line regex...
+				let line_pattern = a:leadword."\\s\\+".keyword_pattern
 
 				let file_array = readfile(g:SmartInsertTempalte)
 
@@ -43,7 +46,11 @@ endfunction
 
 " This function will be in use if the keyword is matched in the current line.
 function! ReadTemplate(trigger,leadword)
-				let to_search = a:leadword."\\s\\+"."|".a:trigger."|"
+				" use double quotes...
+				let BEGIN_LINE = "^\\s*"
+				let END_LINE = "\\s*$"
+
+				let to_search = BEGIN_LINE.a:leadword."\\s\\+"."|".a:trigger."|".END_LINE
 				let file_array = readfile(g:SmartInsertTempalte)
 
 				" offset line number due to comment...
@@ -53,20 +60,22 @@ function! ReadTemplate(trigger,leadword)
 				" if duplicate term exists...
 				let if_dup = len(filter(copy(file_array),'v:val=~to_search'))
 				if if_dup > 1
+								redraw
 								call WarningWithColor(
 								\ "There are more than 1 snippet found which is
 								\ related to <","CMT")
-								call WarningWithColor("to_search","TRI")
+								call WarningWithColor(a:trigger,"TRI")
 								call WarningWithColor(">!","CMT")
 								return ['']
 				elseif if_dup < 1
+								redraw
 								call WarningWithColor("Undefined snippet :<","CMT")
-								call WarningWithColor("to_search","TRI")
+								call WarningWithColor(a:trigger,"TRI")
 								call WarningWithColor(">!","CMT")
 								return [''] 
 				else
 								let i1 = match(file_array,to_search)
-								let i2 = match(file_array[i1:],'end'.a:leadword)
+								let i2 = match(file_array[i1:], BEGIN_LINE."end".a:leadword.END_LINE)
 								let i2 += i1
 								let expand_array = file_array[i1+1:i2-1]
 								call map(expand_array,'v:val."\n"')
@@ -80,20 +89,30 @@ function! SmartInsert()
 				let pos_current_line = getpos('.')
 
 				if g:IsLoadedSmartInsert == 0
-								call ReadAndComplete("template")
+								" call ReadAndComplete("template")
+								call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
 				endif
 
 				" keep checking if the keyword is in the line...
 				let is_found = 0
 				for keyword in g:SmartInsertKeywords
+
+								" [TODO] The regex can be put into one variable...
 								if current_line =~ '^\s*'.keyword.'\s*$'
 												" keyword is there...
 
 												" go to file again to get the template...
-												let keyword_template = ReadTemplate(keyword,"template")
+												let keyword_template = ReadTemplate(keyword,"metatemplate")
 												if len(keyword_template) == 1 && keyword_template[0] ==# ''
-																let is_found = 0
-																break
+
+																" After second level check for template, if nothing is
+																" found, stop " searching...
+																let keyword_template = ReadTemplate(keyword,"template")
+																if len(keyword_template) == 1 && keyword_template[0] ==# ''
+																				let is_found = 0
+																				break
+																endif
+
 												endif
 
 												" manipulate text...
@@ -131,7 +150,9 @@ function! SmartInsert()
 				" read the template again to get the warning info...
 				if is_found == 0
 								let word_in_currentline = 
-														\	matchstr(current_line,'\\S\\+')
+														\	matchstr(current_line,"\\S\\+")
+								redraw
+								" let g:DEBUG = word_in_currentline
 								call ReadTemplate(word_in_currentline,"template")
 				endif
 
