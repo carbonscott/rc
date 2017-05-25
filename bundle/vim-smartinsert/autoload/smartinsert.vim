@@ -137,6 +137,9 @@ function! SmartInsert()
 												execute "normal! " .pos_ns. "|"
 												execute "normal! c$" . join(keyword_template,"")
 
+												" -- count the number of placeholders...
+												let is_placeholder = match(keyword_template, g:SmartInsertPlaceholder)
+
 												" -- recover options...
 												let &autoindent = opt_indent
 												let &formatoptions = opt_formatoptions
@@ -160,9 +163,13 @@ function! SmartInsert()
 				if is_found == 1
 								let pos_current_line[2] = 1    " set the cursor to be at 1st column...
 								call setpos('.', pos_current_line)
-								let if_match = search(g:SmartInsertPlaceholder)
-								if if_match != 0
-												execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"
+
+								" if there's at least one place holder...
+								if is_placeholder != -1 
+												let if_match = search(g:SmartInsertPlaceholder)
+												if if_match != 0
+																execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"
+												endif
 								endif
 				endif
 
