@@ -4,7 +4,9 @@ highlight TRI ctermfg=blue
 let g:SmartInsertCommentOn = 0
 let g:SmartInsertPlaceholder = "____"
 
-let g:SmartInsertTempalte = expand("<sfile>:p:h:h")."/template/template.vim"
+let g:SmartInsertTempalte = []
+call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/template.vim")
+call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/tcl-template.vim")
 
 let g:IsLoadedSmartInsert = 0
 
@@ -16,7 +18,11 @@ function! ReadAndComplete(leadword)
 				" [TODO] Add beginning and end of line regex...
 				let line_pattern = a:leadword."\\s\\+".keyword_pattern
 
-				let file_array = readfile(g:SmartInsertTempalte)
+				" read all template files...
+				let file_array = []
+				for each_file in g:SmartInsertTempalte
+								call extend(file_array, readfile(each_file))
+				endfor
 
 				let comment_str = "^\s*#"
 				call filter(file_array,'v:val!~comment_str')
@@ -51,7 +57,12 @@ function! ReadTemplate(trigger,leadword)
 				let END_LINE = "\\s*$"
 
 				let to_search = BEGIN_LINE.a:leadword."\\s\\+"."|".a:trigger."|".END_LINE
-				let file_array = readfile(g:SmartInsertTempalte)
+
+				" read all template files...
+				let file_array = []
+				for each_file in g:SmartInsertTempalte
+								call extend(file_array, readfile(each_file))
+				endfor
 
 				" offset line number due to comment...
 				let comment_str = "^\s*#"
