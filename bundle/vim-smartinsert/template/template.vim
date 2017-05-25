@@ -68,3 +68,11 @@ if {____} {
 				____
 }
 endtemplate
+
+
+
+metatemplate |template|
+template |____|
+____
+endtemplate
+endmetatemplate
