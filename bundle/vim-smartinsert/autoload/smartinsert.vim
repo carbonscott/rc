@@ -166,7 +166,7 @@ function! SmartInsert()
 
 								" if there's at least one place holder...
 								if is_placeholder != -1 
-												let if_match = search(g:SmartInsertPlaceholder)
+												let if_match = search(g:SmartInsertPlaceholder,'c')
 												if if_match != 0
 																execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"
 												endif
