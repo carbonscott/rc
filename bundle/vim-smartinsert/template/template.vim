@@ -33,7 +33,7 @@ endtemplate
 
 
 template |fk|
-GUPTA is AWESOME!
+____ is ____!
 endtemplate
 
 " use the tcl template
