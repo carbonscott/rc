@@ -153,9 +153,9 @@ function! SmartInsert()
 				" read the template again to get the warning info...
 				if is_found == 0
 								let word_in_currentline = 
-														\	matchstr(current_line,"\\S\\+")
+														\	matchstr(current_line,"\\S.*\\S")
 								redraw
-								" let g:DEBUG = word_in_currentline
+								let g:DEBUG = word_in_currentline
 								call ReadTemplate(word_in_currentline,"template")
 				endif
 
