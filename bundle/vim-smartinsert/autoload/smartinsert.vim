@@ -7,6 +7,7 @@ let g:SmartInsertPlaceholder = "____"
 let g:SmartInsertTempalte = []
 call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/template.vim")
 call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/tcl-template.vim")
+call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/latex_markdown-template.vim")
 
 let g:IsLoadedSmartInsert = 0
 
