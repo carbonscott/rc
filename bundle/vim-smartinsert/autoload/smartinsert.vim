@@ -9,6 +9,8 @@ call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/template.vim")
 call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/tcl-template.vim")
 call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/latex_markdown-template.vim")
 
+let g:SmartInsertDir = expand("<sfile>:p:h:h")
+
 let g:IsLoadedSmartInsert = 0
 
 " This function is used to read all keywords in the template file.
@@ -184,6 +186,76 @@ function! SmartInsert()
 												endif
 								endif
 				endif
+
+				return
+endfunction
+
+function! ClearKeywords()
+				let g:SmartInsertKeywords = []
+				let g:SmartInsertTempalte = []
+endfunction
+
+function! ShowTemplates()
+				" let prefix_dir = expand("<sfile>:p:h:h")
+				let prefix_dir = g:SmartInsertDir
+				let template_dir = '/template/'
+				let template_files = '*-template.vim'
+				let all_matched_files = glob(prefix_dir.template_dir.template_files,0,1)
+				let g:filenames = []
+				for each_file in all_matched_files
+								let subname = strpart(each_file,strlen(prefix_dir.template_dir))
+								call add(g:filenames, subname)
+								echo subname
+				endfor
+endfunction
+
+function! ShowSelectedTemplates()
+				let prefix_dir = g:SmartInsertDir
+				let template_dir = '/template/'
+				for each_template in g:SmartInsertTempalte
+								let subname = strpart(each_template,strlen(prefix_dir.template_dir))
+								echo subname
+				endfor
+endfunction
+
+function! CompleteTemplates(A,L,P)
+				return g:filenames
+endfunction
+
+function! SelectNewTemplates()
+				call ShowTemplates()
+				redraw
+
+				let filenames = deepcopy(g:filenames)
+				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
+				let delimiter = "+".repeat('-',len_prompt)."+"
+				call map(filenames,'"|".v:val.repeat(" ",len_prompt-strlen(v:val))."|"')
+				let filenames_prompt = [delimiter,delimiter]
+				call extend(filenames_prompt,filenames,1)
+				 
+				let dialog = join(filenames_prompt,"\n")."\n".
+															\ "choose template file: " 
+				let target_file = input(dialog,"","customlist,CompleteTemplates")
+				
+				if target_file == ""
+								redraw
+								call WarningWithColor("No template is selected.","CMT")
+								return
+				endif
+
+				let all_files = split(target_file," ")
+				let prefix_dir = g:SmartInsertDir
+				let template_dir = '/template/'
+				call map(all_files, 'prefix_dir.template_dir.v:val')
+
+				let target_files = []
+				for each_file in all_files
+								if getfsize(each_file) != -1
+												call add(target_files,each_file)
+								endif
+				endfor
+
+				call extend(g:SmartInsertTempalte,target_files)
 
 				return
 endfunction
