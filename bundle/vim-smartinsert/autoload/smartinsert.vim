@@ -192,6 +192,9 @@ endfunction
 
 function! ClearKeywords()
 				let g:SmartInsertKeywords = []
+endfunction
+
+function! ClearTemplates()
 				let g:SmartInsertTempalte = []
 endfunction
 
@@ -270,6 +273,8 @@ function! SelectNewTemplates()
 endfunction
 
 function! DeleteSelectedTemplates()
+				call ClearKeywords()
+
 				let filenames = deepcopy(g:filenames)
 				if empty(filenames)
 								call WarningWithColor( "No template is selected.", "CMT")
@@ -314,6 +319,7 @@ endfunction
 
 inoremap [q <c-[>:call SmartInsert()<cr>
 command! -nargs=0 ClearKeywords  call ClearKeywords()
+command! -nargs=0 ClearTemplates  call ClearTemplates()
 command! -nargs=0 ShowSelectedTemplates  call ShowSelectedTemplates()
 command! -nargs=0 SelectNewTemplates  call SelectNewTemplates()
 command! -nargs=0 DeleteSelectedTemplates  call DeleteSelectedTemplates()
