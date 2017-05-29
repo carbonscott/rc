@@ -205,21 +205,30 @@ function! ShowTemplates()
 				for each_file in all_matched_files
 								let subname = strpart(each_file,strlen(prefix_dir.template_dir))
 								call add(g:filenames, subname)
-								echo subname
+								" echo subname
 				endfor
 endfunction
+call ShowTemplates()
 
 function! ShowSelectedTemplates()
-				let prefix_dir = g:SmartInsertDir
-				let template_dir = '/template/'
-				for each_template in g:SmartInsertTempalte
-								let subname = strpart(each_template,strlen(prefix_dir.template_dir))
-								echo subname
-				endfor
+				let filenames = deepcopy(g:filenames)
+				if empty(filenames)
+								call WarningWithColor( "No template is selected.", "CMT")
+								return
+				endif
+
+				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
+				let delimiter = "+".repeat('-',len_prompt)."+"
+				call map(filenames,'"|".v:val.repeat(" ",len_prompt-strlen(v:val))."|"')
+				let filenames_prompt = [delimiter,delimiter]
+				call extend(filenames_prompt,filenames,1)
+				 
+				let dialog = join(filenames_prompt,"\n") 
+				echo dialog
 endfunction
 
 function! CompleteTemplates(A,L,P)
-				return g:filenames
+				return filter(copy(g:filenames),'v:val =~ a:A')
 endfunction
 
 function! SelectNewTemplates()
@@ -260,7 +269,54 @@ function! SelectNewTemplates()
 				return
 endfunction
 
+function! DeleteSelectedTemplates()
+				let filenames = deepcopy(g:filenames)
+				if empty(filenames)
+								call WarningWithColor( "No template is selected.", "CMT")
+								return
+				endif
+
+				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
+				let delimiter = "+".repeat('-',len_prompt)."+"
+				call map(filenames,'"|".v:val.repeat(" ",len_prompt-strlen(v:val))."|"')
+				let filenames_prompt = [delimiter,delimiter]
+				call extend(filenames_prompt,filenames,1)
+				 
+				let dialog = join(filenames_prompt,"\n")."\n".
+															\ "choose template file: " 
+				let target_file = input(dialog,"","customlist,CompleteTemplates")
+				
+				if target_file == ""
+								redraw
+								call WarningWithColor("No template is selected.","CMT")
+								return
+				endif
+
+				let all_files = split(target_file," ")
+				let prefix_dir = g:SmartInsertDir
+				let template_dir = '/template/'
+				call map(all_files, 'prefix_dir.template_dir.v:val')
+
+				let target_files = []
+				for each_file in all_files
+								if getfsize(each_file) != -1
+												call add(target_files,each_file)
+								endif
+				endfor
+
+				call filter(g:filenames,'v:val !~ target_file')
+				if !empty(target_files)
+								call filter(g:SmartInsertTempalte,'v:val !~ target_files[0]')
+				endif 
+
+				return
+endfunction
+
 inoremap [q <c-[>:call SmartInsert()<cr>
+command! -nargs=0 ClearKeywords  call ClearKeywords()
+command! -nargs=0 ShowSelectedTemplates  call ShowSelectedTemplates()
+command! -nargs=0 SelectNewTemplates  call SelectNewTemplates()
+command! -nargs=0 DeleteSelectedTemplates  call DeleteSelectedTemplates()
 
 finish
 
