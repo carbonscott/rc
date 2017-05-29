@@ -1,34 +1,28 @@
-template |tcl-for|
+template |for|
 for {____} {____} {____} {
 				____
 }
 endtemplate
 
-template |tcl-proc|
+template |proc|
 proc ____ {____} {
 				____
 }
 endtemplate
 
-template |tcl-while|
+template |while|
 while {____} {
 				____
 }
 endtemplate
 
-template |tcl-while|
-while {____} {
-				____
-}
-endtemplate
-
-template |tcl-if|
+template |if|
 if {____} {
 				____
 }
 endtemplate
 
-template |tcl-if-else|
+template |if-else|
 if {____} {
 				____
 } else {
