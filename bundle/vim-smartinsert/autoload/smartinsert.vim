@@ -324,6 +324,18 @@ command! -nargs=0 ShowSelectedTemplates  call ShowSelectedTemplates()
 command! -nargs=0 SelectNewTemplates  call SelectNewTemplates()
 command! -nargs=0 DeleteSelectedTemplates  call DeleteSelectedTemplates()
 
+" finding placeholder ____ 
+nnoremap <silent> [j :call search('____')<CR>ve<c-g>
+snoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
+vnoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
+
+nnoremap <silent> [k :call search('____','b')<CR>ve<c-g>
+snoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
+vnoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
+
+inoremap <silent> [j <c-[>:call search('____')<CR>ve<c-g>
+inoremap <silent> [k <c-[>:call search('____','b')<CR>ve<c-g>
+
 finish
 
 --------------------------------------------------------------------------------
