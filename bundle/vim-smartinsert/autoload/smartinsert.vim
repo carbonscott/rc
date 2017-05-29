@@ -5,9 +5,9 @@ let g:SmartInsertCommentOn = 0
 let g:SmartInsertPlaceholder = "____"
 
 let g:SmartInsertTempalte = []
-call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/template.vim")
-call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/tcl-template.vim")
-call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/latex_markdown-template.vim")
+" call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/template.vim")
+" call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/tcl-template.vim")
+" call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/latex_markdown-template.vim")
 
 let g:SmartInsertDir = expand("<sfile>:p:h:h")
 
