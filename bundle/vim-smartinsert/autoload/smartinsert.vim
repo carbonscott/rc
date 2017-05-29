@@ -10,6 +10,7 @@ let g:SmartInsertTempalte = []
 " call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/latex_markdown-template.vim")
 
 let g:SmartInsertDir = expand("<sfile>:p:h:h")
+let g:filenames = []
 
 let g:IsLoadedSmartInsert = 0
 
@@ -211,10 +212,11 @@ function! ShowTemplates()
 								" echo subname
 				endfor
 endfunction
-call ShowTemplates()
+" call ShowTemplates()
 
 function! ShowSelectedTemplates()
-				let filenames = deepcopy(g:filenames)
+				" let filenames = deepcopy(g:filenames)
+				let filenames = deepcopy(g:SmartInsertTempalte)
 				if empty(filenames)
 								call WarningWithColor( "No template is selected.", "CMT")
 								return
