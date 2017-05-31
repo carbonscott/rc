@@ -277,7 +277,7 @@ endfunction
 function! DeleteSelectedTemplates()
 				call ClearKeywords()
 
-				let filenames = deepcopy(g:filenames)
+				let filenames = deepcopy(g:SmartInsertTempalte)
 				if empty(filenames)
 								call WarningWithColor( "No template is selected.", "CMT")
 								return
@@ -311,7 +311,7 @@ function! DeleteSelectedTemplates()
 								endif
 				endfor
 
-				call filter(g:filenames,'v:val !~ target_file')
+				" call filter(g:filenames,'v:val !~ target_file')
 				if !empty(target_files)
 								call filter(g:SmartInsertTempalte,'v:val !~ target_files[0]')
 				endif 
