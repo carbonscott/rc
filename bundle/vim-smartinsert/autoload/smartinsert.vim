@@ -28,7 +28,7 @@ function! ReadAndComplete(leadword)
 								call extend(file_array, readfile(each_file))
 				endfor
 
-				let comment_str = "^\s*#"
+				let comment_str = "^\s*#->"
 				call filter(file_array,'v:val!~comment_str')
 
 				let keywords = []
@@ -69,7 +69,7 @@ function! ReadTemplate(trigger,leadword)
 				endfor
 
 				" offset line number due to comment...
-				let comment_str = "^\s*#"
+				let comment_str = "^\s*#->"
 				call filter(file_array,'v:val!~comment_str')
 
 				" if duplicate term exists...
