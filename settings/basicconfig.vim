@@ -50,3 +50,7 @@ set path=**
 
 " turn off viminfo...
 setlocal viminfo=
+
+" search highlight
+set incsearch
+set hlsearch
