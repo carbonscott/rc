@@ -326,26 +326,26 @@ command! -nargs=0 ShowSelectedTemplates  call ShowSelectedTemplates()
 command! -nargs=0 SelectNewTemplates  call SelectNewTemplates()
 command! -nargs=0 DeleteSelectedTemplates  call DeleteSelectedTemplates()
 
-" finding placeholder ____ 
-nnoremap <silent> [j :call search('____')<cr>
+" finding placeholder g:SmartInsertPlaceholder 
+nnoremap <silent> [j :call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-snoremap <silent> [j :<c-u>call search('____')<cr>
+snoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-vnoremap <silent> [j :<c-u>call search('____')<cr>
+vnoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
-nnoremap <silent> [k :call search('____','b')<cr>
+nnoremap <silent> [k :call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-snoremap <silent> [k :<c-u>call search('____','b')<cr>
+snoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-vnoremap <silent> [k :<c-u>call search('____','b')<cr>
+vnoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
 inoremap <silent> [j <c-[>
-																				\:call search('____')<cr>
+																				\:call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 inoremap <silent> [k <c-[>
-																				\:call search('____','b')<cr>
+																				\:call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
 finish
