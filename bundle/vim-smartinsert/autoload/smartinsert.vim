@@ -327,16 +327,26 @@ command! -nargs=0 SelectNewTemplates  call SelectNewTemplates()
 command! -nargs=0 DeleteSelectedTemplates  call DeleteSelectedTemplates()
 
 " finding placeholder ____ 
-nnoremap <silent> [j :call search('____')<CR>ve<c-g>
-snoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
-vnoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
+nnoremap <silent> [j :call search('____')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+snoremap <silent> [j :<c-u>call search('____')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+vnoremap <silent> [j :<c-u>call search('____')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
-nnoremap <silent> [k :call search('____','b')<CR>ve<c-g>
-snoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
-vnoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
+nnoremap <silent> [k :call search('____','b')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+snoremap <silent> [k :<c-u>call search('____','b')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+vnoremap <silent> [k :<c-u>call search('____','b')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
-inoremap <silent> [j <c-[>:call search('____')<CR>ve<c-g>
-inoremap <silent> [k <c-[>:call search('____','b')<CR>ve<c-g>
+inoremap <silent> [j <c-[>
+																				\:call search('____')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+inoremap <silent> [k <c-[>
+																				\:call search('____','b')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
 finish
 
@@ -348,4 +358,15 @@ drawback
 - SmartInsert2 => set noautoindent
 - It cannot load itself in template files.
 - No distinguish between perl_for and tcl_for etc. Different names have to be used.
-- 
+  
+" previous keybinds...
+nnoremap <silent> [j :call search('____')<CR>ve<c-g>
+snoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
+vnoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
+
+nnoremap <silent> [k :call search('____','b')<CR>ve<c-g>
+snoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
+vnoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
+
+inoremap <silent> [j <c-[>:call search('____')<CR>ve<c-g>
+inoremap <silent> [k <c-[>:call search('____','b')<CR>ve<c-g>
