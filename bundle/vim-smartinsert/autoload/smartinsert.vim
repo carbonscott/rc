@@ -47,6 +47,21 @@ function! WarningWithColor(info,color)
 				execute 'echohl NONE'
 endfunction
 
+function! BuildPrompt(filenames)
+				let filenames = a:filenames
+				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
+				let delimiter = "+".repeat('-',len_prompt)."+"
+				call map(filenames,'"|".v:val.repeat(" ",len_prompt - strlen(v:val))."|"')
+				let filenames_prompt = [delimiter,delimiter]
+				call extend(filenames_prompt,filenames,1)
+				 
+				let dialog = join(filenames_prompt,"\n")."\n".
+															\ "choose template file: " 
+				let target_file = input(dialog,"","customlist,CompleteTemplates")
+
+				return target_file
+endfunction
+
 " This function will be in use if the keyword is matched in the current line.
 function! ReadTemplate(trigger,leadword)
 				" use double quotes...
@@ -193,7 +208,6 @@ function! ClearTemplates()
 endfunction
 
 function! ShowTemplates()
-				" let prefix_dir = expand("<sfile>:p:h:h")
 				let prefix_dir = g:SmartInsertDir
 				let template_dir = '/template/'
 				let template_files = '*-template.vim'
@@ -202,8 +216,59 @@ function! ShowTemplates()
 				for each_file in all_matched_files
 								let subname = strpart(each_file,strlen(prefix_dir.template_dir))
 								call add(g:filenames, subname)
-								" echo subname
 				endfor
+endfunction
+
+function! CreateTemplates()
+				let prefix_dir = g:SmartInsertDir
+				let template_dir = '/template/'
+				let new_filename = input("Create new file: ")
+				let template_file = new_filename.'-template.vim'
+				let absolute_filename = prefix_dir.template_dir.template_file
+
+				" if it doesn't exists, tabnew! it
+				" otherwise, edit it...
+				let all_matched_files = glob(absolute_filename,0,1)
+				if len(all_matched_files) == 0
+								execute "tabedit! " . absolute_filename
+				else
+								redraw
+								call WarningWithColor( "Template <".template_file."> already exists.", "CMT")
+				endif
+
+endfunction
+
+function! EditTemplates()
+				call ShowTemplates()
+				redraw
+
+				let filenames = deepcopy(g:filenames)
+				if empty(filenames)
+								call WarningWithColor( "No template is selected.", "CMT")
+								return
+				endif
+				let target_file = BuildPrompt(filenames)
+				
+				if target_file == ""
+								redraw
+								call WarningWithColor("No template is selected.","CMT")
+								return
+				endif
+
+				let prefix_dir = g:SmartInsertDir
+				let template_dir = '/template/'
+				let new_filename = target_file
+				let template_file = new_filename
+				let absolute_filename = prefix_dir.template_dir.template_file
+
+				let all_matched_files = glob(absolute_filename,0,1)
+				if len(all_matched_files) != 0
+								execute "tabedit! " . absolute_filename
+				else
+								redraw
+								call WarningWithColor( "Template <".template_file."> doesn't exists.", "CMT")
+				endif
+
 endfunction
 
 function! ShowSelectedTemplates()
@@ -215,7 +280,7 @@ function! ShowSelectedTemplates()
 
 				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
 				let delimiter = "+".repeat('-',len_prompt)."+"
-				call map(filenames,'"|".v:val.repeat(" ",len_prompt-strlen(v:val))."|"')
+				call map(filenames,'"|".v:val.repeat(" ",len_prompt - strlen(v:val))."|"')
 				let filenames_prompt = [delimiter,delimiter]
 				call extend(filenames_prompt,filenames,1)
 				 
@@ -236,15 +301,7 @@ function! DeleteSelectedTemplates()
 								return
 				endif
 
-				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
-				let delimiter = "+".repeat('-',len_prompt)."+"
-				call map(filenames,'"|".v:val.repeat(" ",len_prompt-strlen(v:val))."|"')
-				let filenames_prompt = [delimiter,delimiter]
-				call extend(filenames_prompt,filenames,1)
-				 
-				let dialog = join(filenames_prompt,"\n")."\n".
-															\ "choose template file: " 
-				let target_file = input(dialog,"","customlist,CompleteTemplates")
+				let target_file = BuildPrompt(filenames)
 				
 				if target_file == ""
 								redraw
@@ -276,15 +333,7 @@ function! SelectTemplates()
 				redraw
 
 				let filenames = deepcopy(g:filenames)
-				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
-				let delimiter = "+".repeat('-',len_prompt)."+"
-				call map(filenames,'"|".v:val.repeat(" ",len_prompt-strlen(v:val))."|"')
-				let filenames_prompt = [delimiter,delimiter]
-				call extend(filenames_prompt,filenames,1)
-				 
-				let dialog = join(filenames_prompt,"\n")."\n".
-															\ "choose template file: " 
-				let target_file = input(dialog,"","customlist,CompleteTemplates")
+				let target_file = BuildPrompt(filenames)
 				
 				if target_file == ""
 								redraw
@@ -320,6 +369,8 @@ command! -nargs=0 ClearTemplates  call ClearTemplates()
 command! -nargs=0 ShowSelectedTemplates  call ShowSelectedTemplates()
 command! -nargs=0 SelectTemplates  call SelectTemplates()
 command! -nargs=0 DeleteSelectedTemplates  call DeleteSelectedTemplates()
+command! -nargs=0 CreateTemplates  call CreateTemplates()
+command! -nargs=0 EditTemplates call EditTemplates()
 
 " looking for placeholder g:SmartInsertPlaceholder 
 nnoremap <silent> [j :call search(g:SmartInsertPlaceholder)<cr>
