@@ -3,15 +3,9 @@ highlight TRI ctermfg=blue
 
 let g:SmartInsertCommentOn = 0
 let g:SmartInsertPlaceholder = "____"
-
 let g:SmartInsertTempalte = []
-" call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/general-template.vim")
-" call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/tcl-template.vim")
-" call add(g:SmartInsertTempalte,expand("<sfile>:p:h:h")."/template/latex_markdown-template.vim")
-
 let g:SmartInsertDir = expand("<sfile>:p:h:h")
 let g:filenames = []
-
 let g:IsLoadedSmartInsert = 0
 
 " This function is used to read all keywords in the template file.
@@ -28,6 +22,7 @@ function! ReadAndComplete(leadword)
 								call extend(file_array, readfile(each_file))
 				endfor
 
+				" set up the syntax for comment...
 				let comment_str = "^\s*#->"
 				call filter(file_array,'v:val!~comment_str')
 
@@ -40,9 +35,7 @@ function! ReadAndComplete(leadword)
 				call filter(keywords,'v:val !~ "^\s*$"')
 				call uniq(sort(keywords))
 
-				" let g:SmartInsertKeywords = keywords
 				call extend(g:SmartInsertKeywords, keywords)
-				" let g:IsLoadedSmartInsert = 1
 				
 				return
 endfunction
@@ -98,7 +91,7 @@ function! ReadTemplate(trigger,leadword)
 				endif
 endfunction
 
-" This function is to do the smart insert.
+" This function is to implement the smart insert...
 function! SmartInsert()
 				let current_line = getline('.')
 				let pos_current_line = getpos('.')
@@ -121,7 +114,7 @@ function! SmartInsert()
 												if len(keyword_template) == 1 && keyword_template[0] ==# ''
 
 																" After second level check for template, if nothing is
-																" found, stop " searching...
+																" found, stop searching...
 																let keyword_template = ReadTemplate(keyword,"template")
 																if len(keyword_template) == 1 && keyword_template[0] ==# ''
 																				let is_found = 0
@@ -212,10 +205,8 @@ function! ShowTemplates()
 								" echo subname
 				endfor
 endfunction
-" call ShowTemplates()
 
 function! ShowSelectedTemplates()
-				" let filenames = deepcopy(g:filenames)
 				let filenames = deepcopy(g:SmartInsertTempalte)
 				if empty(filenames)
 								call WarningWithColor( "No template is selected.", "CMT")
@@ -234,44 +225,6 @@ endfunction
 
 function! CompleteTemplates(A,L,P)
 				return filter(copy(g:filenames),'v:val =~ a:A')
-endfunction
-
-function! SelectNewTemplates()
-				call ShowTemplates()
-				redraw
-
-				let filenames = deepcopy(g:filenames)
-				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
-				let delimiter = "+".repeat('-',len_prompt)."+"
-				call map(filenames,'"|".v:val.repeat(" ",len_prompt-strlen(v:val))."|"')
-				let filenames_prompt = [delimiter,delimiter]
-				call extend(filenames_prompt,filenames,1)
-				 
-				let dialog = join(filenames_prompt,"\n")."\n".
-															\ "choose template file: " 
-				let target_file = input(dialog,"","customlist,CompleteTemplates")
-				
-				if target_file == ""
-								redraw
-								call WarningWithColor("No template is selected.","CMT")
-								return
-				endif
-
-				let all_files = split(target_file," ")
-				let prefix_dir = g:SmartInsertDir
-				let template_dir = '/template/'
-				call map(all_files, 'prefix_dir.template_dir.v:val')
-
-				let target_files = []
-				for each_file in all_files
-								if getfsize(each_file) != -1
-												call add(target_files,each_file)
-								endif
-				endfor
-
-				call extend(g:SmartInsertTempalte,target_files)
-
-				return
 endfunction
 
 function! DeleteSelectedTemplates()
@@ -311,7 +264,6 @@ function! DeleteSelectedTemplates()
 								endif
 				endfor
 
-				" call filter(g:filenames,'v:val !~ target_file')
 				if !empty(target_files)
 								call filter(g:SmartInsertTempalte,'v:val !~ target_files[0]')
 				endif 
@@ -319,14 +271,57 @@ function! DeleteSelectedTemplates()
 				return
 endfunction
 
+function! SelectTemplates()
+				call ShowTemplates()
+				redraw
+
+				let filenames = deepcopy(g:filenames)
+				let len_prompt = max(map(copy(filenames),'strlen(v:val)'))
+				let delimiter = "+".repeat('-',len_prompt)."+"
+				call map(filenames,'"|".v:val.repeat(" ",len_prompt-strlen(v:val))."|"')
+				let filenames_prompt = [delimiter,delimiter]
+				call extend(filenames_prompt,filenames,1)
+				 
+				let dialog = join(filenames_prompt,"\n")."\n".
+															\ "choose template file: " 
+				let target_file = input(dialog,"","customlist,CompleteTemplates")
+				
+				if target_file == ""
+								redraw
+								call WarningWithColor("No template is selected.","CMT")
+								return
+				endif
+
+				let all_files = split(target_file," ")
+				let prefix_dir = g:SmartInsertDir
+				let template_dir = '/template/'
+				call map(all_files, 'prefix_dir.template_dir.v:val')
+
+				let target_files = []
+				for each_file in all_files
+								if getfsize(each_file) != -1
+												call add(target_files,each_file)
+								endif
+				endfor
+
+				" remove template if it's already loaded...
+				call
+				\			filter(g:SmartInsertTempalte,'v:val !~ target_file')
+
+				call extend(g:SmartInsertTempalte,target_files)
+
+				return
+endfunction
+
+
 inoremap [q <c-[>:call SmartInsert()<cr>
 command! -nargs=0 ClearKeywords  call ClearKeywords()
 command! -nargs=0 ClearTemplates  call ClearTemplates()
 command! -nargs=0 ShowSelectedTemplates  call ShowSelectedTemplates()
-command! -nargs=0 SelectNewTemplates  call SelectNewTemplates()
+command! -nargs=0 SelectTemplates  call SelectTemplates()
 command! -nargs=0 DeleteSelectedTemplates  call DeleteSelectedTemplates()
 
-" finding placeholder g:SmartInsertPlaceholder 
+" looking for placeholder g:SmartInsertPlaceholder 
 nnoremap <silent> [j :call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 snoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
