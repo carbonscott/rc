@@ -20,8 +20,10 @@ nnoremap [vw bve
 "======= map 0 and $ =====
 nnoremap <s-h> g^
 vnoremap <s-h> g^
+sunmap <s-h>
 nnoremap <s-l> g_
 vnoremap <s-l> g_
+sunmap <s-l>
 "navigate escalted
 nnoremap <c-h> 2h
 nnoremap <c-l> 2l
