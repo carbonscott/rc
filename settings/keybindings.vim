@@ -182,6 +182,7 @@ cnoremap () ()<Left>
 cnoremap [] []<Left>
 cnoremap <> <><Left>
 cnoremap {} {}<Left>
+cnoremap nr<space> normal!<space>
 
 " speical letter
 inoremap [vv ^
