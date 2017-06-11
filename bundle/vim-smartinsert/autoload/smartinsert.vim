@@ -122,7 +122,7 @@ function! SmartInsert()
 
 								" [TODO] The regex can be put into one variable...
 								" [DEBUG, Memo, Yep] if current_line =~ '^\s*'.keyword.'\s*$'
-								if current_line =~ '^.*'.keyword.'\s*$'
+								if current_line =~ '^.*'.keyword.'$'
 												" keyword is there...
 
 												" go to file again to get the template...
@@ -153,6 +153,8 @@ function! SmartInsert()
 												let &autoindent = 0
 												let opt_formatoptions = &formatoptions
 												let &formatoptions = ""
+												let opt_tabstop = &tabstop
+												let &tabstop = 1
 
 												" -- reformat text for the lines except the first one...
 												if len(keyword_template) > 1
@@ -171,6 +173,7 @@ function! SmartInsert()
 												" -- recover options...
 												let &autoindent = opt_indent
 												let &formatoptions = opt_formatoptions
+												let &tabstop = opt_tabstop
 
 												" stop searching for the next one...
 												let is_found = 1
@@ -181,7 +184,7 @@ function! SmartInsert()
 				" read the template again to get the warning info...
 				if is_found == 0
 								let word_in_currentline = 
-														\	matchstr(current_line,"\\S.*\\S")
+														\	matchstr(current_line,"\\S.*$")
 								redraw
 								let g:DEBUG = word_in_currentline
 								call ReadTemplate(word_in_currentline,"template")
