@@ -54,3 +54,6 @@ setlocal viminfo=
 " search highlight
 set incsearch
 set hlsearch
+
+" filetype feature off
+filetype off
