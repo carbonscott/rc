@@ -214,6 +214,6 @@ let g:todo_done_switch = 0
 nnoremap <silent> [t :source ~/.vim/syntax/custom_highlight.vim<CR>
 
 " copy line in insert mode
-inoremap <c-i> <c-[>yypkl
+nnoremap <c-i> yypk
 snoremap <c-i> <c-[>yypgv<c-g>
 vnoremap <c-i> <c-[>yypgv<c-g>
