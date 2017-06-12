@@ -212,3 +212,6 @@ nnoremap [ff :source ~/.vim/settings/syntax.vim<CR>
 " enable the todo list custom highlighting...
 let g:todo_done_switch = 0
 nnoremap <silent> [t :source ~/.vim/syntax/custom_highlight.vim<CR>
+
+" copy line in insert mode
+inoremap <c-i> <c-[>yypkl
