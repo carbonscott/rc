@@ -105,6 +105,7 @@ nnoremap = zo
 nnoremap - zc
 nnoremap _ zd
 vnoremap _ zd
+sunmap _
 
 "show file info
 nnoremap <f5> :!./%<CR>
