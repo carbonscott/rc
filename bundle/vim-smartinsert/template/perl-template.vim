@@ -29,10 +29,6 @@ template |list|
 =back
 endtemplate
 
-template |it|
-=item ____
-endtemplate
-
 
 template |end|
 =cut
@@ -81,5 +77,9 @@ my ____ = mce_loop {
 				$mce->gather(____)
 
 } ____;
+endtemplate
+
+template |item|
+=item ____
 endtemplate
 
