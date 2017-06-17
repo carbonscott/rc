@@ -64,3 +64,12 @@ open(unit=____, file="____", position="append", status="old")
 write(____, *) ____
 close(____) 
 endtemplate
+
+template |time|
+call system_clock (count_rate=____)
+call system_clock (count=____)
+
+call system_clock (count=____)
+print*,'It took',real(____ - ____) / real(____),'sec'
+endtemplate
+

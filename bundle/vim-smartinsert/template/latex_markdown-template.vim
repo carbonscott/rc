@@ -47,3 +47,21 @@ ____
 -->
 endtemplate
 
+template |multicol|
+\begin{multicols}{____}
+    ____ \par 
+    ____ \par 
+\end{multicols}
+endtemplate
+
+template |code|
+```
+____
+```
+endtemplate
+
+template |ft|
+[^____]
+
+[^____]: ____
+endtemplate

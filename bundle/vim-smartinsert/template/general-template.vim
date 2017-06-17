@@ -7,3 +7,10 @@ template |____|
 ____
 endtemplate
 endmetatemplate
+
+template |{}|
+{
+				____
+}
+endtemplate
+

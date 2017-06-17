@@ -31,12 +31,12 @@ if {____} {
 endtemplate
 
 #-> personal library...
-template |dupfb|
+template |dup|
 # command <psf_file> <pdb_file> <num_duplicate>
-Dupliate_PSFPDB ____ ____ ____
+Duplicate_PSFPDB ____ ____ ____
 endtemplate
 
-template |comfb|
+template |com|
 # command "<the single name for psf and pdb>"
 Combine_PSFPDB "____"
 endtemplate
