@@ -370,6 +370,30 @@ function! SelectTemplates()
 				return
 endfunction
 
+function! ListSmartKeywords(findstart, base)
+				if a:findstart
+							 " locate the start of the word
+							 let line = getline('.')
+							 let start = col('.') - 1
+							 while start > 0 && line[start - 1] =~ '\a'
+							 		let start -= 1
+							 endwhile
+							 return start
+				else
+							 " find keywords matching with "a:base"
+							 for m in g:SmartInsertKeywords
+							 		  if m =~ '^' . a:base
+																call complete_add(m)
+							 		  endif
+							 		  if complete_check()
+																break
+							 		  endif
+							 endfor
+							 return []
+					endif
+endfunction
+
+
 
 inoremap [q <c-[>:call SmartInsert()<cr>
 command! -nargs=0 ClearKeywords  call ClearKeywords()
@@ -401,6 +425,9 @@ inoremap <silent> [j <c-[>
 inoremap <silent> [k <c-[>
 																				\:call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+
+" list smart keywords...
+set completefunc=ListSmartKeywords
 
 finish
 
