@@ -7,10 +7,10 @@ let g:SmartInsertTempalte = []
 let g:SmartInsertDir = expand("<sfile>:p:h:h")
 let g:filenames = []
 let g:IsLoadedSmartInsert = 0
+let g:SmartInsertKeywords = []
 
 " This function is used to read all keywords in the template file.
 function! ReadAndComplete(leadword)
-				let g:SmartInsertKeywords = []
 				let keyword_pattern = "|".".*"."|"
 
 				" [TODO] Add beginning and end of line regex...
@@ -380,6 +380,10 @@ function! ListSmartKeywords(findstart, base)
 							 endwhile
 							 return start
 				else
+								if g:IsLoadedSmartInsert == 0
+												call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
+								endif
+
 							 " find keywords matching with "a:base"
 							 for m in g:SmartInsertKeywords
 							 		  if m =~ '^' . a:base
