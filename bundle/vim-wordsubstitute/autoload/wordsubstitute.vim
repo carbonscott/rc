@@ -53,9 +53,16 @@ function! wordsubstitute#run4()
 
 		let s:input = input('Change to: ')
 		let l:v_line_start = getpos('.')[1]
-		let l:v_line_end   = input("Substitue within how many lines: ",
-																					\						 getpos('$')[1] - l:v_line_start) 
-																					\					+ l:v_line_start
+		" let l:v_line_end   = input("Substitue within how many lines: ",
+		" 																			\						 getpos('$')[1] - l:v_line_start) 
+		" 																			\					+ l:v_line_start
+		let l:v_line_end   = input("Substitue within how many lines: ")
+  if empty(l:v_line_end)
+					let l:v_line_end = getpos('$')[1] - l:v_line_start
+  endif
+
+		let l:v_line_end += l:v_line_start
+	 let g:debug_v_line_end = l:v_line_end
 
 		execute "normal! gv\"ay"
 
