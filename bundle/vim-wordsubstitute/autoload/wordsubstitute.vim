@@ -56,9 +56,7 @@ function! wordsubstitute#run4()
 		" let l:v_line_end   = input("Substitue within how many lines: ",
 		" 																			\						 getpos('$')[1] - l:v_line_start) 
 		" 																			\					+ l:v_line_start
-		let l:v_line_end   = input("Substitue within how many lines: ")
-
-		redraw
+		let l:v_line_end   = input("Substitue within how many lines: ","")
 
   if empty(l:v_line_end)
 					let l:v_line_end = getpos('$')[1] - l:v_line_start
@@ -75,6 +73,8 @@ function! wordsubstitute#run4()
 																	\	'\="\\".submatch(0)',
 																	\ 'g'
 																	\)
+
+		redraw
 
 		exec l:v_line_start.",".l:v_line_end."s/".s:visual_block."/".s:input."/g"
 
