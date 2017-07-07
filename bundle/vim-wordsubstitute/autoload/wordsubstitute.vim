@@ -57,6 +57,9 @@ function! wordsubstitute#run4()
 		" 																			\						 getpos('$')[1] - l:v_line_start) 
 		" 																			\					+ l:v_line_start
 		let l:v_line_end   = input("Substitue within how many lines: ")
+
+		redraw
+
   if empty(l:v_line_end)
 					let l:v_line_end = getpos('$')[1] - l:v_line_start
   endif
