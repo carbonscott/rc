@@ -437,6 +437,16 @@ set completefunc=ListSmartKeywords
 snoremap [i <c-g>F$<c-g>
 vnoremap [i F$<c-g>
 
+" Quickly launch loader...
+nnoremap [tl :SelectTemplates<cr>
+nnoremap [td :DeleteSelectedTemplates<cr>
+nnoremap [te :EditTemplates<cr>
+nnoremap [tc :CreateTemplates<cr>
+inoremap [tl <c-o>:SelectTemplates<cr>
+inoremap [td <c-o>:DeleteSelectedTemplates<cr>
+inoremap [te <c-o>:EditTemplates<cr>
+inoremap [tc <c-o>:CreateTemplates<cr>
+
 finish
 
 --------------------------------------------------------------------------------
