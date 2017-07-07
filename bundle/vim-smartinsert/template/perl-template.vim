@@ -68,13 +68,13 @@ my ____ = mce_loop {
 
 				my ($mce, $chunk_ref, $chunk_id) = @_;
 
-				my ____;
+				my $1:____;
 				foreach my ____ ($chunk_ref->@*) {
 								____
 
-								push ____, ____;
+								push $1:____, ____;
 				}
-				$mce->gather(____)
+				$mce->gather($1:____)
 
 } ____;
 endtemplate
