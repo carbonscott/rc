@@ -1,9 +1,9 @@
 "key mapping: ->
 noremap <F9> :set hlsearch<CR>
 noremap <F10> :set nohlsearch<CR>
-noremap [cl :clist<CR>
-noremap [cn :cnext<CR>
-noremap [cp :cprevious<CR>
+" noremap [cl :clist<CR>
+" noremap [cn :cnext<CR>
+" noremap [cp :cprevious<CR>
 "tab
 " noremap [t :tabnew<CR>
 noremap [n :tabn<CR>
@@ -113,8 +113,8 @@ nnoremap <f5> :!./%<CR>
 "quickfix window switch
 ":. => current line in command line mode
 ":cc goto line
-nnoremap [cw :cw<CR>:setlocal nornu<CR>
-nnoremap [<CR> :.cc<CR>
+" nnoremap [cw :cw<CR>:setlocal nornu<CR>
+" nnoremap [<CR> :.cc<CR>
 
 "rebind the number from 6 to 0 to be reached from <c-1> to <c-5> {
 nnoremap [1 6

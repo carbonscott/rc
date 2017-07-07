@@ -433,6 +433,10 @@ inoremap <silent> [k <c-[>
 " list smart keywords...
 set completefunc=ListSmartKeywords
 
+" quickly select the named placeholder...
+snoremap [i <c-g>F$<c-g>
+vnoremap [i F$<c-g>
+
 finish
 
 --------------------------------------------------------------------------------
