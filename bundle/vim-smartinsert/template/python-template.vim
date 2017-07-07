@@ -57,16 +57,16 @@ endtemplate
 
 
 template |write-help|
-____ = open(____,____)
-____.write(____)
-____.close()
+$1:____ = open(____,____)
+$1:____.write(____)
+$1:____.close()
 endtemplate
 
 template |read-help|
-____ = open(____,____)
-____.read()     # read entire file into one string                        
-____.split()    # it's always useful to split one string into array       
-____.close()
+$1:____ = open(____,____)
+$1:____.read()     # read entire file into one string                        
+$1:____.split()    # it's always useful to split one string into array       
+$1:____.close()
 endtemplate
 
 template |npa|

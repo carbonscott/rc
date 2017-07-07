@@ -51,8 +51,11 @@ endfunction
 function! wordsubstitute#run4()
 		let s:original_pos = getpos('.')
 
+		let s:input = input('Change to: ')
 		let l:v_line_start = getpos('.')[1]
-		let l:v_line_end   = input("Substitue within how many lines: ") + l:v_line_start
+		let l:v_line_end   = input("Substitue within how many lines: ",
+																					\						 getpos('$')[1] - l:v_line_start) 
+																					\					+ l:v_line_start
 
 		execute "normal! gv\"ay"
 
@@ -63,7 +66,6 @@ function! wordsubstitute#run4()
 																	\ 'g'
 																	\)
 
-		let s:input = input('Change to: ')
 		exec l:v_line_start.",".l:v_line_end."s/".s:visual_block."/".s:input."/g"
 
 		let s:original_pos[2] += len(s:input) - 1 
