@@ -4,6 +4,7 @@
 " 0. press [q to call function and trigger visual mode 
 vnoremap [o :<c-u>call quote#fun2()<CR>
 
+
 " Algorithm
 " 0. press [q to call function
 " 1. move cursor to a point

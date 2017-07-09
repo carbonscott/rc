@@ -10,3 +10,31 @@ if ____
 endif
 endtemplate
 
+template |highlight|
+highlight ____ ctermfg=____ ctermbg=____
+endtemplate
+
+template |coloring|
+function! WarningWithColor(info,color)
+				execute 'echohl '.a:color
+				echon   a:info
+				execute 'echohl NONE'
+endfunction
+endtemplate
+
+template |syntax-define-keyword|
+syntax keyword ____ ____
+endtemplate
+
+template |syntax-define-match|
+syntax match ____ ____ 
+endtemplate
+
+template |syntax-define-region|
+syntax region ____ start=____ skip=____ end=____ 
+endtemplate
+
+template |section|
+" ~~~~____~~~~
+endtemplate
+

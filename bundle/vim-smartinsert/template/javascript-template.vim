@@ -13,7 +13,7 @@ console.log(____);
 endtemplate
 
 template |function|
-____ = function (____) {
+function (____) {
 				____
 };
 endtemplate
