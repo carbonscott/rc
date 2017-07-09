@@ -33,3 +33,13 @@ augroup END
 " 	autocmd BufNewFile *.txt,*.md :source ~/.vim/templates/latex.vim
 " 	autocmd BufRead *.txt,*.md :source ~/.vim/templates/latex.vim
 " augroup END
+
+" ~~~~turn off colorcolumn~~~~
+function! DeleteMatchedColor()
+				let items=getmatches()
+				for item in items
+								call matchdelete(item['id'])
+				endfor
+endfunction
+
+autocmd! BufRead *.txt :call DeleteMatchedColor()
