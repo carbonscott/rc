@@ -11,3 +11,4 @@ set runtimepath+=~/.vim/bundle/vim-prompt/
 source ~/.vim/bundle/vim-smartinsert/autoload/smartinsert.vim
 source ~/.vim/bundle/vim-slashsearch/autoload/slashsearch.vim
 source ~/.vim/bundle/vim-notecolor/autoload/notecolor.vim
+source ~/.vim/bundle/vim-notecolor/autoload/notedict.vim

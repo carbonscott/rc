@@ -21,3 +21,4 @@ vnoremap [hy :<c-u>call g:quote#fun2('Y:{','}')<CR>
 vnoremap [hm :<c-u>call g:quote#fun2('M:{','}')<CR>
 vnoremap [hi :<c-u>call g:quote#fun2('I:{','}')<CR>
 vnoremap [hw :<c-u>call g:quote#fun2('W:{','}')<CR>
+

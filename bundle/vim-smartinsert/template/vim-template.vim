@@ -38,3 +38,11 @@ template |section|
 " ~~~~____~~~~
 endtemplate
 
+template |readfile|
+readfile('____')
+endtemplate
+
+template |command|
+command! -nargs=____ ____ call ____()
+endtemplate
+
