@@ -1,14 +1,20 @@
 " ~~~~1.Define Colorscheme~~~~
-highlight bg_green ctermfg=Blue ctermbg=LightGreen
+highlight fg_red ctermfg=Red ctermbg=NONE
+highlight fg_blue ctermfg=LightBlue ctermbg=NONE
 highlight bg_yellow ctermfg=Black ctermbg=Yellow
-highlight bg_magenta ctermfg=White ctermbg=Magenta
+highlight fg_magenta ctermfg=Magenta ctermbg=NONE
+highlight fg_ignore ctermfg=Black ctermbg=Black
 
 " ~~~~2.Define highlight syntax~~~~
-syntax region bg_green start="G:{" end="}" 
+syntax region fg_red start="G:{" end="}" 
+syntax region fg_blue start="B:{" end="}" 
 syntax region bg_yellow start="Y:{" end="}" 
-syntax region bg_magenta start="M:{" end="}" 
+syntax region fg_magenta start="M:{" end="}" 
+syntax region fg_ignore start="I:{" end="}" 
 
 " ~~~~3.Define highlight shortcuts~~~~
 vnoremap [hg :<c-u>call g:quote#fun2('G:{','}')<CR>
+vnoremap [hb :<c-u>call g:quote#fun2('B:{','}')<CR>
 vnoremap [hy :<c-u>call g:quote#fun2('Y:{','}')<CR>
 vnoremap [hm :<c-u>call g:quote#fun2('M:{','}')<CR>
+vnoremap [hi :<c-u>call g:quote#fun2('I:{','}')<CR>
