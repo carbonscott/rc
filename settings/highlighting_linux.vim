@@ -7,6 +7,7 @@ au insertenter * hi CursorLineNR cterm=bold ctermbg=2
 au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
 hi Search term=reverse ctermfg=White guifg=White ctermbg=NONE guibg=NONE
+hi CursorLine cterm=NONE ctermfg=White
 
 set nocursorline
 
