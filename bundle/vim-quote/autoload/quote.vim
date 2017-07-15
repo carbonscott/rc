@@ -59,16 +59,11 @@ function! quote#tagadd2()
 	execute "normal! \<C-V>".l:text_height."j>>"
 endfunction
 
-function! quote#user_input(...)
-if empty(a:000)
+function! quote#user_input()
 				call inputsave()
 				let s:mark_pre = input('prefix: ')
 				let s:mark_pos = input('posfix: ')
 				" let s:indent_on = input('indent?(y/n): ')
-else
-				let s:mark_pre = a:000[0]
-				let s:mark_pos = a:000[1]
-endif
 endfunction
 
 
@@ -76,7 +71,7 @@ function! g:quote#fun2(...)
 	let s:cursor_1 = getpos("'<")
 	let s:cursor_2 = getpos("'>")
 	call quote#fun2sub1()
-	call quote#user_input(a:000[0],a:000[1])
+	call quote#user_input()
 	while 1
 		let s:indent_on = 'n'
 		" TEST if s:indent_on carries any values?
