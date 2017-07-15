@@ -15,10 +15,10 @@ syntax region fg_ignore start="I:{" end="}"
 syntax region fg_white start="W:{" end="}" 
 
 " ~~~~3.Define highlight shortcuts~~~~
-vnoremap [hr :<c-u>call g:quote#fun2('R:{','}')<CR>
-vnoremap [hb :<c-u>call g:quote#fun2('B:{','}')<CR>
-vnoremap [hy :<c-u>call g:quote#fun2('Y:{','}')<CR>
-vnoremap [hm :<c-u>call g:quote#fun2('M:{','}')<CR>
-vnoremap [hi :<c-u>call g:quote#fun2('I:{','}')<CR>
-vnoremap [hw :<c-u>call g:quote#fun2('W:{','}')<CR>
+vnoremap [hr :<c-u>call g:quote#fun3('R:{','}')<CR>
+vnoremap [hb :<c-u>call g:quote#fun3('B:{','}')<CR>
+vnoremap [hy :<c-u>call g:quote#fun3('Y:{','}')<CR>
+vnoremap [hm :<c-u>call g:quote#fun3('M:{','}')<CR>
+vnoremap [hi :<c-u>call g:quote#fun3('I:{','}')<CR>
+vnoremap [hw :<c-u>call g:quote#fun3('W:{','}')<CR>
 
