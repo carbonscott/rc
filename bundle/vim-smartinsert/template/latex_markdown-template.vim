@@ -65,3 +65,9 @@ template |ft|
 
 [^____]: ____
 endtemplate
+
+
+template |dfrac|
+\dfrac{____}{____}
+endtemplate
+
