@@ -216,3 +216,4 @@ nnoremap <silent> [t :source ~/.vim/syntax/custom_highlight.vim<CR>
 " copy line in insert mode
 snoremap <c-i> <c-[>yypgv<c-g>
 vnoremap <c-i> <c-[>yypgv<c-g>
+
