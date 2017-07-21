@@ -76,11 +76,11 @@ alias qtag="qtag "
 
 # git
 
-alias git-strack="git status --untracked-files=no "
+alias git-st="git status --untracked-files=no "
 alias git-l="git log -n 10 "
 alias git-ln="git log -n "
-alias git-show="git show "
-alias git-show-n="git show --name-only"
+alias git-s="git show "
+alias git-sn="git show --name-only"
 
 # grep
 alias gp="egrep --color "
