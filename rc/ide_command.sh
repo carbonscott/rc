@@ -5,8 +5,9 @@ alias lsdt="ls -dlrt"
 alias lstd="ls -dlrt"
 
 # + `ls` derivative...
-alias lsjob="ls JOB*"
-alias lsdata="ls DATA*"
+alias lsjob="ls *JOB*"
+alias lsdata="ls *DATA*"
+alias lsutil="ls *UTIL*"
 
 
 # make use of `find`...  
