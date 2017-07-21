@@ -8,3 +8,5 @@ nnoremap f /<c-r>=<SID>Slashsearch()<cr>
 nnoremap F ?<c-r>=<SID>Slashsearch()<cr>
 vnoremap f /<c-r>=<SID>Slashsearch()<cr>
 vnoremap F ?<c-r>=<SID>Slashsearch()<cr>
+sunmap f
+sunmap F
