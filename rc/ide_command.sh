@@ -33,8 +33,8 @@ function qfind {
 
 # -`qfind` derivative...
 alias findall='qfind '
-alias findpdf='qfind "*pdf"'
-alias findpl='qfind "*pl"'
+alias findpdf='qfind "*pdf" '
+alias findpl='qfind "*pl" '
 
 # typo
 
