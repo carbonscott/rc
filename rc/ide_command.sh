@@ -41,6 +41,7 @@ alias findpl='qfind "*pl" '
 alias sl="ls "
 
 # make use of `tree`
+
 alias tree1='tree -L 1'
 alias tree2='tree -L 2'
 alias treed1='tree -d -L 1'
