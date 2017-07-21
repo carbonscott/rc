@@ -73,3 +73,16 @@ function qtag {
 }
 
 alias qtag="qtag "
+
+# git
+
+alias git-strack="git status --untracked-files=no "
+alias git-l="git log -n 10 "
+alias git-ln="git log -n "
+alias git-show="git show "
+alias git-show-n="git show --name-only"
+
+# grep
+alias gp="egrep --color "
+alias gpi="egrep --color -i"
+alias gpiv="egrep --color -iv"
