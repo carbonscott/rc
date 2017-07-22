@@ -1,38 +1,9 @@
-
-
-template |head|
-=head____ ____
-endtemplate
-
-template |code|
+template |if|
+if (____) {
 				____
+}
 endtemplate
 
-
-template |bold|
-B<____>
-endtemplate
-
-template |ital|
-I<____>
-endtemplate
-
-template |under|
-U<____>
-endtemplate
-
-template |list|
-=over ____
-
-=item ____
-
-=back
-endtemplate
-
-
-template |end|
-=cut
-endtemplate
 
 template |use-mceloop|
 use MCE::Loop;
