@@ -1,3 +1,8 @@
+template |head|
+#!/usr/bin/env perl
+endtemplate
+
+
 template |if|
 if (____) {
 				____
@@ -52,5 +57,9 @@ endtemplate
 
 template |item|
 =item ____
+endtemplate
+
+template |use_version|
+use if $] < ____, ____;
 endtemplate
 
