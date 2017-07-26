@@ -46,3 +46,9 @@ template |eof|
 feof(____)
 endtemplate
 
+template |function|
+function ____ = ____(____)
+____
+end
+endtemplate
+
