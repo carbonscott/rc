@@ -261,3 +261,5 @@ Format 4
 \bind "C-bracketleft"   "escape"
 \bind "M-slash"			"dialog-show findreplace"
 \bind "M-question"			"dialog-show findreplaceadv"
+\bind "M-l" "depth-increment"
+\bind "M-h" "depth-decrement"
