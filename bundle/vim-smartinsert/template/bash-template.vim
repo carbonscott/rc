@@ -15,3 +15,10 @@ then
 fi
 endtemplate
 
+template |for|
+for ____ in ____
+do
+				____
+done
+endtemplate
+
