@@ -27,6 +27,7 @@ alias wml="wmctrl -l "
 alias wma="wmctrl -a "
 alias wms="wmctrl -s "
 alias wmr="wmctrl -r :ACTIVE: "
+alias wmc="wmctrl -c "
 
 # add shortcuts to ls command...
 alias lsd="ls -d "
