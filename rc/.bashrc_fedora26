@@ -21,3 +21,17 @@ alias sb="source ~/.bashrc"
 
 # add more functions...
 source ~/.vim/rc/ide_command.sh
+
+# add wmctrl control...
+alias wml="wmctrl -l "
+alias wma="wmctrl -a "
+alias wms="wmctrl -s "
+alias wmr="wmctrl -r :ACTIVE: "
+
+# add shortcuts to ls command...
+alias lsd="ls -d "
+alias lst="ls -lrt "
+alias lstd="ls -dlrt "
+alias lsdt="ls -dlrt "
+alias less="less -x1 "
+
