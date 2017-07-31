@@ -4,7 +4,7 @@ template |head|
 ____
 endtemplate
 
-template |np|
+template |import-numpy|
 import numpy as np
 endtemplate
 
@@ -74,5 +74,26 @@ np.array([
 				____,
 				____,
 ])
+endtemplate
+
+template |import-matplotlib|
+import matplotlib.pyplot as plt
+endtemplate
+
+template |plot|
+plt.plot(____)
+endtemplate
+
+template |plot.show|
+plt.show()
+endtemplate
+
+template |genfromtxt|
+np.genfromtxt('____')
+endtemplate
+
+template |if|
+if ____:
+				____
 endtemplate
 

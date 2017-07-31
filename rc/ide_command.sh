@@ -81,6 +81,8 @@ alias git-l="git log -n 10 "
 alias git-ln="git log -n "
 alias git-s="git show "
 alias git-sn="git show --name-only"
+alias git-a="git add "
+alias git-c="git commit "
 
 # grep
 alias gp="egrep --color "

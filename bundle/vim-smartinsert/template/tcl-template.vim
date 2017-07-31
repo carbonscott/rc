@@ -42,6 +42,7 @@ Combine_PSFPDB "____"
 endtemplate
 
 template |sel|
+# atomselection filtering-keyword...
 set ____ [atomselect top ____]
 endtemplate
 
@@ -53,4 +54,64 @@ endtemplate
 template |mload|
 mol load psf ____ pdb ____
 endtemplate
+
+template |list|
+[list 
+____ 
+____ 
+____
+]
+endtemplate
+
+template |expr|
+[expr ____]
+endtemplate
+
+template |sort|
+[ lsort -unique ____ ]
+endtemplate
+
+template |list-length|
+[ llength ____ ]
+endtemplate
+
+template |foreach|
+foreach ____ ____ {
+				____
+}
+endtemplate
+
+template |move_to|
+# atomselection position...
+move_to ____ ____
+endtemplate
+
+template |measure-center|
+[ measure center ____ ]
+endtemplate
+
+template |list-range|
+# list index index...
+[ lrange ____ ____ ____ ]
+endtemplate
+
+template |list-index|
+# list index...
+[ lindex ____ ____ ]
+endtemplate
+
+template |rotate|
+# atomselection center axis angle to rotate...
+____ move [trans center ____ axis ____ ____ deg]
+endtemplate
+
+template |i++|
+set ____ [expr ____+1]
+endtemplate
+
+template |translate|
+# atomselection coordinates
+____ moveby ____
+endtemplate
+
 

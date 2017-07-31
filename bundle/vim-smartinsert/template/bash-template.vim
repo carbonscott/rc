@@ -22,3 +22,25 @@ do
 done
 endtemplate
 
+template |array|
+( ____ )
+endtemplate
+
+template |argument-list|
+$@
+endtemplate
+
+template |case|
+case ____ in
+				____) ____;;
+				____) ____;;
+esac
+endtemplate
+
+template |while|
+while ____
+do
+				____
+done
+endtemplate
+

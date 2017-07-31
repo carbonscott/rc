@@ -35,3 +35,8 @@ alias lstd="ls -dlrt "
 alias lsdt="ls -dlrt "
 alias less="less -x1 "
 
+# add keywords for all project files...
+gppro="R-|L-|P-|B-|S-|I-|O-|D-"
+
+# xargs shortcuts...
+alias sargs="xargs -I it -n 1 "
