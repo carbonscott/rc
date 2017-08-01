@@ -41,3 +41,17 @@ gppro="R-|L-|P-|B-|S-|I-|O-|D-"
 
 # xargs shortcuts...
 alias sargs="xargs -I it -n 1 "
+
+# tmux shortcuts...
+# - swap pane
+alias tsp="tmux swap-pane -t "
+alias tspu="tmux swap-pane -U "
+alias tspd="tmux swap-pane -D "
+
+# - resize pane
+alias trpx="tmux resize-pane -x "
+alias trpy="tmux resize-pane -y "
+alias trpl="tmux resize-pane -L "
+alias trpr="tmux resize-pane -R "
+alias trpd="tmux resize-pane -D "
+alias trpu="tmux resize-pane -U "
