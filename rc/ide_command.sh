@@ -83,6 +83,7 @@ alias git-s="git show "
 alias git-sn="git show --name-only"
 alias git-a="git add "
 alias git-c="git commit "
+alias git-cm="git commit -m "
 
 # grep
 alias gp="egrep --color "
