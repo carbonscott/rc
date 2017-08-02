@@ -9,6 +9,13 @@ let g:filenames = []
 let g:IsLoadedSmartInsert = 0
 let g:SmartInsertKeywords = []
 
+function! CompSize(s1,s2)
+				let l1 = strlen(a:s1)
+				let l2 = strlen(a:s2)
+				return l1 >= l2 ? l1 : l2
+endfunction
+
+
 " This function is used to read all keywords in the template file.
 function! ReadAndComplete(leadword)
 				let keyword_pattern = "|".".*"."|"
@@ -33,7 +40,7 @@ function! ReadAndComplete(leadword)
 								call add(keywords,strpart(matched_str,1,len(matched_str)-2))
 				endfor
 				call filter(keywords,'v:val !~ "^\s*$"')
-				call uniq(sort(keywords))
+				call uniq(sort(keywords,"CompSize"))
 
 				call extend(g:SmartInsertKeywords, keywords)
 				
