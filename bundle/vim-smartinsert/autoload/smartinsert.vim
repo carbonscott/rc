@@ -119,6 +119,7 @@ function! SmartInsert()
 				let pos_current_line = getpos('.')
 
 				if g:IsLoadedSmartInsert == 0
+								let g:SmartInsertKeywords = []
 								" call ReadAndComplete("template")
 								call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
 				endif
@@ -388,6 +389,7 @@ function! ListSmartKeywords(findstart, base)
 							 return start
 				else
 								if g:IsLoadedSmartInsert == 0
+												let g:SmartInsertKeywords = []
 												call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
 								endif
 
