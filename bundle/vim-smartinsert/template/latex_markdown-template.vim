@@ -71,3 +71,44 @@ template |dfrac|
 \dfrac{____}{____}
 endtemplate
 
+# latex only templates...
+template |documentclass|
+\documentclass{____}
+endtemplate
+
+template |beginblock|
+\begin{$1:____}
+____
+\end{$1:____}
+endtemplate
+
+template |author|
+\author{____}
+endtemplate
+
+template |begindoc|
+\begin{document}
+____
+\end{document}
+endtemplate
+
+template |title|
+\title{____}
+endtemplate
+
+template |maketitle|
+\maketitle
+endtemplate
+
+template |callop|
+{____}
+endtemplate
+
+template |section|
+\section{____}
+endtemplate
+
+template |subsection|
+\subsection{____}
+endtemplate
+

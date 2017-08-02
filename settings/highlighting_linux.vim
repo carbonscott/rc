@@ -21,6 +21,9 @@ set t_Co=256
 hi Pmenu ctermbg=15 ctermfg=0
 hi PmenuSel ctermbg=33 ctermfg=15
 
-" hi Folded ctermbg=black ctermfg=lightblue ctermbg=darkgray
+hi Folded ctermbg=None
+
+hi MyComment ctermfg=darkgray
+nnoremap [e :syntax match MyComment "\v^\s*.*"<left><left><left>
 
 finish

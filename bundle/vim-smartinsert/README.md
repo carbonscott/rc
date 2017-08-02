@@ -24,4 +24,6 @@ any text snippets for your everyday Vim editing.
 
 [x] Demo
 
-It's that easy to use.
+### more feature
+
+Sort all keywords by the length
