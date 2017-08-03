@@ -11,6 +11,7 @@ my $commands = {
 				nlog => "vim ~/Dropbox/00-Workflow/10-notes.txt",
 				quote=> "vim ~/.vim/settings/quotes",
 				tif  => "vim ~/Dropbox/00-Workflow/20-today_I_found.txt",
+				life  => "vim ~/Dropbox/00-Workflow/30-life.txt",
 				exit => "exit"
 };
 
@@ -22,6 +23,7 @@ while (1) {
 																				note     => "nlog",
 																				quote    => "quote",
 																				qq(today I found) => "tif",
+																				qq(life) => "life",
 																				exit     => "exit"
 																}, ">";
 

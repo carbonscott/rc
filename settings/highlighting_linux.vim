@@ -24,6 +24,6 @@ hi PmenuSel ctermbg=33 ctermfg=15
 hi Folded ctermbg=None
 
 hi MyComment ctermfg=darkgray
-nnoremap [e :syntax match MyComment "\v^\s*.*"<left><left><left>
+nnoremap [d :syntax match MyComment "\v^\s*.*"<left><left><left>
 
 finish

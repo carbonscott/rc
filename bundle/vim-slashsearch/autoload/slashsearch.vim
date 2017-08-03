@@ -5,8 +5,8 @@ function! <SID>Slashsearch()
 endfunction
 
 nnoremap [f /<c-r>=<SID>Slashsearch()<cr>
-nnoremap [d ?<c-r>=<SID>Slashsearch()<cr>
+nnoremap [e ?<c-r>=<SID>Slashsearch()<cr>
 vnoremap [f /<c-r>=<SID>Slashsearch()<cr>
-vnoremap [d ?<c-r>=<SID>Slashsearch()<cr>
+vnoremap [e ?<c-r>=<SID>Slashsearch()<cr>
 sunmap [f
-sunmap [d
+sunmap [e
