@@ -15,7 +15,7 @@ noremap <F8> :set nolist<CR>
 noremap <F4> :ls<CR>:buffer 
 nnoremap <F2> :hide bp<CR>
 nnoremap <F3> :hide bn<CR>
-noremap [du :diffupdate<CR>
+" noremap [du :diffupdate<CR>
 nnoremap [vw bve
 "======= map 0 and $ =====
 nnoremap <s-h> g^
@@ -25,12 +25,12 @@ nnoremap <s-l> g_
 vnoremap <s-l> g_
 sunmap <s-l>
 "navigate escalted
-nnoremap <c-h> 2h
-nnoremap <c-l> 2l
+" nnoremap <c-h> 2h
+" nnoremap <c-l> 2l
 nnoremap <c-j> 2j
 nnoremap <c-k> 2k
-vnoremap <c-h> 2h
-vnoremap <c-l> 2l
+" vnoremap <c-h> 2h
+" vnoremap <c-l> 2l
 vnoremap <c-j> 2j
 vnoremap <c-k> 2k
 
@@ -133,7 +133,7 @@ vnoremap [5 0
 " ab [ [ ]
 " ab perl Perl
 
-nnoremap  [fc :source ~/.vim/settings/ThoughtRCColor.vim<CR>
+" nnoremap  [fc :source ~/.vim/settings/ThoughtRCColor.vim<CR>
 
 " remap increment due to tmux prefix key 
 "nnoremap <c-b> <c-a>
@@ -207,7 +207,7 @@ nnoremap <silent> [<space> i<space><esc>
 " nnoremap <silent> [<space> :exe "normal ".input("How many chars to input: ","10")."a "
 
 " enable functional operator syntax...
-nnoremap [ff :source ~/.vim/settings/syntax.vim<CR>
+" nnoremap [ff :source ~/.vim/settings/syntax.vim<CR>
 
 " enable the todo list custom highlighting...
 let g:todo_done_switch = 0

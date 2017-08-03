@@ -4,9 +4,9 @@ function! <SID>Slashsearch()
 				return search_token
 endfunction
 
-nnoremap ff /<c-r>=<SID>Slashsearch()<cr>
-nnoremap fe ?<c-r>=<SID>Slashsearch()<cr>
-vnoremap ff /<c-r>=<SID>Slashsearch()<cr>
-vnoremap fe ?<c-r>=<SID>Slashsearch()<cr>
-sunmap ff
-sunmap fe
+nnoremap [f /<c-r>=<SID>Slashsearch()<cr>
+nnoremap [d ?<c-r>=<SID>Slashsearch()<cr>
+vnoremap [f /<c-r>=<SID>Slashsearch()<cr>
+vnoremap [d ?<c-r>=<SID>Slashsearch()<cr>
+sunmap [f
+sunmap [d
