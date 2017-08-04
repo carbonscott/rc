@@ -153,7 +153,12 @@ function! SmartInsert()
 
 												" - position of the first letter in keyword...
 												let keyword_length = len(keyword)
-												let pos_ns = pos_current_line[2] - keyword_length + 1
+
+												"// let pos_ns = pos_current_line[2] - keyword_length + 1
+												" * virtual column recognizes every whitespace. Normal col command
+												"   will deal with a tab as a single whitespace which is only true
+												"   when tabstop is 1.
+												let pos_ns = virtcol('.') - keyword_length + 1
 
 												" - start rewriting text...
 												" -- turn off some options...
@@ -172,10 +177,12 @@ function! SmartInsert()
 												endif
 
 												" -- insert text...
-												" last line is to make sure there's no extra line added...
+												" * last line is to make sure there's no extra line added...
+												" * k is fine because at least there's text inserted from the 
+												" current line
 												execute "normal! " .pos_ns. "|"
 												execute "normal! c$" . join(keyword_template,"")
-												execute "normal! J"
+												execute "normal! kJ"
 
 												" -- count the number of placeholders...
 												let is_placeholder = match(keyword_template, g:SmartInsertPlaceholder)
