@@ -6,8 +6,6 @@ use diagnostics;
 use feature 'say';
 use File::Compare;
 
-# my $file = "./chapters/set6.md";
-# my $file2 = "./chapters/set6_bk.md";
 my $file = shift @ARGV;
 my $file2 = $file."_bk";
 system('cp '.$file.' '.$file2);

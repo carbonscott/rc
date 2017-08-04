@@ -112,3 +112,7 @@ template |subsection|
 \subsection{____}
 endtemplate
 
+template |bold|
+\textbf{____}
+endtemplate
+
