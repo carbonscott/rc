@@ -172,8 +172,10 @@ function! SmartInsert()
 												endif
 
 												" -- insert text...
+												" last line is to make sure there's no extra line added...
 												execute "normal! " .pos_ns. "|"
 												execute "normal! c$" . join(keyword_template,"")
+												execute "normal! J"
 
 												" -- count the number of placeholders...
 												let is_placeholder = match(keyword_template, g:SmartInsertPlaceholder)
