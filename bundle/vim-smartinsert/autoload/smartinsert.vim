@@ -129,7 +129,6 @@ function! SmartInsert()
 				for keyword in g:SmartInsertKeywords
 
 								" [TODO] The regex can be put into one variable...
-								" [DEBUG, Memo, Yep] if current_line =~ '^\s*'.keyword.'\s*$'
 								if current_line =~ '^.*'.keyword.'$'
 												" keyword is there...
 
@@ -153,7 +152,10 @@ function! SmartInsert()
 
 												" - position of the first letter in keyword...
 												let keyword_length = len(keyword)
-												let pos_ns = pos_current_line[2] - keyword_length + 1
+												" * virtual column recognizes every whitespace. Normal col command
+												"   will deal with a tab as a single whitespace which is only true
+												"   when tabstop is 1.
+												let pos_ns = virtcol('.') - keyword_length + 1
 
 												" - start rewriting text...
 												" -- turn off some options...
@@ -162,7 +164,6 @@ function! SmartInsert()
 												let opt_formatoptions = &formatoptions
 												let &formatoptions = ""
 												let opt_tabstop = &tabstop
-												let &tabstop = 1
 
 												" -- reformat text for the lines except the first one...
 												if len(keyword_template) > 1
@@ -172,10 +173,12 @@ function! SmartInsert()
 												endif
 
 												" -- insert text...
-												" last line is to make sure there's no extra line added...
+												" * last line is to make sure there's no extra line added...
+												" * k is fine because at least there's text inserted from the 
+												" current line
 												execute "normal! " .pos_ns. "|"
 												execute "normal! c$" . join(keyword_template,"")
-												execute "normal! J"
+												execute "normal! kJ"
 
 												" -- count the number of placeholders...
 												let is_placeholder = match(keyword_template, g:SmartInsertPlaceholder)
@@ -183,7 +186,6 @@ function! SmartInsert()
 												" -- recover options...
 												let &autoindent = opt_indent
 												let &formatoptions = opt_formatoptions
-												let &tabstop = opt_tabstop
 
 												" stop searching for the next one...
 												let is_found = 1
