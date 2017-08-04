@@ -114,4 +114,15 @@ template |translate|
 ____ moveby ____
 endtemplate
 
+template |set_view_orthographic|
+display projection orthographic
+endtemplate
+
+template |set_view_perspective|
+display projection perspective
+endtemplate
+
+template |view_angle|
+rotate ____ by ____
+endtemplate
 

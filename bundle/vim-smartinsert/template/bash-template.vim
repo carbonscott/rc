@@ -44,3 +44,15 @@ do
 done
 endtemplate
 
+template |oneline_function|
+function ____ { ____ ; }
+endtemplate
+
+template |deref@array|
+"$____[@]"
+endtemplate
+
+template |deref$array|
+${____[____]}
+endtemplate
+
