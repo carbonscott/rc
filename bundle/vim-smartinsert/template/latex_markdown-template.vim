@@ -116,3 +116,30 @@ template |bold|
 \textbf{____}
 endtemplate
 
+template |geometry|
+\usepackage[margin=____]{geometry}
+endtemplate 
+
+template |itemize|
+\begin{itemize}
+____
+\end{itemize} 
+endtemplate 
+
+template |enumerate|
+\begin{enumerate}
+____
+\end{enumerate} 
+endtemplate 
+
+template |im|
+\item ____
+endtemplate 
+
+template |verb|
+\texttt{____}
+endtemplate 
+
+template |verbatimize|
+\usepackage{verbatim}
+endtemplate 
