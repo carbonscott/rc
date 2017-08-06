@@ -154,11 +154,12 @@ function! SmartInsert()
 												" - position of the first letter in keyword...
 												let keyword_length = len(keyword)
 
-												"// let pos_ns = pos_current_line[2] - keyword_length + 1
+												let pos_ns = pos_current_line[2] - keyword_length + 1
 												" * virtual column recognizes every whitespace. Normal col command
 												"   will deal with a tab as a single whitespace which is only true
 												"   when tabstop is 1.
-												let pos_ns = virtcol('.') - keyword_length + 1
+												"// [keep virtcol version... see if any bad results]
+												"// let pos_ns = virtcol('.') - keyword_length + 1
 
 												" - start rewriting text...
 												" -- turn off some options...
@@ -171,7 +172,9 @@ function! SmartInsert()
 
 												" -- reformat text for the lines except the first one...
 												if len(keyword_template) > 1
-																let pad_space = repeat(" ",pos_ns - 1)
+																"// [TESTING] 
+																"// a tab character	i_ctrl_v <tab> is inserted...
+																let pad_space = repeat("	",pos_ns - 1)
 																let keyword_template[1:] = map(keyword_template[1:],
 																																									\ 'pad_space.v:val')
 												endif
