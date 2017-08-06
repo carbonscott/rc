@@ -148,18 +148,9 @@ function! SmartInsert()
 												endif
 
 												" manipulate text...
-												" [DEBUG, Memo, Yep] " - position of the first non space char...
-												" [DEBUG, Memo, Yep] let pos_ns = match(current_line,'\S') + 1
-
 												" - position of the first letter in keyword...
 												let keyword_length = len(keyword)
-
 												let pos_ns = pos_current_line[2] - keyword_length + 1
-												" * virtual column recognizes every whitespace. Normal col command
-												"   will deal with a tab as a single whitespace which is only true
-												"   when tabstop is 1.
-												"// [keep virtcol version... see if any bad results]
-												"// let pos_ns = virtcol('.') - keyword_length + 1
 
 												" - start rewriting text...
 												" -- turn off some options...
