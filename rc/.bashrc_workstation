@@ -52,6 +52,10 @@ alias tsp="tmux swap-pane -t "
 alias tspu="tmux swap-pane -U "
 alias tspd="tmux swap-pane -D "
 
+# - list, attach
+alias tml="tmux list-sessions "
+alias tmt="tmux attach-session -t "
+
 # - resize pane
 alias trpx="tmux resize-pane -x "
 alias trpy="tmux resize-pane -y "
