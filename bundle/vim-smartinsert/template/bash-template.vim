@@ -49,10 +49,13 @@ function ____ { ____ ; }
 endtemplate
 
 template |deref@array|
-"$____[@]"
+"${____[@]}"
 endtemplate
 
 template |deref$array|
 ${____[____]}
 endtemplate
 
+template |array-range-init|
+( {____..____} )
+endtemplate 

@@ -7,12 +7,28 @@ return
 end function ____
 endtemplate
 
-template |real|
+template |const-real|
 real(dp),parameter :: ____=_____dp
 endtemplate 
 
-template |integer|
+template |const-integer|
 integer, parameter :: ____ = ____
+endtemplate 
+
+template |const-string|
+character(len=____),parameter :: ____
+endtemplate 
+
+template |real|
+real(dp) :: ____
+endtemplate 
+
+template |integer|
+integer :: ____
+endtemplate 
+
+template |string|
+character(len=____) :: ____
 endtemplate 
 
 template |if|
@@ -22,9 +38,9 @@ end if
 endtemplate
 
 template |sub|
-subroutine ____(____)
+subroutine ____(____) !{
 ____
-end subroutine
+end subroutine !}
 endtemplate
 
 template |set-module|
@@ -44,9 +60,9 @@ end module
 endtemplate
 
 template |for|
-do ____ = ____, ____
+do ____ = ____, ____ !{
 				____
-end do
+end do !}
 endtemplate
 
 template |const|
@@ -99,4 +115,16 @@ module $1:____
 implicit none
 ____
 end module $1:____
+endtemplate 
+
+template |string-concat|
+write(____,'(I____)') ____ ! str, type, integer...
+endtemplate 
+
+template |intent|
+____,intent(____) :: ____  ! type, in/out/inout, var...   
+endtemplate 
+
+template |string-id|
+____($1:____:$1:____)
 endtemplate 
