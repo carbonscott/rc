@@ -19,7 +19,7 @@ ____
 end subroutine
 endtemplate
 
-template |module|
+template |set-module|
 module ____
 use ____
 implicit none
@@ -28,6 +28,8 @@ implicit none
 private ____
 ! for output... 
 public  ____
+
+contains
 
 ____
 end module
@@ -73,3 +75,20 @@ call system_clock (count=____)
 print*,'It took',real(____ - ____) / real(____),'sec'
 endtemplate
 
+template |program|
+program $1:____
+implicit none
+____
+end program $1:____
+endtemplate 
+
+template |matmul|
+matmul(____,____)
+endtemplate 
+
+template |module|
+module $1:____
+implicit none
+____
+end module $1:____
+endtemplate 

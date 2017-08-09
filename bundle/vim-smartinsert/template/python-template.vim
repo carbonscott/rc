@@ -97,3 +97,14 @@ if ____:
 				____
 endtemplate
 
+template |plt.label|
+plt.____label("____")
+endtemplate 
+
+template |plt.savefig|
+export_rule = {
+				"format" : "png",
+				"dpi"    : 600,
+}
+plt.savefig("____", **export_rule)
+endtemplate 

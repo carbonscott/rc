@@ -8,7 +8,7 @@ endtemplate
 template |figure|
 \begin{figure}[h!] 
 \centering 
-\includegraphics[scale=____]{____}
+\includegraphics[____=____]{____}
 \caption{____} 
 \label{____} 
 \end{figure}
@@ -142,4 +142,8 @@ endtemplate
 
 template |verbatimize|
 \usepackage{verbatim}
+endtemplate 
+
+template |use|
+\usepackage{____}
 endtemplate 
