@@ -12,7 +12,7 @@ let g:SmartInsertKeywords = []
 function! CompSize(s1,s2)
 				let l1 = strlen(a:s1)
 				let l2 = strlen(a:s2)
-				return l1 >= l2 ? l1 : l2
+				return l1 >= l2 ? -1 : 1
 endfunction
 
 
