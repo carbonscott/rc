@@ -7,6 +7,14 @@ return
 end function ____
 endtemplate
 
+template |real|
+real(dp),parameter :: ____=_____dp
+endtemplate 
+
+template |integer|
+integer, parameter :: ____ = ____
+endtemplate 
+
 template |if|
 if (____) then
 				____
