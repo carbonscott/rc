@@ -31,6 +31,10 @@ template |string|
 character(len=____) :: ____
 endtemplate 
 
+template |string-allocatable|
+character(:),allocatable :: ____ 
+endtemplate 
+
 template |if|
 if (____) then
 				____
