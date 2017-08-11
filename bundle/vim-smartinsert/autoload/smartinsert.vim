@@ -120,7 +120,6 @@ function! SmartInsert()
 
 				if g:IsLoadedSmartInsert == 0
 								let g:SmartInsertKeywords = []
-								" call ReadAndComplete("template")
 								call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
 				endif
 
@@ -129,10 +128,22 @@ function! SmartInsert()
 				for keyword in g:SmartInsertKeywords
 
 								" [TODO] The regex can be put into one variable...
-								" [DEBUG, Memo, Yep] if current_line =~ '^.*'.keyword.'$' 
+								" [DEBUG] if current_line =~ '^.*'.keyword.'$' 
+								" [DEBUG] if current_line =~ '^.*'.keyword.'.*$'
 								" // 1
 								if current_line =~ '^.*'.keyword.'.*$'
 												" keyword is there...
+												" * test if curosr is next to the keyword
+												call search(keyword,'b')
+												let pos_keyword_inline = getpos('.')
+												let keyword_length = len(keyword)
+												if pos_current_line[2] - pos_keyword_inline[2] >= keyword_length
+																continue
+												endif
+												"// I don't have to do this coming step if the above test 
+												"// is true. If it is false, there is a command using | <Bar>
+												"// will move the cursor to the correct space anyway...
+												"// call setpos('.',pos_current_line)
 
 												" go to file again to get the template...
 												let keyword_template = ReadTemplate(keyword,"metatemplate")
@@ -150,7 +161,6 @@ function! SmartInsert()
 
 												" manipulate text...
 												" - position of the first letter in keyword...
-												let keyword_length = len(keyword)
 												let pos_ns = pos_current_line[2] - keyword_length + 1
 
 												" - start rewriting text...
