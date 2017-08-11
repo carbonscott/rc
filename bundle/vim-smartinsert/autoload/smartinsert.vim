@@ -220,6 +220,9 @@ function! SmartInsert()
 								redraw
 								let g:DEBUG = word_in_currentline
 								call ReadTemplate(word_in_currentline,"template")
+
+								" I want the cursor back, if nothing is inserted...
+								call setpos('.',pos_current_line)
 				endif
 
 				" put cursor to the first matched result...
