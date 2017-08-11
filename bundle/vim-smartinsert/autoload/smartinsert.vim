@@ -129,8 +129,9 @@ function! SmartInsert()
 				for keyword in g:SmartInsertKeywords
 
 								" [TODO] The regex can be put into one variable...
-								" [DEBUG, Memo, Yep] if current_line =~ '^\s*'.keyword.'\s*$'
-								if current_line =~ '^.*'.keyword.'$'
+								" [DEBUG, Memo, Yep] if current_line =~ '^.*'.keyword.'$' 
+								" // 1
+								if current_line =~ '^.*'.keyword.'.*$'
 												" keyword is there...
 
 												" go to file again to get the template...
@@ -170,12 +171,20 @@ function! SmartInsert()
 																																									\ 'pad_space.v:val')
 												endif
 
+												" [insertion algorithm]
 												" -- insert text...
 												" * last line is to make sure there's no extra line added...
 												" * k is fine because at least there's text inserted from the 
 												" current line
 												execute "normal! " .pos_ns. "|"
-												execute "normal! c$" . join(keyword_template,"")
+												" //
+												" * delete the keyword
+												" * insert the first line in template...
+												execute "normal! c".keyword_length."l" . keyword_template[0]
+												execute "normal! kJ"
+												" * move cursor to the next line...
+												execute "normal! o0"
+												execute "normal! c$" . join(keyword_template[1:],"")
 												execute "normal! kJ"
 
 												" -- count the number of placeholders...
