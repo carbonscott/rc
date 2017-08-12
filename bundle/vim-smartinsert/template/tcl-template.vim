@@ -1,3 +1,15 @@
+template |expr|
+{____}
+endtemplate
+
+template |help.cmd|
+# the cmd sees the an evaluated argument... 
+endtemplate
+
+template |cmd|
+[____ ____]
+endtemplate
+
 template |for|
 for {____} {____} {____} {
 				____
@@ -56,15 +68,7 @@ mol load psf ____ pdb ____
 endtemplate
 
 template |list|
-[list 
-____ 
-____ 
-____
-]
-endtemplate
-
-template |expr|
-[expr ____]
+[list ____]
 endtemplate
 
 template |sort|
@@ -126,3 +130,19 @@ template |view_angle|
 rotate ____ by ____
 endtemplate
 
+template |help-tcl|
+# [____] envokes tcl interpreter again
+# [expr ____] is the general tcl expression
+endtemplate
+
+template |arg-expand|
+{*}{____}
+endtemplate
+
+template |head|
+#!/usr/bin/env tclsh
+endtemplate
+
+template |eval|
+[eval ____]
+endtemplate
