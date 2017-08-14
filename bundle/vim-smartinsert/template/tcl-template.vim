@@ -1,5 +1,5 @@
 template |expr|
-{____}
+[expr {____}]
 endtemplate
 
 template |help.cmd|
@@ -69,6 +69,10 @@ endtemplate
 
 template |list|
 [list ____]
+endtemplate
+
+template |group|
+{____}
 endtemplate
 
 template |sort|
@@ -145,4 +149,8 @@ endtemplate
 
 template |eval|
 [eval ____]
+endtemplate
+
+template |concat|
+[concat ____]
 endtemplate
