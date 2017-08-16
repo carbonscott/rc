@@ -33,6 +33,8 @@ endtemplate
 
 template |single-imply|
 ← 
+endtemplate
+
 template |(-|
 ∈ 
 endtemplate
