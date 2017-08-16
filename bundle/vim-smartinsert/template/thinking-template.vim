@@ -14,27 +14,34 @@ template |->|
 endtemplate
 
 template |infer|
+→ ____
+endtemplate
+
+template |single-infer|
 → 
 endtemplate
+
 
 template |<-|
 ← 
 endtemplate
 
 template |imply|
-← 
+← ____
 endtemplate
 
+template |single-imply|
+← 
 template |(-|
 ∈ 
 endtemplate
 
 template |ele-to|
-∈ 
+∈ ____
 endtemplate
 
 template |-)|
-∋ 
+∋ ____
 endtemplate
 
 template |set-for|
@@ -69,7 +76,7 @@ template |<=|
 ⇐ 
 endtemplate
 
-template |imply-bold|
+template |bold-imply|
 ⇐ 
 endtemplate
 
@@ -77,7 +84,7 @@ template |=>|
 ⇒ 
 endtemplate
 
-template |infer-bold|
+template |bold-infer|
 ⇒ 
 endtemplate
 
