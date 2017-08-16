@@ -227,15 +227,19 @@ function! SmartInsert()
 
 				" put cursor to the first matched result...
 				if is_found == 1
-								let pos_current_line[2] = 1    " set the cursor to be at 1st column...
-								call setpos('.', pos_current_line)
-
 								" if there's at least one place holder...
 								if is_placeholder != -1 
+												let jump_to_first = pos_current_line     " set the cursor to be at 1st column...
+												let jump_to_first[2] = 1    " set the cursor to be at 1st column...
+												call setpos('.', pos_current_line)
+
 												let if_match = search(g:SmartInsertPlaceholder,'c')
 												if if_match != 0
 																execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"
 												endif
+								else
+												" move back to where cursors starts...
+												call setpos('.', pos_current_line)
 								endif
 				endif
 
