@@ -59,3 +59,16 @@ endtemplate
 template |array-range-init|
 ( {____..____} )
 endtemplate 
+
+template |help-floating_number_arithmetic|
+distances=( {20..140..1} )
+for i in "${distances[@]}"
+do
+				g=$(bc --mathlib <<< "scale=3; $i / 2.0")
+				perl -pE "s/44.667/$g/g" cube_body.pdb > init_$i.pdb
+done
+endtemplate
+
+template |perl_subs|
+perl -p -E "s/____/____/g" ____ > ____
+endtemplate

@@ -63,3 +63,63 @@ template |use_version|
 use if $] < ____, ____;
 endtemplate
 
+template |head-pl|
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature qw(say);
+endtemplate
+
+template |file::slurp|
+use File::Slurp;
+endtemplate
+
+template |write_file|
+write_file(____,{append => ____},____);    # filename, 0/1, data var...
+endtemplate
+
+template |read_file|
+read_file(____,{array_ref=>____});
+endtemplate
+
+template |split|
+split(/____/,____)
+endtemplate
+
+template |join|
+join(____,____)
+endtemplate
+
+template |fork|
+#!/usr/bin/env perl 
+
+# heads ...
+use strict;
+use warnings;
+use feature qw(say);
+use Parallel::ForkManager;
+
+my $pm = Parallel::ForkManager->new(____);
+
+# SET UP YOUR JOBS
+		# examples
+		# my @jobs = map {"cd ./sub_0$_ && ./S-run_0$_.sh"} (0..9);
+		# push @jobs, map {"cd ./sub_$_ && ./S-run_$_.sh"} (10..89);
+		# my @jobs = map {"cd ./sub_$_ && ./S-run_$_.sh"} (20..139);
+
+my @jobs = ____;
+
+
+foreach my $id (0..____) {
+				my $pid = $pm->start and next;
+				system($jobs[$id]." > log_".$id) == 0 or die("failed due to ".$?);
+				$pm->finish;
+}
+
+$pm->wait_all_children;
+endtemplate
+
+template |map|
+map {____} ____;
+endtemplate
