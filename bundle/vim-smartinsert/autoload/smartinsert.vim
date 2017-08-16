@@ -410,7 +410,10 @@ function! ListSmartKeywords(findstart, base)
 							 " locate the start of the word
 							 let line = getline('.')
 							 let start = col('.') - 1
-							 while start > 0 && line[start - 1] =~ '\a'
+
+								". \S matches anything but a white space, so I can use 
+								". any character except whitespace in my keyword...
+							 while start > 0 && line[start - 1] =~ '\S'
 							 		let start -= 1
 							 endwhile
 							 return start
