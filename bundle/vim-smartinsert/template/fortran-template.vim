@@ -132,3 +132,7 @@ endtemplate
 template |string-id|
 ____($1:____:$1:____)
 endtemplate 
+
+template |float-print|
+print'(a____,f____,a____)','____',____,'____'      
+endtemplate
