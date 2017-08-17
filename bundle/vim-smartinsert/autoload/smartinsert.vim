@@ -196,7 +196,7 @@ function! SmartInsert()
 
 												" * delete the keyword
 												" * insert the first line in template...
-												execute "normal! c".keyword_length."l" . keyword_template[0]
+												execute "normal! c".real_keyword_length."l" . keyword_template[0]
 												" ~ gJ not only joins line but also insert no spaces at all 
 												" ~ compared with J.
 												execute "normal! kgJ"
