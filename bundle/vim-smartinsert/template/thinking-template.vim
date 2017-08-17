@@ -1,5 +1,5 @@
 template |original-thought|
-Thinking can be categorized into two subsets
+♠ Thinking can be categorized into two subsets
 - purspose driven thinking
 		- purpose is a set of tests.
 - knowledge based thiinking
@@ -8,6 +8,11 @@ Thinking can be categorized into two subsets
 				- relation between sets
 				- using subset to make a toolkit based on indirection 
 		- order
+♠ 1% thinking + 99% geting-work-done ⇒  Make it 
+endtemplate
+
+template |work|
+♠ 
 endtemplate
 
 template |why-doing-this|
