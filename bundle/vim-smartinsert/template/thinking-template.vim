@@ -35,11 +35,11 @@ template |no|
 endtemplate
 
 template |✓|
-no
+✗
 endtemplate
 
 template |✗|
-ok 
+✓
 endtemplate
 
 template |what-imply|
