@@ -115,8 +115,24 @@ endfunction
 
 " This function is to implement the smart insert...
 function! SmartInsert()
-				let current_line = getline('.')
+
+				" get sense of line context
+				" - read current cursor position...
 				let pos_current_line = getpos('.')
+				" - insert a whitespace to get the cursor position next to it...
+				execute "normal! a "
+				let pos_current_line_right = getpos('.')
+				execute "normal! dl"
+				call setpos('.', pos_current_line)
+
+				" get effective information...
+				" - read the current line
+				let current_line = getline('.')
+				" - slice the string for current line...
+				" . no need to use deepcopy when data is sliced...
+				" . the following is an alternative way, but let me stick to strpart()...
+				"// let current_line_sliced = current_line[0:pos_current_line_right[2]]
+				let current_line_sliced = strpart(current_line, 0, pos_current_line_right[2])
 
 				if g:IsLoadedSmartInsert == 0
 								let g:SmartInsertKeywords = []
@@ -128,13 +144,11 @@ function! SmartInsert()
 				for keyword in g:SmartInsertKeywords
 
 								" [TODO] The regex can be put into one variable...
-								" [DEBUG] if current_line =~ '^.*'.keyword.'$' 
-								" [DEBUG] if current_line =~ '^.*'.keyword.'.*$'
-								" // 1
-								if current_line =~ '^.*'.keyword.'.*$'
+								if current_line_sliced =~ '^.*'.keyword.'.*$'
+
 												" keyword is there...
-												" * test if curosr is next to the keyword
-												" * start to search from the current keyword...
+												" - test if curosr is next to the keyword
+												" - start to search from the current keyword...
 												call search(keyword,'bc')
 												let pos_keyword_inline = getpos('.')
 												let keyword_length = strlen(keyword)
@@ -146,10 +160,6 @@ function! SmartInsert()
 												if pos_current_line[2] - pos_keyword_inline[2] >= keyword_length
 																continue
 												endif
-												"// I don't have to do this coming step if the above test 
-												"// is true. If it is false, there is a command using | <Bar>
-												"// will move the cursor to the correct space anyway...
-												"// call setpos('.',pos_current_line)
 
 												" go to file again to get the template...
 												let keyword_template = ReadTemplate(keyword,"metatemplate")
@@ -225,7 +235,7 @@ function! SmartInsert()
 				" read the template again to get the warning info...
 				if is_found == 0
 								let word_in_currentline = 
-														\	matchstr(current_line,"\\S.*$")
+														\	matchstr(current_line_sliced,"\\S.*$")
 								redraw
 								let g:DEBUG = word_in_currentline
 								call ReadTemplate(word_in_currentline,"template")
