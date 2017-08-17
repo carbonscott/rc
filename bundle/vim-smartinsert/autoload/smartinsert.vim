@@ -134,9 +134,12 @@ function! SmartInsert()
 								if current_line =~ '^.*'.keyword.'.*$'
 												" keyword is there...
 												" * test if curosr is next to the keyword
-												call search(keyword,'b')
+												" * start to search from the current keyword...
+												call search(keyword,'bc')
 												let pos_keyword_inline = getpos('.')
-												let keyword_length = len(keyword)
+												let keyword_length = strlen(keyword)
+												let real_keyword_length = pos_current_line[2] - pos_keyword_inline[2] + 1
+
 												if pos_current_line[2] - pos_keyword_inline[2] >= keyword_length
 																continue
 												endif
@@ -161,7 +164,7 @@ function! SmartInsert()
 
 												" manipulate text...
 												" - position of the first letter in keyword...
-												let pos_ns = pos_current_line[2] - keyword_length + 1
+												let pos_ns = pos_current_line[2] - real_keyword_length + 1
 
 												" - start rewriting text...
 												" -- turn off some options...
@@ -186,8 +189,8 @@ function! SmartInsert()
 												" * last line is to make sure there's no extra line added...
 												" * k is fine because at least there's text inserted from the 
 												" current line
-												" execute "normal! " .pos_ns. "|"
-												let jump_to_first = pos_current_line  
+												" deepcopy is important...
+												let jump_to_first = deepcopy(pos_current_line)  
 												let jump_to_first[2] = pos_ns         " set the cursor to be at the column where the keyword insertion starts...
 												call setpos('.', jump_to_first)       
 
@@ -232,8 +235,6 @@ function! SmartInsert()
 				if is_found == 1
 								" if there's at least one place holder...
 								if is_placeholder != -1 
-												"// let jump_to_first = pos_current_line  
-												"// let jump_to_first[2] = pos_ns         " set the cursor to be at the column where the keyword insertion starts...
 												call setpos('.', jump_to_first)
 
 												let if_match = search(g:SmartInsertPlaceholder,'c')
