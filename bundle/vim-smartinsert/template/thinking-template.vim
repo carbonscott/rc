@@ -87,11 +87,11 @@ template |ele-to|
 endtemplate
 
 template |-)|
-∋ ____
+∋ 
 endtemplate
 
 template |set-of|
-∋ 
+∋ ____
 endtemplate
 
 template |)_|
