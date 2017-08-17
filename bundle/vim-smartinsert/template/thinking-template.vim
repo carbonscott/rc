@@ -1,6 +1,6 @@
 template |original-thought|
 Thinking can be categorized into two subsets
-- pursposed driven thinking
+- purspose driven thinking
 		- purpose is a set of tests.
 - knowledge based thiinking
 		- category
@@ -8,6 +8,46 @@ Thinking can be categorized into two subsets
 				- relation between sets
 				- using subset to make a toolkit based on indirection 
 		- order
+endtemplate
+
+template |why-doing-this|
+____ ← ____
+endtemplate
+
+template |purpose|
+♡ : ____
+endtemplate
+
+template |test-false|
+✗ ∘ ____
+endtemplate
+
+template |test-true|
+✓ ∘ ____
+endtemplate
+
+template |ok|
+✓ 
+endtemplate
+
+template |no|
+✗ 
+endtemplate
+
+template |✓|
+no
+endtemplate
+
+template |✗|
+ok 
+endtemplate
+
+template |what-imply|
+____ ← ?
+endtemplate
+
+template |what-infer|
+? → ____ 
 endtemplate
 
 template |->|
@@ -22,6 +62,9 @@ template |single-infer|
 → 
 endtemplate
 
+template |single|
+single
+endtemplate
 
 template |<-|
 ← 
