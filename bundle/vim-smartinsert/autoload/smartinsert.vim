@@ -186,8 +186,11 @@ function! SmartInsert()
 												" * last line is to make sure there's no extra line added...
 												" * k is fine because at least there's text inserted from the 
 												" current line
-												execute "normal! " .pos_ns. "|"
-												" //
+												" execute "normal! " .pos_ns. "|"
+												let jump_to_first = pos_current_line  
+												let jump_to_first[2] = pos_ns         " set the cursor to be at the column where the keyword insertion starts...
+												call setpos('.', jump_to_first)       
+
 												" * delete the keyword
 												" * insert the first line in template...
 												execute "normal! c".keyword_length."l" . keyword_template[0]
@@ -229,8 +232,8 @@ function! SmartInsert()
 				if is_found == 1
 								" if there's at least one place holder...
 								if is_placeholder != -1 
-												let jump_to_first = pos_current_line  
-												let jump_to_first[2] = pos_ns         " set the cursor to be at the column where the keyword insertion starts...
+												"// let jump_to_first = pos_current_line  
+												"// let jump_to_first[2] = pos_ns         " set the cursor to be at the column where the keyword insertion starts...
 												call setpos('.', jump_to_first)
 
 												let if_match = search(g:SmartInsertPlaceholder,'c')
@@ -240,6 +243,7 @@ function! SmartInsert()
 								else
 												" move back to where cursors starts...
 												call setpos('.', pos_current_line)
+
 								endif
 				endif
 
