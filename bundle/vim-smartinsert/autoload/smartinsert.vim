@@ -139,6 +139,9 @@ function! SmartInsert()
 												let pos_keyword_inline = getpos('.')
 												let keyword_length = strlen(keyword)
 												let real_keyword_length = pos_current_line[2] - pos_keyword_inline[2] + 1
+												if real_keyword_length < 0 
+																let real_keyword_length = 0
+												endif
 
 												if pos_current_line[2] - pos_keyword_inline[2] >= keyword_length
 																continue
@@ -175,15 +178,6 @@ function! SmartInsert()
 												let opt_tabstop = &tabstop
 												let &tabstop = 1
 
-												" -- reformat text for the lines except the first one...
-												if len(keyword_template) > 1
-																"// [TESTING] 
-																"// a tab character	i_ctrl_v <tab> is inserted...
-																let pad_space = repeat("	",pos_ns - 1)
-																let keyword_template[1:] = map(keyword_template[1:],
-																																									\ 'pad_space.v:val')
-												endif
-
 												" [insertion algorithm]
 												" -- insert text...
 												" * last line is to make sure there's no extra line added...
@@ -193,17 +187,26 @@ function! SmartInsert()
 												let jump_to_first = deepcopy(pos_current_line)  
 												let jump_to_first[2] = pos_ns         " set the cursor to be at the column where the keyword insertion starts...
 												call setpos('.', jump_to_first)       
-
 												" * delete the keyword
 												" * insert the first line in template...
 												execute "normal! c".real_keyword_length."l" . keyword_template[0]
 												" ~ gJ not only joins line but also insert no spaces at all 
 												" ~ compared with J.
 												execute "normal! kgJ"
-												" * move cursor to the next line...
-												execute "normal! o0"
-												execute "normal! c$" . join(keyword_template[1:],"")
-												execute "normal! kgJ"
+
+												" -- reformat text for the lines except the first one...
+												if len(keyword_template) > 1
+																"// [TESTING] 
+																"// a tab character	i_ctrl_v <tab> is inserted...
+																let pad_space = repeat("	",pos_ns - 1)
+																let keyword_template[1:] = map(keyword_template[1:],
+																																									\ 'pad_space.v:val')
+
+																" * move cursor to the next line...
+																execute "normal! o0"
+																execute "normal! c$" . join(keyword_template[1:],"")
+																execute "normal! kgJ"
+												endif
 
 												" -- count the number of placeholders...
 												let is_placeholder = match(keyword_template, g:SmartInsertPlaceholder)
