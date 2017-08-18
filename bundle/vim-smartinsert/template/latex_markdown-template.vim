@@ -6,7 +6,7 @@ endtemplate
 
 
 template |figure|
-\begin{figure}[h!] 
+\begin{figure}[h] 
 \centering 
 \includegraphics[____=____]{____}
 \caption{____} 
