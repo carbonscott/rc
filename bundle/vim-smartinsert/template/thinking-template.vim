@@ -2,7 +2,7 @@ template |original-thought|
 ♠ Thinking can be categorized into two subsets
 - purspose driven thinking
 		- purpose is a set of tests.
-- knowledge based thiinking
+- knowledge based thinking
 		- category
 				- identify something as a member of set
 				- relation between sets
@@ -201,4 +201,8 @@ endtemplate
 
 template |single-therefore|
 ∴
+endtemplate
+
+template |bullet|
+○
 endtemplate
