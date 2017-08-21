@@ -103,16 +103,24 @@ template |)_|
 ⊇ 
 endtemplate
 
-template |includes|
+template |single-includes|
 ⊇ 
+endtemplate
+
+template |includes|
+⊇ ____
 endtemplate
 
 template |(_|
 ⊆ 
 endtemplate
 
-template |subset|
+template |single-subset|
 ⊆ 
+endtemplate
+
+template |subset|
+⊆ ____
 endtemplate
 
 template |((|
@@ -155,8 +163,12 @@ template |!=|
 ≠ 
 endtemplate
 
-template |===|
+template |single-===|
 ≡ 
+endtemplate
+
+template |===|
+≡ ____
 endtemplate
 
 template |equivalent|
@@ -171,8 +183,12 @@ template |>=|
 ≥ 
 endtemplate
 
-template |relate-to|
+template |single-relate-to|
 ∾ 
+endtemplate
+
+template |relate-to|
+∾ ____
 endtemplate
 
 template |::|
@@ -203,6 +219,34 @@ template |single-therefore|
 ∴
 endtemplate
 
-template |bullet|
+template |single-bullet|
 ○
+endtemplate
+
+template |bullet|
+○ ____
+endtemplate
+
+template |single-sub-bullet|
+▷ 
+endtemplate
+
+template |sub-bullet|
+▷ ____
+endtemplate
+
+template |branch|
+┣ ____
+endtemplate
+
+template |example|
+△ ____
+endtemplate
+
+template |right-here|
+☞
+endtemplate
+
+template |bookmark|
+★
 endtemplate
