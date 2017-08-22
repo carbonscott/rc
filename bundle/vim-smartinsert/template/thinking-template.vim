@@ -266,3 +266,101 @@ endtemplate
 template |bookmark|
 ★
 endtemplate
+
+template |times|
+⋅ ____
+endtemplate
+
+template |and|
+∩ ____
+endtemplate
+
+template |or|
+∪ ____
+endtemplate
+
+template |S0|
+⁰
+endtemplate
+
+template |S1|
+¹
+endtemplate
+
+template |S2|
+²
+endtemplate
+
+template |S3|
+³
+endtemplate
+
+template |S4|
+⁴
+endtemplate
+
+template |S5|
+⁵
+endtemplate
+
+template |S6|
+⁶
+endtemplate
+
+template |S7|
+⁷
+endtemplate
+
+template |S8|
+⁸
+endtemplate
+
+template |S9|
+⁹
+endtemplate
+
+template |S-|
+⁻
+endtemplate
+
+# -----
+
+template |s0|
+₀
+endtemplate
+
+template |s1|
+₁
+endtemplate
+
+template |s2|
+₂
+endtemplate
+
+template |s3|
+₃
+endtemplate
+
+template |s4|
+₄
+endtemplate
+
+template |s5|
+₅
+endtemplate
+
+template |s6|
+₆
+endtemplate
+
+template |s7|
+₇
+endtemplate
+
+template |s8|
+₈
+endtemplate
+
+template |s9|
+₉
+endtemplate
