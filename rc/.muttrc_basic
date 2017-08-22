@@ -1,0 +1,24 @@
+# access the edu network
+set imap_user="cwang230@uic.edu"
+set imap_pass="Carbonscott23588532"
+set smtp_url="smtp://smtp.gmail.com:465/"
+set folder = "imaps://imap.gmail.com:993/"
+set spoolfile="+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set ssl_force_tls = yes
+
+# preference for mutt
+set editor=vim
+set sort = 'reverse-date'
+set date_format = "%m/%d %I:%M"
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# navigation
+bind browser gg first-entry
+bind browser G last-entry
+
+# charset
+set charset	= "utf-8"
+set assumed_charset = "utf-8"
+set send_charset = "utf-8:iso-8859-15:us-ascii"
