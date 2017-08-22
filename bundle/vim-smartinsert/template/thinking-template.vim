@@ -280,87 +280,87 @@ template |or|
 endtemplate
 
 template |S0|
-⁰
+⁰____
 endtemplate
 
 template |S1|
-¹
+¹____
 endtemplate
 
 template |S2|
-²
+²____
 endtemplate
 
 template |S3|
-³
+³____
 endtemplate
 
 template |S4|
-⁴
+⁴____
 endtemplate
 
 template |S5|
-⁵
+⁵____
 endtemplate
 
 template |S6|
-⁶
+⁶____
 endtemplate
 
 template |S7|
-⁷
+⁷____
 endtemplate
 
 template |S8|
-⁸
+⁸____
 endtemplate
 
 template |S9|
-⁹
+⁹____
 endtemplate
 
 template |S-|
-⁻
+⁻____
 endtemplate
 
 # -----
 
 template |s0|
-₀
+₀____
 endtemplate
 
 template |s1|
-₁
+₁____
 endtemplate
 
 template |s2|
-₂
+₂____
 endtemplate
 
 template |s3|
-₃
+₃____
 endtemplate
 
 template |s4|
-₄
+₄____
 endtemplate
 
 template |s5|
-₅
+₅____
 endtemplate
 
 template |s6|
-₆
+₆____
 endtemplate
 
 template |s7|
-₇
+₇____
 endtemplate
 
 template |s8|
-₈
+₈____
 endtemplate
 
 template |s9|
-₉
+₉____
 endtemplate
