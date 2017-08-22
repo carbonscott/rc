@@ -123,3 +123,24 @@ endtemplate
 template |map|
 map {____} ____;
 endtemplate
+
+template |package|
+package ____;
+
+# heads ...
+use strict;
+use warnings;
+use feature qw(say);
+
+# load packages ____
+
+# export names for subroutines
+use base 'Exporter';
+our @EXPORT = qw(
+#				____
+);
+
+# subroutines go here ____
+
+1; # Magic true value required at end of module
+endtemplate
