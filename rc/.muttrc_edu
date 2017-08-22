@@ -1,0 +1,7 @@
+set editor=vim
+set imap_user="cwang230@uic.edu"
+set imap_pass="Carbonscott23588532"
+set smtp_url="smtp://smtp.gmail.com:465/"
+set folder = "imaps://imap.gmail.com:993/"
+set spoolfile="+INBOX"
+set ssl_force_tls = yes
