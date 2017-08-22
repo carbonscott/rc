@@ -123,24 +123,40 @@ template |subset|
 ⊆ ____
 endtemplate
 
-template |((|
+template |single-((|
 ⊂ 
 endtemplate
 
-template |))|
+template |((|
+⊂ ____
+endtemplate
+
+template |single-))|
 ⊃ 
 endtemplate
 
-template |<=|
+template |))|
+⊃ ____
+endtemplate
+
+template |single-<=|
 ⇐ 
+endtemplate
+
+template |<=|
+⇐ ____
 endtemplate
 
 template |bold-imply|
 ⇐ 
 endtemplate
 
-template |=>|
+template |single-=>|
 ⇒ 
+endtemplate
+
+template |=>|
+⇒ ____
 endtemplate
 
 template |bold-infer|
