@@ -1,143 +1,85 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# .bashrc
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+# User specific aliases and functions
+alias log="perl ~/.vim/perlscripts/log_choices.pl"
+eval `perl -I ~/perl5/lib/perl5 -Mlocal::lib`
+export MANPATH=$HOME/perl5/man:$MANPATH
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-# in the solarized theme
-color_off=Color_Off='\e[0m'
-t_white='\[\e[1m\e[5m\]' 
-t_orange='\[\e[93m\]'
-export PS1=" \[\e[44m\]\[\e[1m\e[37m\]\w\[\e[m\e[91m\] \[\e[m\]"
-#export PS1="\n\[\e[1m\e[5m\] me\[\e[m\] \[\e[93m\]at\[\e[m \]\[\e[44m\]\[\e[1m\e[37m\]\w\[\e[m \e[91m\]Ψ\[\e[m\]\n\[\e[92m\][\#]: \[\e[m\]"
-#export PS1="\n\[\e[1m\e[37m\] me\[\e[m\] \[\e[93m\]at\[\e[m \]\[\e[44m\]\[\e[1m\e[39m\]\w\[\e[m \e[91m\]Ψ\[\e[m\]\n\[\e[92m\][\#]: \[\e[m\]"
-# if [ "$color_prompt" = yes ]; then
-#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-# else
-#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-# fi
-unset color_prompt force_color_prompt
+# more path for executables
+export PATH="$PATH:/opt/local/bin/"
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# bashrc
+alias sb="source ~/.bashrc"
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+# add more functions...
+source ~/.vim/rc/ide_command.sh
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+# add matlab support...
+alias matlabno="matlab -nodesktop -nosplash "
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias lg='~/Documents/log.sh'
-alias rlg='~/Documents/rlg.sh'
-# @ 17:32,, 6.7.2014
-alias o='xdg-open'
+# add wmctrl control...
+alias wml="wmctrl -l "
+alias wma="wmctrl -a "
+alias wms="wmctrl -s "
+alias wmr="wmctrl -r :ACTIVE: "
+alias wmc="wmctrl -c "
 
-#alias qtcreator='sudo ~/Qt/Tools/QtCreator/bin/qtcreator'
-#
-alias t='touch'
-alias v='vim'
-alias c='cd'
-alias f='fg'
-alias b='bg'
-alias gp='egrep'
-alias vv='gvim'
+# add shortcuts to ls command...
+alias lsd="ls -d "
+alias lst="ls -lrt "
+alias lstd="ls -dlrt "
+alias lsdt="ls -dlrt "
+alias less="less -x1 "
 
-#tmux color
-export TERM="screen-256color"
-alias tmux="tmux -2"
+# add keywords for all project files...
+gppro="R-|L-|P-|B-|S-|I-|O-|D-"
 
-# mount to /mnt
-#sudo mount /dev/sda1 /mnt
+# xargs shortcuts...
+alias sargs="xargs -I it -n 1 "
 
+# tmux shortcuts...
+alias twl="tmux list-windows "
+alias twa="tmux select-window -t "
+alias twf="tmux find-window -t "
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# - resize pane
+alias trpx="tmux resize-pane -x "
+alias trpy="tmux resize-pane -y "
+alias trpl="tmux resize-pane -L "
+alias trpr="tmux resize-pane -R "
+alias trpd="tmux resize-pane -D "
+alias trpu="tmux resize-pane -U "
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+# xdg-open
+alias o="xdg-open "
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+# vmd
+alias vmdte="vmd -dispdev text -e "
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+# video editting
+function 4to3 {
+				input_filename=$(basename $1)
+				filename="${input_filename%.*}"
 
+				ffmpeg -i $input_filename -vn \
+       -acodec libmp3lame -ac 2 -ab 160k -ar 48000 \
+        $filename.mp3
+
+} 
+
+# tmux
+alias tl="tmux list-sessions "
+alias tn="tmux new -s "
+alias td="tmux detach "
+alias ta="tmux attach -t "
+
+# tree
+alias trl="tree -L 1 "
