@@ -146,6 +146,7 @@ alias tl="tmux list-sessions "
 alias tn="tmux new -s "
 alias td="tmux detach "
 alias ta="tmux attach -t "
+alias tk="tmux kill-session -t "
 
 # more tmux 
 alias tbk="source ~/.vim/rc/tmux-notebook.sh"
