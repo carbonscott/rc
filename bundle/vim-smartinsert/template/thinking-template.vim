@@ -55,8 +55,12 @@ template |what-infer|
 ? → ____ 
 endtemplate
 
-template |->|
+template |single-->|
 → 
+endtemplate
+
+template |->|
+→ ____ 
 endtemplate
 
 template |infer|
@@ -71,8 +75,12 @@ template |single|
 single
 endtemplate
 
-template |<-|
+template |single-<-|
 ← 
+endtemplate
+
+template |<-|
+← ____
 endtemplate
 
 template |imply|
@@ -163,8 +171,12 @@ template |bold-infer|
 ⇒ 
 endtemplate
 
-template |==|
+template |single-==|
 ⇔ 
+endtemplate
+
+template |==|
+⇔ ____ 
 endtemplate
 
 template |t=|
@@ -176,7 +188,7 @@ template |tt|
 endtemplate
 
 template |!=|
-≠ 
+≠ ____
 endtemplate
 
 template |single-===|
@@ -363,4 +375,12 @@ endtemplate
 
 template |s9|
 ₉____
+endtemplate
+
+template |Delta|
+∆____
+endtemplate
+
+template |Grad|
+∇____
 endtemplate
