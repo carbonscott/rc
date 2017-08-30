@@ -75,11 +75,11 @@ template |file::slurp|
 use File::Slurp;
 endtemplate
 
-template |write_file|
+template |slurp-write_file|
 write_file(____,{append => ____},____);    # filename, 0/1, data var...
 endtemplate
 
-template |read_file|
+template |slurp-read_file|
 read_file(____,{array_ref=>____});
 endtemplate
 
@@ -143,4 +143,9 @@ our @EXPORT = qw(
 # subroutines go here ____
 
 1; # Magic true value required at end of module
+endtemplate
+
+
+template |array-last_index|
+$#____
 endtemplate
