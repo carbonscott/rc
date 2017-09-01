@@ -147,3 +147,15 @@ endtemplate
 template |use|
 \usepackage{____}
 endtemplate 
+
+template |new-doc|
+\documentclass{article} 
+\usepackage[margin=0.5in]{geometry} 
+\usepackage{graphicx} 
+
+\begin{document}
+
+____
+
+\end{document}
+endtemplate

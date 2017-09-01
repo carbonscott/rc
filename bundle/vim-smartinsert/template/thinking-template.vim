@@ -384,3 +384,21 @@ endtemplate
 template |Grad|
 ∇____
 endtemplate
+
+# greek letter
+
+template |x|
+χ____
+endtemplate
+
+template |chapter|
+✠ ____
+endtemplate
+
+template |chapter-sub|
+※ ____
+endtemplate
+
+template |bullet-sub|
+□ ____
+endtemplate

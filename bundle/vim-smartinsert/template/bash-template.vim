@@ -23,7 +23,7 @@ done
 endtemplate
 
 template |array|
-( ____ )
+( {____} )
 endtemplate
 
 template |argument-list|
