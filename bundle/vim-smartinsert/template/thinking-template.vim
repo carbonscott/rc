@@ -402,3 +402,19 @@ endtemplate
 template |bullet-sub|
 □ ____
 endtemplate
+
+template |single-any|
+∀ 
+endtemplate
+
+template |any|
+∀ ____
+endtemplate
+
+template |single-exists|
+∃ 
+endtemplate
+
+template |exists|
+∃ ____
+endtemplate
