@@ -459,6 +459,7 @@ function! ListSmartKeywords(findstart, base)
 endfunction
 
 
+" Keybindings...
 
 inoremap [q <c-[>:call SmartInsert()<cr>
 command! -nargs=0 ClearKeywords  call ClearKeywords()
@@ -472,22 +473,40 @@ command! -nargs=0 EditTemplates call EditTemplates()
 " looking for placeholder g:SmartInsertPlaceholder 
 nnoremap <silent> [j :call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+nnoremap <silent> <Tab> :call search(g:SmartInsertPlaceholder)<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 snoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+snoremap <silent> <Tab> :<c-u>call search(g:SmartInsertPlaceholder)<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 vnoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+vnoremap <silent> <Tab> :<c-u>call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
 nnoremap <silent> [k :call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+nnoremap <silent> <s-Tab> :call search(g:SmartInsertPlaceholder,'b')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 snoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+snoremap <silent> <s-Tab> :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 vnoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+vnoremap <silent> <s-Tab> :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
 inoremap <silent> [j <c-[>
 																				\:call search(g:SmartInsertPlaceholder)<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+inoremap <silent> <Tab> <c-[>
+																				\:call search(g:SmartInsertPlaceholder)<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 inoremap <silent> [k <c-[>
+																				\:call search(g:SmartInsertPlaceholder,'b')<cr>
+																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+inoremap <silent> <s-Tab> <c-[>
 																				\:call search(g:SmartInsertPlaceholder,'b')<cr>
 																				\:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
 
@@ -507,6 +526,9 @@ inoremap [tl <c-o>:SelectTemplates<cr>
 inoremap [td <c-o>:DeleteSelectedTemplates<cr>
 inoremap [te <c-o>:EditTemplates<cr>
 inoremap [tc <c-o>:CreateTemplates<cr>
+
+" shortcut to expand keywords...
+inoremap [n <c-x><c-u>
 
 finish
 
