@@ -9,7 +9,6 @@ use IO::Prompter;
 my $commands = {
 				slog => "vim ~/Dropbox/OfficeShared/00-Workflow/work-schedule.txt",
 				nlog => "vim ~/Dropbox/OfficeShared/00-Workflow/10-notes.txt",
-				quote=> "vim ~/.vim/settings/quotes",
 				tif  => "vim ~/Dropbox/OfficeShared/00-Workflow/20-today_I_found.txt",
 				exit => "exit"
 };
@@ -20,7 +19,6 @@ while (1) {
 																-menu => {
 																				schedule => "slog",
 																				note     => "nlog",
-																				quote    => "quote",
 																				qq(today I found) => "tif",
 																				exit     => "exit"
 																}, ">";
