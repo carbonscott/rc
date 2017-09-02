@@ -72,3 +72,15 @@ endtemplate
 template |perl_subs|
 perl -p -E "s/____/____/g" ____ > ____
 endtemplate
+
+template |read-file|
+# Load text file lines into a bash array.
+OLD_IFS=$IFS
+IFS=$'\n'
+____=( $(cat "____") )
+IFS=$OLD_IFS
+endtemplate
+
+template |file-linenumbers|
+____=$( wc -l ____ | cut -f1 -d ' ' )
+endtemplate
