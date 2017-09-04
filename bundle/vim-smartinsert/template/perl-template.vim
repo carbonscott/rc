@@ -149,3 +149,27 @@ endtemplate
 template |array-last_index|
 $#____
 endtemplate
+
+template |mce-loop-gather-order|
+my @$1:____;
+my $mce = MCE->new(
+   chunk_size => 100, 
+			max_workers => 4,
+   gather => MCE::Candy::out_iter_array(\@$1:____),
+   user_func => sub {
+      my ($mce, $chunk_ref, $chunk_id) = @_;
+
+						my @$2:____ = ();
+						foreach my $____ ($chunk_ref->@*) {
+										
+										____
+
+										push @$2:____, (____);
+						}
+
+						$mce->gather($chunk_id, @$2:____);
+   }
+);
+
+$mce->process( \@____ );
+endtemplate
