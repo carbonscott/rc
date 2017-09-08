@@ -418,3 +418,7 @@ endtemplate
 template |exists|
 ∃ ____
 endtemplate
+
+template |link|
+◆ ____
+endtemplate
