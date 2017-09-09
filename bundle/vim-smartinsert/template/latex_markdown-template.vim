@@ -159,3 +159,7 @@ ____
 
 \end{document}
 endtemplate
+
+template |subsubsection|
+\subsubsection{____}
+endtemplate
