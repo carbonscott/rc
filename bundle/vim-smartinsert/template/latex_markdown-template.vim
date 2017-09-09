@@ -159,3 +159,7 @@ ____
 
 \end{document}
 endtemplate
+
+template |title-format|
+\titleformat{____}
+endtemplate
