@@ -200,13 +200,4 @@ endtemplate
 template |tikz-draw-curve|
 % [->, line width=,color], coordinates
 \draw [____] (____,____) to [out=____,in=____] (____,____);
-=======
-<<<<<<< HEAD
-template |subsubsection|
-\subsubsection{____}
-=======
-template |title-format|
-\titleformat{____}
->>>>>>> d5bdef2f8ae8912b2919820ee01734938f96e699
->>>>>>> 47a098dd39b17540fe84983708199a4dd942a173
 endtemplate
