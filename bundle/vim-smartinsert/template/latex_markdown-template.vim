@@ -76,7 +76,7 @@ template |documentclass|
 \documentclass{____}
 endtemplate
 
-template |beginblock|
+template |begin|
 \begin{$1:____}
 ____
 \end{$1:____}
@@ -86,7 +86,7 @@ template |author|
 \author{____}
 endtemplate
 
-template |begindoc|
+template |begin-doc|
 \begin{document}
 ____
 \end{document}
@@ -120,7 +120,7 @@ template |geometry|
 \usepackage[margin=____]{geometry}
 endtemplate 
 
-template |itemize|
+template |item|
 \begin{itemize}
 ____
 \end{itemize} 
@@ -132,7 +132,7 @@ ____
 \end{enumerate} 
 endtemplate 
 
-template |im|
+template |i|
 \item ____
 endtemplate 
 
@@ -158,4 +158,45 @@ template |new-doc|
 ____
 
 \end{document}
+endtemplate
+
+template |use-tikz|
+\usepackage{tikz}
+endtemplate
+
+template |tikzpicture|
+\begin{tikzpicture}
+____
+\end{tikzpicture}
+endtemplate
+
+template |tikz-step|
+____. ____;
+endtemplate
+
+template |tikz-draw-line|
+% [->, line width=,color], coordinates
+\draw [____] (____,____) -- (____,____);
+endtemplate
+
+template |tikz-grid|
+\draw [____,help lines] (____,____) -- (____,____);
+endtemplate
+
+template |tikz-uncover|
+\uncover<____>{____}
+endtemplate
+
+template |tikz-node|
+\draw [____] (____,____) node[below]{____} -- (____,____);
+endtemplate
+
+template |tikz-nodetext|
+% text alignment, alignment for text wrt dot
+node[align=____,____]{____}
+endtemplate
+
+template |tikz-draw-curve|
+% [->, line width=,color], coordinates
+\draw [____] (____,____) to [out=____,in=____] (____,____);
 endtemplate
