@@ -27,17 +27,17 @@ template |theme|
 \usetheme{____}
 endtemplate
 
-template |p|
+template |ps|
 \pause
 endtemplate
 
 template |column|
-\begin{column}
-\column{_____\textwidth}
+\begin{columns}
+\column{____\textwidth}
 ____
-\column{_____\textwidth}
+\column{____\textwidth}
 ____
-\end{column}
+\end{columns}
 endtemplate
 
 template |frequent-header|
