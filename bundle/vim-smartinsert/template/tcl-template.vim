@@ -154,3 +154,47 @@ endtemplate
 template |concat|
 [concat ____]
 endtemplate
+
+template |nano-random-angle|
+#!/usr/bin/env tclsh
+
+unset;
+set fp [open "./coords.xyz" r];
+set file_data_all [read $fp];
+set file_data_array [split $file_data_all "\n"];
+close $fp;
+
+# generate 4 numbers for random rotation...
+proc randRotation {} {
+	return [ list [expr rand()] [expr rand()] [expr rand()] [expr rand()*360] ] 
+}
+
+set i 0;
+set all [atomselect top all];
+set residues [lsort -unique [$all get residue]];
+set leng_res [llength $residues];
+set leng_file [llength $file_data_array];
+set cmp [expr $leng_res < $leng_file];
+set leng [expr $cmp?$leng_res:$leng_file];
+foreach each_residue $residues coord $file_data_array {
+	if {$i > $leng - 1} {
+		break;
+	}
+	set sel0 [atomselect top "residue $each_residue"];
+	move_to $sel0 $coord;
+
+	set var [randRotation]
+	set center_pt [measure center $sel0]
+	set ax_vec [lrange $var 0 2]
+	set angle [lindex $var 3]
+	$sel0 move [trans center $center_pt axis $ax_vec $angle deg]
+
+	$sel0 delete
+	set i [expr $i+1]
+
+	if {$i > 1000 && $i%1000 == 0} {
+		puts $i;
+	}
+}
+
+endtemplate
