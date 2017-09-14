@@ -198,3 +198,7 @@ foreach each_residue $residues coord $file_data_array {
 }
 
 endtemplate
+
+template |bg-color|
+color Display Background white 
+endtemplate

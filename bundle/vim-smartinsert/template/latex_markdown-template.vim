@@ -201,3 +201,24 @@ template |tikz-draw-curve|
 % [->, line width=,color], coordinates
 \draw [____] (____,____) to [out=____,in=____] (____,____);
 endtemplate
+
+template |minipage|
+\begin{minipage}[b]{____\textwidth}
+____
+\end{minipage}
+endtemplate
+
+template |2figure|
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{$1:____\textwidth}
+    \includegraphics[width=\textwidth]{____}
+    \caption{____}
+  \end{minipage}
+  \quad
+  \begin{minipage}[b]{$1:____\textwidth}
+    \includegraphics[width=\textwidth]{____}
+    \caption{____}
+  \end{minipage}
+\end{figure}
+endtemplate
