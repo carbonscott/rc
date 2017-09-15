@@ -87,3 +87,39 @@ endtemplate
 template |type-tuple|
 Tuple{____,____}
 endtemplate
+
+template |str-search|
+search(____,____)
+endtemplate
+
+template |str-replace|
+replace(____,____,____)
+endtemplate
+
+template |str-split|
+split(____,____)
+endtemplate
+
+template |c-printf|
+@printf("____",____)
+endtemplate
+
+template |regex-ismatch|
+ismatch(____,____)
+endtemplate
+
+template |regex-match|
+match(____,____)
+endtemplate
+
+template |regex-matchall|
+matchall(____,____)
+endtemplate
+
+template |regex-replace|
+replace(____,____,____)
+endtemplate
+
+template |regex-eachmatch|
+eachmatch(____,____)
+endtemplate
