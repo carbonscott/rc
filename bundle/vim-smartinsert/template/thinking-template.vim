@@ -8,6 +8,7 @@ template |original-thought|
 				- relation between sets
 				- using subset to make a toolkit based on indirection 
 		- order
+				- everything might be ok except for the order of things
 ♠ 1% thinking + 99% geting-work-done ⇒  Make it 
 endtemplate
 
