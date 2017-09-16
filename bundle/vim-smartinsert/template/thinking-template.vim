@@ -423,3 +423,19 @@ endtemplate
 template |link|
 ◆ ____
 endtemplate
+
+template |single-union|
+∪ 
+endtemplate
+
+template |union|
+∪ ____
+endtemplate
+
+template |single-intersect|
+∩ 
+endtemplate
+
+template |intersect|
+∩ ____
+endtemplate
