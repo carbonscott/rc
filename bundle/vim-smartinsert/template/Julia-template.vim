@@ -123,3 +123,7 @@ endtemplate
 template |regex-eachmatch|
 eachmatch(____,____)
 endtemplate
+
+template |array-init|
+Array{____}(____)
+endtemplate
