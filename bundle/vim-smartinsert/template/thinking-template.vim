@@ -427,3 +427,7 @@ endtemplate
 template |intersect|
 ∩ ____
 endtemplate
+
+template |title|
+▒ ____ ▒
+endtemplate

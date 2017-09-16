@@ -529,6 +529,7 @@ inoremap [tc <c-o>:CreateTemplates<cr>
 
 " shortcut to expand keywords...
 inoremap <Tab> <c-x><c-u>
+inoremap [n <c-x><c-u>
 
 finish
 
