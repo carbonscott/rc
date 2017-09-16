@@ -224,8 +224,12 @@ template |::|
 ∷ 
 endtemplate
 
-template |operate-on|
+template |single-operate-on|
 ∙ 
+endtemplate
+
+template |operate-on|
+∙ ____ 
 endtemplate
 
 template |def-operator|
@@ -249,19 +253,15 @@ template |single-therefore|
 endtemplate
 
 template |single-bullet|
-○
+▪
 endtemplate
 
 template |bullet|
-○ ____
+▪ ____
 endtemplate
 
-template |single-sub-bullet|
-▷ 
-endtemplate
-
-template |sub-bullet|
-▷ ____
+template |i|
+▪ ____
 endtemplate
 
 template |branch|
@@ -282,14 +282,6 @@ endtemplate
 
 template |times|
 ⋅ ____
-endtemplate
-
-template |and|
-∩ ____
-endtemplate
-
-template |or|
-∪ ____
 endtemplate
 
 template |S0|
@@ -398,10 +390,6 @@ endtemplate
 
 template |chapter-sub|
 ※ ____
-endtemplate
-
-template |bullet-sub|
-□ ____
 endtemplate
 
 template |single-any|
