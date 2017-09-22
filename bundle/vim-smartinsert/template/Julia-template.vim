@@ -127,3 +127,16 @@ endtemplate
 template |array-init|
 Array{____}(____)
 endtemplate
+
+template |write-file|
+open("____","w") do $1:____
+				for ____ in ____
+								____
+								write($1:____,____)
+				end
+end
+endtemplate
+
+template |join|
+join(____,____)
+endtemplate
