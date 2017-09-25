@@ -105,7 +105,8 @@ function! ReadTemplate(trigger,leadword)
 								return [''] 
 				else
 								let i1 = match(file_array,to_search)
-								let i2 = match(file_array[i1:], BEGIN_LINE."end".a:leadword.END_LINE)
+								"// A weird error, I have to leave a space between index i1 and :
+								let i2 = match(file_array[i1 :], BEGIN_LINE."end".a:leadword.END_LINE)
 								let i2 += i1
 								let expand_array = file_array[i1+1:i2-1]
 								call map(expand_array,'v:val."\n"')
