@@ -111,7 +111,7 @@ my $pm = Parallel::ForkManager->new(____);
 my @jobs = ____;
 
 
-foreach my $id (0..____) {
+foreach my $id (0..$#jobs) {
 				my $pid = $pm->start and next;
 				system($jobs[$id]." > log_".$id) == 0 or die("failed due to ".$?);
 				$pm->finish;
