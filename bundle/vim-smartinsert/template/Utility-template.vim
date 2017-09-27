@@ -5,3 +5,15 @@ endtemplate
 template |what-is-motherboard|
 su -c 'dmidecode -t 2'
 endtemplate
+
+template |awk-file|
+awk '{print ____}' ____
+endtemplate
+
+template |awk-begin|
+BEGIN{____}
+endtemplate
+
+template |awk-if|
+/____/ {____}
+endtemplate
