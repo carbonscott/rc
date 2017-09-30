@@ -100,7 +100,7 @@ template |str-split|
 split(____,____)
 endtemplate
 
-template |c-printf|
+template |printf|
 @printf("____",____)
 endtemplate
 
@@ -139,4 +139,8 @@ endtemplate
 
 template |join|
 join(____,____)
+endtemplate
+
+template |println|
+println(____)
 endtemplate
