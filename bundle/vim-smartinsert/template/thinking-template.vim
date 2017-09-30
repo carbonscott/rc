@@ -1,5 +1,6 @@
 template |original-thought|
-♠ Thinking can be categorized into two subsets
+▒▒▒▒ Thinking ▒▒▒▒
+Thinking can be categorized into two subsets
 - purspose driven thinking
 		- purpose is a set of tests.
 - knowledge based thinking
@@ -9,7 +10,18 @@ template |original-thought|
 				- using subset to make a toolkit based on indirection 
 		- order
 				- everything might be ok except for the order of things
-♠ 1% thinking + 99% geting-work-done ⇒  Make it 
+1% thinking + 99% geting-work-done ⇒  Make it 
+
+▒▒▒▒ Expressing ▒▒▒▒
+Expressing is as important as thinking, often times. 
+Expressing is about layouting abstract thinking so that it can 
+be comprehensible. 
+Layout of idea is more important than notation. 
+The level of understanding is about the position in a layout of 
+comprehensive ideas.
+
+▒▒▒▒ Attitude ▒▒▒▒
+There's something I still don't even know about.
 endtemplate
 
 template |work|
@@ -429,7 +441,7 @@ template |intersect|
 endtemplate
 
 template |title|
-▒ ____ ▒
+▒▒▒▒ ____ ▒▒▒▒
 endtemplate
 
 template |delimiter|
