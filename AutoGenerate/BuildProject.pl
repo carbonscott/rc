@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 use warnings;
@@ -36,11 +36,6 @@ my $command = {
 };
 
 system($$command{buildDir});
-
-# foreach my $cmd (keys %{$command}) {
-	#system($$command{$cmd});
-#	say($$command{$cmd});
-#}
 
 my $rootSource = "~/.vim/AutoGenerate";
 $_ = $rootSource."/".$_ for @files2;

@@ -80,6 +80,10 @@ template |infer|
 → ____
 endtemplate
 
+template |lead-to|
+→ ____
+endtemplate
+
 template |single-infer|
 → 
 endtemplate
@@ -97,6 +101,10 @@ template |<-|
 endtemplate
 
 template |imply|
+← ____
+endtemplate
+
+template |due-to|
 ← ____
 endtemplate
 
@@ -125,11 +133,11 @@ template |)_|
 endtemplate
 
 template |single-includes|
-⊇ 
+∋ 
 endtemplate
 
 template |includes|
-⊇ ____
+∋ ____
 endtemplate
 
 template |(_|
@@ -137,11 +145,11 @@ template |(_|
 endtemplate
 
 template |single-subset|
-⊆ 
+⊂ 
 endtemplate
 
 template |subset|
-⊆ ____
+⊂ ____
 endtemplate
 
 template |single-((|
@@ -158,6 +166,14 @@ endtemplate
 
 template |))|
 ⊃ ____
+endtemplate
+
+template |superset|
+⊃ ____
+endtemplate
+
+template |single-superset|
+⊃ 
 endtemplate
 
 template |single-<=|
@@ -236,11 +252,7 @@ template |::|
 ∷ 
 endtemplate
 
-template |single-operate-on|
-∙ 
-endtemplate
-
-template |operate-on|
+template |it|
 ∙ ____ 
 endtemplate
 
@@ -417,6 +429,10 @@ template |single-exists|
 endtemplate
 
 template |exists|
+∃ ____
+endtemplate
+
+template |ex|
 ∃ ____
 endtemplate
 
