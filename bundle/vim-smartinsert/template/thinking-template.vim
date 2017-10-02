@@ -1,6 +1,6 @@
 template |original-thought|
 ▒▒▒▒ Thinking ▒▒▒▒
-Thinking can be categorized into two subsets
+Thinking can be categorized into three subsets
 - purspose driven thinking
 		- purpose is a set of tests.
 - knowledge based thinking
@@ -10,13 +10,13 @@ Thinking can be categorized into two subsets
 				- using subset to make a toolkit based on indirection 
 		- order
 				- everything might be ok except for the order of things
+- complex thing should be structured and laid out.
 1% thinking + 99% geting-work-done ⇒  Make it 
 
 ▒▒▒▒ Expressing ▒▒▒▒
 Expressing is as important as thinking, often times. 
-Expressing is about layouting abstract thinking so that it can 
+Expressing is about laying out abstract thinking so that it can 
 be comprehensible. 
-Layout of idea is more important than notation. 
 The level of understanding is about the position in a layout of 
 comprehensive ideas.
 
