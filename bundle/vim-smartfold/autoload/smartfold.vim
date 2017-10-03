@@ -34,10 +34,10 @@ function smartfold#run()
 		endif
   endif
 
-		let g:fold_gaps = 1
+		let s:fold_gaps = 0
 
   while s:ln_matched != 0
-		if s:ln_matched - s:ln_last > g:fold_gaps 
+		if s:ln_matched - s:ln_last > s:fold_gaps 
 			call add(s:fold_position,[s:ln_last,s:ln_matched-1])
 		endif
 		" ?:deepcopy;no:-assume-:?$result; #er <= if s:ln_matched == line('$') is true:solved
