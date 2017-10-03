@@ -5,7 +5,7 @@ function smartfold#run()
   call setpos('.',[0,1,1,0])
   let s:search_term_orig = input("Search for: ")
 
-	" ?:empty string...
+	" empty string...
 	if empty(s:search_term_orig) 
 		call setpos('.',s:current_cusor)
 		redraw
@@ -19,7 +19,7 @@ function smartfold#run()
   let s:fold_position = []
   let s:ln_matched = search(s:search_term,'W')
 
-  " prime test if it necessary to search for whole matched string...
+  " prime test if it is necessary to search for whole matched string...
   if s:ln_matched == 0
 		let s:search_term = deepcopy(s:search_term_orig)
 
@@ -34,8 +34,10 @@ function smartfold#run()
 		endif
   endif
 
+		let g:fold_gaps = 1
+
   while s:ln_matched != 0
-		if s:ln_matched - s:ln_last > 2 
+		if s:ln_matched - s:ln_last > g:fold_gaps 
 			call add(s:fold_position,[s:ln_last,s:ln_matched-1])
 		endif
 		" ?:deepcopy;no:-assume-:?$result; #er <= if s:ln_matched == line('$') is true:solved
@@ -45,7 +47,7 @@ function smartfold#run()
 
   "#Bug: if match happened at the last line, do not add it...
   if s:ln_last < line('$')
-		call add(s:fold_position,[s:ln_last,line('$')]) 
+				call add(s:fold_position,[s:ln_last,line('$')]) 
   endif
 
   " eliminate all folds...
@@ -57,7 +59,6 @@ function smartfold#run()
   if len(s:fold_position) > 0
 		for item in s:fold_position
 			execute item[0].','.item[1].'fold'
-			" echo item[0].','.item[1].'fold'
 		endfor
   endif
 	let @/=s:search_term
