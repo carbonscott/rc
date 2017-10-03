@@ -11,7 +11,7 @@ Thinking can be categorized into three subsets
 				- using subset to make a toolkit based on indirection 
 		- order
 				- everything might be ok except for the order of things
-1% thinking + 99% geting-work-done ⇒  Make it 
+99% geting-work-done + 1% thinking ⇒  Make it 
 
 ▒▒▒▒ Expressing ▒▒▒▒
 Expressing is as important as thinking, often times. 
