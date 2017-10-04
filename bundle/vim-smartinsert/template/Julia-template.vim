@@ -2,10 +2,6 @@ template |head|
 #!/usr/bin/env julia
 endtemplate
 
-template |string-concatenation|
-____ * ____
-endtemplate
-
 template |function|
 function ____(____)
 				____
@@ -96,39 +92,7 @@ template |str-replace|
 replace(____,____,____)
 endtemplate
 
-template |str-split|
-split(____,____)
-endtemplate
-
-template |printf|
-@printf("____",____)
-endtemplate
-
-template |regex-ismatch|
-ismatch(____,____)
-endtemplate
-
-template |regex-match|
-match(____,____)
-endtemplate
-
-template |regex-matchall|
-matchall(____,____)
-endtemplate
-
-template |regex-replace|
-replace(____,____,____)
-endtemplate
-
-template |regex-eachmatch|
-eachmatch(____,____)
-endtemplate
-
-template |array-init|
-Array{____}(____)
-endtemplate
-
-template |write-file|
+template |io-write-file|
 open("____","w") do $1:____
 				for ____ in ____
 								____
@@ -141,6 +105,6 @@ template |join|
 join(____,____)
 endtemplate
 
-template |println|
+template |io-println|
 println(____)
 endtemplate
