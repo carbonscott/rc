@@ -26,7 +26,7 @@ The level of understanding is about the position in a layout of
 comprehensive ideas.
 endtemplate
 
-template |think-focus-one-paragraph|
+template |think-in-paragraph|
 event 1 → event 2 → (while ...) event 3
 																		→ (if ...) event 4 → event 5
 																				(else  ) envet 6 → event 7 
