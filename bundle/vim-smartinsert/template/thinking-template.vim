@@ -1,17 +1,22 @@
 template |original-thought|
+▒▒▒▒ Attitude ▒▒▒▒
+Doing things is always hard. Focus on it with all senses. 
+▒▒▒▒ GTD ▒▒▒▒
+99% geting-work-done + 1% thinking ⇒  Make it 
 ▒▒▒▒ Thinking ▒▒▒▒
 Thinking can be categorized into three subsets
-- purspose driven thinking
+- Purspose driven thinking
 		- purpose is a set of tests.
-- complex thing should be structured and laid out.
-- knowledge based thinking
-		- category
+- Complex thing should be structured and laid out in some way.
+		- It cannot be a single robust reason lead to a complex being. 
+		- It must be broken down to a comprehensible level. 
+- Knowledge based thinking
+		- category (what is ...)
 				- identify something as a member of set
 				- relation between sets
 				- using subset to make a toolkit based on indirection 
-		- order
+		- order (primary reason is ...)
 				- everything might be ok except for the order of things
-99% geting-work-done + 1% thinking ⇒  Make it 
 
 ▒▒▒▒ Expressing ▒▒▒▒
 Expressing is as important as thinking, often times. 
@@ -19,9 +24,13 @@ Expressing is about laying out abstract thinking so that it can
 be comprehensible. 
 The level of understanding is about the position in a layout of 
 comprehensive ideas.
+endtemplate
 
-▒▒▒▒ Attitude ▒▒▒▒
-There's something I still don't even know about.
+template |think-focus-one-paragraph|
+event 1 → event 2 → (while ...) event 3
+																		→ (if ...) event 4 → event 5
+																				(else  ) envet 6 → event 7 
+																		=>... (# follow the last indentation to keep attention)
 endtemplate
 
 template |work|
