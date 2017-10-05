@@ -33,6 +33,14 @@ event 1 → event 2 → (while ...) event 3
 																		=>...purpose (# follow the last indentation to keep attention)
 endtemplate
 
+template |,|
+ → ____
+endtemplate
+
+template |;|
+ ⇒ ____
+endtemplate
+
 template |work|
 ♠ 
 endtemplate
