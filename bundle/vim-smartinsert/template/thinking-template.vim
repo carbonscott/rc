@@ -38,7 +38,7 @@ template |,|
 endtemplate
 
 template |;|
- ⇒ ____
+ ⇒  ____
 endtemplate
 
 template |work|
@@ -210,7 +210,7 @@ template |single-=>|
 endtemplate
 
 template |=>|
-⇒ ____
+⇒  ____
 endtemplate
 
 template |bold-infer|
