@@ -132,8 +132,12 @@ function! SmartInsert()
 				" - slice the string for current line...
 				" . no need to use deepcopy when data is sliced...
 				" . the following is an alternative way, but let me stick to strpart()...
-				"// let current_line_sliced = current_line[0:pos_current_line_right[2]]
-				let current_line_sliced = strpart(current_line, 0, pos_current_line_right[2])
+				" . the last index should be off by 1...
+				"// let current_line_sliced = current_line[0:pos_current_line_right[2]-1]
+				let current_line_sliced = strpart(current_line, 0, pos_current_line_right[2]-1)
+
+				" [debug]
+				let g:current_line_sliced = current_line_sliced
 
 				if g:IsLoadedSmartInsert == 0
 								let g:SmartInsertKeywords = []
@@ -145,8 +149,11 @@ function! SmartInsert()
 				for keyword in g:SmartInsertKeywords
 
 								" [TODO] The regex can be put into one variable...
-								if current_line_sliced =~ '^.*'.keyword.'.*$'
+								" [debug] change the mathcing pattern
+								"// if current_line_sliced =~ '^.*'.keyword.'.*$'
+								if current_line_sliced =~ '^.*'.keyword.'$'
 
+												let g:debug_keyword = keyword
 												" keyword is there...
 												" - test if curosr is next to the keyword
 												" - start to search from the current keyword...
@@ -155,7 +162,9 @@ function! SmartInsert()
 												let keyword_length = strlen(keyword)
 												let real_keyword_length = pos_current_line[2] - pos_keyword_inline[2] + 1
 												if real_keyword_length < 0 
-																let real_keyword_length = 0
+																" [debug]
+																"// let real_keyword_length = 0
+																let real_keyword_length = ""
 												endif
 
 												if pos_current_line[2] - pos_keyword_inline[2] >= keyword_length
@@ -200,6 +209,8 @@ function! SmartInsert()
 												call setpos('.', jump_to_first)       
 												" * delete the keyword
 												" * insert the first line in template...
+												" [debug]
+												let g:cmd = "normal! c".real_keyword_length."l" . keyword_template[0]
 												execute "normal! c".real_keyword_length."l" . keyword_template[0]
 												" ~ gJ not only joins line but also insert no spaces at all 
 												" ~ compared with J.
