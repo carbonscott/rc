@@ -56,13 +56,13 @@ open(____,____)
 endtemplate
 
 
-template |write-help|
+template |io-write-help|
 $1:____ = open(____,____)
 $1:____.write(____)
 $1:____.close()
 endtemplate
 
-template |read-help|
+template |io-read-help|
 $1:____ = open(____,____)
 $1:____.read()     # read entire file into one string                        
 $1:____.split()    # it's always useful to split one string into array       
