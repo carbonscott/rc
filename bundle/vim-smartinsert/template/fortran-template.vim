@@ -7,15 +7,22 @@ return
 end function ____
 endtemplate
 
+template |dp|
+integer, parameter :: dp = selected_real_kind(14)      
+endtemplate
+
 template |const-real|
+! real(dp),parameter :: a=1.0_dp
 real(dp),parameter :: ____=_____dp
 endtemplate 
 
 template |const-integer|
+! integer, parameter :: a = 1
 integer, parameter :: ____ = ____
 endtemplate 
 
 template |const-string|
+! character(len=*),parameter :: chars
 character(len=____),parameter :: ____
 endtemplate 
 
@@ -73,23 +80,23 @@ template |const|
 ____, parameter :: ____
 endtemplate
 
-template |print|
+template |io-print|
 print *, ____
 endtemplate
 
-template |read|
+template |file-read|
 open(unit=____, file="____", status="old")
 read(____, *) ____
 close(____) 
 endtemplate
 
-template |write|
+template |file-write|
 open(unit=____, file="____", status="replace")
 write(____, *) ____
 close(____) 
 endtemplate
 
-template |append|
+template |file-append|
 open(unit=____, file="____", position="append", status="old")
 write(____, *) ____
 close(____) 
@@ -103,7 +110,7 @@ call system_clock (count=____)
 print*,'It took',real(____ - ____) / real(____),'sec'
 endtemplate
 
-template |program|
+template |new-program|
 program $1:____
 implicit none
 ____
@@ -125,14 +132,14 @@ template |string-concat|
 write(____,'(I____)') ____ ! str, type, integer...
 endtemplate 
 
-template |intent|
+template |var-intent|
 ____,intent(____) :: ____  ! type, in/out/inout, var...   
 endtemplate 
 
-template |string-id|
+template |string-index|
 ____($1:____:$1:____)
 endtemplate 
 
-template |float-print|
+template |io-float-print|
 print'(a____,f____,a____)','____',____,'____'      
 endtemplate

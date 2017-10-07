@@ -101,6 +101,19 @@ open("____","w") do $1:____
 end
 endtemplate
 
+template |io-read-file|
+open("____") do ____
+				____
+end
+endtemplate
+
+template |io-read-linewise|
+$1:____ = open("____")
+for ____ in eachline($1:____)
+				____
+end
+endtemplate
+
 template |join|
 join(____,____)
 endtemplate
