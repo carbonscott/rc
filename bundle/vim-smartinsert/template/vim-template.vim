@@ -46,3 +46,8 @@ template |command|
 command! -nargs=____ ____ call ____()
 endtemplate
 
+template |for|
+for ____ in ____
+				____
+endfor
+endtemplate
