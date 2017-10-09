@@ -19,12 +19,15 @@ function smartfold#run()
   let s:ln_init=1
   let s:ln_last=1
   let s:fold_position = []
-  let s:ln_matched = search(s:search_term,'W')
+  let s:ln_matched = search(s:search_term,'cW')
+
+		" [debug]
+		let g:ln_matched = s:ln_matched
 
   " prime test if it is necessary to search for a complete string...
   if s:ln_matched == 0
 				let s:search_term = deepcopy(s:search_term_orig)
-				let s:ln_matched = search(s:search_term,'W')
+				let s:ln_matched = search(s:search_term,'cW')
 
 				if s:ln_matched == 0
 						let s:ln_last = line('$')
@@ -41,6 +44,8 @@ function smartfold#run()
 						call add(s:fold_position,[s:ln_last,s:ln_matched-1])
 				endif
 				let s:ln_last = deepcopy(s:ln_matched+1) 
+				" the search function here also moves the cursor 
+				" that's how it ends the while conditional loop...
 				let s:ln_matched = search(s:search_term,'W')
   endwhile
 
