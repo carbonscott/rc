@@ -218,3 +218,7 @@ nnoremap <silent> [t :source ~/.vim/syntax/custom_highlight.vim<CR>
 "// snoremap <c-i> <c-[>yypgv<c-g>
 "// vnoremap <c-i> <c-[>yypgv<c-g>
 
+" unmap not frequently used keystrokes
+" <Nop> means no operation...
+map [[ <Nop>
+map ]] <Nop>
