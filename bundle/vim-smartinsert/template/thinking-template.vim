@@ -4,7 +4,7 @@ Doing things is always hard. Focus on it with all senses.
 ▒▒▒▒ Flow ▒▒▒▒
 Flow brings purpose and action together.
 ... → ... (actions) ⇒  ... (purpose)
-▒▒▒▒ Thinking ▒▒▒▒
+▒▒▒▒ Think and Do ▒▒▒▒
 Thinking can be categorized into two subsets
 - Purspose driven thinking
 		- A series of test
