@@ -1,4 +1,4 @@
-template |original-thought|
+template |about-thought|
 ▒▒▒▒ Attitude ▒▒▒▒
 Doing things is always hard. Focus on it with all senses. 
 However, it happens that rephrasing the same (while loop) will help to solve
@@ -19,13 +19,13 @@ keeping it the exact same thing, rephrasing it brings sutle change that is
 hard to notice but significant in problem sovling.
 endtemplate
 
-template |rephrase|
+template |about-rephrase|
 A lot of achievements also come from rephrasing the same thing. But unlike
 keeping it the exact same thing, rephrasing it brings sutle change that is
 hard to notice but significant in problem sovling.
 endtemplate
 
-template |expression|
+template |about-expression|
 ▒▒▒▒ Expressing ▒▒▒▒
 Expressing is as important as thinking, often times. 
 Expressing is about laying out abstract thinking so that it can 
@@ -39,6 +39,14 @@ event 1 → event 2 → (while ...) event 3
 																		→ (if ...) event 4 → event 5
 																				(else  ) envet 6 → event 7 
 																		=>...purpose (# follow the last indentation to keep attention)
+endtemplate
+
+template |re|
+≈ ____
+endtemplate
+
+template |rephrase|
+≈ ____
 endtemplate
 
 template |,|
