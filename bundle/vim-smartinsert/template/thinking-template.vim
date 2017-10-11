@@ -1,23 +1,19 @@
 template |original-thought|
 ▒▒▒▒ Attitude ▒▒▒▒
 Doing things is always hard. Focus on it with all senses. 
-▒▒▒▒ GTD ▒▒▒▒
-99% geting-work-done + 1% thinking ⇒  Make it 
+▒▒▒▒ Flow ▒▒▒▒
+Flow brings purpose and action together.
+... → ... (actions) ⇒  ... (purpose)
 ▒▒▒▒ Thinking ▒▒▒▒
-Thinking can be categorized into three subsets
+Thinking can be categorized into two subsets
 - Purspose driven thinking
-		- purpose is a set of tests.
-- Complex thing should be structured and laid out in some way.
-		- It cannot be a single robust reason lead to a complex being. 
-		- It must be broken down to a comprehensible level. 
-- Knowledge based thinking
-		- category (what is ...)
-				- identify something as a member of set
-				- relation between sets
-				- using subset to make a toolkit based on indirection 
-		- order (primary reason is ...)
-				- everything might be ok except for the order of things
+		- A series of test
+- Action
+		- Macro action: layout
+		- Micro action: categorize and order
+endtemplate
 
+template |Expression|
 ▒▒▒▒ Expressing ▒▒▒▒
 Expressing is as important as thinking, often times. 
 Expressing is about laying out abstract thinking so that it can 
