@@ -1,6 +1,8 @@
 template |original-thought|
 ▒▒▒▒ Attitude ▒▒▒▒
 Doing things is always hard. Focus on it with all senses. 
+However, it happens that rephrasing the same (while loop) will help to solve
+problem as well.
 ▒▒▒▒ Flow ▒▒▒▒
 Flow brings purpose and action together.
 ... → ... (actions) ⇒  ... (purpose)
@@ -11,9 +13,19 @@ Thinking can be categorized into two subsets
 - Action
 		- Macro action: layout
 		- Micro action: categorize and order
+▒▒▒▒ Rephrae ▒▒▒▒
+A lot of achievements also come from rephrasing the same thing. But unlike
+keeping it the exact same thing, rephrasing it brings sutle change that is
+hard to notice but significant in problem sovling.
 endtemplate
 
-template |Expression|
+template |rephrase|
+A lot of achievements also come from rephrasing the same thing. But unlike
+keeping it the exact same thing, rephrasing it brings sutle change that is
+hard to notice but significant in problem sovling.
+endtemplate
+
+template |expression|
 ▒▒▒▒ Expressing ▒▒▒▒
 Expressing is as important as thinking, often times. 
 Expressing is about laying out abstract thinking so that it can 
