@@ -9,11 +9,11 @@ Flow brings purpose and action together.
 ▒▒▒▒ Think and Do ▒▒▒▒
 Thinking can be categorized into two subsets
 - Purspose driven thinking
-		- A series of test
+		- A series of tests
 - Action
 		- Macro action: layout
-		- Micro action: categorize and order
-▒▒▒▒ Rephrae ▒▒▒▒
+		- Micro action: category and order
+▒▒▒▒ Rephrase ▒▒▒▒
 A lot of achievements also come from rephrasing the same thing. But unlike
 keeping it the exact same thing, rephrasing it brings sutle change that is
 hard to notice but significant in problem sovling.
