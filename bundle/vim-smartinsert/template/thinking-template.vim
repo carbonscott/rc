@@ -15,13 +15,13 @@ Thinking can be categorized into two subsets
 		- Micro action: category and order
 ▒▒▒▒ Rephrase ▒▒▒▒
 A lot of achievements also come from rephrasing the same thing. But unlike
-keeping it the exact same thing, rephrasing it brings sutle change that is
+keeping it the exact same thing, rephrasing it brings subtle change that is
 hard to notice but significant in problem sovling.
 endtemplate
 
 template |about-rephrase|
 A lot of achievements also come from rephrasing the same thing. But unlike
-keeping it the exact same thing, rephrasing it brings sutle change that is
+keeping it the exact same thing, rephrasing it brings subtle change that is
 hard to notice but significant in problem sovling.
 endtemplate
 
