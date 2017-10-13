@@ -222,3 +222,6 @@ nnoremap <silent> [t :source ~/.vim/syntax/custom_highlight.vim<CR>
 " <Nop> means no operation...
 map [[ <Nop>
 map ]] <Nop>
+
+" unmap gH
+noremap gh gH<c-g> 
