@@ -225,3 +225,6 @@ map ]] <Nop>
 
 " unmap gH
 noremap gh gH<c-g> 
+
+" quick print
+noremap [o :g//#<left><left>
