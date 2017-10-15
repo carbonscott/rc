@@ -35,6 +35,11 @@ The level of understanding is about the position in a layout of
 comprehensive ideas.
 endtemplate
 
+template |about-flow|
+A:____ (start) → F1:____ → ... # forward  flow
+Z:____ (desti) ← B1:____ ← ... # backward flow
+endtemplate
+
 template |think-in-paragraph|
 event 1 → event 2 → (while ...) event 3
 																		→ (if ...) event 4 → event 5
