@@ -5,7 +5,8 @@ However, it happens that rephrasing the same (while loop) will help to solve
 problem as well.
 ▒▒▒▒ Flow ▒▒▒▒
 Flow brings purpose and action together.
-... → ... (actions) ⇒  ... (purpose)
+... → F1 (action) ⇒  ... (purpose)    # Forward  flow
+... (purpose) → B1 (action) → ...     # Backward flow
 ▒▒▒▒ Think and Do ▒▒▒▒
 Thinking can be categorized into two subsets
 - Purspose driven thinking
