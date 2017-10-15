@@ -1,7 +1,11 @@
 function! AlignChar()
 				" set the char to align to...
 				let s:dialog = "which char to align: "
-				let s:the_char = input(s:dialog, "#")
+				let s:the_char = input(s:dialog, "")
+
+				if empty(s:the_char) 
+								let s:the_char = '#'
+				endif
 
 				" fig out line numbers of interested lines...
 				let s:l_start = line("'<")
