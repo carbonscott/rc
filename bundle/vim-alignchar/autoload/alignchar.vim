@@ -1,6 +1,6 @@
 function! AlignChar()
 				" set the char to align to...
-				let s:dialog = "which char to align: "
+				let s:dialog   = "which char to align: "
 				let s:the_char = input(s:dialog, "")
 
 				if empty(s:the_char) 
@@ -8,12 +8,13 @@ function! AlignChar()
 				endif
 
 				" fig out line numbers of interested lines...
-				let s:l_start = line("'<")
-				let s:l_end = line("'>")
-				let s:l_ids = sort([s:l_start, s:l_end])
+				let s:l_start        = line("'<")
+				let s:l_end          = line("'>")
+				let s:l_ids          = sort([s:l_start, s:l_end],"f")  " numerical sort...
 				let s:interest_lines = range(s:l_ids[0],s:l_ids[1],1)
 				
 				"[debug]
+				let g:l_ids = s:l_ids
 				let g:interest_lines = s:interest_lines
 
 				" read interesting lines...
@@ -23,11 +24,16 @@ function! AlignChar()
 				endfor
 				let s:data_text = deepcopy(s:yank_text)
 
+				let g:data_text = s:data_text
+
 				" find where comments are...
 				let s:comment_positions = []
 				for each_one in s:data_text
 								call add(s:comment_positions, match(each_one, s:the_char))
 				endfor
+
+				" [debug]
+				let g:comment_positions = s:comment_positions
 
 				" align lines to the rightmost...
 				let s:col_algin = max(s:comment_positions)
