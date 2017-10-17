@@ -29,7 +29,7 @@ function! AlignChar()
 				" find where comments are...
 				let s:comment_positions = []
 				for each_one in s:data_text
-								call add(s:comment_positions, match(each_one, s:the_char) + 1)
+								call add(s:comment_positions, match(each_one, s:the_char) + 1) " match gives the position offset by 1...
 				endfor
 
 				" [debug]
@@ -38,8 +38,10 @@ function! AlignChar()
 				" align lines to the rightmost...
 				let s:col_algin = max(s:comment_positions)
 				for i in range(0,len(s:interest_lines)-1)
-								call setpos('.',[0,s:interest_lines[i],s:comment_positions[i],0])
-								execute "normal! i".repeat(" ",s:col_algin-s:comment_positions[i])
+								if s:comment_positions[i] > 0        " only reposition the token when the line has it...
+												call setpos('.',[0,s:interest_lines[i],s:comment_positions[i],0])
+												execute "normal! i".repeat(" ",s:col_algin-s:comment_positions[i])
+								endif
 				endfor
 
 				redraw
