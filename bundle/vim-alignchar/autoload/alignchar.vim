@@ -29,7 +29,7 @@ function! AlignChar()
 				" find where comments are...
 				let s:comment_positions = []
 				for each_one in s:data_text
-								call add(s:comment_positions, match(each_one, s:the_char))
+								call add(s:comment_positions, match(each_one, s:the_char) + 1)
 				endfor
 
 				" [debug]
