@@ -108,3 +108,9 @@ export_rule = {
 }
 plt.savefig("____", **export_rule)
 endtemplate 
+
+template |io-with|
+with open(____) as $1:____:
+		for ____ in $1:____:
+				____
+endtemplate

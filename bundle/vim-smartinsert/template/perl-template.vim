@@ -2,6 +2,12 @@ template |head|
 #!/usr/bin/env perl
 endtemplate
 
+template |mods|
+use strict;
+use warnings;
+use feature qw(say);
+
+endtemplate
 
 template |if|
 if (____) {
