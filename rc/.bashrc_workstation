@@ -66,6 +66,7 @@ alias trpu="tmux resize-pane -U "
 
 # mathematica
 alias math="/home/scott/Software/Wolfram/bin/MathKernel "
+alias mathematica="/home/scott/Software/Wolfram/bin/Mathematica "
 
 # build a new MSA project...
 alias msar="rsync -vhPur ~/Resources/JOB/* NEW-JOB"
@@ -99,4 +100,25 @@ function sshcd {
 # xdg-open
 alias o="xdg-open "
 
+# topd 
+alias topd="top -d 0.5 "
 
+# mkdir
+alias md="mkdir -p "
+
+# prohub 
+alias prohub="cd /shared/noe4_data1/scott "
+
+# anaconda
+export PATH="$PATH:/opt/anaconda2/bin/"
+
+# notification
+function zt {
+				zenity --info --text=$1
+}
+
+# work
+alias p='cd /shared/noe3_data1/scott/MSA/'
+alias p2='cd /shared/noe4_data1/scott/MSA/'
+alias p3='cd /shared/noe2_data2/scott/MSA/'
+alias chiara='cd /shared/noe5_data1/scott/PRO-Dimmer-Chiara/'
