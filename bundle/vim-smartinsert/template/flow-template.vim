@@ -1,11 +1,11 @@
 template |about-thought|
-▒▒▒▒ Attitude ▒▒▒▒
-Doing things is always hard. Focus on it with all senses. 
 ▒▒▒▒ Flow ▒▒▒▒
-Get me in the flow ⇐ 
+Leave me in the flow ⇐ 
 Flow brings purpose and action together.
 ... → F1 (action) ⇒  ... (purpose)    # Forward  flow
 ... (purpose) → B1 (action) → ...     # Backward flow
+▒▒▒▒ Attitude ▒▒▒▒
+Doing things is always hard. Focus on it with all senses. 
 ▒▒▒▒ Think and Do ▒▒▒▒
 Thinking can be categorized into two subsets
 - Purspose driven thinking
