@@ -8,14 +8,14 @@ template |import-numpy|
 import numpy as np
 endtemplate
 
-template |class|
+template |class-define|
 class ____:
 
 				def __init__(self,____):
 								____
 endtemplate
 
-template |function|
+template |function-define|
 def ____(____):
 				"""____
 				____
@@ -24,7 +24,7 @@ def ____(____):
 endtemplate
 
 
-template |math|
+template |import-math|
 import math
 endtemplate
 
@@ -33,25 +33,25 @@ for ____ in ____:
 				____
 endtemplate
 
-template |dict|
+template |data-dict|
 ____ = {
 				'____' : ____,
 				'____' : ____,
 }
 endtemplate
 
-template |list|
+template |data-list|
 ____ = [
 				____,
 				____,
 ]
 endtemplate
 
-template |listcp|
+template |data-list-comprehension|
 [____ for ____ in ____]
 endtemplate
 
-template |open|
+template |io-open|
 open(____,____)
 endtemplate
 
@@ -69,7 +69,7 @@ $1:____.split()    # it's always useful to split one string into array
 $1:____.close()
 endtemplate
 
-template |npa|
+template |numpy-array|
 np.array([
 				____,
 				____,
@@ -80,15 +80,15 @@ template |import-matplotlib|
 import matplotlib.pyplot as plt
 endtemplate
 
-template |plot|
+template |matplotlib-plot|
 plt.plot(____)
 endtemplate
 
-template |plot.show|
+template |matplotlib-show|
 plt.show()
 endtemplate
 
-template |genfromtxt|
+template |numpy-io-genfromtxt|
 np.genfromtxt('____')
 endtemplate
 
@@ -97,11 +97,11 @@ if ____:
 				____
 endtemplate
 
-template |plt.label|
+template |matplotlib-plt_label|
 plt.____label("____")
 endtemplate 
 
-template |plt.savefig|
+template |matplotlib-plt_savefig|
 export_rule = {
 				"format" : "png",
 				"dpi"    : 600,
@@ -111,6 +111,6 @@ endtemplate
 
 template |io-with|
 with open(____) as $1:____:
-		for ____ in $1:____:
-				____
+				for ____ in $1:____:
+								____
 endtemplate
