@@ -1,22 +1,6 @@
-template |about-thought|
-▒▒▒▒ Flow ▒▒▒▒
-Leave me in the flow ⇐ 
-Flow brings purpose and action together.
-... → F1 (action) ⇒  ... (purpose)    # Forward  flow
-... (purpose) → B1 (action) → ...     # Backward flow
-▒▒▒▒ Attitude ▒▒▒▒
-Doing things is always hard. Focus on it with all senses. 
-▒▒▒▒ Think and Do ▒▒▒▒
-Thinking can be categorized into two subsets
-- Purspose driven thinking
-		- A series of tests
-- Action
-		- Macro action: layout
-		- Micro action: category and order
-▒▒▒▒ Rephrase ▒▒▒▒
-A lot of achievements also come from rephrasing the same thing. But unlike
-keeping it the exact same thing, rephrasing it brings subtle change that is
-hard to notice but significant in problem sovling.
+template |about-read_it|
+Appreciate challenges in the past, appreciate the challenge today. 
+Less distraction, more confidence.
 endtemplate
 
 template |about-rephrase|
@@ -34,7 +18,7 @@ The level of understanding is about the position in a layout of
 comprehensive ideas.
 endtemplate
 
-template |about-communication|
+template |about-speaking|
 Idea → ____ 
 Explanation → 
 				Definition → ____ 
@@ -43,7 +27,15 @@ endtemplate
 
 template |about-flow|
 A:____ → F1:____ → ... # forward  flow
+       → F2:____ → ... # forward  flow
 Z:____ ← B1:____ ← ... # backward flow
+       ← B2:____ ← ... # backward flow
+endtemplate
+
+template |about-thinking|
+Simple thinking is about asking a question and answering it.
+Complex thinking is about layout of thoughts and categoray 
+identification of components.
 endtemplate
 
 template |think-in-paragraph|
