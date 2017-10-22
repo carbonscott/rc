@@ -41,6 +41,7 @@ template |about-thinking|
 Simple thinking is about asking a question and answering it.
 Complex thinking is about layout of thoughts and categoray 
 identification of components.
+Rethinking makes a difference. (draw the flow...)
 endtemplate
 
 template |think-in-paragraph|
