@@ -32,6 +32,10 @@ Z:____ ← B1:____ ← ... # backward flow
        ← B2:____ ← ... # backward flow
 endtemplate
 
+template |about-affinity|
+The affinity of category node.
+endtemplate
+
 template |about-technique|
 Technique is a procedure of accomplishing something so that
 a particular type of problem can be solved.
