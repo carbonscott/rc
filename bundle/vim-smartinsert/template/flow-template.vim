@@ -32,6 +32,11 @@ Z:____ ← B1:____ ← ... # backward flow
        ← B2:____ ← ... # backward flow
 endtemplate
 
+template |about-technique|
+Technique is a procedure of accomplishing something so that
+a particular type of problem can be solved.
+endtemplate
+
 template |about-thinking|
 Simple thinking is about asking a question and answering it.
 Complex thinking is about layout of thoughts and categoray 
