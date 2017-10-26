@@ -63,9 +63,9 @@ $1:____.close()
 endtemplate
 
 template |io-read-help|
-$1:____ = open(____,____)
-$1:____.read()     # read entire file into one string                        
-$1:____.split()    # it's always useful to split one string into array       
+$1:____ = open(____,"r")
+$2:____ = $1:____.read()    # read entire file into one string                        
+____ = $2:____.split("\n")  # it's always useful to split one string into array       
 $1:____.close()
 endtemplate
 
@@ -113,4 +113,12 @@ template |io-with|
 with open(____) as $1:____:
 				for ____ in $1:____:
 								____
+endtemplate
+
+template |re-compile|
+re.compile("____")
+endtemplate
+
+template |re-match|
+____.match("____")
 endtemplate

@@ -32,6 +32,16 @@ Z:____ ← B1:____ ← ... # backward flow
        ← B2:____ ← ... # backward flow
 endtemplate
 
+template |about-complex|
+Complex ---> Layout ---> Breakable ---> (Simple)
+endtemplate
+
+template |about-complex-explain|
+Complex things has a layout, and therefore breakable into simple things. 
+Simple things are what has already known.
+Therefore, appreciate what has been known.
+endtemplate
+
 template |about-affinity|
 The affinity of category node.
 endtemplate
