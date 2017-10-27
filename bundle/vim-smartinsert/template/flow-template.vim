@@ -58,6 +58,10 @@ identification of components.
 Rethinking makes a difference. (draw the flow...)
 endtemplate
 
+template |about-music|
+Beatles's songs are good background music for getting focus. 
+endtemplate
+
 template |think-in-paragraph|
 event 1 → event 2 → (while ...) event 3
 																		→ (if ...) event 4 → event 5
