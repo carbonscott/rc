@@ -37,9 +37,8 @@ Complex ---> Layout ---> Breakable ---> (Simple)
 endtemplate
 
 template |about-complex-explain|
-Complex things has a layout, and therefore breakable into simple things. 
-Simple things are what has already known.
-Therefore, appreciate what has been known.
+Complex things has a layout, and therefore breakable into simple units of thinking. 
+Simple things are what have already known. Appreciate them.
 endtemplate
 
 template |about-affinity|
@@ -52,9 +51,8 @@ a particular type of problem can be solved.
 endtemplate
 
 template |about-thinking|
-Simple thinking is about asking a question and answering it.
-Complex thinking is about layout of thoughts and categoray 
-identification of components.
+Simple unit of thinking is about asking a question and answering it.
+Complex thinking is about layout of simple units of thinking.
 Rethinking makes a difference. (draw the flow...)
 endtemplate
 
@@ -67,6 +65,10 @@ event 1 → event 2 → (while ...) event 3
 																		→ (if ...) event 4 → event 5
 																				(else  ) envet 6 → event 7 
 																		=>...purpose (# follow the last indentation to keep attention)
+endtemplate
+
+template |about-two-paper-method|
+One for layout map, and the other for simple units of thinking. 
 endtemplate
 
 template |re|
