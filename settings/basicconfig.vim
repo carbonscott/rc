@@ -12,7 +12,7 @@ if has("gui_macvim")
 	set guifont=Monaco:h20
 endif
 if has("gui_running") 
-		set guifont=Monaco\ 16
+		set guifont=Monaco\ 12
 endif
 " #}
 " For Linux #{

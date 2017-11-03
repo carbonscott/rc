@@ -1,16 +1,12 @@
-# template gfor
-# 
-# endtemplate
-
 metatemplate |template|
 template |____|
 ____
 endtemplate
 endmetatemplate
 
-template |{}|
-{
-				____
-}
+template |vim-marker|
+____ {{{ ___/ ____ \___
+____
+}}}
 endtemplate
 
