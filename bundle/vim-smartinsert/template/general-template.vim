@@ -10,3 +10,6 @@ ____
 }}}
 endtemplate
 
+template |vim-marker-declare|
+____ vim: fdm=marker
+endtemplate
