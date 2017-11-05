@@ -241,3 +241,13 @@ template |code-highlight|
 ____
 \end{lstlisting}
 endtemplate
+
+template |use-hyperref|
+\usepackage{hyperref}
+endtemplate
+
+template |marker-insert|
+% {{{ ___/ ____ \___
+____
+% }}}
+endtemplate
