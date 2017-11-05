@@ -251,3 +251,7 @@ template |marker-insert|
 ____
 % }}}
 endtemplate
+
+template |marker-last|
+% vim: fdm=marker
+endtemplate
