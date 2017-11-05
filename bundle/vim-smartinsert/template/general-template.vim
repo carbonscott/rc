@@ -5,9 +5,9 @@ endtemplate
 endmetatemplate
 
 template |vim-marker|
-____ {{{ ___/ ____ \___
+$1:____ {{{ ___/ ____ \___
 ____
-}}}
+$1:____ }}}
 endtemplate
 
 template |vim-marker-declare|
