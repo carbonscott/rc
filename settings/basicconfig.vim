@@ -18,7 +18,7 @@ endif
 " For Linux #{
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
 " #}
-set tabstop=1
+set tabstop=4
 set softtabstop=1
 set shiftwidth=2
 set mouse=a

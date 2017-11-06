@@ -3,7 +3,7 @@
 
 template |function|
 def ____(____)
-				____
+	____
 end
 endtemplate
 

@@ -12,33 +12,33 @@ endtemplate
 
 template |for|
 for {____} {____} {____} {
-				____
+	____
 }
 endtemplate
 
 template |proc|
 proc ____ {____} {
-				____
+	____
 }
 endtemplate
 
 template |while|
 while {____} {
-				____
+	____
 }
 endtemplate
 
 template |if|
 if {____} {
-				____
+	____
 }
 endtemplate
 
 template |if-else|
 if {____} {
-				____
+	____
 } else {
-				____
+	____
 }
 endtemplate
 
@@ -85,7 +85,7 @@ endtemplate
 
 template |foreach|
 foreach ____ ____ {
-				____
+	____
 }
 endtemplate
 
@@ -178,7 +178,7 @@ set cmp [expr $leng_res < $leng_file];
 set leng [expr $cmp?$leng_res:$leng_file];
 foreach each_residue $residues coord $file_data_array {
 	if {$i > $leng - 1} {
-		break;
+	break;
 	}
 	set sel0 [atomselect top "residue $each_residue"];
 	move_to $sel0 $coord;
@@ -193,7 +193,7 @@ foreach each_residue $residues coord $file_data_array {
 	set i [expr $i+1]
 
 	if {$i > 1000 && $i%1000 == 0} {
-		puts $i;
+	puts $i;
 	}
 }
 

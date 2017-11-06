@@ -9,7 +9,7 @@ endtemplate
 
 template |tell|
 tell application "____"
-				____
+	____
 end tell
 endtemplate
 

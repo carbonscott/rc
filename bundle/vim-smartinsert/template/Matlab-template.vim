@@ -8,7 +8,7 @@ endtemplate
 
 template |if|
 if ____
-				____
+	____
 end
 endtemplate
 
@@ -18,19 +18,19 @@ endtemplate
 
 template |for|
 for ____=____
-				____
+	____
 end
 endtemplate
 
 template |parfor;|
 parfor ____=____
-				____
+	____
 end
 endtemplate
 
 template |while|
 while ____
-				____
+	____
 end
 endtemplate
 

@@ -21,8 +21,8 @@ endtemplate
 template |about-speaking|
 Idea → ____ 
 Explanation → 
-				Definition → ____ 
-				Layout     → ____ 
+	Definition → ____ 
+	Layout     → ____ 
 endtemplate
 
 template |about-flow|
@@ -62,9 +62,9 @@ endtemplate
 
 template |think-in-paragraph|
 event 1 → event 2 → (while ...) event 3
-																		→ (if ...) event 4 → event 5
-																				(else  ) envet 6 → event 7 
-																		=>...purpose (# follow the last indentation to keep attention)
+		→ (if ...) event 4 → event 5
+		(else  ) envet 6 → event 7 
+		=>...purpose (# follow the last indentation to keep attention)
 endtemplate
 
 template |about-two-paper-method|

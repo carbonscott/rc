@@ -1,12 +1,12 @@
 template |function|
 function! ____(____)
-				____
+	____
 endfunction
 endtemplate
 
 template |if|
 if ____ 
-				____
+	____
 endif
 endtemplate
 
@@ -16,9 +16,9 @@ endtemplate
 
 template |coloring|
 function! WarningWithColor(info,color)
-				execute 'echohl '.a:color
-				echon   a:info
-				execute 'echohl NONE'
+	execute 'echohl '.a:color
+	echon   a:info
+	execute 'echohl NONE'
 endfunction
 endtemplate
 
@@ -48,6 +48,6 @@ endtemplate
 
 template |for|
 for ____ in ____
-				____
+	____
 endfor
 endtemplate

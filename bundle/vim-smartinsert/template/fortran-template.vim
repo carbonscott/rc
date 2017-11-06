@@ -44,7 +44,7 @@ endtemplate
 
 template |if|
 if (____) then
-				____
+	____
 end if
 endtemplate
 
@@ -72,7 +72,7 @@ endtemplate
 
 template |for|
 do ____ = ____, ____ !{
-				____
+	____
 end do !}
 endtemplate
 
