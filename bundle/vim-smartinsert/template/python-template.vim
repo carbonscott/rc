@@ -125,3 +125,15 @@ endtemplate
 template |re-match|
 ____.match("____")
 endtemplate
+
+template |plt-imshow|
+plt.imshow(____)
+endtemplate
+
+template |plt-savefig|
+plt.savefig('____')
+endtemplate
+
+template |skimage-imread|
+skimage.imread(____)
+endtemplate
