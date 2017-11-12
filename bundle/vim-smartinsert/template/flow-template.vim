@@ -6,8 +6,12 @@ endtemplate
 template |about-big-picture|
 Complex being can be understood as a layout of simple rule definitions with
 finite state operations considered.
+
 Layout shows simplification, rule definitions tells category, and finite state
 operations indicate orders. 
+
+Line-wise finite state operations should be like a programming langauge.
+Likewise, language impacts how a person think in terms of finite state operations.
 endtemplate
 
 template |about-rephrase|
