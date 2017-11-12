@@ -3,6 +3,13 @@ Appreciate challenges in the past, appreciate the challenge today.
 Less distraction, more confidence.
 endtemplate
 
+template |about-big-picture|
+Complex being can be understood as a layout of simple rule definitions with
+finite state operations considered.
+Layout shows simplification, rule definitions tells category, and finite state
+operations indicate orders. 
+endtemplate
+
 template |about-rephrase|
 A lot of achievements also come from rephrasing the same thing. But unlike
 keeping it the exact same thing, rephrasing it brings subtle change that is
