@@ -15,6 +15,9 @@ Likewise, language impacts how a person think in terms of finite state operation
 
 Every time only a single finite state operation is done on certain object.
 Different objects will have different types of operations to do. 
+
+Rule definition can be an abstract mathematical expression, an regular
+expression, or a straightforward object mapping/transformation rule.
 endtemplate
 
 template |about-rephrase|
