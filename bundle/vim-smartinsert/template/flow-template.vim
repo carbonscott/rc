@@ -12,6 +12,9 @@ operations indicate orders.
 
 Line-wise finite state operations should be like a programming langauge.
 Likewise, language impacts how a person think in terms of finite state operations.
+
+Every time only a single finite state operation is done on certain object.
+Different objects will have different types of operations to do. 
 endtemplate
 
 template |about-rephrase|
