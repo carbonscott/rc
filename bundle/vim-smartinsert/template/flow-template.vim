@@ -6,7 +6,11 @@ endtemplate
 template |about-big-picture|
 Layout breaks down complex being and restore it by GROUPING OPERATION.
 
-FINITE STATE OPERATION defines how the change of state will go, regardless of CONTROL FLOW.
+FINITE STATE OPERATION defines the change of state with initial state and final
+state. It has nothing to do with CONTROL FLOW.
+
+Sequence/Order diagram (Each node is an operation with operands) is NOT Finite state
+diagram (Each node is just one operand. It separates operation with operand)
 
 Difficulty is a sign to break down it into parts and then put them back by
 GROUPING OPERATION (like logic operation, or group by category, group by repetition). 
