@@ -4,8 +4,8 @@ Less distraction, more confidence.
 endtemplate
 
 template |about-big-picture|
-Layout breaks down complex being and restore it by GROUPING OPERATION, rule
-definitions tells category, and FINITE STATE OPERATIONS indicate orders. 
+Layout breaks down complex being and restore it by GROUPING OPERATION and
+FINITE STATE OPERATIONS indicate orders of finite state transformation. 
 
 Difficulty is a sign to break down it into parts and then put them back by
 GROUPING OPERATION (like logic operation, or group by category). 
