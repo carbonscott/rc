@@ -4,11 +4,12 @@ Less distraction, more confidence.
 endtemplate
 
 template |about-big-picture|
-Layout breaks down complex being and restore it by GROUPING OPERATION and
-FINITE STATE OPERATIONS indicate orders of finite state transformation. 
+Layout breaks down complex being and restore it by GROUPING OPERATION.
+
+FINITE STATE OPERATION defines how the change of state will go, regardless of CONTROL FLOW.
 
 Difficulty is a sign to break down it into parts and then put them back by
-GROUPING OPERATION (like logic operation, or group by category). 
+GROUPING OPERATION (like logic operation, or group by category, group by repetition). 
 
 Line-wise finite state operations should be like a programming langauge.
 Likewise, language impacts how a person think in terms of FINITE STATE OPERATIONS.
