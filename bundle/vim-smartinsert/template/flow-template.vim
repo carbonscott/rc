@@ -24,7 +24,8 @@ Different objects will have different types of operations to do.
 Rule definition can be an abstract mathematical expression, an regular
 expression, or a straightforward object mapping/transformation rule.
 
-The other thing matters in rule definition is labeling/naming. A concise labeling simply tells a whole story by just a name. 
+The other thing matters in rule definition is labeling/naming. A concise
+labeling simply tells a whole story by just a name. 
 endtemplate
 
 template |about-rephrase|
