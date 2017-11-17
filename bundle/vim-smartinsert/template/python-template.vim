@@ -226,3 +226,7 @@ cv2.putText(
 				$thickness:____,
 )
 endtemplate
+
+template |cv2-filter2D|
+cv2.filter2D($image:____, $depth:____, $kernel:____)
+endtemplate
