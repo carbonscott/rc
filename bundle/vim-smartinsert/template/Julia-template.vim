@@ -4,7 +4,7 @@ endtemplate
 
 template |function|
 function ____(____)
-	____
+				____
 end
 endtemplate
 
@@ -22,17 +22,17 @@ endtemplate
 
 template |compound-expresssion|
 begin
-	____
+				____
 end
 endtemplate
 
 template |if|
 if ____
-	____
+				____
 elseif
-	____
+				____
 else
-	____
+				____
 end
 endtemplate
 
@@ -42,19 +42,19 @@ endtemplate
 
 template |while|
 while ____
-	____
+				____
 end
 endtemplate
 
 template |for-=|
 for ____ = ____:____
-	____
+				____
 end
 endtemplate
 
 template |for-in|
 for ____ in ____
-	____
+				____
 end
 endtemplate
 
@@ -76,7 +76,7 @@ endtemplate
 
 template |struct|
 struct ____
-	____
+				____
 end
 endtemplate
 
@@ -94,23 +94,23 @@ endtemplate
 
 template |io-write-file|
 open("____","w") do $1:____
-	for ____ in ____
-		____
-		write($1:____,____)
-	end
+				for ____ in ____
+								____
+								write($1:____,____)
+				end
 end
 endtemplate
 
 template |io-read-file|
 open("____") do ____
-	____
+				____
 end
 endtemplate
 
 template |io-read-linewise|
 $1:____ = open("____")
 for ____ in eachline($1:____)
-	____
+				____
 end
 endtemplate
 

@@ -4,27 +4,27 @@ endtemplate
 
 template |if|
 if ____ then
-	____
+				____
 endtemplate
 
 template |cases|
 cases
-	case: ____
-	____
+				case: ____
+				____
 
-	case: ____
-	____
+				case: ____
+				____
 end cases
 endtemplate
 
 template |while|
 while ____ do 
-	____
+				____
 endtemplate
 
 template |for|
 for ____ do
-	____
+				____
 endtemplate
 
 template |begin|
@@ -36,8 +36,8 @@ endtemplate
 template |procedure|
 procedure ____(____)
 begin
-	____
-	return ____
+				____
+				return ____
 end
 endtemplate
 
