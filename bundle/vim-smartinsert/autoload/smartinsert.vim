@@ -15,7 +15,6 @@ function! CompSize(s1,s2)
 	return l1 >= l2 ? -1 : 1
 endfunction
 
-
 " This function is used to read all keywords in the template file.
 function! ReadAndComplete(leadword)
 	let keyword_pattern = "|".".*"."|"
@@ -144,6 +143,16 @@ function! SmartInsert()
 		call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
 	endif
 
+	" - start rewriting text...
+	" -- turn off some options...
+	let opt_indent  = &autoindent
+	let &autoindent = 0
+	let opt_formatoptions = &formatoptions
+	let &formatoptions = ""
+ let opt_expandtab = &expandtab
+ let &expandtab = 1
+	let opt_tabstop = &tabstop
+
 	" keep checking if the keyword is in the line...
 	let is_found = 0
 	for keyword in g:SmartInsertKeywords
@@ -189,15 +198,6 @@ function! SmartInsert()
 			" - position of the first letter in keyword...
 			let pos_ns = pos_current_line[2] - real_keyword_length + 1
 
-			" - start rewriting text...
-			" -- turn off some options...
-			let opt_indent  = &autoindent
-			let &autoindent = 0
-			let opt_formatoptions = &formatoptions
-			let &formatoptions = ""
-			let opt_tabstop = &tabstop
-			let &tabstop = 1
-
 			" [insertion algorithm]
 			" -- insert text...
 			" * last line is to make sure there's no extra line added...
@@ -219,7 +219,8 @@ function! SmartInsert()
 			" -- reformat text for the lines except the first one...
 			if len(keyword_template) > 1
 				"// [TESTING] 
-				"// a tab character	i_ctrl_v <tab> is inserted...
+				"// a tab character "	" i_ctrl_v <tab> is inserted...
+				"// let pad_space = repeat(" ",(pos_ns - 1)*opt_tabstop)
 				let pad_space = repeat("	",pos_ns - 1)
 				let keyword_template[1:] = map(keyword_template[1:],
 											\ 'pad_space.v:val')
@@ -233,16 +234,17 @@ function! SmartInsert()
 			" -- count the number of placeholders...
 			let is_placeholder = match(keyword_template, g:SmartInsertPlaceholder)
 
-			" -- recover options...
-			let &autoindent = opt_indent
-			let &formatoptions = opt_formatoptions
-			let &tabstop = opt_tabstop
-
 			" stop searching for the next one...
 			let is_found = 1
 			break
 		endif
 	endfor
+
+	" -- recover options...
+	let &autoindent = opt_indent
+	let &formatoptions = opt_formatoptions
+	"// let &tabstop = opt_tabstop
+ let &expandtab = opt_expandtab
 
 	" read the template again to get the warning info...
 	if is_found == 0

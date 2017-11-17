@@ -20,6 +20,7 @@ endif
 " #}
 set tabstop=1
 set softtabstop=1
+set expandtab
 set shiftwidth=2
 set mouse=a
 set nolist
