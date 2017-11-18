@@ -1,13 +1,8 @@
-template |about-read_it|
-Appreciate challenges in the past, appreciate the challenge today. 
-Less distraction, more confidence.
-endtemplate
-
 template |about-big-picture|
 Layout breaks down complex being and restore it by GROUPING OPERATION.
 
-FINITE STATE OPERATION defines the change of state with initial state and final
-state. It has nothing to do with CONTROL FLOW.
+FINITE STATE OPERATION (Logic Derivation) defines the change of state with
+initial state and final state. It has nothing to do with CONTROL FLOW.
 
 Sequence/Order diagram (Each node is an operation with operands) is NOT Finite state
 diagram (Each node is just one operand. It separates operation with operand)
@@ -26,6 +21,11 @@ expression, or a straightforward object mapping/transformation rule.
 
 The other thing matters in rule definition is labeling/naming. A concise
 labeling simply tells a whole story by just a name. 
+endtemplate
+
+template |about-order_of_thinking|
+Starts from Memoization, and use Logic Derivation (state transformation) and
+grouping operation to construct a layout of thought.
 endtemplate
 
 template |about-rephrase|
