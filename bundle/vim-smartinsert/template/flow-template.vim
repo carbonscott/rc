@@ -1,31 +1,69 @@
+template |about-description|
+Description is static.
+Description layouts
+* Instance ⊂  Representaiton
+* Value    ⊂  Category
+
+Description scenarios
+* Value    :-> Value
+* Value    :-> Category
+* Category :-> Category
+endtemplate
+
+template |about-state|
+State (description) is static until transformed according to
+well-defined laws (:=transformation rules). Make state transform
+simple(:=one input, one output). 
+
+Some state cannot be achieved by simple transformations, but can be
+achieved by grouping different states(:=layout of several well
+defined states). 
+endtemplate
+
+template |about-grouping|
+Grouping technique
+* Logic-OR : e.g. crontab jobs scheduling
+* Logic-AND: e.g. filtering
+* Logic-NOT: the other way around
+* By Category: grouping static states
+* By Repetition: Some state can be achieved by repeating doing
+                 something.
+endtemplate
+
 template |about-big-picture|
 Layout breaks down complex being and restore it by GROUPING OPERATION.
 
-FINITE STATE OPERATION (Logic Derivation) defines the change of state with
-initial state and final state. It has nothing to do with CONTROL FLOW.
+FINITE STATE OPERATION (Logic Derivation) defines the change of state
+with initial state and final state. It has nothing to do with CONTROL
+FLOW.
 
-Sequence/Order diagram (Each node is an operation with operands) is NOT Finite state
-diagram (Each node is just one operand. It separates operation with operand)
+Sequence/Order diagram (Each node is an operation with operands) is
+NOT Finite state diagram (Each node is just one operand. It separates
+operation with operand)
 
-Difficulty is a sign to break down it into parts and then put them back by
-GROUPING OPERATION (like logic operation, or group by category, group by repetition). 
+Difficulty is a sign to break down it into parts and then put them
+back by GROUPING OPERATION (like logic operation, or group by
+category, group by repetition). 
 
-Line-wise finite state operations should be like a programming langauge.
-Likewise, language impacts how a person think in terms of FINITE STATE OPERATIONS.
+Line-wise finite state operations should be like a programming
+langauge.  Likewise, language impacts how a person think in terms of
+FINITE STATE OPERATIONS.
 
-Every time only a single finite state operation is done on certain object.
-Different objects will have different types of operations to do. 
+Every time only a single finite state operation is done on certain
+object.  Different objects will have different types of operations to
+do. 
 
 Rule definition can be an abstract mathematical expression, an regular
 expression, or a straightforward object mapping/transformation rule.
 
-The other thing matters in rule definition is labeling/naming. A concise
-labeling simply tells a whole story by just a name. 
+The other thing matters in rule definition is labeling/naming. A
+concise labeling simply tells a whole story by just a name. 
 endtemplate
 
 template |about-order_of_thinking|
-Starts from Memoization, and use Logic Derivation (state transformation) and
-grouping operation to construct a layout of thought.
+Starts from Memoization, and use Logic Derivation (state
+transformation) and grouping operation to construct a layout of
+thought.
 endtemplate
 
 template |about-rephrase|
@@ -62,8 +100,9 @@ Complex ---> Layout ---> Breakable ---> (Simple)
 endtemplate
 
 template |about-complex-explain|
-Complex things has a layout, and therefore breakable into simple units of thinking. 
-Simple things are what have already known. Appreciate them.
+Complex things has a layout, and therefore breakable into simple units
+of thinking.  Simple things are what have already known. Appreciate
+them.
 endtemplate
 
 template |about-affinity|
@@ -71,8 +110,8 @@ The affinity of category node.
 endtemplate
 
 template |about-technique|
-Technique is a procedure of accomplishing something so that
-a particular type of problem can be solved.
+Technique is a procedure of accomplishing something so that a
+particular type of problem can be solved.
 endtemplate
 
 template |about-thinking|
