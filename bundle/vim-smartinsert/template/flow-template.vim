@@ -1,4 +1,11 @@
-template |about-description|
+template |about_state_operation|
+State operations
+* Describing state
+* Transform state
+* Grouping state
+endtemplate
+
+template |about-state_description|
 Description is static.
 Description layouts
 * Instance ⊂  Representaiton
@@ -10,24 +17,36 @@ Description scenarios
 * Category :-> Category
 endtemplate
 
-template |about-state|
+template |about-state_transformation|
 State (description) is static until transformed according to
-well-defined laws (:=transformation rules). Make state transform
-simple(:=one input, one output). 
+well-defined laws (:=transformation rules). 
+
+Make state transformatin simple(:=one input, one output). 
+
+State transformation is linear/one dimensional.
 
 Some state cannot be achieved by simple transformations, but can be
-achieved by grouping different states(:=layout of several well
-defined states). 
+achieved by grouping different states(:=layout of several well defined
+states). 
 endtemplate
 
-template |about-grouping|
+template |about-state_grouping|
 Grouping technique
 * Logic-OR : e.g. crontab jobs scheduling
 * Logic-AND: e.g. filtering
 * Logic-NOT: the other way around
 * By Category: grouping static states
-* By Repetition: Some state can be achieved by repeating doing
-                 something.
+* By Recursion: Some state can be achieved by repeating a simple unit
+                of state. 
+                e.g. Harmonics
+                e.g. It's a logic-or operation on a span of space and
+                     time
+endtemplate
+
+template |about-purpose|
+Purpose is a final state to reach. Action is taken to approach there,
+including those state operations. So the result of action can be
+reaching a new state.
 endtemplate
 
 template |about-big-picture|
