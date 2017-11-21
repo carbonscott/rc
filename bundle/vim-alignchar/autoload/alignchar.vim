@@ -1,51 +1,56 @@
 function! AlignChar()
-				" set the char to align to...
-				let s:dialog   = "which char to align: "
-				let s:the_char = input(s:dialog, "")
+    " set the char to align to...
+    let s:dialog   = "which char to align: "
+    let s:the_char = input(s:dialog, "")
+    if empty(s:the_char) 
+        let s:the_char = '#'
+    endif
 
-				if empty(s:the_char) 
-								let s:the_char = '#'
-				endif
+    " fig out line numbers of interested lines...
+    let s:l_start        = line("'<")
+    let s:l_end          = line("'>")
+    let s:l_ids          = sort([s:l_start, s:l_end],"f")  " numerical sort...
+    let s:interest_lines = range(s:l_ids[0],s:l_ids[1],1)
+    
+    " give a starting point of matching... [working here]
+    let s:current_pos = getpos('.')
+    echo s:current_pos
+    let s:match_start = s:current_pos[2] - 1 
 
-				" fig out line numbers of interested lines...
-				let s:l_start        = line("'<")
-				let s:l_end          = line("'>")
-				let s:l_ids          = sort([s:l_start, s:l_end],"f")  " numerical sort...
-				let s:interest_lines = range(s:l_ids[0],s:l_ids[1],1)
-				
-				"[debug]
-				let g:l_ids = s:l_ids
-				let g:interest_lines = s:interest_lines
+    "[debug]
+    let g:l_ids = s:l_ids
+    let g:interest_lines = s:interest_lines
 
-				" read interesting lines...
-				let s:yank_text = []
-				for line in s:interest_lines
-								call add(s:yank_text,getline(line))
-				endfor
-				let s:data_text = deepcopy(s:yank_text)
+    " read interesting lines...
+    let s:yank_text = []
+    for line in s:interest_lines
+        call add(s:yank_text,getline(line))
+    endfor
+    let s:data_text = deepcopy(s:yank_text)
 
-				let g:data_text = s:data_text
+    let g:data_text = s:data_text
 
-				" find where comments are...
-				let s:comment_positions = []
-				for each_one in s:data_text
-								call add(s:comment_positions, match(each_one, s:the_char) + 1) " match gives the position offset by 1...
-				endfor
+    " find where comments are...
+    let s:comment_positions = []
+    for each_one in s:data_text
+        call add(s:comment_positions, match(each_one, s:the_char, s:match_start) + 1) " match gives the position offset by 1...
+    endfor
 
-				" [debug]
-				let g:comment_positions = s:comment_positions
+    " [debug]
+    let g:comment_positions = s:comment_positions
 
-				" align lines to the rightmost...
-				let s:col_algin = max(s:comment_positions)
-				for i in range(0,len(s:interest_lines)-1)
-								if s:comment_positions[i] > 0        " only reposition the token when the line has it...
-												call setpos('.',[0,s:interest_lines[i],s:comment_positions[i],0])
-												execute "normal! i".repeat(" ",s:col_algin-s:comment_positions[i])
-								endif
-				endfor
+    " align lines to the rightmost...
+    let s:col_algin = max(s:comment_positions)
+    for i in range(0,len(s:interest_lines)-1)
+        " only reposition the token when the line has it...
+        if s:comment_positions[i] > 0        
+            call setpos('.',[0,s:interest_lines[i],s:comment_positions[i],0])
+            execute "normal! i".repeat(" ",s:col_algin-s:comment_positions[i])
+        endif
+    endfor
 
-				redraw
-				return
+    redraw
+    return
 endfunction
 
 command! -nargs=0 AlignChar call AlignChar()
