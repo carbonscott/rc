@@ -603,7 +603,11 @@ template |intersect|
 endtemplate
 
 template |title|
-▒▒▒▒ ____ ▒▒▒▒
+___/ ____ \___
+endtemplate
+
+template |section|
+___/ ____ \___
 endtemplate
 
 template |delimiter|

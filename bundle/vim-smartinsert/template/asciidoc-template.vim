@@ -63,3 +63,15 @@ ID,FName,LName,Address,Phone
 2 ,X,Y,"A,B",45678
 |===========================
 endtemplate
+
+template |options|
+[options="____"]
+endtemplate
+
+template |options-interactive|
+[options="interactive"]
+endtemplate
+
+template |checkbox-item|
+* [ ] ____
+endtemplate
