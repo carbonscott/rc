@@ -233,3 +233,20 @@ endtemplate
 template |cv2-matchShape|
 cv2.matchShapes($template:____,$target:____,____,____)
 endtemplate
+
+template |cv2-HoughLines|
+cv2.HoughLines($image:____,$accuracy1:____,$accuracy2:____,$threshold:____)
+endtemplate
+
+template |cv2-cornerHarris|
+cv2.cornerHarris($image:____,____,____,____)
+endtemplate
+
+template |cv2-SIFT|
+cv2.SIFT()
+endtemplate
+
+template |cv2-drawKeypoints|
+cv2.drawKeypoints($image:____,$keypoints:____,
+flag=DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+endtemplate

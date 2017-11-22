@@ -628,3 +628,7 @@ template |reference|
 ∙ ____
 endtemplate
 
+
+template |micro|
+μ____
+endtemplate
