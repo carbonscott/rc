@@ -247,6 +247,22 @@ cv2.SIFT()
 endtemplate
 
 template |cv2-drawKeypoints|
-cv2.drawKeypoints($image:____,$keypoints:____,
-flag=DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+cv2.drawKeypoints($image:____,$keypoints:____,0,
+flags=cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+endtemplate
+
+template |cv2-FastFeatureDetector_create|
+cv2.FastFeatureDetector_create()
+endtemplate
+
+template |cv2-ORB|
+cv2.ORB_create()
+endtemplate
+
+template |cv2-xfeatures2d-BriefDescriptorExtractor_create|
+cv2.xfeatures2d.BriefDescriptorExtractor_create()
+endtemplate
+
+template |cv2-xfeatures2d-StarDetector_create|
+cv2.xfeatures2d.StarDetector_create()
 endtemplate
