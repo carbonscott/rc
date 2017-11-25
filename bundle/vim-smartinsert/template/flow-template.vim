@@ -51,6 +51,7 @@ what's going on. There's no clear layout/grouping, no strict state
 definition or well-defined linear transformation of state. Keep
 mimicing doing something and seek understanding along with it. 
 We are always micmicing ourselves or even from anything not so clear.
+Mimicing something comes with a lot of fun.
 endtemplate
 
 template |about-purpose|
