@@ -45,11 +45,12 @@ Grouping technique
 endtemplate
 
 template |about-mimicing|
-Mimicing doing something is the first step of learning. It can be done
-even before mind is able to understand what's going on. There's no
-clear layout/grouping, no strict state definition or well-defined
-linear transformation of state. Keep mimicing doing something and seek
-understanding along with it. 
+Mimicing doing something can be helpful when we are not sure what
+exactly to do. It can be done even before mind is able to understand
+what's going on. There's no clear layout/grouping, no strict state
+definition or well-defined linear transformation of state. Keep
+mimicing doing something and seek understanding along with it. 
+We are always micmicing ourselves or even from anything not so clear.
 endtemplate
 
 template |about-purpose|
