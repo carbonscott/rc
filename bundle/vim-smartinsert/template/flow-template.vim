@@ -32,6 +32,7 @@ endtemplate
 
 template |about-state_grouping|
 Grouping technique
+* Logic-Inference_with_Probability: Assumption -- xx % --> Conclusion
 * Logic-OR : e.g. crontab jobs scheduling
 * Logic-AND: e.g. filtering
 * Logic-NOT: the other way around
@@ -41,6 +42,13 @@ Grouping technique
                 e.g. Harmonics
                 e.g. It's a logic-or operation on a span of space and
                      time
+endtemplate
+
+template |about-mimicing|
+Mimicing doing something is the first step of learning. It can be done even
+before mind is able to understand what's going on. There's no layout/grouping,
+no clear state definition or linear transformation of state. Keep mimicing 
+doing something and seek understanding along with it. 
 endtemplate
 
 template |about-purpose|
