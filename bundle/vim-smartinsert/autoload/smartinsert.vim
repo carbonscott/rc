@@ -456,18 +456,18 @@ function! ListSmartKeywords(findstart, base)
      return start
   else
     if g:IsLoadedSmartInsert == 0
-      let g:SmartInsertKeywords = []
-      call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
+        let g:SmartInsertKeywords = []
+        call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
     endif
 
      " find keywords matching with "a:base"
      for m in g:SmartInsertKeywords
-         if m =~ '^' . a:base
-        call complete_add(m)
-         endif
-         if complete_check()
-        break
-         endif
+       if m =~ '^' . a:base
+         call complete_add(m)
+       endif
+       if complete_check()
+         break
+       endif
      endfor
      return []
     endif
