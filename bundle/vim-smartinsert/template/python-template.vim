@@ -1,5 +1,6 @@
 template |head|
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 ____
 endtemplate
