@@ -17,4 +17,10 @@ then
 
     # Notes
     export NOTE="/home/scott/Dropbox/01-MyNotes"
+
+    # Teaching
+    export TA="/home/scott/Dropbox/03-College/TA"
+
+    # Coursework
+    export TA="/home/scott/Dropbox/03-College/Courses"
 fi
