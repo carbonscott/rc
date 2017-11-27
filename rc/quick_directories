@@ -22,5 +22,6 @@ then
     export TA="/home/scott/Dropbox/03-College/TA"
 
     # Coursework
-    export Course="/home/scott/Dropbox/03-College/Courses"
+    export COURSE="/home/scott/Dropbox/03-College/Courses"
+    export COURSE_Chem559="/home/scott/Dropbox/03-College/Courses/Chem559"
 fi
