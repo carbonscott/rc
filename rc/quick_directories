@@ -1,0 +1,20 @@
+# sushi...
+if [ $HOSTNAME == "sushi" ]
+then
+    # Books and Clips...
+    export BOOK="/home/scott/Dropbox/40-Books_Clips"
+    export BOOK_OS="/home/scott/Dropbox/40-Books_Clips/OS"
+    export BOOK_Vim="/home/scott/Dropbox/40-Books_Clips/Vim"
+    export BOOK_Web="/home/scott/Dropbox/40-Books_Clips/Web"
+    export BOOK_Gnuplot="/home/scott/Dropbox/40-Books_Clips/gnuplot"
+    export BOOK_Python="/home/scott/Dropbox/40-Books_Clips/Python"
+    export BOOK_Perl="/home/scott/Dropbox/40-Books_Clips/Perl"
+    export BOOK_English="/home/scott/Dropbox/40-Books_Clips/English"
+    export BOOK_Professional="/home/scott/Dropbox/40-Books_Clips/Professional"
+
+    # Projects
+    export PRO="/home/scott/Dropbox/20-Pockets"
+
+    # Notes
+    export NOTE="/home/scott/Dropbox/01-MyNotes"
+fi
