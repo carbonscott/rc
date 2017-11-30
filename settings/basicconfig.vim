@@ -50,7 +50,7 @@ set backspace=indent,eol,start
 set path=**
 
 " turn off viminfo...
-setlocal viminfo=
+"// setlocal viminfo=
 
 " search highlight
 set incsearch
