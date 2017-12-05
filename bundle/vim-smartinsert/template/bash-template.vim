@@ -84,3 +84,7 @@ endtemplate
 template |file-linenumbers|
 ____=$( wc -l ____ | cut -f1 -d ' ' )
 endtemplate
+
+template |string-cmp|
+$var:____ == *"$str:____"*
+endtemplate

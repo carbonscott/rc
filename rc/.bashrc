@@ -22,9 +22,6 @@ alias sb="source ~/.bashrc"
 # add more functions...
 source ~/.vim/rc/ide_command.sh
 
-# add matlab support...
-alias matlabno="matlab -nodesktop -nosplash "
-
 # add wmctrl control...
 alias wml="wmctrl -l "
 alias wma="wmctrl -a "
@@ -46,9 +43,10 @@ gppro="R-|L-|P-|B-|S-|I-|O-|D-"
 alias sargs="xargs -I it -n 1 "
 
 # tmux shortcuts...
-alias twl="tmux list-windows "
-alias twa="tmux select-window -t "
-alias twf="tmux find-window -t "
+# - swap pane
+alias tsp="tmux swap-pane -t "
+alias tspu="tmux swap-pane -U "
+alias tspd="tmux swap-pane -D "
 
 # - resize pane
 alias trpx="tmux resize-pane -x "
@@ -58,28 +56,20 @@ alias trpr="tmux resize-pane -R "
 alias trpd="tmux resize-pane -D "
 alias trpu="tmux resize-pane -U "
 
-# xdg-open
-alias o="xdg-open "
+# rename vi to vim
+alias vi="/usr/bin/vim"
 
-# vmd
-alias vmdte="vmd -dispdev text -e "
+# setup xclip
+alias pbcopy="xclip -sel clip"
 
-# video editting
-function 4to3 {
-				input_filename=$(basename $1)
-				filename="${input_filename%.*}"
+# PATH for external package...
+if [ $PATH == *"/opt/anaconda2/bin"* ]
+then
+    export PATH=/opt/anaconda2/bin:$PATH
+fi
 
-				ffmpeg -i $input_filename -vn \
-       -acodec libmp3lame -ac 2 -ab 160k -ar 48000 \
-        $filename.mp3
+# quick project
+alias pocket="cd ~/Dropbox/20-Pockets"
 
-} 
-
-# tmux
-alias tl="tmux list-sessions "
-alias tn="tmux new -s "
-alias td="tmux detach "
-alias ta="tmux attach -t "
-
-# tree
-alias trl="tree -L 1 "
+# load quick directories...
+source ~/.vim/rc/quick_directories
