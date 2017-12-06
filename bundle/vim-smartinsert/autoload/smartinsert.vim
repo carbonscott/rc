@@ -222,7 +222,7 @@ function! SmartInsert()
         "// [TESTING] 
         "// a tab character "  " i_ctrl_v <tab> is inserted...
         "// let pad_space = repeat(" ",(pos_ns - 1)*opt_tabstop)
-        let pad_space = repeat("  ",pos_ns - 1)
+        let pad_space = repeat(" ",pos_ns - 1)
         let keyword_template[1:] = map(keyword_template[1:],
                       \ 'pad_space.v:val')
 
