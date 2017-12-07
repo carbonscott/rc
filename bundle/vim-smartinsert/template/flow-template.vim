@@ -643,3 +643,7 @@ endtemplate
 template |micro|
 μ____
 endtemplate
+
+template |D|
+Δ____
+endtemplate
