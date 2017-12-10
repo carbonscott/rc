@@ -21,7 +21,7 @@ my @dirs = qw(Chapters Figures References Tests); # dirs to create
 $_ = $project."/".$_ for @dirs;
 
 # add files in the argument of qw {
-my @files = qw(header.sty make.pl refresh.pl refresh_latex.pl); # files to cp
+my @files = qw(header.sty make.pl refresh.pl refresh_latex.pl refresh_html.pl); # files to cp
 # }
 
 my @files2 = @files;
