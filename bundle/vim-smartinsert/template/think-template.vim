@@ -42,6 +42,7 @@ Grouping technique
                 e.g. Harmonics
                 e.g. It's a logic-or operation on a span of space and
                      time
+* If it's not simple enough to aha, break it down and group them.
 endtemplate
 
 template |about-mimicing|
