@@ -37,11 +37,7 @@ function! wordsubstitute#run3()
 		execute "normal! gv\"ay"
 
 		let s:search_block = @a
-		let s:search_block = substitute(s:search_block,
-																	\ '\([.~/()\?\/\\]\)',
-																	\	'\="\\".submatch(0)',
-																	\ 'g'
-																	\)
+		let s:search_block = escape(s:search_block,'.~/()\/[]')
 
 		let @/ = s:search_block
 		let s:search_cmd = "normal! /".@/."/\<CR>"
