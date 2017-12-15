@@ -81,7 +81,9 @@ function! ReadTemplate(trigger,leadword)
   let BEGIN_LINE = "^\\s*"
   let END_LINE = "\\s*$"
 
-  let to_search = BEGIN_LINE.a:leadword."\\s\\+"."|".a:trigger."|".END_LINE
+  let g:debug_trigger = a:trigger
+  let trigger = escape(a:trigger,'.')
+  let to_search = BEGIN_LINE.a:leadword."\\s\\+"."|".trigger."|".END_LINE
 
   " read all template files...
   let file_array = []
@@ -100,13 +102,13 @@ function! ReadTemplate(trigger,leadword)
     call WarningWithColor(
     \ "There are more than 1 snippet found which is
     \ related to <","CMT")
-    call WarningWithColor(a:trigger,"TRI")
+    call WarningWithColor(trigger,"TRI")
     call WarningWithColor(">!","CMT")
     return ['']
   elseif if_dup < 1
     redraw
     call WarningWithColor("Undefined snippet :<","CMT")
-    call WarningWithColor(a:trigger,"TRI")
+    call WarningWithColor(trigger,"TRI")
     call WarningWithColor(">!","CMT")
     return [''] 
   else
@@ -167,6 +169,7 @@ function! SmartInsert()
     " [TODO] The regex can be put into one variable...
     " [debug] change the mathcing pattern
     "// if current_line_sliced =~ '^.*'.keyword.'.*$'
+    "// keyword = escape(keyword,'()[].~\/')
     if current_line_sliced =~ '^.*'.keyword.'$'
 
       let g:debug_keyword = keyword
