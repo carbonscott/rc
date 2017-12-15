@@ -154,3 +154,7 @@ endtemplate
 template |np-ones|
 np.ones(____,np.uint____)
 endtemplate
+
+template |import os.path|
+____
+endtemplate
