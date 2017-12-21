@@ -11,7 +11,7 @@ endtemplate
 
 template |if|
 if (____) {
-				____
+    ____
 }
 endtemplate
 
@@ -22,25 +22,25 @@ endtemplate
 
 template |mce-loop-init|
 MCE::Loop::init {
-				max_workers => ____,
-				chunk_size  => ____,
+    max_workers => ____,
+    chunk_size  => ____,
 };
 endtemplate
 
 template |for|
 foreach my ____ (____) {
-				____
+    ____
 }
 endtemplate
 
 
 template |mce-loop|
 mce_loop {
-				my ($mce, $chunk_ref, $chunk_id) = @_;
+    my ($mce, $chunk_ref, $chunk_id) = @_;
 
-				foreach my ____ ($chunk_ref->@*) {
-								____
-				}
+    foreach my ____ ($chunk_ref->@*) {
+        ____
+    }
 
 } ____;
 endtemplate
@@ -48,15 +48,15 @@ endtemplate
 template |mce-loop-gather|
 my ____ = mce_loop {
 
-				my ($mce, $chunk_ref, $chunk_id) = @_;
+    my ($mce, $chunk_ref, $chunk_id) = @_;
 
-				my $1:____;
-				foreach my ____ ($chunk_ref->@*) {
-								____
+    my $1:____;
+    foreach my ____ ($chunk_ref->@*) {
+        ____
 
-								push $1:____, ____;
-				}
-				$mce->gather($1:____)
+        push $1:____, ____;
+    }
+    $mce->gather($1:____)
 
 } ____;
 endtemplate
@@ -109,18 +109,18 @@ use Parallel::ForkManager;
 my $pm = Parallel::ForkManager->new(____);
 
 # SET UP YOUR JOBS
-				# examples
-				# my @jobs = map {"cd ./sub_0$_ && ./S-run_0$_.sh"} (0..9);
-				# push @jobs, map {"cd ./sub_$_ && ./S-run_$_.sh"} (10..89);
-				# my @jobs = map {"cd ./sub_$_ && ./S-run_$_.sh"} (20..139);
+    # examples
+    # my @jobs = map {"cd ./sub_0$_ && ./S-run_0$_.sh"} (0..9);
+    # push @jobs, map {"cd ./sub_$_ && ./S-run_$_.sh"} (10..89);
+    # my @jobs = map {"cd ./sub_$_ && ./S-run_$_.sh"} (20..139);
 
 my @jobs = ____;
 
 
 foreach my $id (0..$#jobs) {
-				my $pid = $pm->start and next;
-				system($jobs[$id]." > log_".$id) == 0 or die("failed due to ".$?);
-				$pm->finish;
+    my $pid = $pm->start and next;
+    system($jobs[$id]." > log_".$id) == 0 or die("failed due to ".$?);
+    $pm->finish;
 }
 
 $pm->wait_all_children;
@@ -143,7 +143,7 @@ use feature qw(say);
 # export names for subroutines
 use base 'Exporter';
 our @EXPORT = qw(
-#	____
+# ____
 );
 
 # subroutines go here ____
@@ -159,22 +159,22 @@ endtemplate
 template |mce-loop-gather-order|
 my @$1:____;
 my $mce = MCE->new(
-				chunk_size => 100, 
-				max_workers => 4,
-				gather => MCE::Candy::out_iter_array(\@$1:____),
-				user_func => sub {
-								my ($mce, $chunk_ref, $chunk_id) = @_;
+    chunk_size => 100, 
+    max_workers => 4,
+    gather => MCE::Candy::out_iter_array(\@$1:____),
+    user_func => sub {
+        my ($mce, $chunk_ref, $chunk_id) = @_;
 
-								my @$2:____ = ();
-								foreach my $____ ($chunk_ref->@*) {
-									
-									____
+        my @$2:____ = ();
+        foreach my $____ ($chunk_ref->@*) {
+         
+         ____
 
-									push @$2:____, (____);
-								}
+         push @$2:____, (____);
+        }
 
-								$mce->gather($chunk_id, @$2:____);
-				}
+        $mce->gather($chunk_id, @$2:____);
+    }
 );
 
 $mce->process( \@____ );
