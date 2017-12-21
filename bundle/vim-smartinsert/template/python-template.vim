@@ -156,5 +156,5 @@ np.ones(____,np.uint____)
 endtemplate
 
 template |import os.path|
-____
+import os.path
 endtemplate

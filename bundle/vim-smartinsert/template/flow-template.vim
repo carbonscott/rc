@@ -647,3 +647,27 @@ endtemplate
 template |D|
 Δ____
 endtemplate
+
+template |j.j|
+jjj
+endtemplate
+
+template |cv2.imread|
+cv2.imread()
+endtemplate
+
+template |...|
+3 dots
+endtemplate
+
+template |[]|
+bracket
+endtemplate
+
+template |{}|
+crazy
+endtemplate
+
+template |(...)|
+haah
+endtemplate
