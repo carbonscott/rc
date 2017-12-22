@@ -41,3 +41,15 @@ endtemplate
 template |comm.reduce|
 comm.reduce($send:____,op=____,root=____)
 endtemplate
+
+template |MPI-Init|
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
+endtemplate
+
+template |MPI-Distribute_job|
+for $i:____ in ____:
+    if $i:____ == $rank:____:
+        $job:____
+endtemplate
