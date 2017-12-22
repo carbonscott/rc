@@ -12,16 +12,16 @@ endtemplate
 template |class-define|
 class ____:
 
-				def __init__(self,____):
-								____
+    def __init__(self,____):
+        ____
 endtemplate
 
 template |function-define|
 def ____(____):
-				"""____
-				____
-				"""
-				____
+    """____
+    ____
+    """
+    ____
 endtemplate
 
 
@@ -31,20 +31,20 @@ endtemplate
 
 template |for|
 for ____ in ____:
-				____
+    ____
 endtemplate
 
 template |data-dict|
 ____ = {
-				'____' : ____,
-				'____' : ____,
+    '____' : ____,
+    '____' : ____,
 }
 endtemplate
 
 template |data-list|
 ____ = [
-				____,
-				____,
+    ____,
+    ____,
 ]
 endtemplate
 
@@ -72,8 +72,8 @@ endtemplate
 
 template |np-array|
 np.array([
-				____,
-				____,
+    ____,
+    ____,
 ])
 endtemplate
 
@@ -95,7 +95,7 @@ endtemplate
 
 template |if|
 if ____:
-				____
+    ____
 endtemplate
 
 template |plt-label|
@@ -104,16 +104,16 @@ endtemplate
 
 template |plt-savefig|
 export_rule = {
-				"format" : "png",
-				"dpi"    : 600,
+    "format" : "png",
+    "dpi"    : 600,
 }
 plt.savefig("____", **export_rule)
 endtemplate 
 
 template |io-with|
 with open(____) as $1:____:
-				for ____ in $1:____:
-								____
+    for ____ in $1:____:
+        ____
 endtemplate
 
 template |re-compile|

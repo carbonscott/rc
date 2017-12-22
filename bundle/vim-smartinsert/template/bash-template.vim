@@ -4,21 +4,21 @@ endtemplate
 
 template |function|
 function ____ {
-				____
+    ____
 }
 endtemplate
 
 template |if|
 if [ ____ ]
 then
-				____
+    ____
 fi
 endtemplate
 
 template |for|
 for ____ in ____
 do
-				____
+    ____
 done
 endtemplate
 
@@ -32,15 +32,15 @@ endtemplate
 
 template |case|
 case ____ in
-				____) ____;;
-				____) ____;;
+    ____) ____;;
+    ____) ____;;
 esac
 endtemplate
 
 template |while|
 while ____
 do
-				____
+    ____
 done
 endtemplate
 
@@ -64,8 +64,8 @@ template |help-floating_number_arithmetic|
 distances=( {20..140..1} )
 for i in "${distances[@]}"
 do
-				g=$(bc --mathlib <<< "scale=3; $i / 2.0")
-				perl -pE "s/44.667/$g/g" cube_body.pdb > init_$i.pdb
+    g=$(bc --mathlib <<< "scale=3; $i / 2.0")
+    perl -pE "s/44.667/$g/g" cube_body.pdb > init_$i.pdb
 done
 endtemplate
 

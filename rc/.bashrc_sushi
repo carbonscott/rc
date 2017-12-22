@@ -57,7 +57,8 @@ alias trpd="tmux resize-pane -D "
 alias trpu="tmux resize-pane -U "
 
 # rename vi to vim
-alias vi="/usr/bin/vim"
+#// alias vi="/usr/bin/vim"
+alias vi="/usr/bin/nvim"
 
 # setup xclip
 alias pbcopy="xclip -sel clip"
@@ -76,3 +77,13 @@ source ~/.vim/rc/quick_directories
 
 # Pandoc completion...
 eval "$(pandoc --bash-completion)"
+
+# MPIRUN
+alias mpirun='/opt/anaconda2/bin/mpirun'
+
+# touch and chmod
+function tx {
+    input=$1
+    touch $input
+    chmod +x $input
+}
