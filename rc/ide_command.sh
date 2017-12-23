@@ -153,3 +153,14 @@ alias tbk="source ~/.vim/rc/tmux-notebook.sh"
 
 # tree
 alias trl="tree -L 1 "
+
+# Lauch vim and save it in Dropbox
+function qw {
+    echo -n "What do you want to write about: "
+    read title
+
+    dir="$HOME/Dropbox/20-Pockets/Writing-Project/Chapters/"
+    file="$dir$title.md"
+    touch "$file"
+    vi "$file"
+}

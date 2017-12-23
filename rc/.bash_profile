@@ -9,11 +9,14 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/
 export PATH="$PATH:/sbin"
 
 # Perl Path
-PATH="/Users/Scott/perl5/bin${PATH+:}${PATH}"; export PATH;
-PERL5LIB="/Users/Scott/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/Scott/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/Scott/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/Scott/perl5"; export PERL_MM_OPT;
+# - perlbrew
+source ~/perl5/perlbrew/etc/bashrc
+# - other paths
+# PATH="/Users/Scott/perl5/bin${PATH+:}${PATH}"; export PATH;
+# PERL5LIB="/Users/Scott/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="/Users/Scott/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"/Users/Scott/perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=/Users/Scott/perl5"; export PERL_MM_OPT;
 
 # Perl 6, Radoku
 export PATH="$PATH:/opt/rakudo-star-2016.07/bin"
@@ -26,7 +29,8 @@ source ~/Setting/working_directories
 source ~/.vim/settings/quotes
 
 # bind vi to vim
-alias vi="/usr/local/bin/vim "
+#// alias vi="/usr/local/bin/vim "
+alias vi="/usr/local/bin/nvim "
 
 # Git editor
 export VISUAL=vim
@@ -34,9 +38,6 @@ export EDITOR="$VISUAL"
 
 # add support for ide functions...
 source ~/.vim/rc/ide_command.sh
-
-# perlbrew
-source ~/perl5/perlbrew/etc/bashrc
 
 # add mathematica
 alias mathno="math -noprompt -script "
@@ -52,3 +53,11 @@ alias ta="tmux attach -t "
 
 # tree
 alias trl="tree -L 1 "
+
+# define new env var...
+export IDEA="~/Dropbox/00-Workflow/idea.txt"
+
+# added by Anaconda2 5.0.1 installer
+export PATH="/anaconda2/bin:$PATH"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
