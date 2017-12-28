@@ -150,3 +150,12 @@ endtemplate
 template |about-two-paper-method|
 One for layout map, and the other for simple units of thinking. 
 endtemplate
+
+template |about-simple|
+[simplify] 
+refactor repeating unit(:[refactor] (:+) -> * ; [make loop] (:lines of code) -> (while loop);).
+order units(:define some containers and put things into containers).
+
+[approximation]
+approximate(:linear combination)
+endtemplate
