@@ -142,9 +142,9 @@ endtemplate
 
 template |think-in-paragraph|
 event 1 → event 2 → (while ...) event 3
-		→ (if ...) event 4 → event 5
-		(else  ) envet 6 → event 7 
-		=>...purpose (# follow the last indentation to keep attention)
+  → (if ...) event 4 → event 5
+  (else  ) envet 6 → event 7 
+  =>...purpose (# follow the last indentation to keep attention)
 endtemplate
 
 template |about-two-paper-method|
