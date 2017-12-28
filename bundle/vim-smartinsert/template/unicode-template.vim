@@ -488,3 +488,32 @@ endtemplate
 template |micro|
 μ____
 endtemplate
+
+template |group|
+[$category(:story)____] $components:____ {
+    # How each component plays a role in this story?
+    $order_of_category:____ 
+}
+endtemplate
+
+template |group-example|
+[category] component(:increase -> stronger intensity in category)
+endtemplate
+
+template |group-grouping|
+(____)
+endtemplate
+
+template |group-breakdown|
+[$category(:story)____] 
+    component 1,
+    component 2 
+{
+    # How each component plays a role in this story?
+    $order_of_category:____ 
+}
+endtemplate
+
+template |group-substitute|
+--> ____
+endtemplate
