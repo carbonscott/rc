@@ -14,7 +14,7 @@ endtemplate
 
 template |function|
 function (____) {
-				____
+    ____
 };
 endtemplate
 
@@ -23,17 +23,17 @@ template |server|
 http.createServer(function (req, res) {  // req: request from clinet...
     res.writeHead(200, {'Content-Type': 'text/html'});
 
-				____
+    ____
 
-				res.end();
+    res.end();
 }).listen(____); 
 endtemplate
 
 template |readFile|
 ____.readFile(____, function(err,data) {
-				res.writeHead(200,{'Content-Type': 'text/html'});
-				res.write(data);
-				res.end();
+    res.writeHead(200,{'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
 });
 endtemplate
 
@@ -46,8 +46,8 @@ endtemplate
 
 template |open|
 ____.open(____,____,function (err,file) {
-				if (err) throw err;
-				console.log('Saved!');
+    if (err) throw err;
+    console.log('Saved!');
 });
 endtemplate
 
