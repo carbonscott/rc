@@ -159,3 +159,14 @@ order units(:define some containers and put things into containers).
 [approximation]
 approximate(:linear combination)
 endtemplate
+
+template |about-compare|
+[compare two things] 
+    similarities | differences (:reason <- people share the same feelings.):
+        :single value
+        :details
+        :Similarity shows identity.
+    progressions | iterations
+        :Can they be similar at certain time? 
+        :A nice craft is out of iterations of changes made on top of similarities.
+endtemplate
