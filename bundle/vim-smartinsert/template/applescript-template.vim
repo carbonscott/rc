@@ -59,4 +59,63 @@ template |list-range|
 item ____ through ____ of ____
 endtemplate
 
+template |head|
+#!/usr/bin/env osascript
+endtemplate
 
+template |system.preference|
+tell application "System Preferences"
+    activate
+    reveal pane "com.apple.preference.$item:____"
+end tell
+endtemplate
+
+template |keydown|
+key down $key:____
+endtemplate
+
+template |keyup|
+key up $key:____
+endtemplate
+
+template |click.button|
+click button "$name_of_button:____" of window 1
+endtemplate
+
+template |if|
+if ____ then
+    ____
+end if
+endtemplate
+
+template |if-elseif|
+if ____ then
+    ____
+else if ____ then
+    ____
+end if
+endtemplate
+
+template |if-else|
+if ____ then
+    ____
+else
+    ____
+end if
+endtemplate
+
+template |set|
+set $var:____ to ____
+endtemplate
+
+template |get|
+get $var
+endtemplate
+
+template |print|
+log ____
+endtemplate
+
+template |shell|
+(do shell script "____")
+endtemplate
