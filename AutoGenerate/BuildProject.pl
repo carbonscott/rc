@@ -40,4 +40,4 @@ system($$command{buildDir});
 my $rootSource = "~/.vim/AutoGenerate";
 $_ = $rootSource."/".$_ for @files2;
 my $current = getcwd;
-system("cp ". $_." ". $current."/".$project."/") for @files2;
+system("cp ". $_." \'". $current."/".$project."\'/") for @files2;
