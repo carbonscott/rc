@@ -1,5 +1,20 @@
 #====[Macro]========
+% Quick create a new doc
+template |new-doc|
+\documentclass{$article:____} 
+\usepackage[margin=____in]{geometry} 
+\usepackage{graphicx} 
 
+\begin{document}
+
+____
+
+\end{document}
+endtemplate
+
+template |newcommand|
+\newcommand{$\command:____}[$num:____]{$definition(#1,#2 as args):____}
+endtemplate
 
 #====[Layout]========
 template |section|
@@ -72,3 +87,19 @@ template |figure|
 \caption{____} 
 \end{figure}
 endtemplate
+
+
+#====[Modulize LaTeX]========
+template |usepack|
+\usepackage{____}
+endtemplate
+
+template |input|
+\input{$file:____}
+endtemplate
+
+template |include|
+\include{$file:____}
+endtemplate
+
+
