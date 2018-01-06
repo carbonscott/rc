@@ -1,10 +1,15 @@
 #====[Macro]========
 % Quick create a new doc
 template |new-doc|
-\documentclass{$article:____} 
-\usepackage[margin=____in]{geometry} 
+\documentclass[$11pt:____]{$article:____} 
+%====[Packages]=========
+\usepackage[margin=$1in:____]{geometry} 
 \usepackage{graphicx} 
+\usepackage{enumitem}
+\usepackage{setspace}
+\onehalfspacing
 
+%====[Documents]=========
 \begin{document}
 
 ____
@@ -39,7 +44,7 @@ endtemplate
 
 template |itemize|
 \begin{itemize}
-    ____
+\item ____
 \end{itemize}
 endtemplate
 
@@ -68,10 +73,37 @@ template |comment.section|
 %====[____]========
 endtemplate
 
+template |split|
+\begin{split}
+____ \\ 
+____
+\end{split}
+endtemplate
+
+% Spacing...
+template |usepackage.spacing|
+\usepackage{setspace}
+endtemplate
+
+template |space.setspace|
+\setstretch{$11:____}
+endtemplate
+
+template |space.onehalfspacing|
+\onehalfspacing
+endtemplate
 
 #====[Markup]========
 template |bold|
 \textbf{____}
+endtemplate
+
+template |italic|
+\textit{____}
+endtemplate
+
+template |underline|
+\underline{____}
 endtemplate
 
 template |equation|
@@ -88,6 +120,17 @@ template |figure|
 \end{figure}
 endtemplate
 
+template |newline|
+\newline
+endtemplate
+
+template |vspace|
+\vspace{$4in:____}
+endtemplate
+
+template |noindent|
+\noindent
+endtemplate
 
 #====[Modulize LaTeX]========
 template |usepack|
@@ -102,4 +145,6 @@ template |include|
 \include{$file:____}
 endtemplate
 
-
+template |eq.text|
+\text{____}
+endtemplate
