@@ -34,6 +34,10 @@ template |purpose|
 ♡ : ____
 endtemplate
 
+template |love|
+♡ 
+endtemplate
+
 template |test-false|
 ✗ ∘ ____
 endtemplate
