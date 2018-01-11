@@ -158,3 +158,11 @@ endtemplate
 template |import os.path|
 import os.path
 endtemplate
+
+template |np.dtype|
+np.dtype([($key:____,$unit_type:____,$shape:____)])
+endtemplate
+
+template |np.dtype.item|
+($key:____,$unit_type:____,$shape:____)
+endtemplate
