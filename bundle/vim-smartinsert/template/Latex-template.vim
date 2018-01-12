@@ -148,3 +148,14 @@ endtemplate
 template |eq.text|
 \text{____}
 endtemplate
+
+template |calendar.day|
+\day{}{
+    $item:____
+} 
+endtemplate
+
+template |calendar.day.item|
+\textbf{$start:____-$end:____} \daysep 
+$item:____ \\[3pt]
+endtemplate
