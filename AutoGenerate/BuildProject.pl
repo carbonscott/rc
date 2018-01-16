@@ -17,7 +17,7 @@ Usage: BuildProject {Project Name}
 my ($project) = @ARGV;
 system("mkdir -p $project");
 
-my @dirs = qw(Chapters Figures References Tests); # dirs to create
+my @dirs = qw(Chapters Figures References Tests Outputs); # dirs to create
 $_ = $project."/".$_ for @dirs;
 
 # add files in the argument of qw {
