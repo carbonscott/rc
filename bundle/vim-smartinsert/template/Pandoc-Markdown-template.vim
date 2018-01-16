@@ -7,7 +7,7 @@ template |=|
 endtemplate
 
 template |figure|
-![$Some_Text:____]($Path:____){ width=$pixel?:____ }  
+![$Some_Text:____]($Path:____){ width=$pixel%:____ }  
 endtemplate
 
 template |footnote|
