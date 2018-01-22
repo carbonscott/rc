@@ -59,6 +59,7 @@ alias trpu="tmux resize-pane -U "
 # rename vi to vim
 #// alias vi="/usr/bin/vim"
 alias vi="/usr/bin/nvim"
+alias vir="/usr/bin/nvim -R"
 
 # setup xclip
 alias pbcopy="xclip -sel clip"
@@ -86,4 +87,13 @@ function tx {
     input=$1
     touch $input
     chmod +x $input
+}
+
+
+# alias for i3...
+function i3-rename-workspace {
+    # Double quotes have to be put in single quotes,
+    # $1 and $2 have to be left alone out of any types 
+    # of quotes.
+    i3-msg 'rename workspace "'$1'" to "'$2'"'
 }
