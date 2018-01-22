@@ -26,7 +26,7 @@ source ~/.vim/rc/ide_command.sh
 alias wml="wmctrl -l "
 alias wma="wmctrl -a "
 alias wms="wmctrl -s "
-alias wmr="wmctrl -r :ACTIVE: "
+alias wmr="wmctrl -r :ACTIVE: -N "
 alias wmc="wmctrl -c "
 
 # add shortcuts to ls command...
@@ -95,5 +95,11 @@ function i3-rename-workspace {
     # Double quotes have to be put in single quotes,
     # $1 and $2 have to be left alone out of any types 
     # of quotes.
-    i3-msg 'rename workspace "'$1'" to "'$2'"'
+    from=''
+    if [[ $1 != "" ]]
+    then
+        from='"'$1'"'
+    fi
+    to='"'$2'"'
+    i3-msg 'rename workspace '$from' to '$to
 }
