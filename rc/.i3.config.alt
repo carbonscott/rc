@@ -199,7 +199,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 # xrandr --output LVDS1 --auto
 
 # suspend 
-bindsym $mod+Shift+c exec ~/.vim/rc/i3lock_blur.shfocus_follows_mouse no
+#// bindsym $mod+Shift+c exec ~/.vim/rc/i3lock_blur.sh
 bindsym $mod+Shift+x exec ~/.vim/rc/i3lock_blur_suspend.sh 
 
 # trackpad not working
