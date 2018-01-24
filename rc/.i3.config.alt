@@ -216,8 +216,8 @@ exec xinput set-prop 12 274 1
 focus_follows_mouse no
 
 # alt+tab toggle windows...
-bindsym $mod+Tab focus left
-bindsym $mod+Shift+Tab focus right
+bindsym $mod+Tab focus right
+bindsym $mod+Shift+Tab focus left
 
 # Scratch pad...
 # Make the currently focused window a scratchpad
@@ -225,3 +225,9 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+
+# Wallpaper...
+exec --no-startup-id feh --bg-scale ~/Pictures/Wallpaper/Transition.jpg
+
+# Dropbox
+exec --no-startup-id dropbox start
