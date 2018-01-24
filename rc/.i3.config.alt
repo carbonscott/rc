@@ -229,5 +229,8 @@ bindsym $mod+minus scratchpad show
 # Wallpaper...
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpaper/Transition.jpg
 
-# Dropbox
+# Dropbox...
 exec --no-startup-id dropbox start
+
+# Color...
+client.focused    #000000 #000000 #ffffff #000000   #000000
