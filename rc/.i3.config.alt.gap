@@ -100,10 +100,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+Shift+d focus child
 bindsym $mod+Shift+a focus child
 
+#====[workspace]========
+
+set $WS1 1:   Project 1
+set $WS2 2:   Project 2
+set $WS3 3:   Web      
+
 # switch to workspace
-bindsym $mod+F1 workspace 1
-bindsym $mod+F2 workspace 2
-bindsym $mod+F3 workspace 3
+bindsym $mod+F1 workspace $WS1
+bindsym $mod+F2 workspace $WS2
+bindsym $mod+F3 workspace $WS3
 bindsym $mod+F4 workspace 4
 bindsym $mod+F5 workspace 5
 bindsym $mod+F6 workspace 6
@@ -113,9 +119,9 @@ bindsym $mod+F9 workspace 9
 bindsym $mod+F10 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+F1 move container to workspace 1
-bindsym $mod+Shift+F2 move container to workspace 2
-bindsym $mod+Shift+F3 move container to workspace 3
+bindsym $mod+Shift+F1 move container to workspace $WS1
+bindsym $mod+Shift+F2 move container to workspace $WS2
+bindsym $mod+Shift+F3 move container to workspace $WS3
 bindsym $mod+Shift+F4 move container to workspace 4
 bindsym $mod+Shift+F5 move container to workspace 5
 bindsym $mod+Shift+F6 move container to workspace 6
@@ -227,7 +233,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Wallpaper...
-exec --no-startup-id feh --bg-scale ~/Pictures/Wallpaper/city_001.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/Wallpaper/China_001.jpg
 
 # Dropbox...
 exec --no-startup-id dropbox start
@@ -243,3 +249,4 @@ for_window [class="^.*"] border pixel 0
 
 gaps inner 10
 gaps outer 5
+
