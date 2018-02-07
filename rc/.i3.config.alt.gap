@@ -250,3 +250,7 @@ for_window [class="^.*"] border pixel 0
 gaps inner 10
 gaps outer 5
 
+#====[Floating windows]========
+for_window [class=".*control.*"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="[sS]hotwell"] floating enable
