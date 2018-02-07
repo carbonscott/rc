@@ -103,3 +103,6 @@ function i3-rename-workspace {
     to='"'$2'"'
     i3-msg 'rename workspace '$from' to '$to
 }
+
+# Make sure Xmodmap is sourced...
+xmodmap ~/.Xmodmap
