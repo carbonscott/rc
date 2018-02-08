@@ -102,9 +102,9 @@ bindsym $mod+Shift+a focus child
 
 #====[workspace]========
 
-set $WS1 1:   Project 1
-set $WS2 2:   Project 2
-set $WS3 3:   Web      
+set $WS1 1:  
+set $WS2 2:  
+set $WS3 3:  
 
 # switch to workspace
 bindsym $mod+F1 workspace $WS1
@@ -188,7 +188,11 @@ bindsym $mod+n workspace next
 bindsym $mod+g exec rofi -show window
 
 # natural scrolling...
-exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111
+#// exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111
+
+# Set the sound card to 0...
+#// exec --no-startup-id amixer -c 0
+exec --no-startup-id amixer set "Capture" cap 
 
 # volume up/down
 # -type 1
@@ -254,3 +258,7 @@ gaps outer 5
 for_window [class=".*control.*"] floating enable
 for_window [class="Gimp"] floating enable
 for_window [class="[sS]hotwell"] floating enable
+
+#====[System trays]========
+exec --no-startup-id nm-applet
+exec --no-startup-id volumeicon
