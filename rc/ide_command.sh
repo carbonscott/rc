@@ -168,6 +168,15 @@ function qw {
 }
 
 # Quick find...
+function fi0 {
+    find "$1" -iname "*$2*"
+}
 function fi1 {
     find . -iname "*$1*"
+}
+function fi2 {
+    find "$HOME/Dropbox/01-MyNotes" -iname "*$1*"
+}
+function fi3 {
+    find "$HOME/Dropbox/10-Lab" -iname "*$1*"
 }
