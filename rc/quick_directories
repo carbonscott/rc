@@ -1,5 +1,5 @@
 # sushi...
-if [ $HOSTNAME == "sushi" ]
+if [ $HOSTNAME == 'sushi' ]
 then
     # Books and Clips...
     export BOOK="/home/scott/Dropbox/40-Books_Clips"
@@ -13,7 +13,8 @@ then
     export BOOK_Professional="/home/scott/Dropbox/40-Books_Clips/Professional"
 
     # Projects
-    export PRO="/home/scott/Dropbox/20-Pockets"
+    export POCKET="/home/scott/Dropbox/20-Pockets"
+    export LAB="/home/scott/Dropbox/10-Lab"
 
     # Notes
     export NOTE="/home/scott/Dropbox/01-MyNotes"

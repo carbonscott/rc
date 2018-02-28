@@ -164,3 +164,8 @@ function qw {
     touch "$file"
     vi "$file"
 }
+
+# Quick find...
+function fi1 {
+    find . -iname "*$1*"
+}
