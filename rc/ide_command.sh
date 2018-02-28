@@ -125,7 +125,9 @@ alias trpd="tmux resize-pane -D "
 alias trpu="tmux resize-pane -U "
 
 # xdg-open
-alias o="xdg-open "
+function o {
+    xdg-open "$1" &> /dev/null
+}
 
 # vmd
 alias vmdte="vmd -dispdev text -e "
