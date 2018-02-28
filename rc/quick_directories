@@ -1,9 +1,5 @@
-# sushi...
-<<<<<<< HEAD
-if [ $HOSTNAME == 'sushi' ]
-=======
+# sushi and tofu...
 if [ $HOSTNAME == "sushi" ] || [ $HOSTNAME == "tofu" ]
->>>>>>> refs/remotes/origin/master
 then
     # Books and Clips...
     export BOOK="/home/scott/Dropbox/40-Books_Clips"
