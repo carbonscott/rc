@@ -1,11 +1,12 @@
 template |new-presentation|
 \documentclass{beamer}
+\usepackage{xcolor}
 
 \title{____}
 \author{____}
+\setbeamertemplate{navigation symbols}{}    %remove navigation symbols
 
 \begin{document}
-
 \maketitle
 
 \begin{frame}
@@ -48,4 +49,11 @@ template |frequent-header|
 \usepackage{amsmath}
 \usepackage{verbatim}
 \usetikzlibrary{arrows,shapes}
+endtemplate
+
+template |textblock|
+\begin{textblock}{12.5}(0.5,0.5)
+\centering
+____
+\end{textblock}
 endtemplate
