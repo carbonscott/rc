@@ -180,3 +180,7 @@ function fi2 {
 function fi3 {
     find "$HOME/Dropbox/10-Lab" -iname "*$1*"
 }
+
+function pg {
+    perl -ne 'print if /'$1'/' $2
+}

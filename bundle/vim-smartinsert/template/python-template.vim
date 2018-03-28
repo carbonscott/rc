@@ -110,12 +110,6 @@ export_rule = {
 plt.savefig("____", **export_rule)
 endtemplate 
 
-template |io-with|
-with open(____) as $1:____:
-    for ____ in $1:____:
-        ____
-endtemplate
-
 template |re-compile|
 re.compile('''
 ____
@@ -165,4 +159,9 @@ endtemplate
 
 template |np.dtype.item|
 ($key:____,$unit_type:____,$shape:____)
+endtemplate
+
+template |io-with|
+with open('$file:____','$read_or_write:____') as $file_handle:____:
+    ____
 endtemplate

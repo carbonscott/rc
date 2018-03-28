@@ -159,3 +159,15 @@ template |calendar.day.item|
 \textbf{$start:____-$end:____} \daysep 
 $item:____ \\[3pt]
 endtemplate
+
+template |tikzpicture|
+\begin{tikzpicture}
+____
+\end{tikzpicture}
+endtemplate
+
+template |textblock|
+\begin{textblock}{$hsize:____}($x:____,$y:____)
+____
+\end{textblock}
+endtemplate
