@@ -15,6 +15,7 @@ then
     # Projects
     export POCKET="/home/scott/Dropbox/20-Pockets"
     export LAB="/home/scott/Dropbox/10-Lab"
+    export TILIX="/home/scott/Dropbox/Shared/Tilix"
 
     # Notes
     export NOTE="/home/scott/Dropbox/01-MyNotes"
