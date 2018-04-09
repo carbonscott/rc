@@ -165,3 +165,26 @@ template |io-with|
 with open('$file:____','$read_or_write:____') as $file_handle:____:
     ____
 endtemplate
+
+template |argparse.import|
+import argparse
+endtemplate
+
+template |argparse.creat_parser|
+parser = argparse.ArgumentParser(
+    description = """$description:____""")
+endtemplate
+
+template |argparse.add_arg|
+parser.add_argument("-____", "--____",
+    required=$True:____,
+    metavar = ("____"),
+    type = $int:____,
+    nargs = ____,
+    help = """$help:____""",
+    )
+endtemplate
+
+template |argparse.arg_parse|
+args = parser.parse_args()
+endtemplate
