@@ -2,28 +2,18 @@
 if [ $HOSTNAME == "sushi" ] || [ $HOSTNAME == "tofu" ]
 then
     # Books and Clips...
-    export BOOK="/home/scott/Dropbox/40-Books_Clips"
-    export BOOK_OS="/home/scott/Dropbox/40-Books_Clips/OS"
-    export BOOK_Vim="/home/scott/Dropbox/40-Books_Clips/Vim"
-    export BOOK_Web="/home/scott/Dropbox/40-Books_Clips/Web"
-    export BOOK_Gnuplot="/home/scott/Dropbox/40-Books_Clips/gnuplot"
-    export BOOK_Python="/home/scott/Dropbox/40-Books_Clips/Python"
-    export BOOK_Perl="/home/scott/Dropbox/40-Books_Clips/Perl"
-    export BOOK_English="/home/scott/Dropbox/40-Books_Clips/English"
-    export BOOK_Professional="/home/scott/Dropbox/40-Books_Clips/Professional"
+    export BOOK="/home/scott/Dropbox/eBooks"
 
     # Projects
-    export POCKET="/home/scott/Dropbox/20-Pockets"
-    export LAB="/home/scott/Dropbox/10-Lab"
-    export TILIX="/home/scott/Dropbox/Shared/Tilix"
+    export Codes="/home/scott/Dropbox/Codes"
+    export LAB="/home/scott/Dropbox/Work"
 
     # Notes
-    export NOTE="/home/scott/Dropbox/01-MyNotes"
+    export NOTE="/home/scott/Dropbox/iPad"
 
     # Teaching
-    export TA="/home/scott/Dropbox/03-College/TA"
+    export TA="/home/scott/Dropbox/Work/School/TA"
 
     # Coursework
-    export COURSE="/home/scott/Dropbox/03-College/Courses"
-    export COURSE_Chem559="/home/scott/Dropbox/03-College/Courses/Chem559"
+    export COURSE="/home/scott/Dropbox/Work/School/Courses"
 fi
