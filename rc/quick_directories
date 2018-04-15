@@ -9,7 +9,7 @@ then
     export LAB="/home/scott/Dropbox/Work"
 
     # Notes
-    export NOTE="/home/scott/Dropbox/iPad"
+    export iPad="/home/scott/Dropbox/iPad"
 
     # Teaching
     export TA="/home/scott/Dropbox/Work/School/TA"
