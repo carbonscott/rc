@@ -6,9 +6,10 @@ highlight CursorLineNR cterm=bold ctermbg=12
 au insertenter * hi CursorLineNR cterm=bold ctermbg=2
 au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
-"// hi Search term=reverse ctermfg=White guifg=White ctermbg=NONE guibg=NONE
 hi Search ctermfg=15 ctermbg=197
 hi CursorLine cterm=NONE ctermfg=White
+
+hi Visual ctermfg=15 ctermbg=164
 
 set nocursorline
 
