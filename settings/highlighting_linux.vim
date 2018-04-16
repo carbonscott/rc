@@ -9,7 +9,7 @@ au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 hi Search ctermfg=15 ctermbg=197
 hi CursorLine cterm=NONE ctermfg=White
 
-hi Visual ctermfg=15 ctermbg=164
+hi Visual ctermfg=15 ctermbg=33
 
 set nocursorline
 
