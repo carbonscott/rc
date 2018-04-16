@@ -184,3 +184,7 @@ function fi3 {
 function pg {
     perl -ne 'print if /'$1'/' $2
 }
+
+function reveal_create {
+    cp -r /home/scott/Dropbox/Codes/reveal.js $1
+}
