@@ -7,11 +7,7 @@ use feature qw(say);
 use IO::Prompter;
 
 my $commands = {
-				slog => "vim ~/Dropbox/00-Workflow/00-workflow.txt",
-				nlog => "vim ~/Dropbox/00-Workflow/10-notes.txt",
-				wlog => "vim ~/Dropbox/OfficeShared/00-Workflow/work-schedule.txt",
-				tif  => "vim ~/Dropbox/00-Workflow/20-today_I_found.txt",
-				life  => "vim ~/Dropbox/00-Workflow/30-life.txt",
+				projects  => "vim ~/Dropbox/Projects/projects.md",
 				exit => "exit",
 };
 
@@ -19,11 +15,7 @@ ASKING:
 while (1) {
 				my $selection = prompt 'Choose a type of log: ', 
 																-menu => {
-																				schedule => "slog",
-																				qq(work schedule) => "wlog",
-																				note     => "nlog",
-																				qq(today I found) => "tif",
-																				qq(life) => "life",
+																				qq(projects) => "projects",
 																				exit     => "exit",
 																}, ">";
 
