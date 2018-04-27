@@ -6,7 +6,7 @@ then
 
     # Projects
     export Codes="/home/scott/Dropbox/Codes"
-    export LAB="/home/scott/Dropbox/Work"
+    export Projects="/home/scott/Dropbox/Projects"
 
     # Notes
     export iPad="/home/scott/Dropbox/iPad"
