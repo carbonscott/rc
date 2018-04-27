@@ -188,3 +188,9 @@ function pg {
 function reveal_create {
     cp -r /home/scott/Dropbox/Codes/reveal.js $1
 }
+
+# tilix
+function terminal {
+    tilix &> /dev/null &
+}
+
