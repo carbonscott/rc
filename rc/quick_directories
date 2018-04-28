@@ -12,8 +12,8 @@ then
     export iPad="/home/scott/Dropbox/iPad"
 
     # Teaching
-    export TA="/home/scott/Dropbox/Work/School/TA"
+    export TA="/home/scott/Dropbox/School/TA"
 
     # Coursework
-    export COURSE="/home/scott/Dropbox/Work/School/Courses"
+    export COURSE="/home/scott/Dropbox/School/Courses"
 fi
