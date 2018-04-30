@@ -7,7 +7,7 @@ use feature qw(say);
 use IO::Prompter;
 
 my $commands = {
-				projects  => "vim ~/Dropbox/Projects/projects.md",
+				projects  => "vim ~/Dropbox/Projects/projects.txt",
 				exit => "exit",
 };
 
