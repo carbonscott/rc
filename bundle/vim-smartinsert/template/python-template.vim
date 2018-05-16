@@ -188,3 +188,7 @@ endtemplate
 template |argparse.arg_parse|
 args = parser.parse_args()
 endtemplate
+
+template |error-index|
+IndexError: ____
+endtemplate
