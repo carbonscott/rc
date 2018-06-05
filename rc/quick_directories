@@ -1,5 +1,5 @@
 # sushi and tofu...
-if [ $HOSTNAME == "sushi" ] || [ $HOSTNAME == "tofu" ]
+if [ $HOSTNAME == "sushi" ] || [ $HOSTNAME == "noodle" ]
 then
     # Books and Clips...
     export BOOK="/home/scott/Dropbox/eBooks"
