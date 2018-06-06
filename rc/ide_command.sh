@@ -197,6 +197,11 @@ function terminal {
 alias dn="/dev/null"
 
 # For bumblebee project
-function optiprime {
+function bb {
     optirun -b primus "$@"
+}
+
+function reload_bumblebee {
+    echo 1 | sudo tee /sys/bus/pci/rescan
+    sudo systemctl restart bumblebeed.service
 }
