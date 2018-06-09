@@ -174,13 +174,6 @@ function fi0 {
 function fi1 {
     find . -iname "*$1*"
 }
-function fi2 {
-    find "$HOME/Dropbox/01-MyNotes" -iname "*$1*"
-}
-function fi3 {
-    find "$HOME/Dropbox/10-Lab" -iname "*$1*"
-}
-
 function pg {
     perl -ne 'print if /'$1'/' $2
 }
