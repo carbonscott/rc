@@ -10,7 +10,7 @@ set runtimepath+=~/.vim/bundle/vim-colorschemes/
 set runtimepath+=~/.vim/bundle/vim-prompt/
 source ~/.vim/bundle/vim-smartinsert/autoload/smartinsert.vim
 source ~/.vim/bundle/vim-slashsearch/autoload/slashsearch.vim
-source ~/.vim/bundle/vim-notecolor/autoload/notecolor.vim
+" source ~/.vim/bundle/vim-notecolor/autoload/notecolor.vim
 source ~/.vim/bundle/vim-notecolor/autoload/notedict.vim
 source ~/.vim/bundle/vim-alignchar/autoload/alignchar.vim
 source ~/.vim/bundle/vim-center/autoload/goto_center.vim
