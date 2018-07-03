@@ -198,3 +198,7 @@ function reload_bumblebee {
     echo 1 | sudo tee /sys/bus/pci/rescan
     sudo systemctl restart bumblebeed.service
 }
+
+function clear_recent {
+    rm ~/.local/share/recently-used.xbel
+}

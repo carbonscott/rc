@@ -4,6 +4,9 @@ then
     # Books and Clips...
     export BOOK="/home/scott/Dropbox/eBooks"
 
+    # Big thinking...
+    export Think="/home/scott/Dropbox/Projects/BigThink"
+
     # Projects
     export Codes="/home/scott/Dropbox/Codes"
     export Projects="/home/scott/Dropbox/Projects"
