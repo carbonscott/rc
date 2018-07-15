@@ -1,5 +1,5 @@
 template |implies|
- → ____
+→ ____
 endtemplate
 
 template |False|
