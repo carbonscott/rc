@@ -18,80 +18,100 @@ function! s:virtpos(expr)
     return add(getpos(a:expr),virtcol(a:expr))
 endfunction
 
+function! s:mk_sel(x)
+    return 2*a:x[0] + a:x[1]
+endfunction
 
 function! moveblock#v(choice)
-" There are 3 important things: 
-" * Each time, only 1xn texts are moved.
-" * Always construct visual text from the selected visual block.
-" * Paste(p) the 1xn texts at the end of block, paste(P) block in the beginning of 1xn texts.
+" Get info from visual block...  
+" Initialize cursor position...
+exe "normal! gv\<ESC>"                
+let l:cur = s:virtpos('.')         
+let l:vb = {
+\   "'<" : s:virtpos("'<"),
+\   "'>" : s:virtpos("'>")
+\} 
 
-" Get info from visual block...
-exe 'normal! gv'
-let l:cursor = s:virtpos('.')         " Initialize cursor position...
-let l:vblock = [
-\   s:virtpos("'<"),
-\   s:virtpos("'>")
-\] 
-
-" Make regular visual selection by using vector...
-let l:vblock_vec = [ 
-\   l:vblock[1][-1] - l:vblock[0][-1],
-\   l:vblock[1][1]  - l:vblock[0][1],
-\   l:vblock[1][-1] - l:cursor[-1]
+" Directional convention
+"    -- y [-1], determined by virtual column
+"  |
+"  x [1] 
+let l:vb_shape = [
+\   abs(l:vb["'<"][1]  - l:vb["'>"][1])  + 1,
+\   abs(l:vb["'<"][-1] - l:vb["'>"][-1]) + 1
 \ ]
 
-let l:vblock_shape = [abs(l:vblock_vec[0])+1,abs(l:vblock_vec[1])+1]
-let l:adj_x = (l:vblock_vec[0] < 0)  ? 
-\   [                                                              
-\    "O",                                                          
-\    (l:vblock_shape[0]-1)."lP",                                   
-\    (l:vblock_shape[0]-1)."l",                                    
-\    "p",                                                          
-\   ] :                                                            
-\   [                                                              
-\    "",                                                           
-\    "lP",                                                         
-\    "\<ESC>",                                                     
-\    (l:vblock_shape[0]-1)."lp",                                   
-\   ]                                                              
-let l:adj_y = (l:vblock_vec[2] != 0) ? "o" : ""
-
-let l:movement = {
-\   'up'    : "gv" . l:adj_x[0] . l:adj_y . "oko" . l:vblock_shape[1] . "k", 
-\   'down'  : "gv" . l:adj_x[0] . l:adj_y .  "jo" . l:vblock_shape[1] . "jo"
+" Set up decision matrix...
+let l:H = l:vb_shape[0]
+let l:W = l:vb_shape[1]
+let l:bases = {
+\   'up'    : 'oko' . l:H . 'k', 
+\   'down'  :  'jo' . l:H . 'jo'
 \ }
 
-exe 'normal! ' . l:movement[a:choice] . 'd'
+let l:adj = {
+\   -3 : "o" ,
+\   -2 : "oO" ,
+\   -1 : "O",
+\    0 : ""
+\ }
 
-" Move text...
-" Reselect visual block...
-if a:choice ==# 'up'
-    call setpos('.', l:vblock[1])
-    exe 'normal! ' . l:adj_x[1]
-    call setpos('.', l:vblock[0])
-    exe 'normal! ' . l:adj_x[2] ."\<c-v>". (l:vblock_vec[0])."l" . (l:vblock_vec[1])."jd"
-    call setpos('.', l:vblock[0])
-    exe 'normal! ' . l:adj_x[2] ."kP"
-else
-    call setpos('.', l:vblock[0])
-    exe 'normal! ' . l:adj_x[3]
-    call setpos('.', l:vblock[0])
-    exe 'normal! ' . l:adj_x[2] ."\<c-v>". (l:vblock_vec[0])."l" . (l:vblock_vec[1])."jd"
-    call setpos('.', l:vblock[0])
-    exe 'normal! ' . l:adj_x[2]. 'jP'
-endif
+" xyz of botright corner
+let l:br   = [ 
+\   max([l:vb["'<"][1], l:vb["'>"][1]]),
+\   max([l:vb["'<"][-1],l:vb["'>"][-1]])
+\ ]
 
-let g:movement   = l:movement
-let g:vblock     = l:vblock
-let g:vblock_vec = l:vblock_vec
-let g:cursor     = l:cursor
-let g:adj_x      = l:adj_x
+" Cursor mode
+let l:mode = [ 
+\   (l:cur[1]-l:br[0] < 0 ) ? -1 : 0, 
+\   (l:cur[-1]-l:br[1] < 0) ? -1 : 0
+\ ]
+
+" Decide action...
+let l:act  = l:adj[s:mk_sel(l:mode)]
+echo l:act
+
+" Capture xyz of top-left and bot-right...
+" gv remembers the visual selected region in this way:
+" gv 1
+" gv 2
+" gv 3 = gv 1 result
+" \" in execute command to escape \<c-v>...
+exe "normal! gv" . l:act 
+let l:xyz_br = s:virtpos(".")
+exe "normal! gv" . l:act ."o" 
+let l:xyz_tl = s:virtpos(".")
+
+let l:jump = {
+\   'up'   : l:xyz_br,
+\   'down' : l:xyz_tl
+\ }
+
+" Cut the line text
+exe "normal! gv" . l:bases[a:choice] . "d"
+call setpos('.', l:jump[a:choice])
+exe "normal! " (a:choice==#'up' ? "p" : (l:W-1)."lp")
+
+" Reselect the
+call setpos('.', l:xyz_tl)
+exe "normal! \<c-v>" . (l:W-1) . "l" . (l:H-1) . "j" . "d"
+
+" exe "normal! " . "kP"
+exe "normal! " . (a:choice==#"up" ? "kP" : (l:H-1)."jP")
+
+let g:cur  = l:cur
+let g:item = s:mk_sel(l:mode)
+let g:act  = l:act
+let g:br   = l:br
+let g:mode = l:mode
+let g:xyz_tl = l:xyz_tl
+let g:xyz_br = l:xyz_br
 endfunction
 
 vnoremap <UP> :<c-u> call moveblock#v('up')<CR>
-   		\:normal! gvkoko<CR>
+    		\:normal! gvkoko<CR>
 vnoremap <DOWN> :<c-u> call moveblock#v('down')<CR>
-   		\:normal! gvjojo<CR>
+    		\:normal! gvjojo<CR>
 vnoremap <expr> <LEFT> moveblock#h('left')
 vnoremap <expr> <RIGHT> moveblock#h('right')
-                   
