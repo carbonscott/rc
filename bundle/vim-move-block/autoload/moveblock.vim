@@ -88,25 +88,36 @@ let l:jump = {
 \   'down' : l:xyz_tl
 \ }
 
+let l:motion = {
+\   'up'   : 1,
+\   'down' : 0
+\ }
+
 " Cut the line text
-exe "normal! gv" . l:bases[a:choice] . "d"
+" "y" to capture the non standard blank (there are no spaces in reality, just a visual blank)
+exe "normal! gv" . l:bases[a:choice] . "y"
+exe "normal! gv" . "d"
 call setpos('.', l:jump[a:choice])
-exe "normal! " (a:choice==#'up' ? "p" : (l:W-1)."lp")
+exe "normal! " (l:motion[a:choice] ? "p" : (l:W-1 ? (l:W-1)."l" : "")."p")
 
 " Reselect the
 call setpos('.', l:xyz_tl)
-exe "normal! \<c-v>" . (l:W-1) . "l" . (l:H-1) . "j" . "d"
+exe "normal! \<c-v>" . 
+\   (l:W-1 ? (l:W-1)."l"  : "") . 
+\   (l:H-1 ? (l:H-1). "j" : "") . "d"
 
-" exe "normal! " . "kP"
-exe "normal! " . (a:choice==#"up" ? "kP" : (l:H-1)."jP")
+exe "normal! " . (l:motion[a:choice] ? "kP" : "jP")
 
-let g:cur  = l:cur
-let g:item = s:mk_sel(l:mode)
-let g:act  = l:act
-let g:br   = l:br
-let g:mode = l:mode
+let g:cur    = l:cur
+let g:item   = s:mk_sel(l:mode)
+let g:act    = l:act
+let g:br     = l:br
+let g:mode   = l:mode
 let g:xyz_tl = l:xyz_tl
 let g:xyz_br = l:xyz_br
+let g:W      = l:W
+let g:H      = l:H
+let g:bases  = l:bases
 endfunction
 
 vnoremap <UP> :<c-u> call moveblock#v('up')<CR>
