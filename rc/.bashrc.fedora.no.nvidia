@@ -116,3 +116,6 @@ export PYTHONPATH="$PYTHONPATH:/home/scott/Dropbox/Projects"
 # ccp4
 alias ccp4="/home/scott/Software/ccp4-7.0/start"
 
+function reload_bumblebee {
+    echo 1 | sudo tee /sys/bus/pci/rescan
+}

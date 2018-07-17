@@ -107,6 +107,10 @@ alias hi='systemctl hibernate'
 
 # Run projects...
 export PATH="/home/scott/Dropbox/Projects/inSituX:$PATH"
+export PATH="/home/scott/Dropbox/Projects/Zen:$PATH"
+export PATH="/home/scott/Dropbox/Projects/DefineWords:$PATH"
+export PATH="/home/scott/Dropbox/Projects/DefineConcepts:$PATH"
+export PATH="/home/scott/Dropbox/Projects/PDF.Utility:$PATH"
 export PYTHONPATH="$PYTHONPATH:/home/scott/Dropbox/Projects"
 
 # ccp4
