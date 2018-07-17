@@ -1,86 +1,126 @@
-function! moveblock#mb(choice)
-	let s:choices = {
-				\'left':['h','hP'],           
-				\'right':['l','p'], 
-				\'up':['k',1],
-				\'down':['j',1]
-	\}
-	let s:pre_virtualedit = &virtualedit        "assign value based on test                
-	set virtualedit=all                         "  * teneary                               
-	"visual! d                                  "  * hash                                  
-	let s:next = s:choices[a:choice][0]
-	let s:paste_mode= s:choices[a:choice][1]
-	return 'd'
-			\.s:paste_mode
-			\.'gv'.s:next.'o'.s:next.'o'         
-			"\.':set virtualedit='.s:pre_virtualedit.'\<CR>'                         
-			" use another map to turn off virtualedit                                
-			" use another map to be used as move and recorded                        
-			" in hash                                                                
+function! moveblock#h(choice) 
+let l:choices = {
+\		 'left'  : ['h','hP'],           
+\		 'right' : ['l','p'], 
+\}
+let l:next      = l:choices[a:choice][0]
+let l:paste_mode= l:choices[a:choice][1]
+
+let g:debug_mb = 'd'.l:paste_mode
+\     .'gv'.l:next.'o'.l:next.'o'         
+return 'd'.l:paste_mode
+\     .'gv'.l:next.'o'.l:next.'o'         
 endfunction
 
-function! moveblock#swapline(choice) range                 
-    " if 
-    let &virtualedit = 'all'
-    " get info from visual block               
-    let s:l_info = [getpos("'<"),getpos("'>")] 
-                     " left         "right     
-    " hash data for logic
-    let s:choices = {
-     	\'down':['j','k'],
-     	\'up':['k','j']
-     \}
-    "delete line section                       
-    let s:len = s:l_info[1][2] - s:l_info[0][2] + 1
-	" height
-	let s:height = s:l_info[1][1] - s:l_info[0][1] + 1 " substract between line numbers and offset by 1
+function! s:virtpos(expr)
+    return add(getpos(a:expr),virtcol(a:expr))
+endfunction
 
-	if s:height == 1
-	   "echo s:len
-	   call setpos('.', s:l_info[0])              
-	   exe 'normal! d'.s:len.'l'                 
-					\.s:choices[a:choice][0]                          
-					\.'P'                           
-	   let s:new_pos = deepcopy(s:l_info[1])
-	   let s:new_pos[1] += (a:choice ==# 'down')?1:-1
-	   let s:new_pos[2] += 1
-	   call setpos('.', s:new_pos)  
-	   exe 'normal! d'.s:len.'l'                 
-				\.s:choices[a:choice][1]                           
-	   call setpos('.',s:l_info[0])               
-	   exe 'normal! P'                            
-	else
-		exe 'normal! gvd'
-		let s:cursor_pos = deepcopy(s:l_info[0])
-		let s:cursor_pos[1] = (a:choice==#'down') ? 
-					\s:cursor_pos[1] + 1 :
-					\s:cursor_pos[1] - 1
-		call setpos('.',s:cursor_pos)
-		exe 'normal! P'
+function! s:mk_sel(x)
+    return 2*a:x[0] + a:x[1]
+endfunction
 
-		let s:new_pos = deepcopy(s:l_info[1]) "right visual
-		" next row for down | for up
-		let s:new_pos[1] = (a:choice==#'down') ?
-					\(s:new_pos[1]+1) :
-					\deepcopy(s:l_info[0][1]-1)
-		let s:new_pos[2] += 1
-		call setpos('.', s:new_pos)  
-		exe 'normal! d'.s:len.'l'                 
-		let s:new_pos2 = deepcopy(s:l_info[0])
-		let s:new_pos2[1] = (a:choice==#'down') ?
-					\(s:new_pos2[1]) :
-					\deepcopy(s:l_info[1][1])
-		call setpos('.',s:new_pos2)               
-		exe 'normal! P'                            
-	endif
-    return 'gv'
-     	\.s:choices[a:choice][0]
-     	\.'o'.s:choices[a:choice][0].'o' 
-endfunction                                   
+function! moveblock#v(choice)
+" Get info from visual block...  
+" Initialize cursor position...
+exe "normal! gv"                
+let l:cur = s:virtpos('.')         
+let l:vb = {
+\   "'<" : s:virtpos("'<"),
+\   "'>" : s:virtpos("'>")
+\} 
 
-vnoremap <UP> :call moveblock#swapline('up')<CR>
-   		\:normal! gvkoko<CR>
-vnoremap <DOWN> :call moveblock#swapline('down')<CR>
-   		\:normal! gvjojo<CR>
-vnoremap <expr> <LEFT> moveblock#mb('left')
-vnoremap <expr> <RIGHT> moveblock#mb('right')
+" Directional convention
+"    -- y [-1], determined by virtual column
+"  |
+"  x [1] 
+let l:vb_shape = [
+\   abs(l:vb["'<"][1]  - l:vb["'>"][1])  + 1,
+\   abs(l:vb["'<"][-1] - l:vb["'>"][-1]) + 1
+\ ]
+
+" Set up decision matrix...
+let l:H = l:vb_shape[0]
+let l:W = l:vb_shape[1]
+
+let l:adj = {
+\   -3 : "o" ,
+\   -2 : "oO" ,
+\   -1 : "O",
+\    0 : ""
+\ }
+
+" xyz of botright corner
+let l:br   = [ 
+\   max([l:vb["'<"][1], l:vb["'>"][1]]),
+\   max([l:vb["'<"][-1],l:vb["'>"][-1]])
+\ ]
+
+" Cursor mode
+let l:mode = [ 
+\   (l:cur[1]-l:br[0] < 0 ) ? -1 : 0, 
+\   (l:cur[-1]-l:br[1] < 0) ? -1 : 0
+\ ]
+
+" Decide action...
+let l:act  = l:adj[s:mk_sel(l:mode)]
+echo l:act
+
+" Capture xyz of top-left and bot-right...
+" gv remembers the visual selected region in this way:
+" gv 1
+" gv 2
+" gv 3 = gv 1 result
+" \" in execute command to escape \<c-v>...
+exe "normal! gv" . l:act 
+let l:xyz_br = s:virtpos(".")
+exe "normal! gv" . l:act ."o" 
+let l:xyz_tl = s:virtpos(".")
+
+let l:jump = {
+\   'up'   : l:xyz_br,
+\   'down' : l:xyz_tl
+\ }
+
+let l:motion = {
+\   'up'   : 1,
+\   'down' : 0
+\ }
+
+" Cut the line text
+" "y" to capture the non standard blank (there are no spaces in reality, just a visual blank)
+let l:bases = {
+\   'up'    : 'oko' . l:H . 'k', 
+\   'down'  :  'jo' . l:H . 'jo'
+\ }
+exe "normal! gv" . l:bases[a:choice] . "y"
+exe "normal! gv" . "d"
+call setpos('.', l:jump[a:choice])
+exe "normal! " (l:motion[a:choice] ? "p" : (l:W-1 ? (l:W-1)."l" : "")."p")
+
+" Reselect the
+call setpos('.', l:xyz_tl)
+exe "normal! \<c-v>" . 
+\   (l:W-1 ? (l:W-1)."l"  : "") . 
+\   (l:H-1 ? (l:H-1). "j" : "") . "d"
+
+exe "normal! " . (l:motion[a:choice] ? "kP" : "jP")
+
+let g:cur    = l:cur
+let g:item   = s:mk_sel(l:mode)
+let g:act    = l:act
+let g:br     = l:br
+let g:mode   = l:mode
+let g:xyz_tl = l:xyz_tl
+let g:xyz_br = l:xyz_br
+let g:W      = l:W
+let g:H      = l:H
+let g:bases  = l:bases
+endfunction
+
+vnoremap <UP> :<c-u> call moveblock#v('up')<CR>
+     		\:normal! gvkoko<CR>
+vnoremap <DOWN> :<c-u> call moveblock#v('down')<CR>
+     		\:normal! gvjojo<CR>
+vnoremap <expr> <LEFT> moveblock#h('left')
+vnoremap <expr> <RIGHT> moveblock#h('right')

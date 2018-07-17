@@ -1,11 +1,10 @@
-# sushi and tofu...
+#---------------------------------------
+# sushi and noodle are my daily drivers
+#---------------------------------------
 if [ $HOSTNAME == "sushi" ] || [ $HOSTNAME == "noodle" ]
 then
     # Books and Clips...
     export BOOK="/home/scott/Dropbox/eBooks"
-
-    # Big thinking...
-    export Think="/home/scott/Dropbox/Projects/BigThink"
 
     # Projects
     export Codes="/home/scott/Dropbox/Codes"
@@ -19,4 +18,12 @@ then
 
     # Coursework
     export COURSE="/home/scott/Dropbox/School/Courses"
+
+    # Define things
+    export CONCEPT="/home/scott/Dropbox/Projects/DefineConcepts/define.concepts.txt"
+    export WORD="/home/scott/Dropbox/Projects/DefineWords/define.words.txt"
+    export GOAL="/home/scott/Dropbox/Projects/DefineGoals/define.goals.txt"
+
+    # Zen
+    export ZEN="/home/scott/Dropbox/Projects/Zen/zen.txt"
 fi
