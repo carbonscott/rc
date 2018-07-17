@@ -2,10 +2,8 @@ function! moveblock#h(choice)
 let l:choices = {
 \		 'left'  : ['h','hP'],           
 \		 'right' : ['l','p'], 
-\		 'up'    : ['k',1],
-\		 'down'  : ['j',1]
 \}
-let l:next = l:choices[a:choice][0]
+let l:next      = l:choices[a:choice][0]
 let l:paste_mode= l:choices[a:choice][1]
 
 let g:debug_mb = 'd'.l:paste_mode
@@ -25,7 +23,7 @@ endfunction
 function! moveblock#v(choice)
 " Get info from visual block...  
 " Initialize cursor position...
-exe "normal! gv\<ESC>"                
+exe "normal! gv"                
 let l:cur = s:virtpos('.')         
 let l:vb = {
 \   "'<" : s:virtpos("'<"),
@@ -44,10 +42,6 @@ let l:vb_shape = [
 " Set up decision matrix...
 let l:H = l:vb_shape[0]
 let l:W = l:vb_shape[1]
-let l:bases = {
-\   'up'    : 'oko' . l:H . 'k', 
-\   'down'  :  'jo' . l:H . 'jo'
-\ }
 
 let l:adj = {
 \   -3 : "o" ,
@@ -95,6 +89,10 @@ let l:motion = {
 
 " Cut the line text
 " "y" to capture the non standard blank (there are no spaces in reality, just a visual blank)
+let l:bases = {
+\   'up'    : 'oko' . l:H . 'k', 
+\   'down'  :  'jo' . l:H . 'jo'
+\ }
 exe "normal! gv" . l:bases[a:choice] . "y"
 exe "normal! gv" . "d"
 call setpos('.', l:jump[a:choice])
@@ -121,8 +119,8 @@ let g:bases  = l:bases
 endfunction
 
 vnoremap <UP> :<c-u> call moveblock#v('up')<CR>
-    		\:normal! gvkoko<CR>
+     		\:normal! gvkoko<CR>
 vnoremap <DOWN> :<c-u> call moveblock#v('down')<CR>
-    		\:normal! gvjojo<CR>
+     		\:normal! gvjojo<CR>
 vnoremap <expr> <LEFT> moveblock#h('left')
 vnoremap <expr> <RIGHT> moveblock#h('right')
