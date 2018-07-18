@@ -1,3 +1,11 @@
+function! s:virtpos(expr)
+    return add(getpos(a:expr),virtcol(a:expr))
+endfunction
+
+function! s:mk_sel(x)
+    return 2*a:x[0] + a:x[1]
+endfunction
+
 function! moveblock#h(choice) 
 let l:choices = {
 \		 'left'  : ['h','hP'],           
@@ -5,19 +13,7 @@ let l:choices = {
 \}
 let l:next      = l:choices[a:choice][0]
 let l:paste_mode= l:choices[a:choice][1]
-
-let g:debug_mb = 'd'.l:paste_mode
-\     .'gv'.l:next.'o'.l:next.'o'         
-return 'd'.l:paste_mode
-\     .'gv'.l:next.'o'.l:next.'o'         
-endfunction
-
-function! s:virtpos(expr)
-    return add(getpos(a:expr),virtcol(a:expr))
-endfunction
-
-function! s:mk_sel(x)
-    return 2*a:x[0] + a:x[1]
+exe "normal! gv" . "d". l:paste_mode
 endfunction
 
 function! moveblock#v(choice)
@@ -118,9 +114,11 @@ let g:H      = l:H
 let g:bases  = l:bases
 endfunction
 
-vnoremap <UP> :<c-u> call moveblock#v('up')<CR>
+vnoremap  <UP>    :<c-u> call moveblock#v('up')<CR>
      		\:normal! gvkoko<CR>
-vnoremap <DOWN> :<c-u> call moveblock#v('down')<CR>
+vnoremap  <DOWN>  :<c-u> call moveblock#v('down')<CR>
      		\:normal! gvjojo<CR>
-vnoremap <expr> <LEFT> moveblock#h('left')
-vnoremap <expr> <RIGHT> moveblock#h('right')
+vnoremap  <LEFT>  :<c-u> call moveblock#h('left')<CR>
+     		\:normal! gvhoho<CR>
+vnoremap  <RIGHT> :<c-u> call moveblock#h('right')<CR>
+     		\:normal! gvlolo<CR>

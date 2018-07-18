@@ -15,3 +15,4 @@ source ~/.vim/bundle/vim-notecolor/autoload/notedict.vim
 source ~/.vim/bundle/vim-alignchar/autoload/alignchar.vim
 source ~/.vim/bundle/vim-center/autoload/goto_center.vim
 source ~/.vim/bundle/vim-move-block/autoload/moveblock.vim
+source ~/.vim/bundle/vim-morespaces/autoload/morespaces.vim
