@@ -202,3 +202,7 @@ function reload_bumblebee {
 function clear_recent {
     rm ~/.local/share/recently-used.xbel
 }
+
+function pwdc {
+    pwd | tr -d '\n' | xclip -selection clipboard
+}
