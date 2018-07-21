@@ -6,7 +6,7 @@ template |plot-for|
 plot for [i=____:____] '____' u 1:i w l
 endtemplate
 
-template |plot2d|
+template |plot.template|
 #!/usr/bin/env gnuplot
 reset
 set terminal postscript eps size 3.5,2.62 enhanced color \
