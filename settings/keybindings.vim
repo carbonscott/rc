@@ -233,3 +233,15 @@ noremap [o :g//#<left><left>
 " turn on virtualedit when c-v is used
 nnoremap v :let &virtualedit="all"<CR>v
 nnoremap <c-v> :let &virtualedit="all"<CR><c-v>
+
+" turn on cursor column by keybindings...
+function! <SID>cursorcolumn()
+    let l:on = &cursorcolumn
+    if l:on
+        set nocursorcolumn
+    else
+        set   cursorcolumn
+    endif
+endfunction
+
+nnoremap [hc :call <SID>cursorcolumn()<CR>

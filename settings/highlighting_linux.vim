@@ -28,4 +28,7 @@ hi Folded ctermbg=None
 hi MyComment ctermfg=darkgray
 nnoremap [d :syntax match MyComment "\v^\s*.*"<left><left><left>
 
+" color cursor column
+hi CursorColumn ctermbg=33
+
 finish
