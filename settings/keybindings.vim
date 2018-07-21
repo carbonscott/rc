@@ -237,11 +237,11 @@ nnoremap <c-v> :let &virtualedit="all"<CR><c-v>
 " turn on cursor column by keybindings...
 function! <SID>cursorcolumn()
     let l:on = &cursorcolumn
-    if l:on
-        set nocursorcolumn
-    else
-        set   cursorcolumn
-    endif
+    let l:choice = {
+    \   0 : "cursorcolumn",
+    \   1 : "nocursorcolumn"
+    \ }
+    exe "normal! :set " . l:choice[l:on] . "\<CR>"
 endfunction
 
 nnoremap [hc :call <SID>cursorcolumn()<CR>
