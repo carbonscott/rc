@@ -243,5 +243,10 @@ function! <SID>cursorcolumn()
     \ }
     exe "normal! :set " . l:choice[l:on] . "\<CR>"
 endfunction
-
 nnoremap [hc :call <SID>cursorcolumn()<CR>
+
+" Search with hl enabled
+nnoremap / :set hlsearch<CR>/
+vnoremap / :set hlsearch<CR>/
+command! -nargs=0 Nohlsearch :set nohlsearch
+command! -nargs=0 Yeshlsearch :set hlsearch
