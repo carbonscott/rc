@@ -87,9 +87,9 @@ alias git-c="git commit "
 alias git-cm="git commit -m "
 
 # grep
-alias gp="egrep --color "
-alias gpi="egrep --color -i"
-alias gpiv="egrep --color -iv"
+alias gp="egrep --color -e"
+alias gpi="egrep --color -i -e"
+alias gpiv="egrep --color -iv -e"
 
 # add wmctrl control...
 alias wml="wmctrl -l "
@@ -204,5 +204,6 @@ function clear_recent {
 }
 
 function pwdc {
+    pwd
     pwd | tr -d '\n' | xclip -selection clipboard
 }
