@@ -250,3 +250,8 @@ nnoremap / :set hlsearch<CR>/
 vnoremap / :set hlsearch<CR>/
 command! -nargs=0 Nohlsearch :set nohlsearch
 command! -nargs=0 Yeshlsearch :set hlsearch
+
+" Readonly switch
+command! -nargs=0 Readonly :set readonly
+command! -nargs=0 NoReadonly :set noreadonly
+
