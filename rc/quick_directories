@@ -23,6 +23,7 @@ then
     export CONCEPT="/home/scott/Dropbox/Projects/DefineConcepts/define.concepts.txt"
     export WORD="/home/scott/Dropbox/Projects/DefineWords/define.words.txt"
     export GOAL="/home/scott/Dropbox/Projects/DefineGoals/define.goals.txt"
+    export JOT="/home/scott/Dropbox/Projects/JotDown/jot.down.txt"
 
     # Zen
     export ZEN="/home/scott/Dropbox/Projects/Zen/zen.txt"
