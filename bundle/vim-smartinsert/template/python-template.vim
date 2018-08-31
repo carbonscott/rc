@@ -192,3 +192,20 @@ endtemplate
 template |error-index|
 IndexError: ____
 endtemplate
+
+template |gp|
+eps       = ____
+font      = ____
+fontsize  = ____
+xlabel    = ____
+ylabel    = ____
+golden = 1.6
+width = 5
+height = width / golden
+gp = Gnuplot.Gnuplot(persist = False)
+gp("set output '%s'" % eps)
+gp("set terminal postscript eps enhanced color solid '%s' %d size %g,%g" % 
+  (font, fontsize, width, height))
+gp("set xlabel '%s'" % xlabel)
+gp("set ylabel '%s'" % ylabel)
+endtemplate
