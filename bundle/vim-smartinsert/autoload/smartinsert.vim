@@ -81,15 +81,17 @@ function! ReadTemplate(trigger,leadword)
   let BEGIN_LINE = "^\\s*"
   let END_LINE = "\\s*$"
 
+  let trigger = a:trigger
   let g:debug_trigger = a:trigger
-  let trigger = escape(a:trigger,'.')
   let to_search = BEGIN_LINE.a:leadword."\\s\\+"."|".trigger."|".END_LINE
+  let g:debug_to_search = to_search
 
   " read all template files...
   let file_array = []
   for each_file in g:SmartInsertTempalte
     call extend(file_array, readfile(each_file))
   endfor
+  let g:debug_file_array = file_array
 
   " offset line number due to comment...
   let comment_str = "^\s*#->"
@@ -122,9 +124,9 @@ function! ReadTemplate(trigger,leadword)
   endif
 endfunction
 
+
 " This function is to implement the smart insert...
 function! SmartInsert()
-
   " get sense of line context
   " - read current cursor position...
   let pos_current_line = getpos('.')
@@ -164,12 +166,10 @@ function! SmartInsert()
 
   " keep checking if the keyword is in the line...
   let is_found = 0
-  for keyword in g:SmartInsertKeywords
+  for each_keyword in g:SmartInsertKeywords
 
     " [TODO] The regex can be put into one variable...
-    " [debug] change the mathcing pattern
-    "// if current_line_sliced =~ '^.*'.keyword.'.*$'
-    "// keyword = escape(keyword,'()[].~\/')
+    let keyword = escape(each_keyword,'.\')
     if current_line_sliced =~ '^.*'.keyword.'$'
 
       let g:debug_keyword = keyword
