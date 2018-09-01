@@ -470,9 +470,10 @@ function! ListSmartKeywords(findstart, base)
     endif
 
      " find keywords matching with "a:base"
+     let base = escape(a:base,'.\')
      call sort(g:SmartInsertKeywords,"MinFirst")
      for m in g:SmartInsertKeywords
-       if m =~ '^' . a:base
+       if m =~ '^' . base
          call complete_add(m)
        endif
        if complete_check()
