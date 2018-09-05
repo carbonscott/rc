@@ -203,6 +203,7 @@ golden = 1.6
 width = 5
 height = width / golden
 gp = Gnuplot.Gnuplot(persist = False)
+gp("set encoding utf8")
 gp("set output '%s'" % eps)
 gp("set terminal postscript eps enhanced color solid '%s' %d size %g,%g" % 
   (font, fontsize, width, height))

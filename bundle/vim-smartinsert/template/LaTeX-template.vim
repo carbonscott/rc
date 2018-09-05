@@ -3,7 +3,7 @@ template |\documentclass|
 endtemplate
 
 template |\usepackage|
-\usepackage[____]{____}
+\usepackage{____}
 endtemplate
 
 template |\setlength|
