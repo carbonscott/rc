@@ -28,3 +28,30 @@ then
     # Zen
     export ZEN="/home/scott/Dropbox/Projects/Zen/zen.txt"
 fi
+
+if [ $HOSTNAME == "congs-MacBook-Pro.local" ]
+then
+    # Books and Clips...
+    export BOOK="/Users/scott/Dropbox/eBooks"
+
+    # Projects
+    export Codes="/Users/scott/Dropbox/Codes"
+    export Projects="/Users/scott/Dropbox/Projects"
+
+    # Notes
+    export iPad="/Users/scott/Dropbox/iPad"
+
+    # Teaching
+    export TA="/Users/scott/Dropbox/School/TA"
+
+    # Coursework
+    export COURSE="/Users/scott/Dropbox/School/Courses"
+
+    # Define things
+    export CONCEPT="/Users/scott/Dropbox/Projects/DefineConcepts/define.concepts.txt"
+    export WORD="/Users/scott/Dropbox/Projects/DefineWords/define.words.txt"
+    export GOAL="/Users/scott/Dropbox/Projects/DefineGoals/define.goals.txt"
+    export JOT="/Users/scott/Dropbox/Projects/JotDown/jot.down.txt"
+
+    # Zen
+fi

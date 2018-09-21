@@ -1,16 +1,4 @@
-# make use of `ls`...
-alias lst="ls -lrt "
-alias lsd="ls -d "
-alias lsdt="ls -dlrt"
-alias lstd="ls -dlrt"
-
-# + `ls` derivative...
-alias lsjob="ls *JOB*"
-alias lsdata="ls *DATA*"
-alias lsutil="ls *UTIL*"
-
-
-# make use of `find`...  
+# Make use of `find`...  
 function qfind {
 
 				# the * from terminal prompt will be evaluated before passing to the function...
@@ -37,7 +25,7 @@ alias findall='qfind '
 alias findpdf='qfind "*pdf" '
 alias findpl='qfind "*pl" '
 
-# typo
+# Typo
 
 alias sl="ls "
 

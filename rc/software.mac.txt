@@ -1,0 +1,29 @@
+## Xcode
+
+## macports
+
+   # List all binaries which can be selected as default by macports ...
+   sudo port select --summary
+
+   # Set a default binary installed by macports ...
+   sudo port select --set python python27
+
+## nvim -- neovim
+
+   # Install neovim from macport ...
+   sudo port install neovim
+
+   # Let neovim use vim config ...
+   mkdir -p  ~/.config/nvim
+   ln -s ~/.vim ~/.config/nvim
+   ln -s ~/.vimrc ~/.config/nvim/init.vim
+
+## XQuartz
+
+## Dropbox
+   
+   # Screenshot default to a folder in Dropbox ...
+   defaults write com.apple.screencapture location ~/Dropbox/Images
+
+   # Apply the change ...
+   killall SystemUIServer
