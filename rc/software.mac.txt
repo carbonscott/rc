@@ -8,6 +8,9 @@
    # Set a default binary installed by macports ...
    sudo port select --set python python27
 
+   # Set certain env var for gv
+   export LC_ALL="C:$LC_ALL"
+
 ## nvim -- neovim
 
    # Install neovim from macport ...
