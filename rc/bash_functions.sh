@@ -5,7 +5,8 @@
 # Show current working directory and copy the name of it ...
 function pwdc {
     pwd
-    pwd | tr -d '\n' | xclip -selection clipboard
+    #// pwd | tr -d '\n' | xclip -selection clipboard
+    pwd | tr -d '\n' | pbcopy
 }
 
 # Open GUI from terminal ...
