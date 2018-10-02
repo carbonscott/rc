@@ -27,10 +27,7 @@ then
 
     # Zen
     export ZEN="/home/scott/Dropbox/Projects/Zen/zen.txt"
-fi
-
-if [ $HOSTNAME == "congs-MacBook-Pro.local" ]
-then
+else
     # Books and Clips...
     export BOOK="/Users/scott/Dropbox/eBooks"
 

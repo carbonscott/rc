@@ -10,3 +10,6 @@ export PATH="$HOME/Dropbox/Projects/DefineConcepts:$PATH"
 
 # Word library ...
 export PATH="$HOME/Dropbox/Projects/DefineWords:$PATH"
+
+# PDF split ...
+export PATH="$HOME/Dropbox/Projects/PDF.Utility:$PATH"

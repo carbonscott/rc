@@ -24,7 +24,7 @@ set expandtab
 set shiftwidth=2
 set mouse=a
 set nolist
-set listchars=tab:▸\~,eol:¬
+set listchars=tab:>-
 set guioptions-=T
 set guioptions-=m
 set guioptions-=r
