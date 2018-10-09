@@ -115,3 +115,11 @@ endtemplate
 template |\framebox|
 \framebox(____,____)[____]{____}
 endtemplate
+
+template |\section|
+\section{____}
+endtemplate
+
+template |\includegraphic|
+\includegraphics[____]{____}
+endtemplate

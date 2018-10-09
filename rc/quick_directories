@@ -10,9 +10,6 @@ then
     export Codes="/home/scott/Dropbox/Codes"
     export Projects="/home/scott/Dropbox/Projects"
 
-    # Notes
-    export iPad="/home/scott/Dropbox/iPad"
-
     # Teaching
     export TA="/home/scott/Dropbox/School/TA"
 
@@ -35,9 +32,6 @@ else
     export Codes="/Users/scott/Dropbox/Codes"
     export Projects="/Users/scott/Dropbox/Projects"
 
-    # Notes
-    export iPad="/Users/scott/Dropbox/iPad"
-
     # Teaching
     export TA="/Users/scott/Dropbox/School/TA"
 
@@ -51,4 +45,5 @@ else
     export JOT="/Users/scott/Dropbox/Projects/JotDown/jot.down.txt"
 
     # Zen
+    export ZEN="/home/scott/Dropbox/Projects/Zen/zen.txt"
 fi
