@@ -45,5 +45,5 @@ else
     export JOT="/Users/scott/Dropbox/Projects/JotDown/jot.down.txt"
 
     # Zen
-    export ZEN="/home/scott/Dropbox/Projects/Zen/zen.txt"
+    export ZEN="/Users/scott/Dropbox/Projects/Zen/zen.txt"
 fi
