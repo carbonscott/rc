@@ -4,6 +4,7 @@
 
 # Set a lib path for Python to look for its modules ...
 export PYTHONPATH="$HOME/Dropbox/Projects:$PYTHONPATH"
+export PYTHONPATH="$HOME/Dropbox/Codes:$PYTHONPATH"
 
 # Concept library ...
 export PATH="$HOME/Dropbox/Projects/DefineConcepts:$PATH"

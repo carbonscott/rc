@@ -133,10 +133,6 @@ template |skimage-imread|
 skimage.imread(____)
 endtemplate
 
-template |section|
-# ___/ ____ \___
-endtemplate
-
 template |np-zeros|
 np.zeros(____,dtype="uint____")
 endtemplate
@@ -172,17 +168,18 @@ endtemplate
 
 template |argparse.creat_parser|
 parser = argparse.ArgumentParser(
-    description = """$description:____""")
+description = 
+"""$description:____"""
+,formatter_class=argparse.RawTextHelpFormatter)
 endtemplate
 
 template |argparse.add_arg|
 parser.add_argument("-____", "--____",
-    required=$True:____,
-    metavar = ("____"),
-    type = $int:____,
-    nargs = ____,
-    help = """$help:____""",
-    )
+    required = $True:____,
+    metavar  = ("____"),
+    type     = $int:____,
+    nargs    = ____,
+    help     = """$help:____""",)
 endtemplate
 
 template |argparse.arg_parse|
@@ -209,4 +206,24 @@ gp("set terminal postscript eps enhanced color solid '%s' %d size %g,%g" %
   (font, fontsize, width, height))
 gp("set xlabel '%s'" % xlabel)
 gp("set ylabel '%s'" % ylabel)
+endtemplate
+
+template |banner|
+# Python script for ____
+# Author: Cong Wang
+# License: This file is placed in the public domain.
+
+# ############################################################################
+# ##                                                                        ##
+# ##   ____   ##
+# ##          ##
+# ##          ##
+# ##   To use:##
+# ##     ____ ##
+# ##          ##
+# ############################################################################
+endtemplate
+
+template |section|
+#=====[ ____ ]==========================================
 endtemplate
