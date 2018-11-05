@@ -78,37 +78,18 @@ np.array([
 endtemplate
 
 template |import-matplotlib|
+import matplotlib; matplotlib.use('PS')
 import matplotlib.pyplot as plt
 endtemplate
 
 template |plt-plot|
-plt.plot(____)
-endtemplate
-
-template |plt-show|
-plt.show()
-endtemplate
-
-template |numpy-io-genfromtxt|
-np.genfromtxt('____')
+fig, ax = plt.subplots()
 endtemplate
 
 template |if|
 if ____:
     ____
 endtemplate
-
-template |plt-label|
-plt.____label("____")
-endtemplate 
-
-template |plt-savefig|
-export_rule = {
-    "format" : "png",
-    "dpi"    : 600,
-}
-plt.savefig("____", **export_rule)
-endtemplate 
 
 template |re-compile|
 re.compile('''
@@ -121,24 +102,12 @@ template |re-match|
 ____.match("____")
 endtemplate
 
-template |plt-imshow|
-plt.imshow(____)
-endtemplate
-
-template |plt-savefig|
-plt.savefig('____')
-endtemplate
-
 template |skimage-imread|
 skimage.imread(____)
 endtemplate
 
 template |np-zeros|
 np.zeros(____,dtype="uint____")
-endtemplate
-
-template |plt-hist|
-plt.hist($flattened_iamge:____,$hist_size:____,$range:____)
 endtemplate
 
 template |np-ones|
