@@ -82,8 +82,21 @@ import matplotlib; matplotlib.use('PS')
 import matplotlib.pyplot as plt
 endtemplate
 
-template |plt-plot|
-fig, ax = plt.subplots()
+template |plt.subplots|
+plt.subplots($3:____,$2:____,figsize=($w:____,$h:____))
+endtemplate
+
+template |plt.font|
+plt.rc('font', **{'serif':'Helvetica'})    # ...Set font
+plt.rc('font', size=10)                    # ...Set font size
+endtemplate
+
+template |imshow|
+imsow(____,interpolation='none',cmap='gray')
+endtemplate
+
+template |plt.savefig|
+plt.savefig(____)
 endtemplate
 
 template |if|

@@ -44,6 +44,17 @@ function! wordsubstitute#run3()
 		execute s:search_cmd."N"
 endfunction
 
+function! wordsubstitute#run32()
+		execute "normal! gv\"ay"
+
+		let s:search_block = @a
+		let s:search_block = escape(s:search_block,'.~/()\/[]')
+
+		let @/ = '\<'.s:search_block.'\>'
+		let s:search_cmd = "normal! /".@/."/\<CR>"
+		execute s:search_cmd."N"
+endfunction
+
 function! wordsubstitute#run4()
 		let s:original_pos = getpos('.')
 
