@@ -255,3 +255,5 @@ command! -nargs=0 Yeshlsearch :set hlsearch
 command! -nargs=0 Readonly :set readonly
 command! -nargs=0 NoReadonly :set noreadonly
 
+" Leave space in ()
+inoremap <c-b> <space><space><left>
