@@ -9,11 +9,8 @@ highlight CursorLineNR cterm=bold
 "    au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
 hi Search ctermfg=15 ctermbg=197
-"    hi CursorLine cterm=NONE ctermfg=White
-
 hi Visual ctermfg=15 ctermbg=33
 
-set nocursorline
 
 hi ColorColumn ctermbg=magenta
 call matchadd('ColorColumn','\%80v',200)
@@ -30,6 +27,9 @@ hi MyComment ctermfg=darkgray
 nnoremap [d :syntax match MyComment "\v^\s*.*"<left><left><left>
 
 " color cursor column
-hi CursorColumn ctermbg=33
+hi CursorColumn ctermfg=15 ctermbg=33
+hi CursorLine cterm=None ctermfg=15 ctermbg=33
+
+set nocursorline
 
 finish

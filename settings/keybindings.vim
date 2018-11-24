@@ -235,15 +235,16 @@ noremap [o :g//#<left><left>
 "// nnoremap <c-v> :let &virtualedit="all"<CR><c-v>
 
 " turn on cursor column by keybindings...
-function! <SID>cursorcolumn()
+function! <SID>find_cursor()
     let l:on = &cursorcolumn
     let l:choice = {
-    \   0 : "cursorcolumn",
-    \   1 : "nocursorcolumn"
+    \   0 : ["cursorcolumn", "cursorline"],
+    \   1 : ["nocursorcolumn", "nocursorline"],
     \ }
-    exe "normal! :set " . l:choice[l:on] . "\<CR>"
+    exe "normal! :set " . l:choice[l:on][0] . "\<CR>"
+    exe "normal! :set " . l:choice[l:on][1] . "\<CR>"
 endfunction
-nnoremap [hc :call <SID>cursorcolumn()<CR>
+nnoremap [hc :call <SID>find_cursor()<CR>
 
 " Search with hl enabled
 nnoremap / :set hlsearch<CR>/
