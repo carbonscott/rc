@@ -1,4 +1,7 @@
 function smartfold#run()
+ " Set foldmethod to be manual
+ set fdm=manual
+
 	" record where search starts...
 	let s:current_cusor = getpos('.')
 
