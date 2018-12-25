@@ -209,3 +209,12 @@ endtemplate
 template |section|
 #=====[ ____ ]==========================================
 endtemplate
+
+
+template |vi-{{{|
+# {{{ ___/ ____ \___
+endtemplate
+
+template |vi-fdm|
+# vi:sts=1:fdm=marker:
+endtemplate
