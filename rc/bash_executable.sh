@@ -7,11 +7,8 @@ export PYTHONPATH="$HOME/Dropbox/Projects:$PYTHONPATH"
 export PYTHONPATH="$HOME/Dropbox/Codes:$PYTHONPATH"
 #    export PYTHONPATH="$HOME/Dropbox/Codes/inSituX:$PYTHONPATH"
 
-# Concept library ...
-export PATH="$HOME/Dropbox/Projects/DefineConcepts:$PATH"
-
-# Word library ...
-export PATH="$HOME/Dropbox/Projects/DefineWords:$PATH"
+# Database library ...
+export PATH="$HOME/Dropbox/Projects/Define:$PATH"
 
 # PDF split ...
 export PATH="$HOME/Dropbox/Projects/PDF.Utility:$PATH"

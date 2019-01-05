@@ -17,10 +17,7 @@ then
     export COURSE="/home/scott/Dropbox/School/Courses"
 
     # Define things
-    export CONCEPT="/home/scott/Dropbox/Projects/DefineConcepts/define.concepts.txt"
-    export WORD="/home/scott/Dropbox/Projects/DefineWords/define.words.txt"
-    export GOAL="/home/scott/Dropbox/Projects/DefineGoals/define.goals.txt"
-    export JOT="/home/scott/Dropbox/Projects/JotDown/jot.down.txt"
+    export WORD="/home/scott/Dropbox/Projects/Define/word.txt"
 
     # Zen
     export ZEN="/home/scott/Dropbox/Projects/Zen/zen.txt"
@@ -39,10 +36,7 @@ else
     export COURSE="/Users/scott/Dropbox/School/Courses"
 
     # Define things
-    export CONCEPT="/Users/scott/Dropbox/Projects/DefineConcepts/define.concepts.txt"
-    export WORD="/Users/scott/Dropbox/Projects/DefineWords/define.words.txt"
-    export GOAL="/Users/scott/Dropbox/Projects/DefineGoals/define.goals.txt"
-    export JOT="/Users/scott/Dropbox/Projects/JotDown/jot.down.txt"
+    export WORD="/Users/scott/Dropbox/Projects/Define/word.txt"
 
     # Zen
     export ZEN="/Users/scott/Dropbox/Projects/Zen/zen.txt"
