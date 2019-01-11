@@ -40,4 +40,7 @@ else
 
     # Zen
     export ZEN="/Users/scott/Dropbox/Projects/Zen/zen.txt"
+
+    # Keywords to name files...
+    export PREFIX="/Users/scott/Dropbox/Notes/keywords.txt"
 fi

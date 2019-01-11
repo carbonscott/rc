@@ -168,6 +168,15 @@ template |argparse.arg_parse|
 args = parser.parse_args()
 endtemplate
 
+template |argparse.positional|
+parser.add_argument(
+    '$var:____', 
+    metavar='____', 
+    type=____, 
+    nargs='____', 
+    help='____')
+endtemplate
+
 template |error-index|
 IndexError: ____
 endtemplate
@@ -218,3 +227,4 @@ endtemplate
 template |vi-fdm|
 # vi:sts=1:fdm=marker:
 endtemplate
+
