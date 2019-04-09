@@ -503,13 +503,20 @@ function! NextPlaceholder(next_type)
       let match_left = searchpos(g:SmartInsertPlaceholder, 
       \                         'n'.next_rules[a:next_type])
 
-      let if_match = search(g:SmartInsertPlaceholder,
-      \                         ''.next_rules[a:next_type])
+      if a:next_type == 'next' 
+          let if_match = search(g:SmartInsertPlaceholder,
+          \                         ''.next_rules[a:next_type])
+      endif
 
       let match_rght = searchpos(g:SmartInsertPlaceholder,
       \                         'en'.next_rules[a:next_type])
 
       let match_len  = match_rght[1] - match_left[1]
+
+      if a:next_type == 'prev' 
+          let if_match = search(g:SmartInsertPlaceholder,
+          \                         ''.next_rules[a:next_type])
+      endif
 
       " Visual select the string matched by placeholder...
       let cmd = ''
