@@ -2,7 +2,7 @@ highlight CMT ctermfg=magenta
 highlight TRI ctermfg=blue 
 
 let g:SmartInsertCommentOn = 0
-let g:SmartInsertPlaceholder = "____"
+let g:SmartInsertPlaceholder = '\%($\S\{-\}\)\{-,1\}____'
 let g:SmartInsertTempalte = []
 let g:SmartInsertDir = expand("<sfile>:p:h:h")
 let g:filenames = []
@@ -274,10 +274,16 @@ function! SmartInsert()
     if is_placeholder != -1 
       call setpos('.', jump_to_first)
 
+      let match_left  = searchpos(g:SmartInsertPlaceholder, 'n')
+      let match_rght  = searchpos(g:SmartInsertPlaceholder, 'en')
+      let match_len   = match_rght[1] - match_left[1]
+      let g:match_len = match_len
+
       let if_match = search(g:SmartInsertPlaceholder,'c')
       if if_match != 0
-        execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"
+        execute "normal! "."v".(match_len)."lo\<c-g>"
       endif
+
     else
       " move back to where cursors starts...
       call setpos('.', pos_current_line)
@@ -485,8 +491,37 @@ function! ListSmartKeywords(findstart, base)
 endfunction
 
 
-" Keybindings...
+function! NextPlaceholder(next_type)
+      " Define types of movement...
+      let next_rules = {
+      \     'next' : '',
+      \     'prev' : 'b'
+      \ }
 
+      " Find out the length of string matched by placeholder... 
+      # See README.md for understanding order
+      let match_left = searchpos(g:SmartInsertPlaceholder, 
+      \                         'n'.next_rules[a:next_type])
+
+      let if_match = search(g:SmartInsertPlaceholder,
+      \                         ''.next_rules[a:next_type])
+
+      let match_rght = searchpos(g:SmartInsertPlaceholder,
+      \                         'en'.next_rules[a:next_type])
+
+      let match_len  = match_rght[1] - match_left[1]
+
+      " Visual select the string matched by placeholder...
+      let cmd = ''
+      if if_match != 0
+          let cmd = "normal! " . "v" . (match_len) . "lo\<c-g>"
+      endif
+
+      execute cmd
+endfunction
+
+
+" Keybindings...
 inoremap [q <c-[>:call SmartInsert()<cr>
 command! -nargs=0 ClearKeywords  call ClearKeywords()
 command! -nargs=0 ClearTemplates  call ClearTemplates()
@@ -497,44 +532,16 @@ command! -nargs=0 CreateTemplates  call CreateTemplates()
 command! -nargs=0 EditTemplates call EditTemplates()
 
 " looking for placeholder g:SmartInsertPlaceholder 
-nnoremap <silent> [j :call search(g:SmartInsertPlaceholder)<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// nnoremap <silent> <Tab> :call search(g:SmartInsertPlaceholder)<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-snoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// snoremap <silent> <Tab> :<c-u>call search(g:SmartInsertPlaceholder)<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-vnoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// vnoremap <silent> <Tab> :<c-u>call search(g:SmartInsertPlaceholder)<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+nnoremap <silent> [j :call NextPlaceholder('next')<cr>
+snoremap <silent> [j :<c-u>call NextPlaceholder('next')<cr>
+vnoremap <silent> [j :<c-u>call NextPlaceholder('next')<cr>
 
-nnoremap <silent> [k :call search(g:SmartInsertPlaceholder,'b')<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// nnoremap <silent> <s-Tab> :call search(g:SmartInsertPlaceholder,'b')<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-snoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// snoremap <silent> <s-Tab> :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-vnoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// vnoremap <silent> <s-Tab> :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+nnoremap <silent> [k :call NextPlaceholder('prev')<cr>
+snoremap <silent> [k :<c-u>call NextPlaceholder('prev')<cr>
+vnoremap <silent> [k :<c-u>call NextPlaceholder('prev')<cr>
 
-inoremap <silent> [j <c-[>
-          \:call search(g:SmartInsertPlaceholder)<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// inoremap <silent> <Tab> <c-[>
-"//           \:call search(g:SmartInsertPlaceholder)<cr>
-"//          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-inoremap <silent> [k <c-[>
-          \:call search(g:SmartInsertPlaceholder,'b')<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// inoremap <silent> <s-Tab> <c-[>
-"//           \:call search(g:SmartInsertPlaceholder,'b')<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+inoremap <silent> [j <c-[> :call NextPlaceholder('next')<cr>
+inoremap <silent> [k <c-[> :call NextPlaceholder('prev')<cr>
 
 " list smart keywords...
 set completefunc=ListSmartKeywords
@@ -579,3 +586,25 @@ vnoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
 
 inoremap <silent> [j <c-[>:call search('____')<CR>ve<c-g>
 inoremap <silent> [k <c-[>:call search('____','b')<CR>ve<c-g>
+
+nnoremap <silent> [j :call search(g:SmartInsertPlaceholder)<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+snoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+vnoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+
+nnoremap <silent> [k :call search(g:SmartInsertPlaceholder,'b')<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+snoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+vnoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+
+inoremap <silent> [j <c-[>
+          \:call search(g:SmartInsertPlaceholder)<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+inoremap <silent> [k <c-[>
+          \:call search(g:SmartInsertPlaceholder,'b')<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+
