@@ -499,7 +499,7 @@ function! NextPlaceholder(next_type)
       \ }
 
       " Find out the length of string matched by placeholder... 
-      # See README.md for understanding order
+      " See README.md for understanding order
       let match_left = searchpos(g:SmartInsertPlaceholder, 
       \                         'n'.next_rules[a:next_type])
 
