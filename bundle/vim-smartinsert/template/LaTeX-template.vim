@@ -7,11 +7,11 @@ template |\usepackage|
 endtemplate
 
 template |\setlength|
-\setlength{$var____}{$val____}
+\setlength{__var__}{__val__}
 endtemplate
 
 template |\renewcommand|
-\renewcommand{$command____}{$val____}
+\renewcommand{__command__}{__val__}
 endtemplate
 
 template |\hspace|
@@ -81,7 +81,7 @@ ____
 endtemplate
 
 template |list.labelstyle|
-\renewcommand{\labelitem$level:i____}{$label:*____}
+\renewcommand{\labelitem__level:i__}{__label:*__}
 endtemplate
 
 template |bibliography|
@@ -91,21 +91,21 @@ ____
 endtemplate
 
 template |\bibitem|
-\bibitem{$key____} $content____
+\bibitem{__key__} __content__
 endtemplate
 
 template |\cite|
-\cite{$key____}
+\cite{__key__}
 endtemplate
 
 template |\makebox|
-\makebox[$width____][$pos____]{$text____}
+\makebox[__width__][__pos__]{__text__}
 endtemplate
 
 template |\begin|
-\begin{$name____}
+\begin{__name__}
 ____
-\end{$name____}
+\end{__name__}
 endtemplate
 
 template |\put|

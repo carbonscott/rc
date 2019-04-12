@@ -50,13 +50,13 @@ my ____ = mce_loop {
 
     my ($mce, $chunk_ref, $chunk_id) = @_;
 
-    my $1:____;
+    my __1__;
     foreach my ____ ($chunk_ref->@*) {
         ____
 
-        push $1:____, ____;
+        push __1__, ____;
     }
-    $mce->gather($1:____)
+    __mce->gather($1__)
 
 } ____;
 endtemplate
@@ -157,23 +157,23 @@ $#____
 endtemplate
 
 template |mce-loop-gather-order|
-my @$1:____;
+my @__1__;
 my $mce = MCE->new(
     chunk_size => 100, 
     max_workers => 4,
-    gather => MCE::Candy::out_iter_array(\@$1:____),
+    gather => MCE::Candy::out_iter_array(\@__1__),
     user_func => sub {
         my ($mce, $chunk_ref, $chunk_id) = @_;
 
-        my @$2:____ = ();
+        my @__2__ = ();
         foreach my $____ ($chunk_ref->@*) {
          
          ____
 
-         push @$2:____, (____);
+         push @__2__, (____);
         }
 
-        $mce->gather($chunk_id, @$2:____);
+        $mce->gather($chunk_id, @__2__);
     }
 );
 

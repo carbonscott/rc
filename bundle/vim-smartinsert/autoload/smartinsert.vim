@@ -2,7 +2,8 @@ highlight CMT ctermfg=magenta
 highlight TRI ctermfg=blue 
 
 let g:SmartInsertCommentOn = 0
-let g:SmartInsertPlaceholder = '\%($\S\{-\}\)\{-,1\}____'
+" let g:SmartInsertPlaceholder = '\%($\S\{-\}\)\{-,1\}_\{4\}'
+let g:SmartInsertPlaceholder = '_\{2\}\S\{-\}_\{2\}'
 let g:SmartInsertTempalte = []
 let g:SmartInsertDir = expand("<sfile>:p:h:h")
 let g:filenames = []
@@ -553,10 +554,6 @@ inoremap <silent> [k <c-[> :call NextPlaceholder('prev')<cr>
 " list smart keywords...
 set completefunc=ListSmartKeywords
 
-" quickly select the named placeholder...
-snoremap [i <c-g>F$<c-g>
-vnoremap [i F$<c-g>
-
 " Quickly launch loader...
 nnoremap [tl :SelectTemplates<cr>
 nnoremap [td :DeleteSelectedTemplates<cr>
@@ -570,6 +567,10 @@ inoremap [tc <c-o>:CreateTemplates<cr>
 " shortcut to expand keywords...
 inoremap <Tab> <c-x><c-u>
 inoremap [n <c-x><c-u>
+
+" Use desc as the value of __desc__ ...
+snoremap <silent> <Tab> <c-g>:s/__\(\S\{-\}\)__/\1/<cr>:call NextPlaceholder('next')<cr>
+
 
 finish
 
@@ -614,4 +615,8 @@ inoremap <silent> [j <c-[>
 inoremap <silent> [k <c-[>
           \:call search(g:SmartInsertPlaceholder,'b')<cr>
           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+
+" " quickly select the named placeholder...
+" snoremap [i <c-g>F$<c-g>
+" vnoremap [i F$<c-g>
 

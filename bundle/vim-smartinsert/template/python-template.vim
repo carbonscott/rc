@@ -18,7 +18,7 @@ endtemplate
 
 
 template |plt.subplots|
-plt.subplots($3:____,$2:____,figsize=($w:____,$h:____))
+plt.subplots(__3__,__2__,figsize=(__w__,__h__))
 endtemplate
 
 
@@ -33,7 +33,7 @@ endtemplate
 
 
 template |io-with|
-with open($file:____,'$read_or_write:____') as $file_handle:____:
+with open(__file__,'__read_or_write__') as __file_handle__:
     ____
 endtemplate
 
@@ -46,18 +46,18 @@ endtemplate
 template |argparse.creat_parser|
 parser = argparse.ArgumentParser(
 description = 
-"""$description:____"""
+"""__description__"""
 ,formatter_class=argparse.RawTextHelpFormatter)
 endtemplate
 
 
 template |argparse.add_arg|
 parser.add_argument("-____", "--____",
-    required = $True:____,
+    required = __True__,
     metavar  = ("____"),
-    type     = $int:____,
+    type     = __int__,
     nargs    = ____,
-    help     = """$help:____""",)
+    help     = """__help__""",)
 endtemplate
 
 
@@ -68,7 +68,7 @@ endtemplate
 
 template |argparse.positional|
 parser.add_argument(
-    '$var:____', 
+    '__var__', 
     metavar='____', 
     type=____, 
     nargs='____', 
@@ -86,8 +86,8 @@ template |io.import|
 ids = []
 mat = []
 
-# Read $1:____.dat and load data into matrix...
-f = '$1:____'
+# Read __1__.dat and load data into matrix...
+f = '__1__'
 fi = "{STR}.dat".format( STR = f )
 with open(fi,'r') as fh:
     for line in fh.readlines():
@@ -279,7 +279,20 @@ endtemplate
 
 template |tally|
 box = {}
-for it in $list:____: 
+for it in __list__: 
     if it not in box: box[it] = 1
     else: box[it] += 1
+endtemplate
+
+template |matplotlib.setup|
+import numpy as np
+import matplotlib.pyplot as plt
+endtemplate
+
+
+template |matplotlib.simple.plot|
+x = np.linspace(__x_init__, __x_final__, __step__)
+y = __function__(x)
+plt.plot(x, y)
+plt.show()
 endtemplate

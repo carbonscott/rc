@@ -86,5 +86,5 @@ ____=$( wc -l ____ | cut -f1 -d ' ' )
 endtemplate
 
 template |string-cmp|
-$var:____ == *"$str:____"*
+__var__ == *"__str__"*
 endtemplate
