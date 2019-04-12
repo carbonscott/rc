@@ -577,6 +577,7 @@ function! GetDefault()
     let s_cmd  = 's/\%>' . s_col . 'c' . g:SmartInsertPlaceholder . '/\1/'
     execute s_cmd
 
+    set nohlsearch
     call setpos('.', s_pos)
 endfunction
 snoremap <silent> <Tab> <c-[>:call GetDefault()<cr>:call NextPlaceholder('next')<cr>
