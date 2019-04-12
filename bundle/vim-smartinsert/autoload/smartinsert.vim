@@ -4,7 +4,7 @@ highlight TRI ctermfg=blue
 let g:SmartInsertCommentOn = 0
 " let g:SmartInsertPlaceholder = '\%($\S\{-\}\)\{-,1\}_\{4\}'
 " let g:SmartInsertPlaceholder = '_\{2\}\S\{-\}_\{2\}'
-let g:SmartInsertPlaceholder = '_\{2\}.\{-\}_\{2\}'
+let g:SmartInsertPlaceholder = '_\{2\}\(.\{-\}\)_\{2\}'
 let g:SmartInsertTempalte = []
 let g:SmartInsertDir = expand("<sfile>:p:h:h")
 let g:filenames = []
@@ -571,8 +571,15 @@ inoremap [n <c-x><c-u>
 
 " Use desc as the value of __desc__ ...
 " [Inconsistency]  g:SmartInsertPlaceholder
-snoremap <silent> <Tab> <c-g>:s/__\(.\{-\}\)__/\1/<cr>:call NextPlaceholder('next')<cr>
+function! GetDefault()
+    let s_pos  = getpos('.')
+    let s_col = s_pos[2] - 1
+    let s_cmd  = 's/\%>' . s_col . 'c' . g:SmartInsertPlaceholder . '/\1/'
+    execute s_cmd
 
+    call setpos('.', s_pos)
+endfunction
+snoremap <silent> <Tab> <c-[>:call GetDefault()<cr>:call NextPlaceholder('next')<cr>
 
 finish
 
