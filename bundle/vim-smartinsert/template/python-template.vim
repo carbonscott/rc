@@ -296,3 +296,38 @@ y = __function__(x)
 plt.plot(x, y)
 plt.show()
 endtemplate
+
+
+template |matplotlib.create.plot|
+plt.figure(__1__, figsize = (__6__, __4__))
+plt.plot(__x__, __y__, '__g-__', label = '__data_1__')
+plt.xlabel('__x__')
+plt.ylabel('__y__')
+plt.legend(loc = '__upper right__', title = '__legend__')
+plt.axhline(y = __0__, color = '__gray__', zorder = __-1__)
+plt.axvline(x = __0__, color = '__gray__', zorder = __-1__)
+plt.show()
+endtemplate
+
+
+template |matplotlib.opt.plot|
+plt.plot(__x__, __y__, color = '__green__', 
+                       marker = '__D__',
+                       markerfacecolor = '__yellow__',
+                       markersize = __7__,
+                       markeredgecolor = '__C1__')
+endtemplate
+
+
+template |matplotlib.simple.errorbar|
+plt.errorbar(__x__, __y__, fmt = '__oC1__', 
+                                 label  = '__data__',
+                                 xerr   = __0.75__,
+                                 yerr   = __yerror__,
+                                 ecolor = '__black__')
+endtemplate
+
+
+template |matplotlib.set.lim|
+plt.__x__lim(__-8__, __8__)
+endtemplate
