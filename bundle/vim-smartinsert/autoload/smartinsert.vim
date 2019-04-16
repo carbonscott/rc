@@ -494,39 +494,39 @@ endfunction
 
 
 function! NextPlaceholder(next_type)
-      " Define types of movement...
-      let next_rules = {
-      \     'next' : '',
-      \     'prev' : 'b'
-      \ }
+    " Define types of movement...
+    let next_rules = {
+    \     'next' : '',
+    \     'prev' : 'b'
+    \ }
 
-      " Find out the length of string matched by placeholder... 
-      " See README.md for understanding order
-      let match_left = searchpos(g:SmartInsertPlaceholder, 
-      \                         'n'.next_rules[a:next_type])
+    " Find out the length of string matched by placeholder... 
+    " See README.md for understanding order
+    let match_left = searchpos(g:SmartInsertPlaceholder, 
+    \                         'n'.next_rules[a:next_type])
 
-      if a:next_type == 'next' 
-          let if_match = search(g:SmartInsertPlaceholder,
-          \                         ''.next_rules[a:next_type])
-      endif
+    if a:next_type == 'next' 
+        let if_match = search(g:SmartInsertPlaceholder,
+        \                         ''.next_rules[a:next_type])
+    endif
 
-      let match_rght = searchpos(g:SmartInsertPlaceholder,
-      \                         'en'.next_rules[a:next_type])
+    let match_rght = searchpos(g:SmartInsertPlaceholder,
+    \                         'en'.next_rules[a:next_type])
 
-      let match_len  = match_rght[1] - match_left[1]
+    let match_len  = match_rght[1] - match_left[1]
 
-      if a:next_type == 'prev' 
-          let if_match = search(g:SmartInsertPlaceholder,
-          \                         ''.next_rules[a:next_type])
-      endif
+    if a:next_type == 'prev' 
+        let if_match = search(g:SmartInsertPlaceholder,
+        \                         ''.next_rules[a:next_type])
+    endif
 
-      " Visual select the string matched by placeholder...
-      let cmd = ''
-      if if_match != 0
-          let cmd = "normal! " . "v" . (match_len) . "lo\<c-g>"
-      endif
+    " Visual select the string matched by placeholder...
+    let cmd = ''
+    if if_match != 0
+        let cmd = "normal! " . "v" . (match_len) . "lo\<c-g>"
+    endif
 
-      execute cmd
+    execute cmd
 endfunction
 
 
@@ -549,7 +549,7 @@ nnoremap <silent> [k :call NextPlaceholder('prev')<cr>
 snoremap <silent> [k :<c-u>call NextPlaceholder('prev')<cr>
 vnoremap <silent> [k :<c-u>call NextPlaceholder('prev')<cr>
 
-inoremap <silent> [j <c-[> :call NextPlaceholder('next')<cr>
+inoremap <silent> [j <c-[>h :call NextPlaceholder('next')<cr>
 inoremap <silent> [k <c-[> :call NextPlaceholder('prev')<cr>
 
 " list smart keywords...
