@@ -331,3 +331,33 @@ endtemplate
 template |matplotlib.set.lim|
 plt.__x__lim(__-8__, __8__)
 endtemplate
+
+
+template |matplotlib.simple.subplot|
+plt.subplot(__rows__, __cols__, __ID__)
+endtemplate
+
+
+template |matplotlib.advanced.subplot|
+# __Create a figure window...__
+__fig__ = plt.figure(__1__, figsize=(__9__, __7__))
+
+# __Subplot: __
+__ax1__ = __fig__.add_subplot(__2__, __2__, __1__)
+__ax1__.plot(__x__, __y__)
+__ax1__.set_xlabel('__x__')
+__ax1__.set_ylabel('__y__')
+__ax1__.set_title('__title__')
+
+# __Subplot: __
+__ax2__ = __fig__.add_subplot(__2__, __2__, __1__)
+__ax2__.plot(__x__, __y__)
+__ax2__.set_xlabel('__x__')
+__ax2__.set_ylabel('__y__')
+__ax2__.set_title('__title__')
+
+# __Export...__
+__fig__.tight_layout()
+fig.savefig('__path__')
+fig.show()
+endtemplate
