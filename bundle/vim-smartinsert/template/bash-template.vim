@@ -88,3 +88,14 @@ endtemplate
 template |string-cmp|
 __var__ == *"__str__"*
 endtemplate
+
+
+template |list.range|
+seq -w __01__ __10__
+endtemplate
+
+
+template |util.timer|
+# New line to mark the starting time...
+while true; do echo -ne "`date +%H:%M:%S`\r"; done
+endtemplate

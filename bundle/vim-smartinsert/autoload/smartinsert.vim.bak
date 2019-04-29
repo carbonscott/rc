@@ -2,7 +2,9 @@ highlight CMT ctermfg=magenta
 highlight TRI ctermfg=blue 
 
 let g:SmartInsertCommentOn = 0
-let g:SmartInsertPlaceholder = "____"
+" let g:SmartInsertPlaceholder = '\%($\S\{-\}\)\{-,1\}_\{4\}'
+" let g:SmartInsertPlaceholder = '_\{2\}\S\{-\}_\{2\}'
+let g:SmartInsertPlaceholder = '_\{2\}\(.\{-\}\)_\{2\}'
 let g:SmartInsertTempalte = []
 let g:SmartInsertDir = expand("<sfile>:p:h:h")
 let g:filenames = []
@@ -81,15 +83,17 @@ function! ReadTemplate(trigger,leadword)
   let BEGIN_LINE = "^\\s*"
   let END_LINE = "\\s*$"
 
+  let trigger = a:trigger
   let g:debug_trigger = a:trigger
-  let trigger = escape(a:trigger,'.')
   let to_search = BEGIN_LINE.a:leadword."\\s\\+"."|".trigger."|".END_LINE
+  let g:debug_to_search = to_search
 
   " read all template files...
   let file_array = []
   for each_file in g:SmartInsertTempalte
     call extend(file_array, readfile(each_file))
   endfor
+  let g:debug_file_array = file_array
 
   " offset line number due to comment...
   let comment_str = "^\s*#->"
@@ -122,9 +126,9 @@ function! ReadTemplate(trigger,leadword)
   endif
 endfunction
 
+
 " This function is to implement the smart insert...
 function! SmartInsert()
-
   " get sense of line context
   " - read current cursor position...
   let pos_current_line = getpos('.')
@@ -164,12 +168,10 @@ function! SmartInsert()
 
   " keep checking if the keyword is in the line...
   let is_found = 0
-  for keyword in g:SmartInsertKeywords
+  for each_keyword in g:SmartInsertKeywords
 
     " [TODO] The regex can be put into one variable...
-    " [debug] change the mathcing pattern
-    "// if current_line_sliced =~ '^.*'.keyword.'.*$'
-    "// keyword = escape(keyword,'()[].~\/')
+    let keyword = escape(each_keyword,'.\')
     if current_line_sliced =~ '^.*'.keyword.'$'
 
       let g:debug_keyword = keyword
@@ -274,10 +276,16 @@ function! SmartInsert()
     if is_placeholder != -1 
       call setpos('.', jump_to_first)
 
+      let match_left  = searchpos(g:SmartInsertPlaceholder, 'n')
+      let match_rght  = searchpos(g:SmartInsertPlaceholder, 'en')
+      let match_len   = match_rght[1] - match_left[1]
+      let g:match_len = match_len
+
       let if_match = search(g:SmartInsertPlaceholder,'c')
       if if_match != 0
-        execute "normal! "."v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"
+        execute "normal! "."v".(match_len)."lo\<c-g>"
       endif
+
     else
       " move back to where cursors starts...
       call setpos('.', pos_current_line)
@@ -470,9 +478,10 @@ function! ListSmartKeywords(findstart, base)
     endif
 
      " find keywords matching with "a:base"
+     let base = escape(a:base,'.\')
      call sort(g:SmartInsertKeywords,"MinFirst")
      for m in g:SmartInsertKeywords
-       if m =~ '^' . a:base
+       if m =~ '^' . base
          call complete_add(m)
        endif
        if complete_check()
@@ -484,8 +493,44 @@ function! ListSmartKeywords(findstart, base)
 endfunction
 
 
-" Keybindings...
+function! NextPlaceholder(next_type)
+      " Define types of movement...
+      let next_rules = {
+      \     'next' : '',
+      \     'prev' : 'b'
+      \ }
 
+      " Find out the length of string matched by placeholder... 
+      " See README.md for understanding order
+      let match_left = searchpos(g:SmartInsertPlaceholder, 
+      \                         'n'.next_rules[a:next_type])
+
+      if a:next_type == 'next' 
+          let if_match = search(g:SmartInsertPlaceholder,
+          \                         ''.next_rules[a:next_type])
+      endif
+
+      let match_rght = searchpos(g:SmartInsertPlaceholder,
+      \                         'en'.next_rules[a:next_type])
+
+      let match_len  = match_rght[1] - match_left[1]
+
+      if a:next_type == 'prev' 
+          let if_match = search(g:SmartInsertPlaceholder,
+          \                         ''.next_rules[a:next_type])
+      endif
+
+      " Visual select the string matched by placeholder...
+      let cmd = ''
+      if if_match != 0
+          let cmd = "normal! " . "v" . (match_len) . "lo\<c-g>"
+      endif
+
+      execute cmd
+endfunction
+
+
+" Keybindings...
 inoremap [q <c-[>:call SmartInsert()<cr>
 command! -nargs=0 ClearKeywords  call ClearKeywords()
 command! -nargs=0 ClearTemplates  call ClearTemplates()
@@ -496,51 +541,19 @@ command! -nargs=0 CreateTemplates  call CreateTemplates()
 command! -nargs=0 EditTemplates call EditTemplates()
 
 " looking for placeholder g:SmartInsertPlaceholder 
-nnoremap <silent> [j :call search(g:SmartInsertPlaceholder)<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// nnoremap <silent> <Tab> :call search(g:SmartInsertPlaceholder)<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-snoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// snoremap <silent> <Tab> :<c-u>call search(g:SmartInsertPlaceholder)<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-vnoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// vnoremap <silent> <Tab> :<c-u>call search(g:SmartInsertPlaceholder)<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+nnoremap <silent> [j :call NextPlaceholder('next')<cr>
+snoremap <silent> [j :<c-u>call NextPlaceholder('next')<cr>
+vnoremap <silent> [j :<c-u>call NextPlaceholder('next')<cr>
 
-nnoremap <silent> [k :call search(g:SmartInsertPlaceholder,'b')<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// nnoremap <silent> <s-Tab> :call search(g:SmartInsertPlaceholder,'b')<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-snoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// snoremap <silent> <s-Tab> :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-vnoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// vnoremap <silent> <s-Tab> :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+nnoremap <silent> [k :call NextPlaceholder('prev')<cr>
+snoremap <silent> [k :<c-u>call NextPlaceholder('prev')<cr>
+vnoremap <silent> [k :<c-u>call NextPlaceholder('prev')<cr>
 
-inoremap <silent> [j <c-[>
-          \:call search(g:SmartInsertPlaceholder)<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// inoremap <silent> <Tab> <c-[>
-"//           \:call search(g:SmartInsertPlaceholder)<cr>
-"//          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-inoremap <silent> [k <c-[>
-          \:call search(g:SmartInsertPlaceholder,'b')<cr>
-          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
-"// inoremap <silent> <s-Tab> <c-[>
-"//           \:call search(g:SmartInsertPlaceholder,'b')<cr>
-"//           \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+inoremap <silent> [j <c-[> :call NextPlaceholder('next')<cr>
+inoremap <silent> [k <c-[> :call NextPlaceholder('prev')<cr>
 
 " list smart keywords...
 set completefunc=ListSmartKeywords
-
-" quickly select the named placeholder...
-snoremap [i <c-g>F$<c-g>
-vnoremap [i F$<c-g>
 
 " Quickly launch loader...
 nnoremap [tl :SelectTemplates<cr>
@@ -555,6 +568,19 @@ inoremap [tc <c-o>:CreateTemplates<cr>
 " shortcut to expand keywords...
 inoremap <Tab> <c-x><c-u>
 inoremap [n <c-x><c-u>
+
+" Use desc as the value of __desc__ ...
+" [Inconsistency]  g:SmartInsertPlaceholder
+function! GetDefault()
+    let s_pos  = getpos('.')
+    let s_col = s_pos[2] - 1
+    let s_cmd  = 's/\%>' . s_col . 'c' . g:SmartInsertPlaceholder . '/\1/'
+    execute s_cmd
+
+    set nohlsearch
+    call setpos('.', s_pos)
+endfunction
+snoremap <silent> <Tab> <c-[>:call GetDefault()<cr>:call NextPlaceholder('next')<cr>
 
 finish
 
@@ -578,3 +604,29 @@ vnoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
 
 inoremap <silent> [j <c-[>:call search('____')<CR>ve<c-g>
 inoremap <silent> [k <c-[>:call search('____','b')<CR>ve<c-g>
+
+nnoremap <silent> [j :call search(g:SmartInsertPlaceholder)<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+snoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+vnoremap <silent> [j :<c-u>call search(g:SmartInsertPlaceholder)<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+
+nnoremap <silent> [k :call search(g:SmartInsertPlaceholder,'b')<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+snoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+vnoremap <silent> [k :<c-u>call search(g:SmartInsertPlaceholder,'b')<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+
+inoremap <silent> [j <c-[>
+          \:call search(g:SmartInsertPlaceholder)<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+inoremap <silent> [k <c-[>
+          \:call search(g:SmartInsertPlaceholder,'b')<cr>
+          \:execute "normal! v".(len(g:SmartInsertPlaceholder)-1)."lo\<c-g>"<cr>
+
+" " quickly select the named placeholder...
+" snoremap [i <c-g>F$<c-g>
+" vnoremap [i F$<c-g>
+
