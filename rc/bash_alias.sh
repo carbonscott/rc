@@ -18,3 +18,7 @@ alias lst="ls -lrt "
 # Add u+x to a file...
 alias x1="chmod u+x "
 
+# Tmux related...
+alias tls='tmux list-sessions'
+alias tas='tmux attach-session -s '
+alias tns='tmxu new-session -s '
