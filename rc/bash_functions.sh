@@ -1,6 +1,4 @@
-# ============================================================================
-# Directory shortcuts
-# ============================================================================
+# [[[ Directory shortcuts ]]]
 
 # Show current working directory and copy the name of it ...
 function pwdc {
@@ -14,11 +12,16 @@ function o {
     open "$1" &> /dev/null
 }
 
-# ============================================================================
-# File shortcuts
-# ============================================================================
+# [[[ File shortcuts ]]]
 
 # Find shortcuts ...
 function fi1 {
     find . -iname "*$1*"
 }
+
+
+# [[[ Terminal ]]]
+function clc {
+    echo -n -e "\033]0;$1\007"
+}
+alias clear='clear; clc '
