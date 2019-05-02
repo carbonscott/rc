@@ -276,7 +276,12 @@ function! SmartInsert()
     if is_placeholder != -1 
       call setpos('.', jump_to_first)
 
-      let match_left  = searchpos(g:SmartInsertPlaceholder, 'n')
+      " [ISSUE] failed to search when the cursor is on placeholder
+      " Keep the following code in case the fix creates new bug
+      " ...
+      " let match_left  = searchpos(g:SmartInsertPlaceholder, 'n')
+      " ...
+      let match_left  = searchpos(g:SmartInsertPlaceholder, 'cn')
       let match_rght  = searchpos(g:SmartInsertPlaceholder, 'en')
       let match_len   = match_rght[1] - match_left[1]
       let g:match_len = match_len

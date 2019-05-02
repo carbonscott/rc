@@ -284,7 +284,14 @@ for it in __list__:
     else: box[it] += 1
 endtemplate
 
+
+
+
+# [[[ matplotlib ]]]
+# {
+
 template |matplotlib.setup|
+from matplotlib import use; use('PS')
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -313,7 +320,7 @@ plt.show()
 endtemplate
 
 
-template |matplotlib.opt.plot|
+template |matplotlib.plot.opt|
 plt.plot(__x__, __y__, color = '__green__', 
                        marker = '__D__',
                        markerfacecolor = '__yellow__',
@@ -337,7 +344,14 @@ endtemplate
 
 
 template |matplotlib.simple.subplot|
-plt.subplot(__rows__, __cols__, __ID__)
+__fig__, __axes__ = plt.subplot(__rows__, __cols__, figsize = (__9.5__, __6__)
+axes[__0, 0__].plot(____)
+__fig__.savefig(__'....eps'__)
+endtemplate
+
+
+template |matplotlib.simple.twinx|
+__ax1__.twinx()
 endtemplate
 
 
@@ -366,6 +380,72 @@ fig.show()
 endtemplate
 
 
+template |mat.example.plot_surface|
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+
+# Make data...
+X = np.arange(-5, 5, 0.25)
+Y = np.arange(-5, 5, 0.25)
+X, Y = np.meshgrid(X, Y)
+R = np.sqrt(X**2 + Y**2)
+Z = np.sin(R)
+
+# Plot the surface...
+surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+
+# Customize the z axis...
+ax.set_zlim(-1.01, 1.01)
+ax.zaxis.set_major_locator(LinearLocator(10))
+ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+
+# Add a color bar which maps values to colors...
+fig.colorbar(surf, shrink=0.5, aspect=5)
+
+plt.show()
+endtemplate
+
+# }
+
+
+
+
+# [[[ os.path module ]]]
+# {
+
+template |os.path.abspath|
+os.path.abspath('__Downloads__')   # __returns '/Users/scott/Downloads'__
+endtemplate
+
+
+template |os.path.basename|
+os.path.basename('__/foo/bar__')   # __returns 'bar'__
+endtemplate
+
+
+template |os.path.dirname|
+os.path.dirname('__/Users/scott/Downloads/README.pdf__')   # __returns /Users/scott/Downloads__
+endtemplate
+
+
+template |os.path.exists|
+os.path.exists('__path__')
+endtemplate
+
+
+template |os.path.join|
+os.path.join('__parent_path__', '__child_path__')
+endtemplate
+
+# }
+
+
+
+
+# [[[ string formating ]]]
+# {
+
 template |format.simple|
 print "{__INT__:__04d__}, {__FLOAT__:__8.3f__}".format(__INT__ = ____, __FLOAT__ = ____)
 endtemplate
@@ -380,29 +460,4 @@ template |format.align.center|
 __^10.3f__
 endtemplate
 
-
-template |mat.example.plot_surface|
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-
-# Make data.
-X = np.arange(-5, 5, 0.25)
-Y = np.arange(-5, 5, 0.25)
-X, Y = np.meshgrid(X, Y)
-R = np.sqrt(X**2 + Y**2)
-Z = np.sin(R)
-
-# Plot the surface.
-surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
-                       linewidth=0, antialiased=False)
-
-# Customize the z axis.
-ax.set_zlim(-1.01, 1.01)
-ax.zaxis.set_major_locator(LinearLocator(10))
-ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
-
-# Add a color bar which maps values to colors.
-fig.colorbar(surf, shrink=0.5, aspect=5)
-
-plt.show()
-endtemplate
+# }
