@@ -43,7 +43,7 @@ import argparse
 endtemplate
 
 
-template |argparse.creat_parser|
+template |argparse.header|
 parser = argparse.ArgumentParser(
 description = 
 """__description__"""
@@ -61,7 +61,7 @@ parser.add_argument("-____", "--____",
 endtemplate
 
 
-template |argparse.arg_parse|
+template |argparse.create|
 args = parser.parse_args()
 endtemplate
 
@@ -69,10 +69,10 @@ endtemplate
 template |argparse.positional|
 parser.add_argument(
     '__var__', 
-    metavar='____', 
-    type=____, 
-    nargs='____', 
-    help='____')
+    metavar = '____', 
+    type    = ____, 
+    __nargs   = 1,__ 
+    help    = '____')
 endtemplate
 
 
@@ -81,14 +81,14 @@ IndexError: ____
 endtemplate
 
 
-template |io.import|
+template |file.data|
 # Init matrix to store data...
 ids = []
 mat = []
 
-# Read __1__.dat and load data into matrix...
-f = '__1__'
-fi = "{STR}.dat".format( STR = f )
+# Read __1.dat__ and load data into matrix...
+f = __'1'__
+fi = "{STR}".format( STR = f )
 with open(fi,'r') as fh:
     for line in fh.readlines():
         words = line.split()
@@ -406,9 +406,23 @@ fig.colorbar(surf, shrink=0.5, aspect=5)
 plt.show()
 endtemplate
 
+
+template |matplotlib.opt.logx|
+__ax__.set_xscale('log')
+endtemplate
+
+
+template |matplotlib.opt.logy|
+__ax__.set_yscale('log')
+endtemplate
+
+
+template |matplotlib.opt.hline|
+__ax__.axhline( y = __0__, color = __'gray'__, linewidth = __.1__, zorder = __-1__ )
+endtemplate
+
+
 # }
-
-
 
 
 # [[[ os.path module ]]]
@@ -420,22 +434,22 @@ endtemplate
 
 
 template |os.path.basename|
-os.path.basename('__/foo/bar__')   # __returns 'bar'__
+os.path.basename(__'/foo/bar'__)   # __returns 'bar'__
 endtemplate
 
 
 template |os.path.dirname|
-os.path.dirname('__/Users/scott/Downloads/README.pdf__')   # __returns /Users/scott/Downloads__
+os.path.dirname(__'/Users/scott/Downloads/README.pdf'__)   # __returns /Users/scott/Downloads__
 endtemplate
 
 
 template |os.path.exists|
-os.path.exists('__path__')
+os.path.exists(__'path'__)
 endtemplate
 
 
 template |os.path.join|
-os.path.join('__parent_path__', '__child_path__')
+os.path.join(__'parent_path'__, __'child_path'__)
 endtemplate
 
 # }
