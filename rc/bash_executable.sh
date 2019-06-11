@@ -16,5 +16,5 @@ export PATH="$HOME/Dropbox/codes/inSituX.Ctrl:$PATH"
 export PATH="$HOME/Dropbox/codes/inSituX:$PATH"
 
 # FTP server -- serial crystallography software ...
-export PATH="$HOME/Dropbox/projects/FTP.server:$PATH"
-export PATH="$HOME/Dropbox/projects/FTP.server/Client:$PATH"
+export PATH="$HOME/Dropbox/codes/FTP.server:$PATH"
+export PATH="$HOME/Dropbox/codes/FTP.server/Client:$PATH"
