@@ -1,5 +1,5 @@
 function! TimeCurrent()
-    let time_now = strftime("%b %X")
+    let time_now = strftime("%X %b %d")
     execute "normal a" . time_now
 endfunction
 
