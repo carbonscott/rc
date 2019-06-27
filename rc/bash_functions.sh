@@ -25,19 +25,3 @@ function clc {
     echo -n -e "\033]0;$1\007"
 }
 alias clear='clear; clc '
-
-# [[[ Utilities ]]]
-# pandoc, markdown, and entr...
-function pme {
-    # Get the filename...
-    filename=$1
-
-    # Get the length of the filename...
-    len_filename=${#filename}
-
-    # Extract the filename without `.md` as postfix...
-    prefix_filename=${filename:0:len_filename-3}
-
-    # Execute the custom command based on the prefix_filename...
-    echo $filename | entr pandoc -f markdown+smart -t latex $filename -s -o $prefix_filename.pdf --pdf-engine=pdflatex
-}
