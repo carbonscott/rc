@@ -13,7 +13,7 @@ hi Visual ctermfg=15 ctermbg=33
 
 
 hi ColorColumn ctermbg=magenta
-call matchadd('ColorColumn','\%80v',200)
+call matchadd('ColorColumn','\%81v',200)
 
 syntax off
 
@@ -21,7 +21,7 @@ syntax off
 hi Pmenu ctermbg=15 ctermfg=0
 hi PmenuSel ctermbg=33 ctermfg=15
 
-hi Folded ctermbg=None
+hi Folded ctermfg=8 ctermbg=None
 
 hi MyComment ctermfg=darkgray
 nnoremap [d :syntax match MyComment "\v^\s*.*"<left><left><left>

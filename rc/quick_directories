@@ -1,3 +1,4 @@
 export codes="$HOME/Dropbox/codes"
 export tasks="$HOME/Dropbox/tasks"
 export projects="$HOME/Dropbox/projects"
+export snippets="$HOME/Dropbox/codes/snippets"
