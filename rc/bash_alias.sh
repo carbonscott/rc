@@ -22,3 +22,7 @@ alias x1="chmod u+x "
 alias tls='tmux list-sessions'
 alias tas='tmux attach-session -t '
 alias tns='tmux new-session -s '
+
+# more or less
+alias m='more'
+alias l='less'
