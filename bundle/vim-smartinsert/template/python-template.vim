@@ -140,6 +140,8 @@ endtemplate
 
 
 template |gp.plot|
+__# ANY EXTRA PLOT SETTINGS GO HERE BEFORE `plot` STATEMENT__
+
 # Define plot styles...
 plt = "{PLOT} '{FILE}' u {USE} \
        w {TYPE} {STYLE} {COLOR} {SIZE} \
@@ -185,6 +187,8 @@ endtemplate
 
 
 template |gp.image|
+__# ANY EXTRA PLOT SETTINGS GO HERE BEFORE `plot` STATEMENT__
+
 # Define plot styles...
 plt = "{PLOT} '{FILE}' u {USE} \
        w {TYPE} {STYLE} {COLOR} {SIZE} \
