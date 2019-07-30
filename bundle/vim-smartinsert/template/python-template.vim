@@ -140,12 +140,12 @@ endtemplate
 
 
 template |gp.plot|
-# Define different plot styles...
+# Define plot styles...
 plt = "{PLOT} '{FILE}' u {USE} \
        w {TYPE} {STYLE} {COLOR} {SIZE} \
        title '{TITLE}'{COMMA}"
 
-# Plot styles...
+# ...plot styles
 sty = [
     # ...1st style
     plt.format(PLOT  = "plot",  FILE = "-",  USE = "1:2",  
@@ -166,7 +166,7 @@ sty = [
                COMMA = "  "),
 ]
 
-# Make a plot and apply styles...
+# ...make a plot and apply styles...
 gpc  = sty[0]   # ...gpc stands for gnuplot command
 gpc += sty[1]
 gp(gpc)
@@ -185,12 +185,12 @@ endtemplate
 
 
 template |gp.image|
-# Define different plot styles...
+# Define plot styles...
 plt = "{PLOT} '{FILE}' u {USE} \
        w {TYPE} {STYLE} {COLOR} {SIZE} \
        title '{TITLE}'{COMMA}"
 
-# Plot styles...
+# ...plot styles
 sty = [
     plt.format(PLOT  = "plot",  FILE = "-",  USE = "1:2:3",  
                TYPE  = "image",
@@ -201,7 +201,7 @@ sty = [
                COMMA = ""),
 ]
 
-# Make a plot and apply styles...
+# ...make a plot and apply styles
 gpc = sty[0]
 gp(gpc)
 
