@@ -8,7 +8,7 @@ highlight CursorLineNR cterm=bold
 "    au insertenter * hi CursorLineNR cterm=bold ctermbg=2
 "    au InsertLeave * hi CursorLineNR cterm=bold ctermbg=12
 
-hi Search ctermfg=15 ctermbg=197
+hi Search ctermfg=15 ctermbg=33
 hi Visual ctermfg=15 ctermbg=33
 
 
@@ -18,8 +18,8 @@ call matchadd('ColorColumn','\%81v',200)
 syntax off
 
 " color for completion...
-hi Pmenu ctermbg=15 ctermfg=0
-hi PmenuSel ctermbg=33 ctermfg=15
+hi Pmenu ctermfg=0 ctermbg=15 
+hi PmenuSel ctermfg=15 ctermbg=33
 
 hi Folded ctermfg=8 ctermbg=None
 
