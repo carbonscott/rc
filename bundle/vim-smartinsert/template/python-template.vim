@@ -187,7 +187,12 @@ endtemplate
 
 
 template |gp.image|
-__# ANY EXTRA PLOT SETTINGS GO HERE BEFORE `plot` STATEMENT__
+__# ANY EXTRA PLOT SETTINGS GO HERE BEFORE `plot` STATEMENT, like color palette__
+
+# Set color palette...
+gp("set palette gray")
+gp("set cbrange [0:255]")
+gp("set palette defined (0 'black', 255 'white')")
 
 # Define plot styles...
 plt = "{PLOT} '{FILE}' u {USE} \
@@ -210,9 +215,11 @@ gpc = sty[0]
 gp(gpc)
 
 # Feed data...
-for i in range(XSIZE): 
-    for j in range(YSIZE):
-        gp("{X} {Y} {Z}".format( X = i, Y = j, Z = MAT[j, i] ))
+__XSIZE__ = ____
+__YSIZE__ = ____
+for i in range(__XSIZE__): 
+    for j in range(__YSIZE__):
+        gp("{X} {Y} {Z}".format( X = i, Y = j, Z = __MAT__[j, i] ))
 gp('e')
 endtemplate
 
