@@ -1,3 +1,18 @@
+template |go|
+\documentclass[a4paper]{report}    
+\usepackage[a4paper,left=2.6cm,right=2.4cm,top=2.54cm,bottom=2.54cm]{geometry} % ...set margin
+\usepackage[utf8]{inputenc}                                                    % ...unicode enable
+\usepackage{graphicx}                                                          % ...graphic support
+\usepackage{bm}                                                                % ...bold face in equation
+\usepackage{fancyhdr}                                                          % ...header and footer
+\title{____}
+
+\begin{document}
+____
+\end{document}
+endtemplate
+
+
 template |\documentclass|
 \documentclass[____]{____}
 endtemplate
