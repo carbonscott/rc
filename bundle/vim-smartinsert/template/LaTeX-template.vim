@@ -5,6 +5,18 @@ template |go|
 \usepackage{graphicx}                                                          % ...graphic support
 \usepackage{bm}                                                                % ...bold face in equation
 \usepackage{fancyhdr}                                                          % ...header and footer
+\usepackage{amsmath}                                                           % ...math
+\usepackage{listings}                                                          % ...code
+\usepackage{xcolor}                                                            % ...text color
+\usepackage{xparse}                                                            % ...parse syntax
+
+% Constants...
+\setlength\parindent{0pt}
+
+% Macro...
+% ...code
+\NewDocumentCommand{\codeword}{v}{\texttt{\textcolor{blue}{#1}}}
+
 \title{____}
 
 \begin{document}
