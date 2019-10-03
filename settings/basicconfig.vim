@@ -1,23 +1,20 @@
 "=============CUSTOMIZE VIM=============
 " mapleader
 let mapleader = "["
-source ~/.vim/runtimepath.vim
 
 " settings
 set wildmenu
 set rnu
 set nonumber
-" For macvim #{
+
 if has("gui_macvim") 
 	set guifont=Monaco:h20
 endif
+
 if has("gui_running") 
 		set guifont=Monaco\ 12
 endif
-" #}
-" For Linux #{
-"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
-" #}
+
 set tabstop=1
 set softtabstop=1
 set expandtab
@@ -33,8 +30,6 @@ set autoindent
 set wrap
 set linebreak
 set textwidth=0
-"set StatusLine 
-"set laststatus=2
 set laststatus=0
 set statusline+=%F
 set formatoptions+=Mm
@@ -43,18 +38,10 @@ set wildignore += "*.a, *.o, *.bmp, *.jpg, *.png, *.ico, *.swp, *.tmp, *.git, *.
 set ruler
 set formatoptions+=j "Make the comments notation invisible while joining or spliting lines
 set backspace=indent,eol,start
-"set virtualedit=all
 
 " let find command do recursive search...
-" set path+=**
 set path=**
-
-" turn off viminfo...
-"// setlocal viminfo=
 
 " search highlight
 set incsearch
 set hlsearch
-
-" filetype feature off
-filetype off

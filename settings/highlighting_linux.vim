@@ -31,5 +31,3 @@ hi CursorColumn ctermfg=15 ctermbg=33
 hi CursorLine cterm=None ctermfg=15 ctermbg=33
 
 set nocursorline
-
-finish
