@@ -15,7 +15,7 @@ hi Visual ctermfg=15 ctermbg=33
 hi ColorColumn ctermbg=magenta
 call matchadd('ColorColumn','\%81v',200)
 
-syntax off
+" syntax off
 
 " color for completion...
 hi Pmenu ctermfg=0 ctermbg=15 

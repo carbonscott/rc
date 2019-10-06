@@ -25,6 +25,7 @@ endfunction
 augroup MarkdownSetup
     autocmd! 
     autocmd BufEnter *.md call execute("set textwidth=80")
+    autocmd BufEnter *.md echom 'markdown file detected...'
     autocmd BufEnter *.md syntax on
     autocmd BufEnter *.md call execute("hi markdownItalic cterm=None")
     autocmd BufEnter *.md call execute("hi markdownError  cterm=None")
