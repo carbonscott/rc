@@ -1,3 +1,6 @@
+syntax off            " ...no colorscheme by default
+filetype indent off   " ...required by smartinsert plugin
+
 source ~/.vim/settings/basicconfig.vim
 source ~/.vim/settings/keybindings.vim
 source ~/.vim/settings/abbr.vim
