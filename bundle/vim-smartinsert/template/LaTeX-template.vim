@@ -164,3 +164,8 @@ template |aligned|
 ____
 \end{aligned}
 endtemplate
+
+
+template |\pagecolor|
+\pagecolor{green!30}
+endtemplate
