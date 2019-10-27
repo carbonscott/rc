@@ -21,3 +21,6 @@ export PATH="$HOME/Dropbox/codes/FTP.server/Client:$PATH"
 
 # pme for pandoc, markdown and entr...
 export PATH="$HOME/Dropbox/codes/pme:$PATH"
+
+# texpro for LaTeX...
+export PATH="$HOME/Dropbox/codes/texpro:$PATH"

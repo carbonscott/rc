@@ -15,7 +15,7 @@ function ttd {
 }
 
 function ttc {
-    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Code Yellow"'
+    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Code White"'
 }
 
 function ttwl {

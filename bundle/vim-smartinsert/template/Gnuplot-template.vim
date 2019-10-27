@@ -6,7 +6,7 @@ template |ratio|
 set size ratio ____
 endtemplate
 
-template |lc|
+template |rgb|
 lc rgb '____'
 endtemplate
 

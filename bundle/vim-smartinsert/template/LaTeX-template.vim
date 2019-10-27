@@ -150,3 +150,17 @@ endtemplate
 template |\includegraphic|
 \includegraphics[____]{____}
 endtemplate
+
+
+template |equation|
+\begin{equation}
+____
+\end{equation}
+endtemplate
+
+
+template |aligned|
+\begin{aligned}
+____
+\end{aligned}
+endtemplate

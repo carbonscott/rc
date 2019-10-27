@@ -6,6 +6,14 @@ ____
 endtemplate
 
 
+template |head3|
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+____
+endtemplate
+
+
 template |import-math|
 import math
 endtemplate
