@@ -14,7 +14,7 @@ function! prompt#run()
 endfunction
 
 "=======================
-" command line search...
+" Search files...
 "=======================
 function! prompt#csearch()
 
@@ -30,6 +30,35 @@ function! prompt#csearch()
 
 				" don't execute it if \<c-[> or \<esc> is entered...
 				if s:file !=# ""
+						execute s:cmd . "\<CR>"
+				endif
+
+				redraw
+
+		endwhile
+
+endfunction
+
+
+
+
+"=======================
+" Search buffers...
+"=======================
+function! prompt#bsearch()
+
+		let s:cmd = ""
+
+		while (s:cmd ==# "") 
+
+				" search prompt with "search for file in path option enabled"...
+				let s:buffer = input("buffer> ","","buffer")
+				let s:cmd = "normal! :find " . s:buffer
+
+				echon "\n"
+
+				" don't execute it if \<c-[> or \<esc> is entered...
+				if s:buffer !=# ""
 						execute s:cmd . "\<CR>"
 				endif
 
