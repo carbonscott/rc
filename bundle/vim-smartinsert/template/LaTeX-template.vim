@@ -148,7 +148,12 @@ template |\section|
 endtemplate
 
 template |\includegraphic|
-\includegraphics[____]{____}
+\includegraphics[__width=\textwidth,height=0.8\textheight,keepaspectratio__]{__figures/IP.PNG__}
+endtemplate
+
+
+template |graphics_include|
+\includegraphics[__width=\textwidth,height=0.8\textheight,keepaspectratio__]{__figures/IP.PNG__}
 endtemplate
 
 
@@ -168,4 +173,15 @@ endtemplate
 
 template |\pagecolor|
 \pagecolor{green!30}
+endtemplate
+
+
+template |beamer.frame|
+%%%%
+\begin{frame}
+\frametitle{____}
+
+____
+
+\end{frame}
 endtemplate
