@@ -185,3 +185,20 @@ ____
 
 \end{frame}
 endtemplate
+
+
+template |2columns|
+\begin{columns}
+\begin{column}{0.5\textwidth}
+    \begin{center}
+    \includegraphics[width=0.8\textwidth,height=\textheight,keepaspectratio]{figures/____}
+    \end{center}
+\end{column}
+\begin{column}{0.5\textwidth}  %%<--- here
+    \begin{center}
+    \includegraphics[width=0.8\textwidth,height=\textheight,keepaspectratio]{figures/____}
+    \end{center}
+\end{column}
+\end{columns}
+
+endtemplate
