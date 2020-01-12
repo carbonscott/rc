@@ -109,21 +109,16 @@ endtemplate
 # [[[ Gnuplot ]]]
 
 template |gp.gp|
-# Launch Gnuplot...
-gp = Gnuplot(persist = False)
+gp = GnuplotPy3()
 endtemplate
 
 
 template |gp.eps|
-# Set fig format to be eps...
-# ...eps font and dimension
-gp("set term postscript eps enhanced  color solid  \
-    '{FONT}' {FONTSIZE} \
-    size {WIDTH}, {HEIGHT}".format( FONT  = "Helvetica", FONTSIZE = __12__,
-                                    WIDTH = __5__       , HEIGHT   = __4__))
-
-# ...eps filename
-gp("set output '{FILE}'".format( FILE = __'temp.eps'__ ))
+gp("set terminal postscript eps size __3.5__, __2.62__  \\")
+gp("                            enhanced color          \\")
+gp("                            font 'Helvetica,__12__' \\")
+gp("                            linewidth 2")
+gp("set output '____.eps'")
 endtemplate
 
 

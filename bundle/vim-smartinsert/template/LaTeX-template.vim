@@ -95,19 +95,19 @@ ____
 \end{center}
 endtemplate
 
-template |list.itemize|
+template |itemize|
 \begin{itemize}
 ____
 \end{itemize}
 endtemplate
 
-template |list.enumerate|
+template |enumerate|
 \begin{enumerate}
 ____
 \end{enumerate}
 endtemplate
 
-template |list.labelstyle|
+template |labelstyle|
 \renewcommand{\labelitem__level:i__}{__label:*__}
 endtemplate
 
@@ -201,4 +201,14 @@ template |2columns|
 \end{column}
 \end{columns}
 
+endtemplate
+
+
+template |line.dot|
+\dotfill
+endtemplate
+
+
+template |line.solid|
+\hrulefill
 endtemplate
