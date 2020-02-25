@@ -26,10 +26,12 @@ let l:vb = {
 \   "'>" : s:virtpos("'>")
 \} 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Directional convention
 "    -- y [-1], determined by virtual column
 "  |
 "  x [1] 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let l:vb_shape = [
 \   abs(l:vb["'<"][1]  - l:vb["'>"][1])  + 1,
 \   abs(l:vb["'<"][-1] - l:vb["'>"][-1]) + 1
@@ -122,3 +124,5 @@ vnoremap  <LEFT>  :<c-u> call moveblock#h('left')<CR>
      		\:normal! gvhoho<CR>
 vnoremap  <RIGHT> :<c-u> call moveblock#h('right')<CR>
      		\:normal! gvlolo<CR>
+
+finish

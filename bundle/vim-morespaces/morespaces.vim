@@ -31,3 +31,5 @@ endfor
 endfunction
 
 vnoremap [<Space> :call morespaces#run()<CR>:normal! gv<CR>
+
+finish

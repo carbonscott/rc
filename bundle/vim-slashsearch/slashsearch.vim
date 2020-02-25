@@ -10,3 +10,5 @@ vnoremap [f /<c-r>=<SID>Slashsearch()<cr>
 vnoremap [e ?<c-r>=<SID>Slashsearch()<cr>
 sunmap [f
 sunmap [e
+
+finish

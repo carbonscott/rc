@@ -92,3 +92,14 @@ function! wordsubstitute#run4()
     let s:original_pos[2] += len(s:input) - 1 
     call setpos('.',s:original_pos)
 endfunction
+
+
+vnoremap [gg :<c-u>call wordsubstitute#run1()<CR>
+vnoremap [g/ :<c-u>call wordsubstitute#run3()<CR>nN
+vnoremap [g? :<c-u>call wordsubstitute#run32()<CR>nN
+snoremap [gc <c-g>:<c-u>call wordsubstitute#run4()<CR>
+vnoremap [gc :<c-u>call wordsubstitute#run4()<CR>
+snoremap [c <c-g>:<c-u>call wordsubstitute#run4()<CR>
+vnoremap [c :<c-u>call wordsubstitute#run4()<CR>
+
+finish

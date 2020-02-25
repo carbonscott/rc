@@ -130,3 +130,6 @@ function! g:quote#fun3(...)
     endwhile
 endfunction
 
+vnoremap [o :<c-u>call quote#fun2()<CR>
+
+finish
