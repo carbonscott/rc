@@ -15,9 +15,9 @@ function ttd {
 }
 
 function ttc {
-    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Code White"'
+    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Write Light"'
 }
 
 function ttw {
-    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Code Roboto"'
+    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Write Dark"'
 }
