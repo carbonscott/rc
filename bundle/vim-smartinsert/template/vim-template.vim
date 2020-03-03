@@ -10,7 +10,7 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 
-# [[[ Implementation ]]]
+" [[[ Implementation ]]]
 ____
 
 
