@@ -19,5 +19,5 @@ function ttc {
 }
 
 function ttw {
-    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Write Dark"'
+    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Novel"'
 }
