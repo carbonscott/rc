@@ -212,3 +212,18 @@ endtemplate
 template |line.solid|
 \hrulefill
 endtemplate
+
+
+template |figure.example|
+% Insert the figure HERE and TOP..
+\begin{figure}[!ht]    
+\includegraphics[__width=\textwidth,height=0.8\textheight,keepaspectratio__]{__./figures/eulerangles.png__}
+\caption{__An illustration of Euler angles.  __}
+\label{__fig:eulerangle__}
+\end{figure}
+endtemplate
+
+
+template |center|
+\centering
+endtemplate
