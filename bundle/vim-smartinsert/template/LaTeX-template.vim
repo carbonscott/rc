@@ -147,6 +147,12 @@ template |\section|
 \section{____}
 endtemplate
 
+
+template |figure.include|
+\includegraphics[__width=\textwidth,height=0.8\textheight,keepaspectratio__]{__figures/IP.PNG__}
+endtemplate
+
+
 template |\includegraphic|
 \includegraphics[__width=\textwidth,height=0.8\textheight,keepaspectratio__]{__figures/IP.PNG__}
 endtemplate
