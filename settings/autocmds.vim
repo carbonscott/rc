@@ -15,6 +15,7 @@ augroup MarkdownSetup
     autocmd BufEnter *.md syntax on
     autocmd BufEnter *.md call execute("hi markdownItalic cterm=None")
     autocmd BufEnter *.md call execute("hi markdownError  cterm=None")
+    autocmd BufEnter *.md source $HOME/.vim/syntax/org.vim
 augroup END
 
 " LaTeX...
