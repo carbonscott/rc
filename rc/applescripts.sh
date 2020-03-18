@@ -21,3 +21,7 @@ function ttc {
 function ttw {
     osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Novel"'
 }
+
+function ttp {
+    osascript -e 'tell application "Terminal" to set current settings of front window to settings set "Code SCP"'
+}
