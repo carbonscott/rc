@@ -287,3 +287,31 @@ for j in range(0,10):
     gp("e")
     gp("reset")
 endtemplate
+
+
+template |histogram|
+def showHistogram(data, bin, title, visual = True):
+    # Find histogram...
+    data_val, data_rng = np.histogram(data, bins = bin)
+
+    print("Histogram -- {S}".format( S = title ))
+    for i in range(len(data_val)):
+        print("{M:12.7f} - {X:12.7f}: {N:<10d}".format( M = data_rng[i], X = data_rng[i+1], N = data_val[i] ))
+    print
+
+    if visual:
+        gp = GnuplotPy3.GnuplotPy3()
+        gp("set terminal postscript eps  size 3.5, 2.62 \\")
+        gp("                             enhanced color \\")
+        gp("                             font 'Helvetica,14' \\")
+        gp("                             linewidth 2")
+        gp(f"set output '{title}.eps'")
+        gp("unset key")
+
+        gp("plot '-' using 1:2 with lines linewidth 1 linecolor rgb 'black'")
+
+        for i in range(len(data_val)): 
+            gp(f"{data_rng[i]} {data_val[i]}")  
+            gp(f"{data_rng[i+1]} {data_val[i]}")  
+        gp("e")
+endtemplate

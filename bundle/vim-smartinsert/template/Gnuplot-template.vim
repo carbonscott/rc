@@ -92,6 +92,7 @@ template |plot.2d|
 for i in __range(len(something))__: 
     gp(f"{__X__} {__Y__}")  
 gp("e")
+endtemplate
 
 
 template |set.object.arrow|
