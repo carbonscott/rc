@@ -289,7 +289,7 @@ for j in range(0,10):
 endtemplate
 
 
-template |histogram|
+template |show_histogram|
 def showHistogram(data, bin, title, visual = True):
     # Find histogram...
     data_val, data_rng = np.histogram(data, bins = bin)
@@ -314,4 +314,155 @@ def showHistogram(data, bin, title, visual = True):
             gp(f"{data_rng[i]} {data_val[i]}")  
             gp(f"{data_rng[i+1]} {data_val[i]}")  
         gp("e")
+endtemplate
+
+
+template |bining|
+# Display image in eps
+X, Y = img_disp.shape
+
+# Binning for faster display...
+img_bin = []
+for i in range(0, X, bin):
+    for j in range(0, Y, bin):
+        img_bin.append( (i, j, np.mean(img_disp[i : min(i + bin, X), j : min(j + bin, Y)])) )
+endtemplate
+
+
+template |show_image|
+def showImage(img_disp, bin, rng, title):
+    X, Y = img_disp.shape
+
+    # Binning for faster display...
+    img_bin = []
+    bin = args.bin
+    for i in range(0, X, bin):
+        for j in range(0, Y, bin):
+            img_bin.append( (i, j, np.mean(img_disp[i : min(i + bin, X), j : min(j + bin, Y)])) )
+
+    # Gnuplot...
+    gp = GnuplotPy3.GnuplotPy3()
+    gp('set terminal postscript eps size 3.5, 2.62 \\'     )
+    gp('                            enhanced color \\'     )
+    gp("                            font 'Helvetica,14' \\")
+    gp('                            linewidth 2'          )
+    gp(f"set output '{title}.eps'")
+    gp("unset key")
+    ## gp("set palette gray")
+    gp("set palette defined(\\")
+    gp("    0       0.2314  0.2980  0.7529,\\")
+    gp("    0.03125 0.2667  0.3529  0.8000,\\")
+    gp("    0.0625  0.3020  0.4078  0.8431,\\")
+    gp("    0.09375 0.3412  0.4588  0.8824,\\")
+    gp("    0.125   0.3843  0.5098  0.9176,\\")
+    gp("    0.15625 0.4235  0.5569  0.9451,\\")
+    gp("    0.1875  0.4667  0.6039  0.9686,\\")
+    gp("    0.21875 0.5098  0.6471  0.9843,\\")
+    gp("    0.25    0.5529  0.6902  0.9961,\\")
+    gp("    0.28125 0.5961  0.7255  1.0000,\\")
+    gp("    0.3125  0.6392  0.7608  1.0000,\\")
+    gp("    0.34375 0.6824  0.7882  0.9922,\\")
+    gp("    0.375   0.7216  0.8157  0.9765,\\")
+    gp("    0.40625 0.7608  0.8353  0.9569,\\")
+    gp("    0.4375  0.8000  0.8510  0.9333,\\")
+    gp("    0.46875 0.8353  0.8588  0.9020,\\")
+    gp("    0.5     0.8667  0.8667  0.8667,\\")
+    gp("    0.53125 0.8980  0.8471  0.8196,\\")
+    gp("    0.5625  0.9255  0.8275  0.7725,\\")
+    gp("    0.59375 0.9451  0.8000  0.7255,\\")
+    gp("    0.625   0.9608  0.7686  0.6784,\\")
+    gp("    0.65625 0.9686  0.7333  0.6275,\\")
+    gp("    0.6875  0.9686  0.6941  0.5804,\\")
+    gp("    0.71875 0.9686  0.6510  0.5294,\\")
+    gp("    0.75    0.9569  0.6039  0.4824,\\")
+    gp("    0.78125 0.9451  0.5529  0.4353,\\")
+    gp("    0.8125  0.9255  0.4980  0.3882,\\")
+    gp("    0.84375 0.8980  0.4392  0.3451,\\")
+    gp("    0.875   0.8706  0.3765  0.3020,\\")
+    gp("    0.90625 0.8353  0.3137  0.2588,\\")
+    gp("    0.9375  0.7961  0.2431  0.2196,\\")
+    gp("    0.96875 0.7529  0.1569  0.1843,\\")
+    gp("    1       0.7059  0.0157  0.1490\\")
+    gp("    ) ")
+    gp(f"set cbrange [{rng[0]}:{rng[1]}]")
+
+    cmd  = "plot "
+    cmd += "'-' w image"
+    gp(cmd)
+    for i in img_bin:
+        gp( "{X} {Y} {V}".format(X = i[0], Y = i[1], V = i[2]) )
+    gp('e')
+endtemplate
+
+
+template |show_FourierSpectrum|
+def showFourierSpectrum(data, title, rng = [], visual = True):
+    '''Visualize a the squared magnitude of a Fourier spectrum.
+    '''
+    # Calcuate the Fourier transform...
+    fs = np.fft.fft2(data)
+
+    # Calcuate the power spectrum...
+    # ...Shift the center
+    fs = np.fft.fftshift(fs)
+
+    # ...Power spectrum
+    ps = np.log( 1 + np.abs(fs) )
+    ps /= np.max(ps)
+
+    # Visualize...
+    if visual:
+        gp = GnuplotPy3.GnuplotPy3()
+        gp('set terminal postscript eps size 3.5, 2.62 \\'     )
+        gp('                            enhanced color \\'     )
+        gp("                            font 'Helvetica,14' \\")
+        gp('                            linewidth 2'          )
+        gp(f"set output '{title}.eps'")
+        gp("unset key")
+        gp("set palette defined(\\")
+        gp("    0       0.2314  0.2980  0.7529,\\")
+        gp("    0.03125 0.2667  0.3529  0.8000,\\")
+        gp("    0.0625  0.3020  0.4078  0.8431,\\")
+        gp("    0.09375 0.3412  0.4588  0.8824,\\")
+        gp("    0.125   0.3843  0.5098  0.9176,\\")
+        gp("    0.15625 0.4235  0.5569  0.9451,\\")
+        gp("    0.1875  0.4667  0.6039  0.9686,\\")
+        gp("    0.21875 0.5098  0.6471  0.9843,\\")
+        gp("    0.25    0.5529  0.6902  0.9961,\\")
+        gp("    0.28125 0.5961  0.7255  1.0000,\\")
+        gp("    0.3125  0.6392  0.7608  1.0000,\\")
+        gp("    0.34375 0.6824  0.7882  0.9922,\\")
+        gp("    0.375   0.7216  0.8157  0.9765,\\")
+        gp("    0.40625 0.7608  0.8353  0.9569,\\")
+        gp("    0.4375  0.8000  0.8510  0.9333,\\")
+        gp("    0.46875 0.8353  0.8588  0.9020,\\")
+        gp("    0.5     0.8667  0.8667  0.8667,\\")
+        gp("    0.53125 0.8980  0.8471  0.8196,\\")
+        gp("    0.5625  0.9255  0.8275  0.7725,\\")
+        gp("    0.59375 0.9451  0.8000  0.7255,\\")
+        gp("    0.625   0.9608  0.7686  0.6784,\\")
+        gp("    0.65625 0.9686  0.7333  0.6275,\\")
+        gp("    0.6875  0.9686  0.6941  0.5804,\\")
+        gp("    0.71875 0.9686  0.6510  0.5294,\\")
+        gp("    0.75    0.9569  0.6039  0.4824,\\")
+        gp("    0.78125 0.9451  0.5529  0.4353,\\")
+        gp("    0.8125  0.9255  0.4980  0.3882,\\")
+        gp("    0.84375 0.8980  0.4392  0.3451,\\")
+        gp("    0.875   0.8706  0.3765  0.3020,\\")
+        gp("    0.90625 0.8353  0.3137  0.2588,\\")
+        gp("    0.9375  0.7961  0.2431  0.2196,\\")
+        gp("    0.96875 0.7529  0.1569  0.1843,\\")
+        gp("    1       0.7059  0.0157  0.1490\\")
+        gp("    ) ")
+
+        if len(rng) == 2: gp(f"set cbrange [{rng[0]}:{rng[1]}]")
+        else: gp(f"set cbrange [{np.min(ps)}:{np.max(ps)}]")
+
+        cmd  = "plot "
+        cmd += "'-' w image"
+        gp(cmd)
+        for i in range(ps.shape[0]):
+            for j in range(ps.shape[1]):
+                gp( f"{i} {j} {ps[i, j]}" )
+        gp('e')
 endtemplate
