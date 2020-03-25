@@ -1,3 +1,24 @@
+template |read|
+def read(file):
+    '''Return all lines in the user supplied parameter file without comments.
+    '''
+    lines = []   
+    with open(file,'r') as fh:
+        for line in fh.readlines():
+            # Separate entries by spaces...
+            words = line.replace('#', ' # ').split()
+
+            # Handle comments...
+            if "#" in words: words = words[  : words.index("#")]
+
+            # Save non-empty line...
+            words = [ float(word) for word in words ]
+            if len(words) > 0: lines.append(words)
+    
+    return lines
+endtemplate
+
+
 template |svd|
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
