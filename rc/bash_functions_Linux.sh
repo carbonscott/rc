@@ -9,7 +9,8 @@ function pwdc {
 
 # Open GUI from terminal ...
 function o {
-    open "$1" &> /dev/null
+    ## open "$1" &> /dev/null
+    xdg-open "$1" &> /dev/null
 }
 
 # [[[ File shortcuts ]]]
@@ -22,6 +23,7 @@ function fi1 {
 
 # [[[ Terminal ]]]
 function clc {
+    PROMPT_COMMAND=""
     echo -n -e "\033]0;$1\007"
 }
 alias clear='clear; clc '
