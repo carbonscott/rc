@@ -258,3 +258,8 @@ command! -nargs=0 NoReadonly :set noreadonly
 
 " Leave space in ()
 inoremap <c-b> <space><space><left>
+
+
+" Use xsel for clipboard management in vim...
+nnoremap <leader>cc :w !xsel -i -b<CR>:redraw<CR>
+vnoremap <leader>cc :w !xsel -i -b<CR>:redraw<CR>
