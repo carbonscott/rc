@@ -27,3 +27,16 @@ function clc {
     echo -n -e "\033]0;$1\007"
 }
 alias clear='clear; clc '
+
+
+# [[[ Vim ]]]
+function vim_smart_colorscheme {
+    # If $VIMCOLOR is empty...
+    if [ -z "$VIMCOLOR" ]
+    then 
+        vim
+    else
+        vim --cmd "set bg=$VIMCOLOR"
+    fi
+}
+alias vi='vim_smart_colorscheme'

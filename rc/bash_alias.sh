@@ -1,6 +1,6 @@
 # Set neovim as vi ...
 ## alias vi="nvim "
-alias vi="vim "
+## alias vi="vim --cmd 'set bg=dark' "
 
 # Typos ...
 alias sl="ls "
