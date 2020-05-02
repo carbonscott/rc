@@ -34,9 +34,9 @@ function vim_smart_colorscheme {
     # If $VIMCOLOR is empty...
     if [ -z "$VIMCOLOR" ]
     then 
-        vim
+        vim "$@"
     else
-        vim --cmd "set bg=$VIMCOLOR"
+        vim --cmd "set bg=$VIMCOLOR" "$@"
     fi
 }
 alias vi='vim_smart_colorscheme'
