@@ -40,3 +40,11 @@ function vim_smart_colorscheme {
     fi
 }
 alias vi='vim_smart_colorscheme'
+
+
+# [[[ Color ]]]
+function palette {
+    for i in {0..255}; do
+        printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"
+    done
+}

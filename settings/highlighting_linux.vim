@@ -9,6 +9,7 @@
 " Each color number correpsonds to one color.  
 """""""""""""""""""""""""""""""""""""""""""""""""
 
+" set t_Co=8
 set t_Co=256
 
 " Line...
