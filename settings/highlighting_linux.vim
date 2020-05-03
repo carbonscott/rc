@@ -27,7 +27,10 @@ hi Pmenu ctermfg=0 ctermbg=15
 hi PmenuSel ctermfg=15 ctermbg=33
 
 " Fold...
-hi Folded cterm=None ctermfg=10 ctermbg=None
+" ...10 for solarized
+" hi Folded cterm=None ctermfg=10 ctermbg=None
+" ...8 for non-solarized
+hi Folded cterm=None ctermfg=8 ctermbg=None
 
 " Comment...
 hi MyComment ctermfg=darkgray
