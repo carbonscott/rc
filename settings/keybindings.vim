@@ -261,5 +261,5 @@ inoremap <c-b> <space><space><left>
 
 
 " Use xsel for clipboard management in vim...
-nnoremap <leader>cc :w !xsel -i -b<CR>:redraw<CR>
-vnoremap <leader>cc :w !xsel -i -b<CR>:redraw<CR>
+nnoremap <leader>vv :w !xsel -i -b<CR>:redraw<CR>
+vnoremap <leader>vv :w !xsel -i -b<CR>:redraw<CR>
