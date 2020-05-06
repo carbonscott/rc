@@ -30,16 +30,16 @@ alias clear='clear; clc '
 
 
 # [[[ Vim ]]]
-function vim_smart_colorscheme {
-    # If $VIMCOLOR is empty...
-    if [ -z "$VIMCOLOR" ]
-    then 
-        vim "$@"
-    else
-        vim --cmd "set bg=$VIMCOLOR" "$@"
-    fi
-}
-alias vi='vim_smart_colorscheme'
+## function vim_smart_colorscheme {
+##     # If $VIMCOLOR is empty...
+##     if [ -z "$VIMCOLOR" ]
+##     then 
+##         vim "$@"
+##     else
+##         vim --cmd "set bg=$VIMCOLOR" "$@"
+##     fi
+## }
+## alias vi='vim_smart_colorscheme'
 
 
 # [[[ Color ]]]
