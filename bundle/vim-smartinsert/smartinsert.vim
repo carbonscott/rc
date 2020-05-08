@@ -196,9 +196,13 @@ function! SmartInsert()
 
     " - start rewriting text...
     " -- turn off some options...
+    let opt_indent  = &autoindent
     let &autoindent = 0
+    let opt_formatoptions = &formatoptions
     let &formatoptions = ""
+    let opt_expandtab = &expandtab
     let &expandtab = 1
+    let opt_tabstop = &tabstop
 
     " keep checking if the keyword is in the line...
     let is_found = 0
@@ -283,6 +287,11 @@ function! SmartInsert()
             break
         endif
     endfor
+
+    " -- recover options...
+    let &autoindent = opt_indent
+    let &formatoptions = opt_formatoptions
+    let &expandtab = opt_expandtab
 
     " read the template again to get the warning info...
     if is_found == 0
