@@ -1,3 +1,17 @@
+" If already loaded, we're done...
+if exists("Quote")
+    finish
+endif
+let Quote = 1
+
+
+let s:cpo_save = &cpo
+set cpo&vim
+
+
+" [[[ Implementation ]]]
+
+
 function! quote#fun2sub1()
     let s:block_start = [0,0,0,0]
     let s:block_end = [0,0,0,0]
@@ -131,5 +145,10 @@ function! g:quote#fun3(...)
 endfunction
 
 vnoremap [o :<c-u>call quote#fun2()<CR>
+
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
 
 finish

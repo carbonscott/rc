@@ -1,7 +1,7 @@
 " MINE...
 source $HOME/.vim/bundle/vim-prompt/prompt.vim
 source $HOME/.vim/bundle/vim-wordsubstitute/wordsubstitute.vim
-source $HOME/.vim/bundle/vim-quickman/quickman.vim
+" source $HOME/.vim/bundle/vim-quickman/quickman.vim
 source $HOME/.vim/bundle/vim-quote/quote.vim
 source $HOME/.vim/bundle/vim-smartfold/smartfold.vim
 source $HOME/.vim/bundle/vim-misc/vmisc.vim

@@ -9,6 +9,8 @@
 " Each color number correpsonds to one color.  
 """""""""""""""""""""""""""""""""""""""""""""""""
 
+syntax off            " ...no colorscheme by default
+
 " A comprimise to tmux...
 set bg=dark
 

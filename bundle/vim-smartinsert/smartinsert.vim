@@ -1,3 +1,16 @@
+" If already loaded, we're done...
+if exists("loaded_SmartInsert")
+    finish
+endif
+let loaded_SmartInsert = 1
+
+
+let s:cpo_save = &cpo
+set cpo&vim
+
+
+" [[[ Implementation ]]]
+
 highlight CMT ctermfg=magenta 
 highlight TRI ctermfg=blue 
 
@@ -635,5 +648,10 @@ function! GetDefault()
     call setpos('.', s_pos)
 endfunction
 snoremap <silent> <Tab> <c-[>:call GetDefault()<cr>:call NextPlaceholder('next')<cr>
+
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
 
 finish

@@ -36,3 +36,6 @@ set path=**
 " search highlight
 set incsearch
 set hlsearch
+
+" Turn off wildmenu in Neovim...
+set nowildmenu

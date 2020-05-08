@@ -1,3 +1,15 @@
+" If already loaded, we're done...
+if exists("WordSubstitute")
+    finish
+endif
+let WordSubstitute = 1
+
+
+let s:cpo_save = &cpo
+set cpo&vim
+
+
+" [[[ Implementation ]]]
 function! wordsubstitute#run1()
     let s:v_line_start = getpos("'<")[1]
     let s:v_line_end   = getpos("'>")[1]
@@ -99,5 +111,10 @@ vnoremap [g/ :<c-u>call wordsubstitute#run3()<CR>nN
 vnoremap [g? :<c-u>call wordsubstitute#run32()<CR>nN
 snoremap [gc <c-g>:<c-u>call wordsubstitute#run4()<CR>
 vnoremap [gc :<c-u>call wordsubstitute#run4()<CR>
+
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
 
 finish

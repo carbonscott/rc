@@ -1,3 +1,15 @@
+" If already loaded, we're done...
+if exists("loaded_Prompt")
+    finish
+endif
+let loaded_Prompt = 1
+
+
+let s:cpo_save = &cpo
+set cpo&vim
+
+
+" [[[ Implementation ]]]
 function! prompt#run()
 		while (1) 
 				" search prompt with "search for file in path option enabled"...
@@ -61,4 +73,11 @@ nnoremap [r :call prompt#run()<CR>
 nnoremap [c :call prompt#csearch()<CR>
 nnoremap [<s-b> :call prompt#bsearch()<CR>
 
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
+
 finish
+
+
