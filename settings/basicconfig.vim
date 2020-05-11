@@ -39,3 +39,6 @@ set hlsearch
 
 " Turn off wildmenu in Neovim...
 set nowildmenu
+
+" Filetype indent off...
+filetype indent off
