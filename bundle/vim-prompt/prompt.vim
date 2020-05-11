@@ -71,7 +71,7 @@ endfunction
 
 nnoremap [r :call prompt#run()<CR>
 nnoremap [c :call prompt#csearch()<CR>
-nnoremap [<s-b> :call prompt#bsearch()<CR>
+nnoremap [bb :call prompt#bsearch()<CR>
 
 
 let &cpo = s:cpo_save

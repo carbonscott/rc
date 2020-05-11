@@ -13,7 +13,7 @@ noremap <F7> :set list<CR>
 noremap <F8> :set nolist<CR>
 " buffer next, previous
 noremap <F4> :ls<CR>:buffer 
-noremap [ba :ls<CR>:buffer 
+" noremap [ba :ls<CR>:buffer 
 nnoremap <F2> :hide bp<CR>
 nnoremap <F3> :hide bn<CR>
 " noremap [du :diffupdate<CR>
@@ -88,7 +88,7 @@ cnoremap <c-l> <right>
 set matchpairs+=<:>
 
 "BuffersToggle
-nnoremap [bb :BuffersToggle<CR>
+" nnoremap [bb :BuffersToggle<CR>
 "======= own develop ======
 "set runtimepath+=~/.vim/bundle/vim-quote
 set cursorline
