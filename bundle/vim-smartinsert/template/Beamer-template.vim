@@ -18,7 +18,7 @@ ____
 endtemplate
 
 template |frame|
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{____}
 ____
 \end{frame}
