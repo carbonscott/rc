@@ -1,3 +1,27 @@
+" Copyright (c) 2020 Cong Wang
+" 
+" MIT License
+" 
+" Permission is hereby granted, free of charge, to any person obtaining
+" a copy of this software and associated documentation files (the
+" "Software"), to deal in the Software without restriction, including
+" without limitation the rights to use, copy, modify, merge, publish,
+" distribute, sublicense, and/or sell copies of the Software, and to
+" permit persons to whom the Software is furnished to do so, subject to
+" the following conditions:
+" 
+" The above copyright notice and this permission notice shall be
+" included in all copies or substantial portions of the Software.
+" 
+" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+" NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+" LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+" OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+" WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
 " If already loaded, we're done...
 if exists("loaded_SmartInsert")
     finish
@@ -10,12 +34,10 @@ set cpo&vim
 
 
 " [[[ Implementation ]]]
-" Turn off auto indent that is specific to a language...
-filetype indent off
 
+" Colors used for the prompt...
 highlight CMT ctermfg=magenta 
 highlight TRI ctermfg=blue 
-
 
 
 " Set global variables for the plugin...
@@ -28,8 +50,7 @@ let g:IsLoadedSmartInsert = 0
 let g:SmartInsertKeywords = []
 
 
-
-
+" [[[ Utilities ]]]
 function! MinFirst(s1,s2)
     let l1 = strlen(a:s1)
     let l2 = strlen(a:s2)
@@ -48,8 +69,8 @@ endfunction
 
 
 
-" This function is used to read all keywords in the template file.
 function! ReadAndComplete(leadword)
+    " This function is used to read all keywords in the template file.
     let keyword_pattern = "|".".*"."|"
 
     " [TODO] Add beginning and end of line regex...
@@ -82,8 +103,8 @@ endfunction
 
 
 
-" This function is used to prompt the warning information!
 function! WarningWithColor(info,color)
+    " This function is used to prompt the warning information!
     execute 'echohl '.a:color
     echon  a:info
     execute 'echohl NONE'
@@ -110,8 +131,9 @@ endfunction
 
 
 
-" This function will be in use if the keyword is matched in the current line.
 function! ReadTemplate(trigger,leadword)
+    " This function will be in use if the keyword is matched in the current line.
+     
     " use double quotes...
     let BEGIN_LINE = "^\\s*"
     let END_LINE = "\\s*$"
@@ -137,8 +159,8 @@ function! ReadTemplate(trigger,leadword)
     if if_dup > 1
         redraw
         call WarningWithColor(
-        \ "There are more than 1 snippet found which is
-        \ related to <","CMT")
+            \ "There are more than 1 snippet found which is
+            \ related to <","CMT")
         call WarningWithColor(trigger,"TRI")
         call WarningWithColor(">!","CMT")
         return ['']
@@ -163,27 +185,27 @@ endfunction
 
 
 
-" This function is to implement the smart insert...
 function! SmartInsert()
-    " get sense of line context
-    " - read current cursor position...
+    " This function is to implement the smart insert...
+
+    " Get line context
+    " - Read current cursor position...
     let pos_current_line = getpos('.')
 
-    " - insert a whitespace to get the cursor position next to it...
+    " - Insert a whitespace to get the cursor position next to it...
     execute "normal! a "
     let pos_current_line_right = getpos('.')
     execute "normal! dl"
     call setpos('.', pos_current_line)
 
-    " get effective information...
+    " Get effective information...
     " - read the current line
     let current_line = getline('.')
 
-    " - slice the string for current line...
-    " . no need to use deepcopy when data is sliced...
-    " . the following is an alternative way, but let me stick to strpart()...
-    " . the last index should be off by 1...
-    "// let current_line_sliced = current_line[0:pos_current_line_right[2]-1]
+    " - Slice the string for current line...
+    "   no need to use deepcopy when data is sliced;
+    "   the following is an alternative way, but let me stick to strpart();
+    "   the last index should be off by 1;
     let current_line_sliced = strpart(current_line, 0, pos_current_line_right[2]-1)
 
     " [debug]
@@ -194,33 +216,28 @@ function! SmartInsert()
         call ReadAndComplete("\\("."template"."\\|"."metatemplate"."\\)")
     endif
 
-    " - start rewriting text...
-    " -- turn off some options...
-    let opt_indent  = &autoindent
-    let &autoindent = 0
-    let opt_formatoptions = &formatoptions
-    let &formatoptions = ""
-    let opt_expandtab = &expandtab
-    let &expandtab = 1
-    let opt_tabstop = &tabstop
+    " Turn off advanced features that move characters...
+    let opt_indentkeys = &indentkeys
+    let &indentkeys=""
 
-    " keep checking if the keyword is in the line...
+    " Keep checking if the keyword is in the line...
     let is_found = 0
     for each_keyword in g:SmartInsertKeywords
-        " [TODO] The regex can be put into one variable...
         let keyword = escape(each_keyword,'.\')
+
+        " [TODO] The regex can be put into one variable...
         if current_line_sliced =~ '^.*'.keyword.'$'
             let g:debug_keyword = keyword
-            " keyword is there...
-            " - test if curosr is next to the keyword
-            " - start to search from the current keyword...
+
+            " Keyword is there...
+            "   Test if curosr is next to the keyword;
+            "   Start to search from the current keyword;
             call search(keyword,'bc')
             let pos_keyword_inline = getpos('.')
             let keyword_length = strlen(keyword)
             let real_keyword_length = pos_current_line[2] - pos_keyword_inline[2] + 1
             if real_keyword_length < 0 
                 " [debug]
-                "// let real_keyword_length = 0
                 let real_keyword_length = ""
             endif
 
@@ -228,7 +245,7 @@ function! SmartInsert()
                 continue
             endif
 
-            " go to file again to get the template...
+            " Go to file again to get the template...
             let keyword_template = ReadTemplate(keyword,"metatemplate")
             if len(keyword_template) == 1 && keyword_template[0] ==# ''
                 " After second level check for template, if nothing is
@@ -240,58 +257,59 @@ function! SmartInsert()
                 endif
             endif
 
-            " manipulate text...
-            " - position of the first letter in keyword...
+            " Manipulate text...
+            " position of the first letter in keyword;
             let pos_ns = pos_current_line[2] - real_keyword_length + 1
 
             " [insertion algorithm]
-            " -- insert text...
-            " * last line is to make sure there's no extra line added...
-            " * k is fine because at least there's text inserted from the 
-            " current line
-            " deepcopy is important...
+            " last line is to make sure there's no extra line added;
+            " k is fine because at least there's text inserted from the current line;
+            " deepcopy is necessary;
             let jump_to_first = deepcopy(pos_current_line)  
             let jump_to_first[2] = pos_ns         " set the cursor to be at the column where the keyword insertion starts...
             call setpos('.', jump_to_first)       
 
-            " * delete the keyword
-            " * insert the first line in template...
+            " Delete the keyword;
+            " Insert the first line in template;
             " [debug]
             let g:cmd = "normal! c".real_keyword_length."l" . keyword_template[0]
-            execute "normal! c".real_keyword_length."l" . keyword_template[0]
+            " Find \n position, it's actually simply the last position;
+            execute "normal! c".real_keyword_length."l" . keyword_template[0][:-2]
 
-            " ~ gJ not only joins line but also insert no spaces at all 
-            " ~ compared with J.
-            execute "normal! kgJ"
-
-            " -- reformat text for the lines except the first one...
+            " Reformat text for the lines except the first one...
             if len(keyword_template) > 1
-                "// [TESTING] 
-                "// a tab character "  " i_ctrl_v <tab> is inserted...
-                "// let pad_space = repeat(" ",(pos_ns - 1)*opt_tabstop)
-                let pad_space = repeat(" ",pos_ns - 1)
-                let keyword_template[1:] = map(keyword_template[1:],
-                              \ 'pad_space.v:val')
+                " Set the indentation...
+                " Add spaces for indentation;
+                let pad_space = repeat(' ', pos_ns - 1)
+                let keyword_template[1:] = map(keyword_template[1:], 'pad_space.v:val')
 
-                " * move cursor to the next line...
-                execute "normal! o0"
-                execute "normal! c$" . join(keyword_template[1:],"")
-                execute "normal! kgJ"
+                let g:keyword_template = keyword_template
+
+                " Move cursor to the next line...
+                for insert_line in keyword_template[1:]
+                    " - Enter a char 0 to specify the position of cursor;
+                    " - Find \n position, it's actually simply the last position;
+                    " - Alternative is to use \<c-u>, but it will roll back to
+                    "   the previous line if nothing to delete;
+                    " execute "normal! o0"
+                    execute "normal! o"
+                    execute "normal! 0"
+                    execute "normal! c$" . insert_line[:-2]
+                    " Need to deal with indentkeys... 
+                endfor
             endif
 
-            " -- count the number of placeholders...
+            " Count the number of placeholders...
             let is_placeholder = match(keyword_template, g:SmartInsertPlaceholder)
 
-            " stop searching for the next one...
+            " Stop searching for the next one...
             let is_found = 1
             break
         endif
     endfor
 
     " -- recover options...
-    let &autoindent = opt_indent
-    let &formatoptions = opt_formatoptions
-    let &expandtab = opt_expandtab
+    let &indentkeys = opt_indentkeys
 
     " read the template again to get the warning info...
     if is_found == 0
@@ -313,9 +331,7 @@ function! SmartInsert()
 
             " [ISSUE] failed to search when the cursor is on placeholder
             " Keep the following code in case the fix creates new bug
-            " ...
-            " let match_left  = searchpos(g:SmartInsertPlaceholder, 'n')
-            " ...
+            " ~~~ let match_left  = searchpos(g:SmartInsertPlaceholder, 'n') ~~~
             let match_left  = searchpos(g:SmartInsertPlaceholder, 'cn')
             let match_rght  = searchpos(g:SmartInsertPlaceholder, 'en')
             let match_len   = match_rght[1] - match_left[1]
@@ -601,15 +617,15 @@ endfunction
 
 " Keybindings...
 inoremap [q <c-[>:call SmartInsert()<cr>
-command! -nargs=0 ClearKeywords  call ClearKeywords()
-command! -nargs=0 ClearTemplates  call ClearTemplates()
-command! -nargs=0 ShowSelectedTemplates  call ShowSelectedTemplates()
-command! -nargs=0 SelectTemplates  call SelectTemplates()
+command! -nargs=0 ClearKeywords            call ClearKeywords()
+command! -nargs=0 ClearTemplates           call ClearTemplates()
+command! -nargs=0 ShowSelectedTemplates    call ShowSelectedTemplates()
+command! -nargs=0 SelectTemplates          call SelectTemplates()
 command! -nargs=0 DeleteSelectedTemplates  call DeleteSelectedTemplates()
-command! -nargs=0 CreateTemplates  call CreateTemplates()
-command! -nargs=0 EditTemplates call EditTemplates()
+command! -nargs=0 CreateTemplates          call CreateTemplates()
+command! -nargs=0 EditTemplates            call EditTemplates()
 
-" looking for placeholder g:SmartInsertPlaceholder 
+" Looking for placeholder g:SmartInsertPlaceholder 
 nnoremap <silent> [j :call NextPlaceholder('next')<cr>
 snoremap <silent> [j :<c-u>call NextPlaceholder('next')<cr>
 vnoremap <silent> [j :<c-u>call NextPlaceholder('next')<cr>
@@ -640,7 +656,7 @@ inoremap [n <c-x><c-u>
 
 " Use desc as the value of __desc__ ...
 " [Inconsistency]  g:SmartInsertPlaceholder
-function! GetDefault()
+function! GetDefaultValue()
     let s_pos  = getpos('.')
     let s_col = s_pos[2] - 1
     let s_cmd  = 's/\%>' . s_col . 'c' . g:SmartInsertPlaceholder . '/\1/'
@@ -649,7 +665,7 @@ function! GetDefault()
     set nohlsearch
     call setpos('.', s_pos)
 endfunction
-snoremap <silent> <Tab> <c-[>:call GetDefault()<cr>:call NextPlaceholder('next')<cr>
+snoremap <silent> <Tab> <c-[>:call GetDefaultValue()<cr>:call NextPlaceholder('next')<cr>
 
 
 let &cpo = s:cpo_save
