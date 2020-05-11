@@ -57,3 +57,15 @@ template |textblock|
 ____
 \end{textblock}
 endtemplate
+
+
+template |code.block|
+\begin{lstlisting}[language=__bash__, breaklines=true]
+__code__
+\end{lstlisting}
+endtemplate
+
+
+template |code.inline|
+\lstinline{__code__}
+endtemplate
