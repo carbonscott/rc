@@ -7,7 +7,12 @@ endtemplate
 
 
 template |code.block|
-```
+```__python__
 ____
 ```
+endtemplate
+
+
+template |link|
+[____](____)
 endtemplate
