@@ -20,3 +20,6 @@ export PATH="$HOME/Dropbox/codes/texpro:$PATH"
 
 # time difference in days...
 export PATH="$HOME/Dropbox/codes/deltat:$PATH"
+
+# pdf2txt, word count...
+export PATH="$HOME/Dropbox/codes/wordcount:$PATH"

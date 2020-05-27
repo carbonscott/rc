@@ -16,3 +16,8 @@ endtemplate
 template |link|
 [____](____)
 endtemplate
+
+
+template |image|
+![____](____)
+endtemplate
