@@ -21,3 +21,17 @@ endtemplate
 template |image|
 ![____](____)
 endtemplate
+
+
+template |comment.inline|
+[//]: <> (__comment__)
+endtemplate
+
+
+template |comment.block|
+<!---
+
+__comment__
+
+-->
+endtemplate
