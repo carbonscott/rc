@@ -5,14 +5,14 @@ def read(file):
     lines = []   
     with open(file,'r') as fh:
         for line in fh.readlines():
-            # Separate entries by spaces...
+            # Separate entries by spaces and remove commented lines...
             words = line.replace('#', ' # ').split()
 
-            # Handle comments...
+            # Omit any thing coming after the pound sign in a line...
             if "#" in words: words = words[  : words.index("#")]
 
             # Save non-empty line...
-            words = [ float(word) for word in words ]
+            words = [ word for word in words ]
             if len(words) > 0: lines.append(words)
     
     return lines
@@ -486,4 +486,28 @@ def showFourierSpectrum(data, title, rng = [], visual = True):
             for j in range(ps.shape[1]):
                 gp( f"{i} {j} {ps[i, j]}" )
         gp('e')
+endtemplate
+
+
+template |read_csv|
+def read_csv(file):
+    '''Return all lines in the user supplied parameter file without comments.
+    '''
+    lines = []   
+    with open(file,'r') as fh:
+        for line in fh.readlines():
+            # Separate entries by commas and remove commented lines...
+            words = line.replace('#', ' # ') \
+                        .replace('\n', '')   \
+                        .split(',')
+
+            # Omit any thing coming after the pound sign in a line...
+            if "#" in words: words = words[  : words.index("#")]
+
+            # Save non-empty line...
+            words = [ word for word in words ]
+            if len(words) > 0: lines.append(words)
+    
+    return lines
+
 endtemplate
