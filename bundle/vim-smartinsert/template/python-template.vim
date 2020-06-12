@@ -442,3 +442,9 @@ __^10.3f__
 endtemplate
 
 # }
+
+
+template |scriptname|
+# I/O vars...
+py_bs = os.path.basename(__file__)[:-3]    # ...Python script basename w/o ext
+endtemplate
