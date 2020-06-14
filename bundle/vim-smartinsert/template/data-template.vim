@@ -12,7 +12,6 @@ def read(file):
             if "#" in words: words = words[  : words.index("#")]
 
             # Save non-empty line...
-            words = [ word for word in words ]
             if len(words) > 0: lines.append(words)
     
     return lines
