@@ -1,5 +1,5 @@
 template |read|
-def read(file):
+def read(file, numerical = False):
     '''Return all lines in the user supplied parameter file without comments.
     '''
     lines = []   
@@ -12,6 +12,7 @@ def read(file):
             if "#" in words: words = words[  : words.index("#")]
 
             # Save non-empty line...
+            if numerical: words = [ float(word) for word in words ]
             if len(words) > 0: lines.append(words)
     
     return lines
