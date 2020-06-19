@@ -497,16 +497,9 @@ def read_csv(file):
     with open(file,'r') as fh:
         for line in fh.readlines():
             # Separate entries by commas and remove commented lines...
-            words = line.replace('#', ' # ') \
-                        .replace('\n', '')   \
-                        .split(',')
+            words = line.replace('\n', '').split(',')
 
-            # Omit any thing coming after the pound sign in a line...
-            if "#" in words: words = words[  : words.index("#")]
-
-            # Save non-empty line...
-            words = [ word for word in words ]
-            if len(words) > 0: lines.append(words)
+            lines.append(words)
     
     return lines
 
