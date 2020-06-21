@@ -1,3 +1,8 @@
+template |py_bs|
+py_bs = os.path.basename(__file__)[:-3]
+endtemplate
+
+
 template |read|
 def read(file, numerical = False):
     '''Return all lines in the user supplied parameter file without comments.
