@@ -448,3 +448,26 @@ template |scriptname|
 # I/O vars...
 py_bs = os.path.basename(__file__)[:-3]    # ...Python script basename w/o ext
 endtemplate
+
+
+template |init_package|
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# Import a class...
+from .__GnuplotPy3__ import __GnuplotPy3__
+
+# Import all fucntions from a file called __GnuplotPy3__...
+from .__GnuplotPy3__ import * 
+
+__all__ = [
+            "__GnuplotPy3__",
+          ]
+
+version = "0.1"
+
+print("""\
+
+Welcome to __GnuplotPy3___{VERSION}""".format( VERSION = version ) )
+print()
+endtemplate
