@@ -530,7 +530,8 @@ def model(x, A, B, x0, sigma):
 
 
 def residual(params, X, y):
-    ''' Find the residual.  
+    ''' Find the residual = model - data
+        data is represented by y
         params: A, B, x0, sigma
     '''
     res  = model(X, *params) - y
