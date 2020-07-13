@@ -12,7 +12,11 @@ set expandtab
 set shiftwidth=2
 set mouse=a
 set nolist
-set listchars=tab:>-
+
+" Set up shady characters, but vim doesn't understand it directly without exec
+exec "set listchars=tab:\uBB\uBB,trail:\uB7"
+set list
+
 set guioptions-=T
 set guioptions-=m
 set guioptions-=r
