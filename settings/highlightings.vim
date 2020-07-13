@@ -47,3 +47,9 @@ nnoremap [d :syntax match MyComment "\v^\s*.*"<left><left><left>
 hi CursorColumn ctermfg=15 ctermbg=33
 hi CursorLine cterm=None ctermfg=15 ctermbg=33
 set nocursorline
+
+" Auto switch bg color...
+let s:BG_COLOR = getenv('BG_COLOR')
+if s:BG_COLOR !~ v:null
+    execute 'set bg=' . s:BG_COLOR
+endif
