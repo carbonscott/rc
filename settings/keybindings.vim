@@ -263,3 +263,6 @@ inoremap <c-b> <space><space><left>
 " Use xsel for clipboard management in vim...
 nnoremap <leader>vv :w !xsel -i -b<CR>:redraw<CR>
 vnoremap <leader>vv :w !xsel -i -b<CR>:redraw<CR>
+
+" <BS> for nohlsearch
+nnoremap <BS> :nohlsearch<CR>
