@@ -18,7 +18,8 @@ set bg=dark
 set t_Co=256
 
 " Line...
-hi CursorLineNR cterm=bold
+hi CursorLineNr cterm=bold ctermfg=NONE ctermbg=NONE
+hi LineNr ctermfg=NONE ctermbg=NONE
 
 " Search...
 hi Search ctermfg=15 ctermbg=33
