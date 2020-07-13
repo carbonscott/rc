@@ -12,6 +12,7 @@ source $HOME/.vim/bundle/vim-alignchar/alignchar.vim
 source $HOME/.vim/bundle/vim-center/goto_center.vim
 source $HOME/.vim/bundle/vim-moveblock/moveblock.vim
 source $HOME/.vim/bundle/vim-morespaces/morespaces.vim
+source $HOME/.vim/bundle/vim-hlsearch/hlsearch.vim
 
 
 " NOT MINE...
