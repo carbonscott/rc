@@ -244,7 +244,7 @@ function! <SID>find_cursor()
     exe "normal! :set " . l:choice[l:on][0] . "\<CR>"
     exe "normal! :set " . l:choice[l:on][1] . "\<CR>"
 endfunction
-nnoremap [hc :call <SID>find_cursor()<CR>
+nnoremap [hC :call <SID>find_cursor()<CR>
 
 " Search with hl enabled
 nnoremap / :set hlsearch<CR>/

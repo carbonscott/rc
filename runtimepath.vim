@@ -13,6 +13,7 @@ source $HOME/.vim/bundle/vim-center/goto_center.vim
 source $HOME/.vim/bundle/vim-moveblock/moveblock.vim
 source $HOME/.vim/bundle/vim-morespaces/morespaces.vim
 source $HOME/.vim/bundle/vim-hlsearch/hlsearch.vim
+source $HOME/.vim/bundle/vim-blinkcursor/blinkcursor.vim
 
 
 " NOT MINE...
