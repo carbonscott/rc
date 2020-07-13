@@ -7,7 +7,7 @@ endtemplate
 
 
 template |code.block|
-```__python__
+```
 ____
 ```
 endtemplate
