@@ -19,7 +19,7 @@ def read(file, numerical = False):
             # Save non-empty line...
             if numerical: words = [ float(word) for word in words ]
             if len(words) > 0: lines.append(words)
-    
+
     return lines
 endtemplate
 
