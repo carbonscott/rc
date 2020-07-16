@@ -14,7 +14,14 @@ syntax off            " ...no colorscheme by default
 set t_Co=256
 
 " Auto switch bg color...
-let s:BG_COLOR = getenv('BG_COLOR')
+" getenv() is not available in older version of vim
+function! s:getenv(env)
+    let cmd = 'echo $' . a:env
+    let ret = system(cmd)
+    return substitute(ret, '\n', '', 'g')
+endfunction
+
+let s:BG_COLOR = s:getenv('BG_COLOR')
 if s:BG_COLOR !~ v:null
     execute 'set bg=' . s:BG_COLOR
 endif
