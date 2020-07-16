@@ -36,6 +36,10 @@ hi Pmenu ctermfg=0 ctermbg=15
 let s:PmenuSel_ctermfg = { "light" : 255, "dark" : 15, v:null : 'NONE' }
 execute  'hi PmenuSel ctermfg= ' . s:Visual_ctermfg[s:BG_COLOR] . ' ctermbg=33'
 
+" ErrorMsg...
+let s:ErrorMsg_ctermfg = { "light" : 255, "dark" : 15, v:null : 'NONE' }
+execute 'hi ErrorMsg ctermfg= '. s:ErrorMsg_ctermfg[s:BG_COLOR]
+
 " Fold...
 " ...10 for solarized
 " hi Folded cterm=None ctermfg=10 ctermbg=None
