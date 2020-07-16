@@ -18,12 +18,13 @@ set t_Co=256
 function! Getenv(env)
     let cmd = 'echo $' . a:env
     let ret = system(cmd)
+    if ret == '' | let ret = 'NONE' | endif
     return substitute(ret, '\n', '', 'g')
 endfunction
 
 let s:BG_COLOR = Getenv('BG_COLOR')
-let w:null = ''
-if s:BG_COLOR !~ w:null
+let w:null = 'NONE'
+if s:BG_COLOR != w:null
     execute 'set bg=' . s:BG_COLOR
 endif
 
