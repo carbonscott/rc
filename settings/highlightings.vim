@@ -11,19 +11,21 @@
 
 syntax off            " ...no colorscheme by default
 
-" A comprimise to tmux...
-set bg=dark
-
-" set t_Co=8
 set t_Co=256
+
+" Auto switch bg color...
+let s:BG_COLOR = getenv('BG_COLOR')
+if s:BG_COLOR !~ v:null
+    execute 'set bg=' . s:BG_COLOR
+endif
 
 " Line...
 hi CursorLineNr cterm=bold ctermfg=NONE ctermbg=NONE
 hi LineNr ctermfg=NONE ctermbg=NONE
 
 " Search...
-hi Search ctermfg=15 ctermbg=33
-hi Visual ctermfg=15 ctermbg=33
+let s:Visual_ctermfg = { "light" : 255, "dark" : 15, v:null : 'NONE' }
+execute  'hi Visual ctermfg= ' . s:Visual_ctermfg[s:BG_COLOR] . ' ctermbg=33'
 
 " Column...
 hi ColorColumn ctermbg=magenta
@@ -31,7 +33,8 @@ call matchadd('ColorColumn','\%81v',200)
 
 " Completion...
 hi Pmenu ctermfg=0 ctermbg=15 
-hi PmenuSel ctermfg=15 ctermbg=33
+let s:PmenuSel_ctermfg = { "light" : 255, "dark" : 15, v:null : 'NONE' }
+execute  'hi PmenuSel ctermfg= ' . s:Visual_ctermfg[s:BG_COLOR] . ' ctermbg=33'
 
 " Fold...
 " ...10 for solarized
@@ -44,12 +47,7 @@ hi MyComment ctermfg=darkgray
 nnoremap [d :syntax match MyComment "\v^\s*.*"<left><left><left>
 
 " Cursor...
-hi CursorColumn ctermfg=15 ctermbg=33
-hi CursorLine cterm=None ctermfg=15 ctermbg=33
+let s:Cursor_ctermfg = { "light" : 255, "dark" : 15, v:null : 'NONE' }
+execute  'hi CursorColumn ctermfg= ' . s:Cursor_ctermfg[s:BG_COLOR] . ' ctermbg=33'
+execute  'hi CursorLine cterm=None ctermfg= ' . s:Cursor_ctermfg[s:BG_COLOR] . ' ctermbg=33'
 set nocursorline
-
-" Auto switch bg color...
-let s:BG_COLOR = getenv('BG_COLOR')
-if s:BG_COLOR !~ v:null
-    execute 'set bg=' . s:BG_COLOR
-endif
