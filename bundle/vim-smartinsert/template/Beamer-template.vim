@@ -57,3 +57,50 @@ template |textblock|
 ____
 \end{textblock}
 endtemplate
+
+
+template |tikz.picture|
+\begin{tikzpicture}
+____
+\end{tikzpicture}
+endtemplate
+
+
+template |tikz.node.figure|
+\node[] (__var_name__) at (__-2.9__,__0.0__) { 
+    \includegraphics[width=__35mm__,keepaspectratio]{__figure__}
+};
+endtemplate
+
+
+template |tikz.node.text|
+\node[] (__var_name__) at (__2.9__,__0.0__) { 
+    \begin{minipage}{0.50\textwidth}
+        \fontsize{5}{6}\selectfont 
+        __text__
+    \end{minipage}
+};
+endtemplate
+
+
+template |minipage|
+\begin{minipage}
+____
+\end{minipage}
+endtemplate
+
+
+template |\begin|
+\begin{__tag__}
+____
+\end{__tag__}
+endtemplate
+
+
+template |picture|
+\begin{picture}(0,__100mm__)
+    \put(0,0) {
+        __content__
+    }
+\end{picture}
+endtemplate
