@@ -104,3 +104,19 @@ template |picture|
     }
 \end{picture}
 endtemplate
+
+
+template |\column|
+\begin{columns}
+\column{\dimexpr\paperwidth-10pt}
+____
+\end{columns}
+endtemplate
+
+
+template |figure|
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=__1.0\textwidth,keepaspectratio__]{__./figures/ESTMs.png__}
+\end{figure}
+endtemplate
