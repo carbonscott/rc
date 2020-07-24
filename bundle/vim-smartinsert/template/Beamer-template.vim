@@ -32,7 +32,7 @@ template |ps|
 \pause
 endtemplate
 
-template |column|
+template |column2|
 \begin{columns}
 \column{____\textwidth}
 ____
@@ -106,7 +106,7 @@ template |picture|
 endtemplate
 
 
-template |\column|
+template |column1|
 \begin{columns}
 \column{\dimexpr\paperwidth-10pt}
 ____
