@@ -7,7 +7,7 @@ template |read|
 def read(file, numerical = False):
     '''Return all lines in the user supplied parameter file without comments.
     '''
-    lines = []   
+    lines = []
     with open(file,'r') as fh:
         for line in fh.readlines():
             # Separate entries by spaces and remove commented lines...
@@ -238,7 +238,6 @@ if 1:
     gp("e")
 
 
-       
 endtemplate
 
 
@@ -498,14 +497,14 @@ template |read_csv|
 def read_csv(file):
     '''Return all lines in the user supplied parameter file without comments.
     '''
-    lines = []   
+    lines = []
     with open(file,'r') as fh:
         for line in fh.readlines():
             # Separate entries by commas and remove commented lines...
             words = line.replace('\n', '').split(',')
 
             lines.append(words)
-    
+
     return lines
 
 endtemplate

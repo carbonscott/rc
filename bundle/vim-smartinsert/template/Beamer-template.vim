@@ -18,6 +18,7 @@ ____
 endtemplate
 
 template |frame|
+%Slide
 \begin{frame}[fragile]
 \frametitle{____}
 ____
