@@ -62,7 +62,7 @@ function! s:main()
     call s:padding_window()
 
     " Set colors for the follow items...
-    let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
+    let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn', 'NonText']
     "                                                 ^^^^^^^^^^^^
     " StatueLine non-current window........................:
 
