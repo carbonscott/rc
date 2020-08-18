@@ -14,6 +14,7 @@ source $HOME/.vim/bundle/vim-moveblock/moveblock.vim
 source $HOME/.vim/bundle/vim-morespaces/morespaces.vim
 source $HOME/.vim/bundle/vim-hlsearch/hlsearch.vim
 source $HOME/.vim/bundle/vim-blinkcursor/blinkcursor.vim
+source $HOME/.vim/bundle/vim-focus/focus.vim
 
 
 " NOT MINE...
