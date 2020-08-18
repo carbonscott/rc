@@ -1,9 +1,9 @@
 " ~~~~turn off colorcolumn~~~~
 function! DeleteMatchedColor()
-				let items=getmatches()
-				for item in items
-								call matchdelete(item['id'])
-				endfor
+    let items=getmatches()
+    for item in items
+        call matchdelete(item['id'])
+    endfor
 endfunction
 
 " ~~~~syntax highlighting for document~~~~

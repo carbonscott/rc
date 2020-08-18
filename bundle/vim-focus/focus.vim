@@ -56,6 +56,17 @@ function! s:set_color(group, attr, color)
   execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
 endfunction
 
+function! Getenv(env)
+" Auto switch bg color...
+" getenv() is not available in older version of vim
+    let cmd = 'echo $' . a:env
+    let ret = system(cmd)
+    let res = substitute(ret, '\n', '', 'g')
+    if  res == '' | let res = 'NONE' | endif
+    return res
+endfunction
+
+
 " [[[ MAIN ]]]
 function! s:main()
     " Split windows...
@@ -66,11 +77,16 @@ function! s:main()
     "                                                 ^^^^^^^^^^^^
     " StatueLine non-current window........................:
 
+    " Auto choose bg color based on the terminal setting...
+    let g:BG_COLOR = Getenv('BG_COLOR')
+    let s:fg_color = g:BG_COLOR == 'light' ? 'white' : 'black'
     for grp in s:color_items
-        call s:set_color(grp, 'fg', 'black')
+        call s:set_color(grp, 'fg', s:fg_color)
         call s:set_color(grp, 'bg', 'NONE')
         call s:set_color(grp, ''  , 'NONE')    " Everything else
     endfor
+
+    echom 'Focus mode is on...'
 endfunction
 
 
