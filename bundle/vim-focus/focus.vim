@@ -73,7 +73,7 @@ function! s:main()
     call s:padding_window()
 
     " Set colors for the follow items...
-    let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn', 'NonText']
+    let s:color_items = [ 'NonText', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
     "                                                 ^^^^^^^^^^^^
     " StatueLine non-current window........................:
 
@@ -86,6 +86,7 @@ function! s:main()
         call s:set_color(grp, ''  , 'NONE')    " Everything else
     endfor
 
+    redraw
     echom 'Focus mode is on...'
 endfunction
 
