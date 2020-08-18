@@ -35,16 +35,21 @@ set cpo&vim
 " [[[ UTILITY ]]]
 function! s:padding_window()
     " Create a padding to the left and move cursor back to previosu window...
-    vertical topleft new   
     setlocal nornu
-    vertical resize 40
+    vertical resize 50
+    setlocal nomodifiable
+    call s:fill_window_by_emptyline()
     execute winnr('#') . 'wincmd w'
+endfunction
 
-    " Create a padding to the right and move cursor back to previosu window...
-    vertical botright new  
-    setlocal nornu
-    vertical resize 40
-    execute winnr('#') . 'wincmd w'
+function! s:fill_window_by_emptyline()
+    let win_height = winheight(0) - line('$')
+    if win_height > 0
+        setlocal modifiable
+        call append(0, repeat([''], win_height))
+        normal! gg
+        setlocal nomodifiable
+    endif
 endfunction
 
 function! s:get_color(group, attr)
@@ -67,15 +72,29 @@ function! Getenv(env)
 endfunction
 
 
+function! s:setoff()
+    " Vertical separator...
+    set fillchars+=vert:\ 
+endfunction
+
 " [[[ MAIN ]]]
 function! s:main()
     " Split windows...
+    " ...Left
+    vertical topleft new   
     call s:padding_window()
 
+    " ...Right
+    vertical botright new  
+    call s:padding_window()
+
+    " Turn off settings...
+    call s:setoff()
+
     " Set colors for the follow items...
-    let s:color_items = [ 'NonText', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
-    "                                                 ^^^^^^^^^^^^
-    " StatueLine non-current window........................:
+    let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn' ] 
+    "                                                            ^^^^^^^^^^^^
+    " StatueLine non-current window....................................:
 
     " Auto choose bg color based on the terminal setting...
     let g:BG_COLOR = Getenv('BG_COLOR')
@@ -91,8 +110,9 @@ function! s:main()
 endfunction
 
 
-" [[[ SET COMMAND ]]]
+" [[[ CUSTOMIZE COMMAND ]]]
 command! -nargs=0 Focus call s:main()
+nnoremap ZQ :qa!<cr>
 
 
 " [[[ END ]]]
