@@ -33,13 +33,20 @@ set cpo&vim
 
 
 " [[[ UTILITY ]]]
-function! s:padding_window()
+function! s:padding_window(panel_size)
     " Create a padding to the left and move cursor back to previosu window...
     setlocal nornu
-    vertical resize 50
+    execute printf('vertical resize %s', a:panel_size)
     setlocal nomodifiable
     call s:fill_window_by_emptyline()
+
+    " Get the window id...
+    let win_id = win_getid()
+
+    " Focus on the last window...
     execute winnr('#') . 'wincmd w'
+
+    return win_id
 endfunction
 
 function! s:fill_window_by_emptyline()
@@ -72,29 +79,53 @@ function! Getenv(env)
 endfunction
 
 
+function! s:color_echo(info, color)
+    " This function is used to prompt the warning information!
+    execute printf('hi WarningColor ctermfg = %s', a:color)
+    execute printf('echohl WarningColor')
+    echon  a:info
+    execute printf('echohl NONE')
+    execute printf('hi clear WarningColor')
+endfunction
+
+
 function! s:setoff()
     " Vertical separator...
     set fillchars+=vert:\ 
 endfunction
 
 " [[[ MAIN ]]]
-function! s:main()
+function! s:focus_on()
+    " Compute the panel size...
+    " The center window should have 90 characters long
+    let win_center_width = 90
+    let win_width = winwidth(0)
+    let panel_width = ( win_width - win_center_width ) / 2
+
+    " Short-circuit if win_width is not large enough to hold the center window...
+    if panel_width <= 0
+        redraw
+        let warn_msg = printf('The window width is less than %s.  No Focus mode is necessary.  ', win_center_width)
+        call s:color_echo( warn_msg, 'red' )
+        return
+    endif
+
     " Split windows...
     " ...Left
     vertical topleft new   
-    call s:padding_window()
+    let t:win_left = s:padding_window(panel_width)
 
     " ...Right
     vertical botright new  
-    call s:padding_window()
+    let t:win_right = s:padding_window(panel_width)
 
     " Turn off settings...
     call s:setoff()
 
     " Set colors for the follow items...
     let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn' ] 
-    "                                                            ^^^^^^^^^^^^
-    " StatueLine non-current window....................................:
+    "                                                 ^^^^^^^^^^^^
+    " StatueLine non-current window.........................:
 
     " Auto choose bg color based on the terminal setting...
     let g:BG_COLOR = Getenv('BG_COLOR')
@@ -110,8 +141,24 @@ function! s:main()
 endfunction
 
 
+function! s:kill_win(win_id)
+    " Go to the window to close...
+    call win_gotoid( a:win_id )
+
+    " Delete the buffer of the window...
+    bdelete!
+endfunction
+
+
+function! s:focus_off()
+    call s:kill_win( t:win_left )
+    call s:kill_win( t:win_right )
+endfunction
+
+
 " [[[ CUSTOMIZE COMMAND ]]]
-command! -nargs=0 Focus call s:main()
+command! -nargs=0 Focus call s:focus_on()
+command! -nargs=0 FocusOff call s:focus_off()
 nnoremap ZQ :qa!<cr>
 
 
