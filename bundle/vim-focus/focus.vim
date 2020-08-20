@@ -82,10 +82,10 @@ endfunction
 function! s:color_echo(info, color)
     " This function is used to prompt the warning information!
     execute printf('hi WarningColor ctermfg = %s', a:color)
-    execute printf('echohl WarningColor')
+    execute 'echohl WarningColor'
     echon  a:info
-    execute printf('echohl NONE')
-    execute printf('hi clear WarningColor')
+    execute 'echohl NONE'
+    execute 'hi clear WarningColor'
 endfunction
 
 
