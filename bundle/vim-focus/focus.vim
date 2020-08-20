@@ -153,6 +153,8 @@ endfunction
 function! s:focus_off()
     call s:kill_win( t:win_left )
     call s:kill_win( t:win_right )
+    redraw
+    echom 'Focus mode is off...'
 endfunction
 
 
