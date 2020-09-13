@@ -514,68 +514,85 @@ template |fit.functions|
 # [[[ Optimization function  ]]]
 
 def gau(x, sigma):
+    ''' It returns the core part of the model -- e.g. a Gaussian function for 
+        building the model.
+    '''
     return np.exp( - x * x / (2 * sigma * sigma) )
 
 
-def model(x, A, B, x0, sigma):
+def model(params, x):
     ''' model function -- e.g. the peak of Gaussian function
         keep param arguments at the end.
-
-        x, A, B, x0, sigma
-           ---------------
-           param arguments
     '''
+    A, B, x0, sigma = params
     return A * gau(x - x0, sigma) + B
 
 
 def residual(params, X, y):
-    ''' Find the residual = model - data
-        data is represented by y
-        params: A, B, x0, sigma
+    '''      ~~~~~~  ~  ~
+               ^     ^  ^
+               :     |  :
+               :     |  :... data
+               :     |
+               :     |_ variable
+               :
+               :... `params` has to be the first argument, which is required by 
+                    `least_squares` function
+
+        It returns the residuals between model and data.  
     '''
-    res  = model(X, *params) - y
+    res  = model(params, X) - y
     return res.reshape(-1)
 
 
 def fit(params, mask, X, y):
-    def cost(subparams):
-        set_subparams(params, subparams, mask)
+    ''' It wraps the fitting procedure and returns the result.  
+    '''
+    # Create a cost function based on masked parameters...
+    def cost(subparam_vals):
+        # Assign subparam values to `params` according to `mask`...
+        set_subparams(params, mask, subparam_vals)
         return residual(params, X, y)
 
-    init = subparams(params, mask)
+    # Returns masked parameters as a list...
+    init = fetch_subparams(params, mask)
+
+    # Optimize...
     result = optimize.least_squares(cost, init, method = 'lm')
     return result
 
 
 def build_mask_table(labels):
-    """labels is a list of strings. Each string represents the name of a
-       specificc paramter.
-       The function will return both a mask and a table (dict).
+    """ `labels` is a list of strings. Each string represents the name of a
+        specificc paramter.
+        The function will return both a mask and a table (dict).
     """
-    # Return mask, table
+    # Return boolean mask, table...
     return [ True for i in range(len(labels)) ], \
            { labels[i] : i for i in range(len(labels)) }
 
 
 def params_off(mask, table, label, val = True):
-    """params is a list of parameters. params can be turned on and off by giving
-       the label of the parameter and val. val is True by default. table shows
-       the order of parameters.
+    """ `params` is a list of parameters. `params` can be turned on and off by giving
+        the label of the parameter and `val`. `val` is True by default. `table` shows
+        the order of parameters.
     """
     mask[ table[label] ] = ( not val )
 
 
-def subparams(params, mask):
-    """Returns a subset of params if corresponding mask is True.
+def fetch_subparams(params, mask):
+    """ Returns a subset of params according to the Trueness in `mask`.
     """
     return [ params[i] for i in range(len(params)) if mask[i] ]
 
 
-def set_subparams(params, vals, mask):
+def set_subparams(params, mask, subparam_vals):
+    ''' Assign subparam values to `params` according to the Trueness `mask`.
+    '''
     j = 0
     for i in range(len(params)):
         if mask[i]: 
-            params[i] = vals[j]
+            params[i] = subparam_vals[j]
             j += 1
 endtemplate
 
@@ -590,7 +607,7 @@ endtemplate
 template |fit.run|
 for it in __"Intensity Width"__.split(): params_off(mask, table, it)
 result = fit(params, mask, X, y)
-set_subparams(params, result.x, mask)
+set_subparams(params, mask, result.x)
 __A_fit, B_fit, x0_fit, sigma_fit__ = params
 endtemplate
 
