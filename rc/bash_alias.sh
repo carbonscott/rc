@@ -27,3 +27,6 @@ alias tns='tmux new-session -s '
 # more or less
 alias m='more'
 alias l='less'
+
+# Go to example directory...
+alias e='cd $HOME/Dropbox/codes/examples'
