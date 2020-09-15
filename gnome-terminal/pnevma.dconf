@@ -1,0 +1,22 @@
+[/]
+allow-bold=true
+background-color='#1c1c1c1c1c1c'
+bold-color='#d0d0d0d0d0d0'
+bold-color-same-as-fg=true
+bold-is-bright=false
+cursor-colors-set=false
+custom-command="sh -c 'export BG_COLOR=\"light\"; exec bash'"
+exit-action='close'
+font='Inconsolata Medium 12'
+foreground-color='#d0d0d0d0d0d0'
+highlight-background-color='rgb(239,239,239)'
+highlight-colors-set=true
+highlight-foreground-color='rgb(0,0,0)'
+palette=['rgb(47,46,45)', 'rgb(163,102,102)', 'rgb(144,165,125)', 'rgb(215,175,135)', 'rgb(127,165,189)', 'rgb(199,158,196)', 'rgb(138,219,180)', 'rgb(208,208,208)', 'rgb(74,72,69)', 'rgb(215,135,135)', 'rgb(175,190,162)', 'rgb(228,201,175)', 'rgb(161,189,206)', 'rgb(183,136,189)', 'rgb(177,231,221)', 'rgb(239,239,239)']
+use-custom-command=true
+use-system-font=false
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=false
+visible-name='Pnevma'
