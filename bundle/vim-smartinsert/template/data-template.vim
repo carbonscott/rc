@@ -521,7 +521,7 @@ def gau(x, sigma):
 
 
 def model(params, x):
-    ''' model function -- e.g. the peak of Gaussian function
+    ''' Model function -- e.g. the peak of Gaussian function
         keep param arguments at the end.
     '''
     A, B, x0, sigma = params
@@ -534,7 +534,7 @@ def residual(params, X, y):
                :     |  :
                :     |  :... data
                :     |
-               :     |_ variable
+               :     |___ variable
                :
                :... `params` has to be the first argument, which is required by 
                     `least_squares` function
@@ -554,7 +554,7 @@ def fit(params, mask, X, y):
         set_subparams(params, mask, subparam_vals)
         return residual(params, X, y)
 
-    # Returns masked parameters as a list...
+    # Return masked parameters as a list...
     init = fetch_subparams(params, mask)
 
     # Optimize...
@@ -564,7 +564,7 @@ def fit(params, mask, X, y):
 
 def build_mask_table(labels):
     """ `labels` is a list of strings. Each string represents the name of a
-        specificc paramter.
+        specific paramter.
         The function will return both a mask and a table (dict).
     """
     # Return boolean mask, table...
