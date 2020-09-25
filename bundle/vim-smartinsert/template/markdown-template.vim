@@ -25,6 +25,7 @@ include-before:
     <ul>
       <li><a href="mailto:wangimagine@gmail.com">contact</a></li>
       <li><a href="https://github.com/carbonscott">github</a></li>
+      <li><a href="resume.html">resume</a></li>
     </ul>
   </div>
   </nav>
