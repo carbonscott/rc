@@ -1,0 +1,20 @@
+[/]
+background-color='rgb(242,228,190)'
+background-transparency-percent=6
+bold-color='#d0d0d0d0d0d0'
+bold-color-same-as-fg=true
+bold-is-bright=false
+cursor-colors-set=false
+custom-command="sh -c 'export BG_COLOR=\"light\"; exec bash'"
+exit-action='close'
+font='Inconsolata Medium 12'
+foreground-color='rgb(77,70,62)'
+highlight-background-color='rgb(77,70,62)'
+highlight-colors-set=true
+highlight-foreground-color='rgb(242,228,190)'
+palette=['rgb(242,228,190)', 'rgb(204,36,29)', 'rgb(152,151,26)', 'rgb(215,153,33)', 'rgb(69,133,136)', 'rgb(177,98,134)', 'rgb(104,157,106)', 'rgb(124,111,100)', 'rgb(146,131,116)', 'rgb(251,73,52)', 'rgb(184,187,38)', 'rgb(250,189,47)', 'rgb(131,165,152)', 'rgb(211,134,155)', 'rgb(142,192,124)', 'rgb(77,70,62)']
+use-custom-command=true
+use-system-font=false
+use-theme-colors=false
+use-transparent-background=false
+visible-name='Gruvbox Light'
