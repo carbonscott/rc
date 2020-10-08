@@ -63,7 +63,7 @@ endtemplate
 
 
 template |comment.block|
-<!---
+<!--
 
 __comment__
 
