@@ -11,7 +11,7 @@ alias gpi="grep --color -i -e "
 alias gpiv="grep --color -iv -e "
 
 # Apply function on each item filtered by xargs ...
-alias sargs="xargs -I it -n 1 "
+alias sargs="xargs -I {} -n 1 "
 
 # Easier ls ...
 alias lst="ls -lrt "
@@ -30,3 +30,6 @@ alias l='less'
 
 # Go to example directory...
 alias e='cd $HOME/Dropbox/codes/examples'
+
+# Go to article directory...
+alias a='cd $HOME/Dropbox/articles'
