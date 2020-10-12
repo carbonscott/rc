@@ -7,6 +7,14 @@ gp("set output '__filename__.eps'")
 endtemplate
 
 
+template |pdf|
+gp("set terminal pdf size __3.5__, __2.62__ \\")
+gp("                 enhanced color \\")
+gp("                 font 'Helvetica,14' \\")
+gp("                 linewidth 1")
+gp("set output '__filename__.pdf'")
+
+
 template |set.xrange|
 gp("set xrange [__0__:__4__]")    # ...Set the range
 gp("set xtics __0.5__")       # ...Set the step size of each tic along that axis
