@@ -13,6 +13,7 @@ gp("                 enhanced color \\")
 gp("                 font 'Helvetica,14' \\")
 gp("                 linewidth 1")
 gp("set output '__filename__.pdf'")
+endtemplate
 
 
 template |set.xrange|
