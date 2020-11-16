@@ -24,6 +24,7 @@ include-before:
   <div class="nav-right">
     <ul>
       <li><a href="mailto:wangimagine@gmail.com">contact</a></li>
+      <li><a href="https://unsplash.com/@carbonscott">unspalsh</a></li>
       <li><a href="https://github.com/carbonscott">github</a></li>
       <li><a href="resume.html">resume</a></li>
     </ul>
@@ -58,7 +59,7 @@ endtemplate
 
 
 template |comment.inline|
-[//]: <> (__comment__)
+<!-- __comment__ -->
 endtemplate
 
 
