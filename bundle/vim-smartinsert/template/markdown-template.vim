@@ -23,7 +23,6 @@ include-before:
   </div>
   <div class="nav-right">
     <ul>
-      <li><a href="mailto:wangimagine@gmail.com">contact</a></li>
       <li><a href="https://unsplash.com/@carbonscott">unspalsh</a></li>
       <li><a href="https://github.com/carbonscott">github</a></li>
       <li><a href="https://scholar.google.com/citations?user=aXOOJ2cAAAAJ&hl=en&oi=sra">publication</a></li>
