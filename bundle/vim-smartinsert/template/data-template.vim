@@ -1,3 +1,26 @@
+template |bin_image|
+def bin_image(img_orig, bin = 4, mode = 0):
+    X, Y = img_orig.shape
+
+    # Binning for faster display...
+    if mode == 0:
+        img_bin = []
+        for i in range(0, X, bin):
+            for j in range(0, Y, bin):
+                img_bin.append( (i, j, np.mean(img_orig[i : min(i + bin, X), j : min(j + bin, Y)])) )
+
+    if mode == 1:
+        img_bin = []
+        for i in range(0, X, bin):
+            img_bin_y = []
+            for j in range(0, Y, bin):
+                img_bin_y.append( np.mean(img_orig[i : min(i + bin, X), j : min(j + bin, Y)] ) )
+            img_bin.append(img_bin_y)
+
+    return img_bin
+endtemplate
+
+
 template |py_bs|
 py_bs = os.path.basename(__file__)[:-3]
 endtemplate
@@ -339,18 +362,6 @@ def showHistogram(data, bin, title, visual = True):
             gp(f"{data_rng[i]} {data_val[i]}")  
             gp(f"{data_rng[i+1]} {data_val[i]}")  
         gp("e")
-endtemplate
-
-
-template |bining|
-# Display image in eps
-X, Y = img_disp.shape
-
-# Binning for faster display...
-img_bin = []
-for i in range(0, X, bin):
-    for j in range(0, Y, bin):
-        img_bin.append( (i, j, np.mean(img_disp[i : min(i + bin, X), j : min(j + bin, Y)])) )
 endtemplate
 
 
