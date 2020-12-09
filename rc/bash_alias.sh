@@ -33,3 +33,6 @@ alias e='cd $HOME/Dropbox/codes/examples'
 
 # Go to article directory...
 alias a='cd $HOME/Dropbox/articles'
+
+# Go to English directory...
+alias n='cd $HOME/Dropbox/resources/English'
