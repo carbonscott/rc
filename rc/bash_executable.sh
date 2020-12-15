@@ -5,6 +5,9 @@
 # Python path...
 export PYTHONPATH=""
 export PYTHONPATH="$HOME/Dropbox/codes:$PYTHONPATH"
+## # Uncomment for development purpose
+## export PYTHONPATH="$HOME/Dropbox/codes/GnuplotPy3:$PYTHONPATH"
+## export PYTHONPATH="$HOME/Dropbox/codes/pyrotein:$PYTHONPATH"
 export PYTHONPATH="$HOME/.local/lib64/python3.8/site-packages/:$PYTHONPATH"
 
 # PDF split ...
