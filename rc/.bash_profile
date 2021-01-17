@@ -29,4 +29,4 @@ export EDITOR="nvim"
 source ~/.vim/rc/applescripts.sh
 
 # Set default look of bash...
-export PS1='[\W]$ '
+export PS1='[\u@\h \W]\$ '
