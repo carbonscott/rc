@@ -21,7 +21,7 @@ template |frame|
 %Slide
 \begin{frame}[fragile]
 \frametitle{____}
-____
+    ____
 \end{frame}
 endtemplate
 
@@ -33,12 +33,15 @@ template |ps|
 \pause
 endtemplate
 
-template |column2|
+template |layout.column2|
 \begin{columns}
-\column{____\textwidth}
-____
-\column{____\textwidth}
-____
+    % Column left
+    \column{____\textwidth}
+    ____
+
+    % Column right
+    \column{____\textwidth}
+    ____
 \end{columns}
 endtemplate
 
@@ -53,10 +56,10 @@ template |frequent-header|
 endtemplate
 
 template |textblock|
-\begin{textblock}{12.5}(0.5,0.5)
-\centering
-____
-\end{textblock}
+    \begin{textblock}{12.5}(0.5,0.5)
+    \centering
+    ____
+    \end{textblock}
 endtemplate
 
 
@@ -86,14 +89,14 @@ endtemplate
 
 template |minipage|
 \begin{minipage}
-____
+    ____
 \end{minipage}
 endtemplate
 
 
 template |\begin|
 \begin{__tag__}
-____
+    ____
 \end{__tag__}
 endtemplate
 
@@ -109,15 +112,44 @@ endtemplate
 
 template |column1|
 \begin{columns}
-\column{\dimexpr\paperwidth-10pt}
-____
+    \column{\dimexpr\paperwidth-10pt}
+    ____
 \end{columns}
 endtemplate
 
 
-template |figure|
+template |figure.full|
 \begin{figure}[!ht]
-\centering
-\includegraphics[width=__1.0\textwidth,keepaspectratio__]{__./figures/ESTMs.png__}
+    \centering
+    \includegraphics[width=__1.0\textwidth,keepaspectratio__]{__./figures/ESTMs.png__}
 \end{figure}
+endtemplate
+
+
+template |figure.half|
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[height=__0.8\textheight,keepaspectratio__]{__./figures/ESTMs.png__}
+\end{figure}
+endtemplate
+
+
+template |layout.guideline|
+\begin{frame}[fragile]
+\frametitle{Title}
+\begin{picture}(6.665in,3.75in)
+    % Sample code to include a graphic
+    %\put(0in,0.4in){\includegraphics[height=0.9\textheight,keepaspectratio]{./figures/u02.intracellular.eps}}
+
+    % Display the framebox
+    \put(0in, 0.4in){\framebox(\textwidth,\textheight){}}
+
+    % Display the guideline
+    \put(0in, 0.0in){\line(1,0){6.0in}}
+    \put(0in, 0.5in){\line(1,0){6.0in}}
+    \put(0in, 1.0in){\line(1,0){6.0in}}
+    \put(0in, 1.5in){\line(1,0){6.0in}}
+    \put(0in, 2.0in){\line(1,0){6.0in}}
+\end{picture}
+\end{frame}
 endtemplate

@@ -24,6 +24,7 @@ augroup LaTeXSetup
     autocmd BufEnter *.tex call execute("set textwidth=80")
     autocmd BufEnter *.tex echom 'TeX file detected...'
     autocmd BufEnter *.tex syntax on
+    autocmd BufEnter *.tex set shiftwidth=4
     "autocmd BufEnter *.tex call execute("hi markdownItalic cterm=None")
     "autocmd BufEnter *.tex call execute("hi markdownError  cterm=None")
 augroup END
