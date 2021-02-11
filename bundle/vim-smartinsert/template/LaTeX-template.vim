@@ -91,21 +91,19 @@ endtemplate
 
 template |align.center|
 \begin{center}
-____
+    ____
 \end{center}
 endtemplate
 
 template |itemize|
 \begin{itemize}
-
-____
-
+    ____
 \end{itemize}
 endtemplate
 
 template |enumerate|
 \begin{enumerate}
-____
+    ____
 \end{enumerate}
 endtemplate
 
@@ -167,14 +165,14 @@ endtemplate
 
 template |equation|
 \begin{equation}
-____
+    ____
 \end{equation}
 endtemplate
 
 
 template |aligned|
 \begin{aligned}
-____
+    ____
 \end{aligned}
 endtemplate
 
@@ -238,7 +236,7 @@ endtemplate
 
 
 template |code.block|
-\begin{lstlisting}[language=__bash__, breaklines=true]
+\begin{lstlisting}[language=__bash__,breaklines=true]
 __code__
 \end{lstlisting}
 endtemplate
@@ -246,4 +244,15 @@ endtemplate
 
 template |code.inline|
 \lstinline{__code__}
+endtemplate
+
+
+template |code.mint.block|
+\begin{minted}[bgcolor=codebg,autogobble,breaklines,escapeinside=||]{__python__}
+____
+\end{minted}
+endtemplate
+
+template |code.mint.inline|
+\mintinline[bgcolor=codebg,escapeinside=||]{text}{____}
 endtemplate

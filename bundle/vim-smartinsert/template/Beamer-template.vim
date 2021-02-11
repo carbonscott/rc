@@ -21,7 +21,9 @@ template |frame|
 %Slide
 \begin{frame}[fragile]
 \frametitle{____}
+
     ____
+
 \end{frame}
 endtemplate
 
@@ -110,7 +112,7 @@ template |picture|
 endtemplate
 
 
-template |column1|
+template |layout.column1|
 \begin{columns}
     \column{\dimexpr\paperwidth-10pt}
     ____
