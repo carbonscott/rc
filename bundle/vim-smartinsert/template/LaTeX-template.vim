@@ -97,7 +97,9 @@ endtemplate
 
 template |itemize|
 \begin{itemize}
+
     ____
+
 \end{itemize}
 endtemplate
 
