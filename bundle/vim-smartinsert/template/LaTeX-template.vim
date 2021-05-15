@@ -114,13 +114,8 @@ template |labelstyle|
 endtemplate
 
 template |bibliography|
-\begin{bibliography}
-____
-\end{bibliography}
-endtemplate
-
-template |\bibitem|
-\bibitem{__key__} __content__
+\bibliographystyle{cell}
+\bibliography{bibliography}
 endtemplate
 
 template |\cite|
