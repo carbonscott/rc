@@ -1,8 +1,8 @@
-function tn {
+function tl {
     osascript -e 'tell application "Terminal" to get name of every window'
 }
 
-function tc {
+function tn {
     osascript -e "tell application \"Terminal\" to every window whose name contains \"$1\""
 }
 
