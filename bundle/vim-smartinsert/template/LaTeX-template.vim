@@ -253,3 +253,19 @@ endtemplate
 template |code.mint.inline|
 \mintinline[bgcolor=codebg,escapeinside=||]{text}{____}
 endtemplate
+
+
+template |table|
+\begin{center}
+    \begin{tabular}
+
+        \hline
+        ____  &  ____  \\
+
+        \hline
+        ____  &  ____  \\
+
+        \hline
+    \end{tabular}
+\end{center}
+endtemplate
