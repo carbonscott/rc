@@ -1,3 +1,4 @@
+# [[[ TERMINAL ]]]
 function tl {
     osascript -e 'tell application "Terminal" to get name of every window'
 }
