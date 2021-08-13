@@ -18,4 +18,4 @@ source $HOME/.vim/bundle/vim-focus/focus.vim
 
 
 " NOT MINE...
-source $HOME/.vim/plugins/goyo.vim
+" source $HOME/.vim/plugins/goyo.vim
