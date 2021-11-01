@@ -2,9 +2,18 @@ template |head|
 ---
 title: __title__
 author: __CW__
-date:  
+date:  \today
+geometry: margin=2cm
+header-includes:
+    - \usepackage{setspace}
+    - \doublespacing
 
 ---
+endtemplate
+
+template |yaml.linenumber|
+- \usepackage{lineno}
+- \linenumbers
 endtemplate
 
 
