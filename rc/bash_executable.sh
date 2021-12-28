@@ -30,3 +30,6 @@ export PATH="$HOME/Dropbox/codes/deltat:$PATH"
 
 # pdf2txt, word count...
 export PATH="$HOME/Dropbox/codes/wordcount:$PATH"
+
+# virtualenv -- Python 3.9
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"

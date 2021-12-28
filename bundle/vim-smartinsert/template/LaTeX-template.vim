@@ -41,6 +41,10 @@ template |\renewcommand|
 \renewcommand{__command__}{__val__}
 endtemplate
 
+template |\newcommand|
+\newcommand{__command__}{__val__}
+endtemplate
+
 template |\hspace|
 \hspace{____}
 endtemplate

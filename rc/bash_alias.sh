@@ -42,3 +42,7 @@ alias c='cd $HOME/Dropbox/codes'
 
 # Go to Dropbox directory...
 alias d='cd $HOME/Dropbox'
+
+
+# About using virtualenv for Python environment...
+alias active="source ./venv/bin/activate"

@@ -4,3 +4,8 @@ iab rader reader
 iab itme  item
 iab singal signal
 iab Singal Signal
+iab sceince science
+iab sceintist scientist
+iab teh the
+iab mathmetical mathematical
+iab mathmetics mathematics
