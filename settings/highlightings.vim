@@ -30,8 +30,8 @@ if s:BG_COLOR != w:null
 endif
 
 " Line...
-hi CursorLineNr cterm=bold ctermfg=NONE ctermbg=NONE
-hi LineNr ctermfg=NONE ctermbg=NONE
+" hi CursorLineNr cterm=bold ctermfg=NONE ctermbg=NONE
+" hi LineNr ctermfg=NONE ctermbg=NONE
 
 " Search...
 let s:Visual_ctermfg = { "light" : 255, "dark" : 15, w:null : 'NONE' }

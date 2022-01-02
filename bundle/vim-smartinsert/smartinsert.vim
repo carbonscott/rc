@@ -120,7 +120,7 @@ function! BuildPrompt(filenames)
     call map(filenames,'"|".v:val.repeat(" ",len_prompt - strlen(v:val))."|"')
     let filenames_prompt = [delimiter,delimiter]
     call extend(filenames_prompt,filenames,1)
-     
+
     let dialog = join(filenames_prompt,"\n")."\n".
           \ "choose template file: " 
     let target_file = input(dialog,"","customlist,CompleteTemplates")
@@ -133,7 +133,7 @@ endfunction
 
 function! ReadTemplate(trigger,leadword)
     " This function will be in use if the keyword is matched in the current line.
-     
+
     " use double quotes...
     let BEGIN_LINE = "^\\s*"
     let END_LINE = "\\s*$"
@@ -385,7 +385,7 @@ endfunction
 function! CreateTemplates()
     let prefix_dir = g:SmartInsertDir
     let template_dir = '/template/'
-    let new_filename = input("Create new file: ")
+    let new_filename = input("Create a new file: ")
     let template_file = new_filename.'-template.vim'
     let absolute_filename = prefix_dir.template_dir.template_file
 
@@ -413,7 +413,7 @@ function! EditTemplates()
         return
     endif
     let target_file = BuildPrompt(filenames)
-    
+
     if target_file == ""
         redraw
         call WarningWithColor("No template is selected.","CMT")
@@ -450,7 +450,7 @@ function! ShowSelectedTemplates()
     call map(filenames,'"|".v:val.repeat(" ",len_prompt - strlen(v:val))."|"')
     let filenames_prompt = [delimiter,delimiter]
     call extend(filenames_prompt,filenames,1)
-     
+
     let dialog = join(filenames_prompt,"\n") 
     echo dialog
 endfunction
@@ -475,7 +475,7 @@ function! DeleteSelectedTemplates()
     endif
 
     let target_file = BuildPrompt(filenames)
-    
+
     if target_file == ""
         redraw
         call WarningWithColor("No template is selected.","CMT")
@@ -510,7 +510,7 @@ function! SelectTemplates()
 
     let filenames = deepcopy(g:filenames)
     let target_file = BuildPrompt(filenames)
-    
+
     if target_file == ""
         redraw
         call WarningWithColor("No template is selected.","CMT")
