@@ -30,6 +30,7 @@ function s2f {
 
 # [[[ Terminal ]]]
 function clc {
-    echo -n -e "\033]0;$1\007"
+    ## echo -n -e "\033]0;$1\007"
+    echo -n -e "\033]0;$@\007"
 }
 alias clear='clear; clc '
