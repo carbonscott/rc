@@ -44,11 +44,17 @@ highlight BC_Cursor cterm=bold ctermfg=red ctermbg=white
 
 " Return the highlighting term...
 function! BC_GetHL (group, term)
-   " Store output of group to variable
-   let output = execute('hi ' . a:group)
+    " Store output of group to variable
+    if v:version >= 800
+        let output = execute('hi ' . a:group)
+    else
+        redir => output
+        execute 'hi ' . a:group
+        redir END
+    endif
 
-   " Find the term we're looking for
-   return matchstr(output, a:term.'=\zs\S*')
+    " Find the term we're looking for
+    return matchstr(output, a:term.'=\zs\S*')
 endfunction
 
 function! BC_SetHL (group, term)
