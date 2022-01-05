@@ -1,0 +1,148 @@
+template |setKeyBinding|
+(add-key-binding "Refine Active Residue" "r" (lambda () (manual-refine-residues 0)))
+(add-key-binding "Refine Active Residue AA" "x" (lambda () (refine-active-residue)))
+(add-key-binding "Triple Refine" "t" (lambda () (manual-refine-residues 1)))
+(add-key-binding "Autofit Rotamer" "j" (lambda () (auto-fit-rotamer-active-residue)))
+(add-key-binding "Pepflip" "q" (lambda () (pepflip-active-residue)))
+(add-key-binding "Go To Blob" "g" (lambda () (blob-under-pointer-to-screen-centre)))
+(add-key-binding "Add Water" "w" (lambda () (place-typed-atom-at-pointer "Water")))
+(add-key-binding "Eigen-flip Ligand" "e" (lambda() (flip-active-ligand)))
+(add-key-binding "Add terminal residue" "y" (lambda () 
+                        (let ((active-atom (active-residue)))
+                          (if (not active-atom)
+                              (format #t "No active atom~%")
+                              (let ((imol      (list-ref active-atom 0))
+                                    (chain-id  (list-ref active-atom 1))
+                                    (res-no    (list-ref active-atom 2))
+                                    (ins-code  (list-ref active-atom 3))
+                                    (atom-name (list-ref active-atom 4))
+                                    (alt-conf  (list-ref active-atom 5)))
+                                (add-terminal-residue imol chain-id res-no "auto" 1))))))
+(add-key-binding "Fill Partial" "k" (lambda ()
+                        (let ((active-atom (active-residue)))
+                          (if (not active-atom)
+                              (format #t "No active atom~%")
+                              (let ((imol      (list-ref active-atom 0))
+                                    (chain-id  (list-ref active-atom 1))
+                                    (res-no    (list-ref active-atom 2))
+                                    (ins-code  (list-ref active-atom 3))
+                                    (atom-name (list-ref active-atom 4))
+                                    (alt-conf  (list-ref active-atom 5)))
+                                (fill-partial-residue imol chain-id res-no ins-code))))))
+
+(add-key-binding "Kill Sidechain" "K" 
+   (lambda ()		 
+       (using-active-atom
+	(delete-residue-sidechain aa-imol aa-chain-id aa-res-no aa-ins-code 0))))
+
+
+(define *refine-residue-sphere-radius* 3.5) ;; Angstroms
+
+(add-key-binding "Refine residues in a sphere" "R"
+    (lambda ()
+      (let ((active-atom (active-residue)))
+        (if (not (list? active-atom))
+            (format #t "No active atom~%")
+            (let* ((centred-residue (list-head (cdr active-atom) 3))
+                   (imol (car active-atom))
+                   (other-residues (residues-near-residue imol centred-residue *refine-residue-sphere-radius*))
+                   (all-residues (if (list? other-residues)
+                                     (cons centred-residue other-residues)
+                                     (list centred-residue))))
+              (refine-residues imol all-residues))))))
+
+(add-key-binding "Neighbours Refine" "h"
+   (lambda ()     
+     (if (not (valid-map-molecule? (imol-refinement-map)))
+	 (info-dialog "Must set the refinement map"))     
+     (using-active-atom      
+      (let* ((rc-spec (list aa-chain-id aa-res-no aa-ins-code))
+	     (ls (residues-near-residue aa-imol rc-spec 1.9)))
+	(with-auto-accept
+	 (refine-residues aa-imol (cons rc-spec ls)))))))
+
+
+(add-key-binding "Load RNAs files" "F9" 
+                 (lambda ()
+                   (let* ((home (getenv "HOME"))
+                          (dir-1 (append-dir-dir home "data"))
+                          (dir-2 (append-dir-dir dir-1 "rnase")))
+                     (read-pdb (append-dir-file dir-2 "tutorial-modern.pdb"))
+                     (make-and-draw-map (append-dir-file dir-2
+                                                         "rnasa-1.8-all_refmac1.mtz")
+                                        "/RNASE3GMP/COMPLEX/FWT" 
+                                        "/RNASE3GMP/COMPLEX/PHWT" "" 0 0))))
+(add-key-binding "Toggle Ghosts" ":" 
+                 (lambda () 
+                   (let ((keyboard-ghosts-mol 
+                          (let ((ls (model-molecule-list)))
+                            (let loop ((ls ls))
+                              (cond
+                               ((null? ls) -1)
+                               ((ncs-ghosts (car ls))
+                                (car ls))
+                               (else
+                                (loop (cdr ls))))))))
+                     (if (= (draw-ncs-ghosts-state keyboard-ghosts-mol) 0)
+                         (set-draw-ncs-ghosts keyboard-ghosts-mol 1)
+                         (set-draw-ncs-ghosts keyboard-ghosts-mol 0)))))
+
+(add-key-binding "Hydrogens off" "["
+                 (lambda ()
+                   (let ((imol
+                          (let ((active-atom (active-residue)))
+                            (if active-atom
+                                (car active-atom)
+                                0))))
+                   (set-draw-hydrogens imol 0))))
+(add-key-binding "Hydrogens on" "]"
+                 (lambda ()
+                   (let ((imol
+                          (let ((active-atom (active-residue)))
+                            (if active-atom
+                                (car active-atom)
+                                0))))
+                   (set-draw-hydrogens imol 1))))
+
+
+
+(add-key-binding "Rotamer name in Status Bar" "~" 
+   (lambda ()
+     (let ((active-atom (active-residue)))
+       (if (not active-residue)
+	   (add-status-bar-text "No residue found")
+	   (let ((imol      (list-ref active-atom 0))
+		 (chain-id  (list-ref active-atom 1))
+		 (res-no    (list-ref active-atom 2))
+		 (ins-code  (list-ref active-atom 3))
+		 (atom-name (list-ref active-atom 4))
+		 (alt-conf  (list-ref active-atom 5)))
+	     (let ((name (get-rotamer-name imol chain-id res-no ins-code)))
+	       (if (not name)
+		   (add-status-bar-text "No name found")
+		   (if (string=? "" name)
+		       (add-status-bar-text "No name for this")
+		       (add-status-bar-text (string-append "Rotamer name: " name))))))))))
+
+
+(add-key-binding "Regularize Residues" "B" 
+   (lambda ()
+     (using-active-atom 
+      (regularize-zone aa-imol aa-chain-id (- aa-res-no 1) (+ aa-res-no 1) aa-alt-conf))))
+		 
+
+(add-key-binding "Add Terminal Residue" "bar" 
+		 (lambda ()
+		   (let ((active-atom (active-residue)))
+		     (if (not active-atom)
+			 (format #t "No active atom~%")
+			 (let ((imol      (list-ref active-atom 0))
+			       (chain-id  (list-ref active-atom 1))
+			       (res-no    (list-ref active-atom 2))
+			       (ins-code  (list-ref active-atom 3))
+			       (atom-name (list-ref active-atom 4))
+			       (alt-conf  (list-ref active-atom 5)))
+			   (add-terminal-residue imol chain-id res-no "auto" 1))))))
+
+(add-key-binding "Accept Baton Position" "quoteleft" accept-baton-position)
+endtemplate

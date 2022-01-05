@@ -43,7 +43,7 @@ highlight TRI ctermfg=blue
 " Set global variables for the plugin...
 let g:SmartInsertCommentOn = 0
 let g:SmartInsertPlaceholder = '_\{2\}\(.\{-\}\)_\{2\}'
-let g:SmartInsertTempalte = []
+let g:SmartInsertTemplate = []
 let g:SmartInsertDir = expand("<sfile>:p:h")
 let g:filenames = []
 let g:IsLoadedSmartInsert = 0
@@ -78,7 +78,7 @@ function! ReadAndComplete(leadword)
 
     " read all template files...
     let file_array = []
-    for each_file in g:SmartInsertTempalte
+    for each_file in g:SmartInsertTemplate
         call extend(file_array, readfile(each_file))
     endfor
 
@@ -145,7 +145,7 @@ function! ReadTemplate(trigger,leadword)
 
     " read all template files...
     let file_array = []
-    for each_file in g:SmartInsertTempalte
+    for each_file in g:SmartInsertTemplate
         call extend(file_array, readfile(each_file))
     endfor
     let g:debug_file_array = file_array
@@ -361,7 +361,7 @@ endfunction
 
 
 function! ClearTemplates()
-    let g:SmartInsertTempalte = []
+    let g:SmartInsertTemplate = []
 endfunction
 
 
@@ -370,7 +370,7 @@ endfunction
 function! ShowTemplates()
     let prefix_dir = g:SmartInsertDir
     let template_dir = '/template/'
-    let template_files = '*-template.vim'
+    let template_files = '*.template'
     let all_matched_files = glob(prefix_dir.template_dir.template_files,0,1)
     let g:filenames = []
     for each_file in all_matched_files
@@ -386,7 +386,7 @@ function! CreateTemplates()
     let prefix_dir = g:SmartInsertDir
     let template_dir = '/template/'
     let new_filename = input("Create a new file: ")
-    let template_file = new_filename.'-template.vim'
+    let template_file = new_filename.'.template'
     let absolute_filename = prefix_dir.template_dir.template_file
 
     " if it doesn't exists, tabnew! it
@@ -439,7 +439,7 @@ endfunction
 
 
 function! ShowSelectedTemplates()
-    let filenames = deepcopy(g:SmartInsertTempalte)
+    let filenames = deepcopy(g:SmartInsertTemplate)
     if empty(filenames)
         call WarningWithColor( "No template is selected.", "CMT")
         return
@@ -468,7 +468,7 @@ endfunction
 function! DeleteSelectedTemplates()
     call ClearKeywords()
 
-    let filenames = deepcopy(g:SmartInsertTempalte)
+    let filenames = deepcopy(g:SmartInsertTemplate)
     if empty(filenames)
         call WarningWithColor( "No template is selected.", "CMT")
         return
@@ -495,7 +495,7 @@ function! DeleteSelectedTemplates()
     endfor
 
     if !empty(target_files)
-        call filter(g:SmartInsertTempalte,'v:val !~ target_files[0]')
+        call filter(g:SmartInsertTemplate,'v:val !~ target_files[0]')
     endif 
 
     return
@@ -530,9 +530,9 @@ function! SelectTemplates()
     endfor
 
     " remove template if it's already loaded...
-    call filter(g:SmartInsertTempalte,'v:val !~ target_file')
+    call filter(g:SmartInsertTemplate,'v:val !~ target_file')
 
-    call extend(g:SmartInsertTempalte,target_files)
+    call extend(g:SmartInsertTemplate,target_files)
 
     return
 endfunction
