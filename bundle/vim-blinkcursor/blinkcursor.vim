@@ -41,6 +41,7 @@ endif
 " Define the color for cursor blinking...
 " Color under cursor is reversed
 highlight BC_Cursor cterm=bold ctermfg=red ctermbg=white
+highlight Cursor    guifg=bg   guibg=fg
 
 " Return the highlighting term...
 function! BC_GetHL (group, term)
