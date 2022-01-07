@@ -15,17 +15,21 @@ augroup MarkdownSetup
     autocmd BufEnter *.md syntax on
     autocmd BufEnter *.md execute "hi markdownItalic cterm=None" 
     autocmd BufEnter *.md execute "hi markdownError  cterm=None" 
-    autocmd BufEnter *.md source $HOME/.vim/syntax/org.vim
-
-    autocmd BufEnter *.md syntax match pomodoro_done     "\[[xX]\].*$"
-    autocmd BufEnter *.md syntax match pomodoro_comment  "\[[cC]\].*$"
-    autocmd BufEnter *.md syntax match pomodoro_pause    "\[0\].*$"
-    autocmd BufEnter *.md syntax match pomodoro_progress "\[1\].*$"
-    autocmd BufEnter *.md highlight pomodoro_done     ctermfg=2  cterm=italic,strikethrough
-    autocmd BufEnter *.md highlight pomodoro_comment  ctermfg=7  cterm=italic
-    autocmd BufEnter *.md highlight pomodoro_pause    ctermfg=7  cterm=inverse
-    autocmd BufEnter *.md highlight pomodoro_progress ctermfg=3  cterm=bold,inverse
 augroup END
+
+if v:version >= 800
+    augroup MarkdownSetupPlus
+        autocmd BufEnter *.md source $HOME/.vim/syntax/org.vim
+        autocmd BufEnter *.md syntax match pomodoro_done     "\[[xX]\].*$"
+        autocmd BufEnter *.md syntax match pomodoro_comment  "\[[cC]\].*$"
+        autocmd BufEnter *.md syntax match pomodoro_pause    "\[0\].*$"
+        autocmd BufEnter *.md syntax match pomodoro_progress "\[1\].*$"
+        autocmd BufEnter *.md highlight pomodoro_done     ctermfg=2  cterm=italic,strikethrough
+        autocmd BufEnter *.md highlight pomodoro_comment  ctermfg=7  cterm=italic
+        autocmd BufEnter *.md highlight pomodoro_pause    ctermfg=7  cterm=inverse
+        autocmd BufEnter *.md highlight pomodoro_progress ctermfg=3  cterm=bold,inverse
+    augroup END
+endif
 
 " LaTeX...
 augroup LaTeXSetup
