@@ -10,11 +10,11 @@ endfunction
 " Markdown...
 augroup MarkdownSetup
     autocmd! 
-    autocmd BufEnter *.md call execute("set textwidth=80")
+    autocmd BufEnter *.md execute "set textwidth=80" 
     autocmd BufEnter *.md echom 'markdown file detected...'
     autocmd BufEnter *.md syntax on
-    autocmd BufEnter *.md call execute("hi markdownItalic cterm=None")
-    autocmd BufEnter *.md call execute("hi markdownError  cterm=None")
+    autocmd BufEnter *.md execute "hi markdownItalic cterm=None" 
+    autocmd BufEnter *.md execute "hi markdownError  cterm=None" 
     autocmd BufEnter *.md source $HOME/.vim/syntax/org.vim
 
     autocmd BufEnter *.md syntax match pomodoro_done     "\[[xX]\].*$"
@@ -30,10 +30,10 @@ augroup END
 " LaTeX...
 augroup LaTeXSetup
     autocmd! 
-    autocmd BufEnter *.tex call execute("set textwidth=80")
+    autocmd BufEnter *.tex execute "set textwidth=80" 
     autocmd BufEnter *.tex echom 'TeX file detected...'
     autocmd BufEnter *.tex syntax on
     autocmd BufEnter *.tex set shiftwidth=4
-    "autocmd BufEnter *.tex call execute("hi markdownItalic cterm=None")
-    "autocmd BufEnter *.tex call execute("hi markdownError  cterm=None")
+    "autocmd BufEnter *.tex execute "hi markdownItalic cterm=None"
+    "autocmd BufEnter *.tex execute "hi markdownError  cterm=None"
 augroup END
