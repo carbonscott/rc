@@ -32,7 +32,7 @@ alias l='less'
 alias e='cd $HOME/Dropbox/codes/examples'
 
 # Go to article directory...
-alias a='cd $HOME/Dropbox/articles'
+alias q='cd $HOME/Dropbox/notes/quicknotes'
 
 # Go to English directory...
 alias n='cd $HOME/Dropbox/resources/English'
