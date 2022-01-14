@@ -31,6 +31,11 @@ let loaded_AlignChar = 1
 let s:cpo_save = &cpo
 set cpo&vim
 
+" [[[ Utilities ]]]
+function! Numerical(v1, v2)
+    return a:v1 - a:v2
+endfunction
+
 
 " [[[ Implementation ]]]
 
@@ -45,9 +50,9 @@ function! AlignChar()
     " Fig out line numbers of interested lines...
     let s:l_start        = line("'<")
     let s:l_end          = line("'>")
-    let s:l_ids          = sort([s:l_start, s:l_end],"f")  " numerical sort...
+    let s:l_ids          = sort([s:l_start, s:l_end],"Numerical")  " numerical sort, compatible with vim 7.4 too...
     let s:interest_lines = range(s:l_ids[0],s:l_ids[1],1)
-    
+
     " Give a starting point of matching... [working here]
     let s:current_pos = getpos('.')
     echo s:current_pos
