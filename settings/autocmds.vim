@@ -48,4 +48,7 @@ augroup END
 augroup PythonSetup
     autocmd! 
     autocmd BufEnter *.py set shiftwidth=4
+
+    " Turn off loading filetype related plugin for python
+    let b:did_ftplugin = 1
 augroup END
