@@ -20,16 +20,17 @@ augroup END
 if v:version >= 800
     augroup MarkdownSetupPlus
         autocmd BufEnter *.md source $HOME/.vim/syntax/org.vim
-        autocmd BufEnter *.md syntax match pomodoro_done     "\[[xX]\].*$"
-        autocmd BufEnter *.md syntax match pomodoro_comment  "\[[cC]\].*$"
-        autocmd BufEnter *.md syntax match pomodoro_pause    "\[0\].*$"
-        autocmd BufEnter *.md syntax match pomodoro_progress "\[1\].*$"
-        autocmd BufEnter *.md highlight pomodoro_done     ctermfg=2  cterm=italic,strikethrough
-        autocmd BufEnter *.md highlight pomodoro_comment  ctermfg=7  cterm=italic
-        autocmd BufEnter *.md highlight pomodoro_pause    ctermfg=7  cterm=inverse
-        autocmd BufEnter *.md highlight pomodoro_progress ctermfg=3  cterm=bold,inverse
+        ## autocmd BufEnter *.md syntax match pomodoro_done     "\[[xX]\].*$"
+        ## autocmd BufEnter *.md syntax match pomodoro_comment  "\[[cC]\].*$"
+        ## autocmd BufEnter *.md syntax match pomodoro_pause    "\[0\].*$"
+        ## autocmd BufEnter *.md syntax match pomodoro_progress "\[1\].*$"
+        ## autocmd BufEnter *.md highlight pomodoro_done     ctermfg=2  cterm=italic,strikethrough
+        ## autocmd BufEnter *.md highlight pomodoro_comment  ctermfg=7  cterm=italic
+        ## autocmd BufEnter *.md highlight pomodoro_pause    ctermfg=7  cterm=inverse
+        ## autocmd BufEnter *.md highlight pomodoro_progress ctermfg=3  cterm=bold,inverse
     augroup END
 endif
+
 
 " LaTeX...
 augroup LaTeXSetup
@@ -40,4 +41,11 @@ augroup LaTeXSetup
     autocmd BufEnter *.tex set shiftwidth=4
     "autocmd BufEnter *.tex execute "hi markdownItalic cterm=None"
     "autocmd BufEnter *.tex execute "hi markdownError  cterm=None"
+augroup END
+
+
+" Python...
+augroup PythonSetup
+    autocmd! 
+    autocmd BufEnter *.py set shiftwidth=4
 augroup END

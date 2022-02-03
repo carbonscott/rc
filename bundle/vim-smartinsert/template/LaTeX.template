@@ -249,7 +249,7 @@ endtemplate
 
 
 template |code.mint.block|
-\begin{minted}[bgcolor=codebg,autogobble,breaklines,escapeinside=||]{__python__}
+\begin{minted}[autogobble,breaklines,escapeinside=||,fontsize=\footnotesize]{__python__}
 ____
 \end{minted}
 endtemplate
