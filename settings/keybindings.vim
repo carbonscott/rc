@@ -41,12 +41,16 @@ vnoremap <c-k> 2k
 " nnoremap <c-l> zt
 " nnoremap <c-j> zb
 
-"====== open mindnote.md =======
-"nnoremap <silent> [q :rightbelow 13 split ~/.vim/mindnote.md<CR><c-w>k
 "delete buffer
 nnoremap <silent> [bd :bd<CR>
+
 "close files
 nnoremap <silent> [bx :q<CR>
+
+"next/prev buffer
+nnoremap <silent> [bn :bn<CR>
+nnoremap <silent> [bp :bp<CR>
+
 "resize window
 "nnoremap <silent> [l :vertical resize +2<CR>
 "nnoremap <silent> [h :vertical resize -2<CR>
