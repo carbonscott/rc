@@ -17,17 +17,17 @@ augroup MarkdownSetup
     autocmd BufEnter *.md execute "hi markdownError  cterm=None" 
 augroup END
 
+
+" Org file (my todo stuff)...
 if v:version >= 800
     augroup MarkdownSetupPlus
-        autocmd BufEnter *.md source $HOME/.vim/syntax/org.vim
-        " autocmd BufEnter *.md syntax match pomodoro_done     "\[[xX]\].*$"
-        " autocmd BufEnter *.md syntax match pomodoro_comment  "\[[cC]\].*$"
-        " autocmd BufEnter *.md syntax match pomodoro_pause    "\[0\].*$"
-        " autocmd BufEnter *.md syntax match pomodoro_progress "\[1\].*$"
-        " autocmd BufEnter *.md highlight pomodoro_done     ctermfg=2  cterm=italic,strikethrough
-        " autocmd BufEnter *.md highlight pomodoro_comment  ctermfg=7  cterm=italic
-        " autocmd BufEnter *.md highlight pomodoro_pause    ctermfg=7  cterm=inverse
-        " autocmd BufEnter *.md highlight pomodoro_progress ctermfg=3  cterm=bold,inverse
+        autocmd BufEnter *.org set filetype=markdown textwidth=0
+        autocmd BufEnter *.org execute "set textwidth=80" 
+        autocmd BufEnter *.org echom 'org file detected...'
+        autocmd BufEnter *.org syntax on
+        autocmd BufEnter *.org execute "hi markdownItalic cterm=None" 
+        autocmd BufEnter *.org execute "hi markdownError  cterm=None" 
+        autocmd BufEnter *.org source $HOME/.vim/syntax/org.vim
     augroup END
 endif
 
