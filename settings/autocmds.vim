@@ -39,8 +39,7 @@ augroup LaTeXSetup
     autocmd BufEnter *.tex echom 'TeX file detected...'
     autocmd BufEnter *.tex syntax on
     autocmd BufEnter *.tex set shiftwidth=4
-    "autocmd BufEnter *.tex execute "hi markdownItalic cterm=None"
-    "autocmd BufEnter *.tex execute "hi markdownError  cterm=None"
+    autocmd BufEnter *.tex syntax clear texOnlyMath
 augroup END
 
 
@@ -50,5 +49,5 @@ augroup PythonSetup
     autocmd BufEnter *.py set shiftwidth=4
 
     " Turn off loading filetype related plugin for python
-    let b:did_ftplugin = 1
+    autocmd BufEnter *.py let b:did_ftplugin=1
 augroup END
