@@ -34,3 +34,34 @@ function clc {
     echo -n -e "\033]0;$@\007"
 }
 alias clear='clear; clc '
+
+
+# [[[ Password manager ]]]
+function pbclear {
+    pbcopy < /dev/null
+}
+
+function passpb {
+    # Fetch password...
+    pass $1 | pbcopy
+
+    passconents=`pbpaste`
+
+    if ! [ -z "$passconents" ]
+    then
+        # Countdown...
+        secs=$((10))
+        while [ $secs -gt -1 ]; do
+           printf "The password will be cleared in $secs\033[0K s.\r"
+           sleep 1
+           : $((secs--))
+        done
+    fi
+
+    # Clean things up...
+    pbcopy < /dev/null
+
+    # Clean the message...
+    printf "                                               \r"
+    printf "The password has been cleared.\n"
+}
