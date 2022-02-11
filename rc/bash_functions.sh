@@ -43,7 +43,7 @@ function pbclear {
 
 function passpb {
     # Fetch password...
-    pass $1 | pbcopy
+    pass $1 | tr -d '\n' | pbcopy
 
     passconents=`pbpaste`
 
