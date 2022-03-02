@@ -1,0 +1,77 @@
+template |mpl.head|
+import matplotlib.pyplot       as plt
+import matplotlib.colors       as mcolors
+import matplotlib.patches      as mpatches
+import matplotlib.transforms   as mtransforms
+import matplotlib.font_manager as font_manager
+endtemplate
+
+
+template |mpl.class|
+class __Figure__:
+
+    def __init__(self, title, figsize, **kwargs):
+        self.title   = title
+        self.figsize = figsize
+        for k, v in kwargs.items(): setattr(self, k, v)
+
+        self.config_fonts()
+
+        return None
+
+
+    def config_fonts(self):
+        # Where to load external font...
+        drc_py    = os.path.dirname(os.path.realpath(__file__))
+        drc_font  = os.path.join("fonts", "Helvetica")
+        fl_ttf    = f"Helvetica.ttf"
+        path_font = os.path.join(drc_py, drc_font, fl_ttf)
+        prop_font = font_manager.FontProperties( fname = path_font )
+
+        # Add Font and configure font properties
+        font_manager.fontManager.addfont(path_font)
+        prop_font = font_manager.FontProperties(fname = path_font)
+        self.prop_font = prop_font
+
+        # Specify fonts for pyplot...
+        plt.rcParams['font.family'] = prop_font.get_name()
+        plt.rcParams['font.size']   = 18
+
+        return None
+
+
+    def create_panels(self):
+        nrows, ncols = __nrows__, __ncols___
+        fig = plt.figure(figsize = self.figsize)
+
+        gspec   = fig.add_gridspec(nrows, ncols)
+        __ax_img1 = (fig.add_subplot(gspec[0,0]), fig.add_subplot(gspec[1:,0]))__
+        return fig, __ax_img1__
+
+
+    def __plot_img1__(self): 
+        pass
+
+
+    def show(self, filename = None): 
+        self.fig, __self.ax_img1__ = self.create_panels()
+
+        __self.plot_img1()__
+
+        plt.suptitle(self.title, y = 0.95)
+        if not isinstance(filename, str): 
+            plt.show()
+        else:
+            # Set up drc...
+            DRCPDF         = "pdfs"
+            drc_cwd        = os.getcwd()
+            prefixpath_pdf = os.path.join(drc_cwd, DRCPDF)
+            if not os.path.exists(prefixpath_pdf): os.makedirs(prefixpath_pdf)
+
+            # Specify file...
+            fl_pdf = f"{filename}.pdf"
+            path_pdf = os.path.join(prefixpath_pdf, fl_pdf)
+
+            # Export...
+            plt.savefig(path_pdf, dpi = 100)
+endtemplate
