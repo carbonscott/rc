@@ -1,6 +1,6 @@
 # Set neovim as vi ...
-## alias vi="nvim "
-alias vi="vim "
+alias vi="nvim "
+## alias vi="vim "
 
 # Typos ...
 alias sl="ls "

@@ -255,7 +255,7 @@ ____
 endtemplate
 
 template |code.mint.inline|
-\mintinline[bgcolor=codebg,escapeinside=||]{text}{____}
+\mintinline[escapeinside=||]{text}{____}
 endtemplate
 
 
@@ -272,4 +272,16 @@ template |table|
         \hline
     \end{tabular}
 \end{center}
+endtemplate
+
+
+template |gray.block|
+{
+%% \setlength{\parindent}{4em}
+\color{gray} 
+
+%% \indent 
+____
+
+}
 endtemplate

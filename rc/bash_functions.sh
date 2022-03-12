@@ -41,7 +41,7 @@ function pbclear {
     pbcopy < /dev/null
 }
 
-function passpb {
+function passcp {
     # Fetch password...
     pass $1 | tr -d '\n' | pbcopy
 
