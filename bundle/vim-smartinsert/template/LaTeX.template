@@ -171,6 +171,13 @@ template |equation|
 endtemplate
 
 
+template |equation.nonumber|
+\begin{equation*}
+    ____
+\end{equation*}
+endtemplate
+
+
 template |aligned|
 \begin{aligned}
     ____
