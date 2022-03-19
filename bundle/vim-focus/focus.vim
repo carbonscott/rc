@@ -94,6 +94,18 @@ function! s:setoff()
     set fillchars+=vert:\ 
 endfunction
 
+
+function! s:maps_nop()
+    let winkeys = [ "h", "l" ]
+
+    for k in winkeys
+        execute 'nnoremap <c-w>'.k.' <nop>'
+    endfor
+endfunction
+
+
+
+
 " [[[ MAIN ]]]
 function! s:focus_on()
     " Compute the panel size...
@@ -135,6 +147,15 @@ function! s:focus_on()
         call s:set_color(grp, 'bg', 'NONE')
         call s:set_color(grp, ''  , 'NONE')    " Everything else
     endfor
+
+    " Turn off mouse interaction...
+    setlocal mouse-=a
+
+    " Turn off relative number...
+    setlocal nornu
+
+    " Disable cursor jumping with navigation key...
+    call s:maps_nop()
 
     redraw
     echom 'Focus mode is on...'

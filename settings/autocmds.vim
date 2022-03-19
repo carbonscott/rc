@@ -39,7 +39,7 @@ augroup LaTeXSetup
     autocmd BufEnter *.tex echom 'TeX file detected...'
     autocmd BufEnter *.tex syntax on
     autocmd BufEnter *.tex set shiftwidth=4
-    autocmd BufEnter *.tex syntax clear texOnlyMath
+    autocmd BufEnter *.tex if hlexists('texOnlyMath') | syntax clear texOnlyMath | endif
 augroup END
 
 
