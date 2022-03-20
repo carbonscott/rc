@@ -33,10 +33,13 @@ set cpo&vim
 
 
 " [[[ UTILITY ]]]
-function! s:padding_window(panel_size)
+function! s:padding_window(panel_size, prefix_direction)
     " Create a padding to the left and move cursor back to previosu window...
     setlocal nornu
-    execute printf('vertical resize %s', a:panel_size)
+
+    " Set the width (with vertical prefix) or height...
+    execute printf('%s resize %s', a:prefix_direction, a:panel_size)
+
     setlocal nomodifiable
     call s:fill_window_by_emptyline()
 
@@ -96,7 +99,7 @@ endfunction
 
 
 function! s:maps_nop()
-    let winkeys = [ "h", "l" ]
+    let winkeys = [ "h", "j", "k", "l" ]
 
     for k in winkeys
         execute 'nnoremap <c-w>'.k.' <nop>'
@@ -114,6 +117,11 @@ function! s:focus_on()
     let win_width = winwidth(0)
     let panel_width = ( win_width - win_center_width ) / 2
 
+    " The center window should have 40 characters tall
+    let win_center_height = 50
+    let win_height = winheight(0)
+    let panel_height = ( win_height - win_center_height ) / 2
+
     " Short-circuit if win_width is not large enough to hold the center window...
     if panel_width <= 0
         redraw
@@ -122,14 +130,30 @@ function! s:focus_on()
         return
     endif
 
+    " Short-circuit if win_width is not large enough to hold the center window...
+    if panel_height <= 0
+        redraw
+        let warn_msg = printf('The window height is less than %s.  No Focus mode is necessary.  ', win_center_height)
+        call s:color_echo( warn_msg, 'red' )
+        return
+    endif
+
     " Split windows...
     " ...Left
     vertical topleft new   
-    let t:win_left = s:padding_window(panel_width)
+    let t:win_left = s:padding_window(panel_width, "vertical")
 
     " ...Right
     vertical botright new  
-    let t:win_right = s:padding_window(panel_width)
+    let t:win_right = s:padding_window(panel_width, "vertical")
+
+    " ...Top
+    split new   
+    let t:win_top = s:padding_window(panel_height, "")
+
+    " ...Bottom
+    rightbelow split new   
+    let t:win_bottom = s:padding_window(panel_height, "")
 
     " Turn off settings...
     call s:setoff()
@@ -174,6 +198,8 @@ endfunction
 function! s:focus_off()
     call s:kill_win( t:win_left )
     call s:kill_win( t:win_right )
+    call s:kill_win( t:win_top )
+    call s:kill_win( t:win_bottom )
     redraw
     echom 'Focus mode is off...'
 endfunction
