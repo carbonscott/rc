@@ -266,19 +266,19 @@ template |code.mint.inline|
 endtemplate
 
 
-template |table|
-\begin{center}
-    \begin{tabular}
-
-        \hline
-        ____  &  ____  \\
-
-        \hline
-        ____  &  ____  \\
-
+template |table.example|
+\resizebox{\textwidth}{!}{
+    \begin{tabular}{  | c | l | r r r r | r r r r r | }
+        \hline &             &  \multicolumn{4}{c|}{Actual Labels}                      & \multicolumn{5}{c|}{Metrics}  \\
+        \hline &             &  not sample  & single hit   & multi hit  & background    & accuracy   & precision      & recall & specificity    &       f1 \\
+        \hline \multirow{4}{*}{\rotatebox[origin=c]{90}{Predicted Label}} \
+               & not sample  &         482  &          2   &         3  &          0    &     0.99   &      0.99      &   0.98 &        1.00    &     0.98 \\
+               & single hit  &           0  &        485   &        47  &          0    &     0.97   &      0.91      &   0.98 &        0.97    &     0.94 \\
+               &  multi hit  &           0  &          8   &       459  &          0    &     0.97   &      0.98      &   0.90 &        0.99    &     0.94 \\
+               & background  &          10  &          0   &         0  &        504    &     0.99   &      0.98      &   1.00 &        0.99    &     0.99 \\
         \hline
     \end{tabular}
-\end{center}
+}
 endtemplate
 
 
