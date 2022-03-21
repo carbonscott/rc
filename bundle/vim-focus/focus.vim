@@ -123,66 +123,75 @@ function! s:focus_on()
     let panel_height = ( win_height - win_center_height ) / 2
 
     " Short-circuit if win_width is not large enough to hold the center window...
+    let adjusted_width = 1
     if panel_width <= 0
         redraw
-        let warn_msg = printf('The window width is less than %s.  No Focus mode is necessary.  ', win_center_width)
+        let warn_msg = printf('The window width is less than %s.', win_center_width)
         call s:color_echo( warn_msg, 'red' )
-        return
+        let adjusted_width = 0
     endif
 
-    " Short-circuit if win_width is not large enough to hold the center window...
+    " Short-circuit if win_height is not large enough to hold the center window...
+    let adjusted_height = 1
     if panel_height <= 0
         redraw
-        let warn_msg = printf('The window height is less than %s.  No Focus mode is necessary.  ', win_center_height)
+        let warn_msg = printf('The window height is less than %s.', win_center_height)
         call s:color_echo( warn_msg, 'red' )
-        return
+        let adjusted_height = 0
     endif
 
     " Split windows...
-    " ...Left
-    vertical topleft new   
-    let t:win_left = s:padding_window(panel_width, "vertical")
+    if adjusted_width == 1
+        " ...Left
+        vertical topleft new   
+        let t:win_left = s:padding_window(panel_width, "vertical")
 
-    " ...Right
-    vertical botright new  
-    let t:win_right = s:padding_window(panel_width, "vertical")
+        " ...Right
+        vertical botright new  
+        let t:win_right = s:padding_window(panel_width, "vertical")
+    endif
 
-    " ...Top
-    split new   
-    let t:win_top = s:padding_window(panel_height, "")
+    if adjusted_height == 1
+        " ...Top
+        split new   
+        let t:win_top = s:padding_window(panel_height, "")
 
-    " ...Bottom
-    rightbelow split new   
-    let t:win_bottom = s:padding_window(panel_height, "")
+        " ...Bottom
+        rightbelow split new   
+        let t:win_bottom = s:padding_window(panel_height, "")
+    endif
 
-    " Turn off settings...
-    call s:setoff()
+    " Apply other transformation...
+    if adjusted_width + adjusted_height > 0
+        " Turn off settings...
+        call s:setoff()
 
-    " Set colors for the follow items...
-    let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn' ] 
-    "                                                 ^^^^^^^^^^^^
-    " StatueLine non-current window.........................:
+        " Set colors for the follow items...
+        let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn' ] 
+        "                                                 ^^^^^^^^^^^^
+        " StatueLine non-current window.........................:
 
-    " Auto choose bg color based on the terminal setting...
-    let g:BG_COLOR = Getenv('BG_COLOR')
-    let s:fg_color = g:BG_COLOR == 'light' ? 'white' : 'black'
-    for grp in s:color_items
-        call s:set_color(grp, 'fg', s:fg_color)
-        call s:set_color(grp, 'bg', 'NONE')
-        call s:set_color(grp, ''  , 'NONE')    " Everything else
-    endfor
+        " Auto choose bg color based on the terminal setting...
+        let g:BG_COLOR = Getenv('BG_COLOR')
+        let s:fg_color = g:BG_COLOR == 'light' ? 'white' : 'black'
+        for grp in s:color_items
+            call s:set_color(grp, 'fg', s:fg_color)
+            call s:set_color(grp, 'bg', 'NONE')
+            call s:set_color(grp, ''  , 'NONE')    " Everything else
+        endfor
 
-    " Turn off mouse interaction...
-    setlocal mouse-=a
+        " Turn off mouse interaction...
+        setlocal mouse-=a
 
-    " Turn off relative number...
-    setlocal nornu
+        " Turn off relative number...
+        setlocal nornu
 
-    " Disable cursor jumping with navigation key...
-    call s:maps_nop()
+        " Disable cursor jumping with navigation key...
+        call s:maps_nop()
 
-    redraw
-    echom 'Focus mode is on...'
+        redraw
+        echom 'Focus mode is on...'
+    endif
 endfunction
 
 
