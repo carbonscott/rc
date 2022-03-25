@@ -42,7 +42,7 @@ class __Figure__:
 
 
     def create_panels(self):
-        nrows, ncols = __nrows__, __ncols___
+        nrows, ncols = __nrows__, __ncols__
         fig = plt.figure(figsize = self.figsize)
 
         gspec   = fig.add_gridspec(nrows, ncols)
