@@ -1,0 +1,127 @@
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# Source bash config...
+alias sb="source ~/.bashrc"
+
+# Manage $PATH... 
+export PATH="/opt/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+## export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+
+# Add bash functions...
+source ~/.vim/rc/bash_functions.sh
+
+# Add bash alias...
+source ~/.vim/rc/bash_alias.psana.sh
+
+# Add directory shotcuts...
+source ~/.vim/rc/quick_directories
+
+# Python executable path...
+source ~/.vim/rc/bash_executable.sh
+
+# Add env for apps...
+source ~/.vim/rc/bash_env.sh
+
+# Set default editor...
+export VISUAL="nvim"
+export EDITOR="nvim"
+
+# Applescript...
+source ~/.vim/rc/applescripts.sh
+
+# Set default look of bash...
+export PS1='[\u@\h \W]\$ '
+
+# For MacOS Catalina or later...
+export BASH_SILENCE_DEPRECATION_WARNING=1
+alias perl="perl5.28"
+
+# Turn on CLI color...
+if [[ $OSTYPE == 'darwin'* ]]; then
+    export CLICOLOR=1
+fi
+
+
+function conda.start {
+    [ "${LOADED_ANA}" = "YES" ] && echo 'ana03 has been loaded!!!' && return 0
+
+    echo 'Loading ana-py3...'
+    source /reg/g/psdm/etc/psconda.sh -py3
+
+    export LOADED_ANA="YES"
+}
+function conda.cwang31 {
+    [ "${LOADED_CWANG31}" = "YES" ] && echo 'ana-ml-py3 has been loaded!!!' && return 0
+
+    echo 'Loading ana-py3...'
+    source /reg/g/psdm/etc/psconda.sh -py3
+
+    echo 'Loading ana-ml-py3...'
+    conda activate /reg/data/ana03/scratch/cwang31/conda/ana-py3
+
+    export LOADED_CWANG31="YES"
+}
+## function conda.yoon82 {
+##     conda activate /reg/data/ana03/scratch/yoon82/conda/ana-py3
+## }
+
+
+
+# Conda proxy
+export HTTP_PROXY=http://psproxy:3128
+export HTTPS_PROXY=http://psproxy:3128
+
+# data
+export DATA_CONG=/reg/data/ana03/scratch/cwang31
+
+# psocake
+function psocake2.start ()
+{
+    [ "${LOADED_PSOCAKE2}" = "YES" ] && echo 'psocake2 has been loaded!!!' && return 0
+
+    echo 'Loading psocake2...'
+    source /reg/g/psdm/etc/psconda.sh
+    export PATH="/cds/home/y/yoon82/Software/py2/psocake/app:$PATH"
+    export PYTHONPATH="/cds/home/y/yoon82/Software/py2/psocake:$PYTHONPATH"
+    source /reg/g/cfel/crystfel/crystfel-0.8.0/setup-sh
+
+    export LOADED_PSOCAKE2="YES"
+}
+
+# psocake
+function psocake-test.start ()
+{
+    [ "${LOADED_PSOCAKE_TEST}" = "YES" ] && echo 'psocake2 has been loaded!!!' && return 0
+
+    echo 'Loading psocake2...'
+    source /reg/g/psdm/etc/psconda.sh
+    export PATH="/cds/home/c/cwang31/software/psocake/app:$PATH"
+    export PYTHONPATH="/cds/home/c/cwang31/software/psocake:$PYTHONPATH"
+    source /reg/g/cfel/crystfel/crystfel-0.8.0/setup-sh
+
+    export LOADED_PSOCAKE_TEST="YES"
+}
+
+
+# yum
+function yum-local.start ()
+{
+    [ "${LOADED_YUMLOCAL}" = "YES" ] && echo 'yum-local has been loaded!!!' && return 0
+
+    export PATH="$HOME/.local/usr/sbin:$HOME/.local/usr/bin:$HOME/.local/bin:$PATH"
+
+    export MANPATH="$HOME/.local/usr/share/man:$MANPATH"
+
+    ## L='/lib:/lib64:/usr/lib:/usr/lib64'
+    export LD_LIBRARY_PATH="$HOME/.local/usr/lib:$HOME/.local/usr/lib64:$LD_LIBRARY_PATH"
+
+    export LOADED_YUMLOCAL="YES"
+}
+
+
+# alias to log into psana that inherit BG_COLOR variable...
+alias psana.login="ssh -t -X psana BG_COLOR=$BG_COLOR exec bash"
