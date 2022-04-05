@@ -54,10 +54,22 @@ class __Figure__:
         pass
 
 
+    def adjust_margin(self):
+        self.fig.subplots_adjust(
+            top=0.981,
+            bottom=0.049,
+            left=0.042,
+            right=0.981,
+            hspace=0.2,
+            wspace=0.2
+        )
+
+
     def show(self, filename = None): 
         self.fig, __self.ax_img1__ = self.create_panels()
 
         __self.plot_img1()__
+        self.adjust_margin()
 
         plt.suptitle(self.title, y = 0.95)
         if not isinstance(filename, str): 
