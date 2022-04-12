@@ -11,7 +11,8 @@ endtemplate
 template |mpl.class|
 class __Figure__:
 
-    def __init__(self, title, figsize, **kwargs):
+    def __init__(self, data, title, figsize, **kwargs):
+        self.data    = data
         self.title   = title
         self.figsize = figsize
         for k, v in kwargs.items(): setattr(self, k, v)
@@ -42,16 +43,41 @@ class __Figure__:
 
 
     def create_panels(self):
-        nrows, ncols = __nrows__, __ncols__
+        nrows, ncols = 5, 2 + 5 
         fig = plt.figure(figsize = self.figsize)
 
-        gspec   = fig.add_gridspec(nrows, ncols)
-        __ax_img1 = (fig.add_subplot(gspec[0,0]), fig.add_subplot(gspec[1:,0]))__
-        return fig, __ax_img1__
+        gspec   = fig.add_gridspec(nrows, ncols,
+                                   width_ratios  = [1, 4/20, 4/20, 4/20, 4/20, 4/20, 1/20],·
+                                   height_ratios = [4/20, 4/20, 4/20, 4/20, 4/20], )
+
+        ax_list  = (fig.add_subplot(gspec[0:5,0], aspect = 1), )
+        ax_list += tuple(fig.add_subplot(gspec[i,1 + j], aspect = 1) for i in range(5) for j in range(5))
+        ax_list += (fig.add_subplot(gspec[0:5,-1],  aspect = 20), )
+
+        return fig, ax_list
 
 
-    def __plot_img1__(self): 
-        pass
+    def plot(self):·
+        ax_img  = self.ax_list[0]
+        ax_cbar = self.ax_list[-1]
+        im = ax_img.imshow(self.data, norm = self.divnorm)
+        im.set_cmap('seismic')
+        plt.colorbar(im, cax = ax_cbar, orientation="vertical", pad = 0.05)
+
+
+    def plot_patch(self):
+        ax = self.ax_list[1:-1]
+        peak_x = self.peak_x
+        peak_y = self.peak_y
+        top = 25
+        offset = 4 
+        for i in range(top):
+            x, y = peak_x[i], peak_y[i]
+            patch = self.data[int(y - offset) : int(y + offset), int(x - offset) : int(x + offset)]
+
+            im = ax[i].imshow(patch, norm = self.divnorm)
+            im.set_cmap('seismic')
+            ax[i].set_axis_off()
 
 
     def adjust_margin(self):
@@ -66,10 +92,11 @@ class __Figure__:
 
 
     def show(self, filename = None): 
-        self.fig, __self.ax_img1__ = self.create_panels()
+        self.fig, self.ax_list = self.create_panels()
 
-        __self.plot_img1()__
-        self.adjust_margin()
+        self.plot()
+        self.plot_patch()
+        ## self.adjust_margin()
 
         plt.suptitle(self.title, y = 0.95)
         if not isinstance(filename, str): 
