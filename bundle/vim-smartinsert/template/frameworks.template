@@ -1,0 +1,78 @@
+template |research.systematic|
+DEF
+
+  __BLANK__
+
+GOAL
+
+  __BLANK__
+
+PAST WORK
+
+  __BLANK__
+
+CHALLENGE
+
+  __BLANK__
+
+MY PROPOSED APPROACH
+
+  __BLANK__
+
+EXPERIMENTS SHOWING VALIDITY
+
+  __BLANK__
+
+endtemplate
+
+
+template |diagnose.code|
+DEF
+
+  __BLANK__
+
+PROBLEM
+
+  __BLANK__
+
+CHECK
+
+  INPUT
+
+    __BLANK__
+
+  SYSTEM (LOGIC STRUCTURE)
+
+    __BLANK__
+
+MY PROPOSED APPROACH
+
+  __BLANK__
+
+EXPERIMENTS SHOWING VALIDITY
+
+  __BLANK__
+
+endtemplate
+
+
+template |analyze.statistics|
+DEF
+
+  __BLANK__
+
+HYPOTHESIS
+
+  __BLANK__
+
+STATISTICAL EVIDENCE
+
+  HISTOGRAM (DISTRIBUTION)
+
+    __BLANK__
+
+CONCLUSION
+
+  __BLANK__
+
+endtemplate
