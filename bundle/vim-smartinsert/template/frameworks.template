@@ -76,3 +76,23 @@ CONCLUSION
   __BLANK__
 
 endtemplate
+
+
+template |identify.root_problem|
+DEF
+
+  __BLANK__
+
+PROBLEM
+
+  __BLANK__
+
+SCENARIOS
+
+  __BLANK__
+
+CONCLUSION (ROOT PROBLEM IDENTIFIED)
+
+  __BLANK__
+
+endtemplate
