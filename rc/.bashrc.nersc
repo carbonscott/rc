@@ -47,4 +47,4 @@ fi
 
 
 # data
-export DATA_CONG=
+export DATA_CONG="/project/projectdirs/lcls/cwang31"
