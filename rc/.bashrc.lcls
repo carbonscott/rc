@@ -87,10 +87,41 @@ function psocake2.start ()
     source /reg/g/psdm/etc/psconda.sh
     export PATH="/cds/home/y/yoon82/Software/py2/psocake/app:$PATH"
     export PYTHONPATH="/cds/home/y/yoon82/Software/py2/psocake:$PYTHONPATH"
+
+    # CrystFEL
     source /reg/g/cfel/crystfel/crystfel-0.8.0/setup-sh
+
+    # CCP4
+    source /reg/common/package/ccp4-7.1/bin/ccp4.setup-sh
+
+    # XDS
+    export PATH=/reg/common/package/XDS-INTEL64_Linux_x86_64:$PATH
 
     export LOADED_PSOCAKE2="YES"
 }
+
+# psocake3
+function psocake3.start ()
+{
+    [ "${LOADED_PSOCAKE3}" = "YES" ] && echo 'psocake3 has been loaded!!!' && return 0
+
+    echo 'Loading psocake3...'
+    source /reg/g/psdm/etc/psconda.sh -py3
+    export PATH="/cds/home/y/yoon82/Software/py3/psocake/app:$PATH"
+    export PYTHONPATH="/cds/home/y/yoon82/Software/py3/psocake:$PYTHONPATH"
+
+    # CrystFEL
+    source /reg/g/cfel/crystfel/crystfel-0.9.1/setup-sh
+
+    # CCP4
+    source /reg/common/package/ccp4-7.1/bin/ccp4.setup-sh
+
+    # XDS
+    export PATH=/reg/common/package/XDS-INTEL64_Linux_x86_64:$PATH
+
+    export LOADED_PSOCAKE3="YES"
+}
+
 
 # psocake
 function psocake-test.start ()
@@ -125,3 +156,6 @@ function yum-local.start ()
 
 # alias to log into psana that inherit BG_COLOR variable...
 alias psana.login="ssh -t -X psana BG_COLOR=$BG_COLOR exec bash"
+
+# alias to log into cori that inherit BG_COLOR variable...
+alias nersc.login="ssh -i $HOME/.ssh/nersc -t -X cori.nersc.gov BG_COLOR=$BG_COLOR exec bash"
