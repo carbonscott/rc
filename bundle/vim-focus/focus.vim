@@ -197,10 +197,12 @@ endfunction
 
 function! s:kill_win(win_id)
     " Go to the window to close...
-    call win_gotoid( a:win_id )
+    let is_ok = win_gotoid( a:win_id )
 
     " Delete the buffer of the window...
-    bdelete!
+    if is_ok
+        bdelete!
+    endif
 endfunction
 
 
