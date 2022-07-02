@@ -15,6 +15,8 @@ augroup MarkdownSetup
     autocmd BufEnter *.md syntax on
     autocmd BufEnter *.md execute "hi markdownItalic cterm=None" 
     autocmd BufEnter *.md execute "hi markdownError  cterm=None" 
+    autocmd BufEnter *.md if hlexists('markdownCodeBlock') | syntax clear markdownCodeBlock | endif
+    autocmd BufEnter *.md source $HOME/.vim/syntax/review.vim
 augroup END
 
 
