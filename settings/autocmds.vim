@@ -10,6 +10,7 @@ endfunction
 " Markdown...
 augroup MarkdownSetup
     autocmd! 
+    autocmd BufEnter *.md set filetype=markdown
     autocmd BufEnter *.md execute "set textwidth=80" 
     autocmd BufEnter *.md echom 'markdown file detected...'
     autocmd BufEnter *.md syntax on
@@ -37,8 +38,9 @@ endif
 " LaTeX...
 augroup LaTeXSetup
     autocmd! 
-    autocmd BufEnter *.tex execute "set textwidth=80" 
+    autocmd BufEnter *.tex set filetype=tex
     autocmd BufEnter *.tex echom 'TeX file detected...'
+    autocmd BufEnter *.tex execute "set textwidth=80" 
     autocmd BufEnter *.tex syntax on
     autocmd BufEnter *.tex set shiftwidth=4
     autocmd BufEnter *.tex if hlexists('texOnlyMath') | syntax clear texOnlyMath | endif
