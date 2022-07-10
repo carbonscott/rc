@@ -44,7 +44,10 @@ augroup LaTeXSetup
     autocmd BufEnter *.tex execute "set textwidth=80" 
     autocmd BufEnter *.tex syntax on
     autocmd BufEnter *.tex set shiftwidth=4
-    autocmd BufEnter *.tex if hlexists('texOnlyMath') | syntax clear texOnlyMath | endif
+    autocmd BufEnter *.tex if hlexists('texItalStyle')     | syntax clear texItalStyle     | endif
+    autocmd BufEnter *.tex if hlexists('texBoldItalStyle') | syntax clear texBoldItalStyle | endif
+    autocmd BufEnter *.tex if hlexists('texItalBoldStyle') | syntax clear texItalBoldStyle | endif
+    autocmd BufEnter *.tex if hlexists('texOnlyMath')      | syntax clear texOnlyMath      | endif
     autocmd BufEnter *.tex redraw
     autocmd BufEnter *.tex echom 'TeX file detected...'
 augroup END
