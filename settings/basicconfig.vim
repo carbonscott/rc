@@ -29,7 +29,7 @@ set laststatus=0
 set statusline+=%F
 set formatoptions+=Mm
 "ignore searching these files
-set wildignore += "*.a, *.o, *.bmp, *.jpg, *.png, *.ico, *.swp, *.tmp, *.git, *.pdf *.aux"
+set wildignore += "*.a, *.o, *.bmp, *.jpg, *.png, *.ico, *.swp, *.tmp, *.git, *.pdf, *.aux"
 set ruler
 set formatoptions+=j "Make the comments notation invisible while joining or spliting lines
 set backspace=indent,eol,start
