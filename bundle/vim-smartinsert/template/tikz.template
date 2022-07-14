@@ -1,0 +1,42 @@
+template |main|
+\documentclass[border=3pt,tikz]{standalone}
+
+% Import tikz
+\usepackage{tikz}
+
+% Load tikz features
+\usetikzlibrary{angles,quotes}
+\usetikzlibrary{calc}
+
+% Configure tikz
+\tikzset{
+    font = {\fontsize{18pt}{24pt}\selectfont}
+}
+
+% Import other packages for figure-making purposes
+\usepackage{xcolor}
+
+% Specify the document size
+\newcommand*{\xDocMin}{0}
+\newcommand*{\xDocMax}{6.4}
+\newcommand*{\yDocMin}{0}
+\newcommand*{\yDocMax}{5.7}
+\newcommand*{\stepDoc}{0.1}
+
+\begin{document}
+
+    \begin{tikzpicture}[x = 1in, y = 1in, z = 1in]
+
+        \foreach \i in {\xDocMin,\stepDoc,...,\xDocMax} {
+            \draw [very thin,gray] (\i,\yDocMin) -- (\i,\yDocMax);
+        }
+
+        \foreach \i in {\yDocMin,\stepDoc,...,\yDocMax} {
+            \draw [very thin,gray] (\xDocMin,\i) -- (\xDocMax,\i);        }
+
+        \draw (0,0) -- (\xDocMax,0) -- (\xDocMax,\yDocMax) -- (0,\yDocMax) -- (0,0);
+
+    \end{tikzpicture}
+
+\end{document}
+endtemplate
