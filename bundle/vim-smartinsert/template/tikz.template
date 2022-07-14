@@ -36,11 +36,11 @@ template |main|
     \begin{tikzpicture}[x = 1in, y = 1in, z = 1in]
 
         \foreach \i in {\xDocMin,\xDocNext,...,\xDocMax} {
-            \draw [very thin,gray] (\i,\yDocMin) -- (\i,\yDocMax);
+            \draw [very thin,gray!20] (\i,\yDocMin) -- (\i,\yDocMax);
         }
 
         \foreach \i in {\yDocMin,\yDocNext,...,\yDocMax} {
-            \draw [very thin,gray] (\xDocMin,\i) -- (\xDocMax,\i);
+            \draw [very thin,gray!20] (\xDocMin,\i) -- (\xDocMax,\i);
         }
 
         \draw (\xDocMin,\yDocMin) -- (\xDocMin,\yDocMax) -- (\xDocMax, \yDocMax) -- (\xDocMax,\yDocMin) -- (\xDocMin, \yDocMin);
