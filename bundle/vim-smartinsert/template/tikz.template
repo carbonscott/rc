@@ -17,24 +17,37 @@ template |main|
 \usepackage{xcolor}
 
 % Specify the document size
-\newcommand*{\xDocMin}{0}
-\newcommand*{\xDocMax}{6.4}
-\newcommand*{\yDocMin}{0}
-\newcommand*{\yDocMax}{5.7}
-\newcommand*{\stepDoc}{0.1}
+\newcommand*{\xDocMin}{-3.2}
+\newcommand*{\xDocMax}{3.2}
+\newcommand*{\yDocMin}{-2.8}
+\newcommand*{\yDocMax}{2.8}
+\newcommand*{\xDocNext}{-3.1}
+\newcommand*{\yDocNext}{-2.7}
+
+% Specify colors
+\colorlet{Scol}{green!60!black}
 
 \begin{document}
 
+    \def\l{2}
+    \def\h{0.8} %1.6/\l
+    \def\R{(sqrt(\l*(\l+1))*\h)} % total angular momentum
+
     \begin{tikzpicture}[x = 1in, y = 1in, z = 1in]
 
-        \foreach \i in {\xDocMin,\stepDoc,...,\xDocMax} {
+        \foreach \i in {\xDocMin,\xDocNext,...,\xDocMax} {
             \draw [very thin,gray] (\i,\yDocMin) -- (\i,\yDocMax);
         }
 
-        \foreach \i in {\yDocMin,\stepDoc,...,\yDocMax} {
-            \draw [very thin,gray] (\xDocMin,\i) -- (\xDocMax,\i);        }
+        \foreach \i in {\yDocMin,\yDocNext,...,\yDocMax} {
+            \draw [very thin,gray] (\xDocMin,\i) -- (\xDocMax,\i);
+        }
 
-        \draw (0,0) -- (\xDocMax,0) -- (\xDocMax,\yDocMax) -- (0,\yDocMax) -- (0,0);
+        \draw (\xDocMin,\yDocMin) -- (\xDocMin,\yDocMax) -- (\xDocMax, \yDocMax) -- (\xDocMax,\yDocMin) -- (\xDocMin, \yDocMin);
+
+
+        % Contents
+        \draw[Scol!90!black] (0,{\R}) arc (90:-90:{\R}); %,very thin
 
     \end{tikzpicture}
 
