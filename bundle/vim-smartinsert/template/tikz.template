@@ -16,6 +16,10 @@ template |main|
 \usepackage{xcolor}
 \usepackage{amsmath}
 
+% Set up layers
+\pgfdeclarelayer{ruler}
+\pgfsetlayers{main,ruler}
+
 \begin{document}
 
     \begin{tikzpicture}[x=1in, y=1in, z=1in]
@@ -39,12 +43,15 @@ endtemplate
 
 
 template |draw.grid|
-\def \widthDoc      {__8.5__}
-\def \heightDoc     {__4.5__}
+\def \widthDoc      {8.5}
+\def \heightDoc     {10}
 \newcommand* \halfWidthDoc  {\widthDoc  / 2}
 \newcommand* \halfHeightDoc {\heightDoc / 2}
-\draw[step=.1in,color=gray!20, style=very thin] 
-    (-\halfWidthDoc,-\halfHeightDoc) grid (\halfWidthDoc, \halfHeightDoc);
+\begin{pgfonlayer}{ruler}
+    \draw[step=.5in,color=gray!20, style=very thin] 
+        (-\halfWidthDoc,-\halfHeightDoc) grid (\halfWidthDoc,
+        \halfHeightDoc);
+\end{pgfonlayer}
 endtemplate
 
 
@@ -60,6 +67,11 @@ endtemplate
 
 template |draw.arc|
 \draw (__0,0__) arc [start angle=__0__, end angle=__30__, radius=__2__];
+endtemplate
+
+
+template |draw.rectangle|
+\draw (__0,0__) rectangle (__1,1__)
 endtemplate
 
 
@@ -108,4 +120,9 @@ template |set.layer.apply|
 \begin{pgfonlayer}{__layer name__}
     ____
 \end{pgfonlayer}
+endtemplate
+
+
+template |tex.def.color|
+\definecolor{__my color__}{HTML}{__fffafa__}
 endtemplate

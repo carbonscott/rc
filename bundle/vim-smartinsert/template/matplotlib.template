@@ -10,7 +10,6 @@ endtemplate
 
 template |mpl.class|
 class __Figure__:
-
     def __init__(self, data, title, figsize, **kwargs):
         self.data    = data
         self.title   = title
@@ -18,6 +17,7 @@ class __Figure__:
         for k, v in kwargs.items(): setattr(self, k, v)
 
         self.config_fonts()
+        self.config_colorbar()
 
         return None
 
@@ -43,62 +43,79 @@ class __Figure__:
 
 
     def create_panels(self):
-        nrows, ncols = 5, 2 + 5 
-        fig = plt.figure(figsize = self.figsize)
+        ncols = 6
+        nrows = ceil(len(self.data) / ncols)
 
-        gspec   = fig.add_gridspec(nrows, ncols,
-                                   width_ratios  = [1, 4/20, 4/20, 4/20, 4/20, 4/20, 1/20],·
-                                   height_ratios = [4/20, 4/20, 4/20, 4/20, 4/20], )
+        fig   = plt.figure(figsize = self.figsize)
+        gspec = fig.add_gridspec( nrows, ncols,
+                                  ## width_ratios  = [1, 4/20, 4/20, 4/20, 4/20, 4/20, 1/20],·
+                                  ## height_ratios = [4/20, 4/20, 4/20, 4/20, 4/20], 
+                                )
+        ax_list = [ fig.add_subplot(gspec[i, j]) for i in range(nrows) for j in range(ncols) ]
 
-        ax_list  = (fig.add_subplot(gspec[0:5,0], aspect = 1), )
-        ax_list += tuple(fig.add_subplot(gspec[i,1 + j], aspect = 1) for i in range(5) for j in range(5))
-        ax_list += (fig.add_subplot(gspec[0:5,-1],  aspect = 20), )
+        self.ncols = ncols
+        self.nrows = nrows
 
         return fig, ax_list
 
 
-    def plot(self):·
-        ax_img  = self.ax_list[0]
-        ax_cbar = self.ax_list[-1]
-        im = ax_img.imshow(self.data, norm = self.divnorm)
-        im.set_cmap('seismic')
-        plt.colorbar(im, cax = ax_cbar, orientation="vertical", pad = 0.05)
+    def config_colorbar(self, vmin = -1, vcenter = 0, vmax = 1):
+        # Plot image...
+        self.divnorm = mcolors.TwoSlopeNorm(vcenter = vcenter, vmin = vmin, vmax = vmax)
 
 
-    def plot_patch(self):
-        ax = self.ax_list[1:-1]
-        peak_x = self.peak_x
-        peak_y = self.peak_y
-        top = 25
-        offset = 4 
-        for i in range(top):
-            x, y = peak_x[i], peak_y[i]
-            patch = self.data[int(y - offset) : int(y + offset), int(x - offset) : int(x + offset)]
+    def plot(self, idx_seq):
+        ax_img  = self.ax_list[idx_seq]
+        ax_img.set_xticks([])
+        ax_img.set_yticks([])
 
-            im = ax[i].imshow(patch, norm = self.divnorm)
+        if idx_seq < len(self.data):
+            data = self.data[idx_seq]
+
+            ## ax_cbar = self.ax_list[-1]
+            im = ax_img.imshow(data, norm = self.divnorm)
             im.set_cmap('seismic')
-            ax[i].set_axis_off()
+            ## plt.colorbar(im, cax = ax_cbar, orientation="vertical", pad = 0.05)
+
+            for axis in ['top', 'bottom', 'left', 'right']:
+                ax_img.spines[axis].set_linewidth(2.0)
+
+            if idx_seq % 2 == 1:
+                for axis in ['top', 'bottom', 'left', 'right']:
+                    ax_img.spines[axis].set_color('green')
+            else:
+                for axis in ['top', 'bottom', 'left', 'right']:
+                    ax_img.spines[axis].set_color('red')
+
+        else:
+            ax_img.set_frame_on(False)
+
+        return None
 
 
     def adjust_margin(self):
         self.fig.subplots_adjust(
-            top=0.981,
+            top=1-0.049,
             bottom=0.049,
             left=0.042,
-            right=0.981,
+            right=1-0.042,
             hspace=0.2,
             wspace=0.2
         )
 
 
-    def show(self, filename = None): 
+    def show(self, filename = None):
         self.fig, self.ax_list = self.create_panels()
 
-        self.plot()
-        self.plot_patch()
-        ## self.adjust_margin()
+        num_plot = self.ncols * self.nrows
 
-        plt.suptitle(self.title, y = 0.95)
+        for idx_seq in range(num_plot):
+            self.plot(idx_seq)
+
+        ## plt.tight_layout()
+        self.adjust_margin()
+
+        ## plt.suptitle(self.title, y = 0.95)
         if not isinstance(filename, str): 
             plt.show()
         else:
