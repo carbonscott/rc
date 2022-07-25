@@ -5,8 +5,7 @@ template |main|
 \usepackage{tikz}
 
 % Load tikz features
-\usetikzlibrary{angles,quotes}
-\usetikzlibrary{calc}
+\usetikzlibrary{math,angles,quotes,intersections,calc}
 
 % Configure tikz
 \tikzset{
@@ -15,41 +14,98 @@ template |main|
 
 % Import other packages for figure-making purposes
 \usepackage{xcolor}
-
-% Specify the document size
-\newcommand*{\xDocMin}{-3.2}
-\newcommand*{\xDocMax}{3.2}
-\newcommand*{\yDocMin}{-2.8}
-\newcommand*{\yDocMax}{2.8}
-\newcommand*{\xDocNext}{-3.1}
-\newcommand*{\yDocNext}{-2.7}
-
-% Specify colors
-\colorlet{Scol}{green!60!black}
+\usepackage{amsmath}
 
 \begin{document}
 
-    \def\l{2}
-    \def\h{0.8} %1.6/\l
-    \def\R{(sqrt(\l*(\l+1))*\h)} % total angular momentum
+    \begin{tikzpicture}[x=1in, y=1in, z=1in]
 
-    \begin{tikzpicture}[x = 1in, y = 1in, z = 1in]
-
-        \foreach \i in {\xDocMin,\xDocNext,...,\xDocMax} {
-            \draw [very thin,gray!20] (\i,\yDocMin) -- (\i,\yDocMax);
-        }
-
-        \foreach \i in {\yDocMin,\yDocNext,...,\yDocMax} {
-            \draw [very thin,gray!20] (\xDocMin,\i) -- (\xDocMax,\i);
-        }
-
-        \draw (\xDocMin,\yDocMin) -- (\xDocMin,\yDocMax) -- (\xDocMax, \yDocMax) -- (\xDocMax,\yDocMin) -- (\xDocMin, \yDocMin);
-
-
-        % Contents
-        \draw[Scol!90!black] (0,{\R}) arc (90:-90:{\R}); %,very thin
+        ____
 
     \end{tikzpicture}
 
 \end{document}
+endtemplate
+
+
+template |draw.line.simple|
+\draw (__A__) -- (__B__);
+endtemplate
+
+
+template |draw.line.arrow|
+\draw [->] (__A__) -- (__B__);
+endtemplate
+
+
+template |draw.grid|
+\def \widthDoc      {__8.5__}
+\def \heightDoc     {__4.5__}
+\newcommand* \halfWidthDoc  {\widthDoc  / 2}
+\newcommand* \halfHeightDoc {\heightDoc / 2}
+\draw[step=.1in,color=gray!20, style=very thin] 
+    (-\halfWidthDoc,-\halfHeightDoc) grid (\halfWidthDoc, \halfHeightDoc);
+endtemplate
+
+
+template |draw.circle.simple|
+\draw (__0,0__) circle [radius=__1__];
+endtemplate
+
+
+template |draw.circle.through|
+\node [draw,circle through=(__through_point__)] at (__center__) {};
+endtemplate
+
+
+template |draw.arc|
+\draw (__0,0__) arc [start angle=__0__, end angle=__30__, radius=__2__];
+endtemplate
+
+
+template |example.partway|
+\coordinate [] (__name__)  at ($ (____) !__splitRatio__! (____) $);
+endtemplate
+
+
+template |def.coordinate|
+\coordinate [__label=left:$A$__] (__A__) at (__0,0__);
+endtemplate
+
+
+template |def.node|
+\node [__label=left:$A$__] at (____) {__text__};
+endtemplate
+
+
+template |style.arrow.partway|
+% Use it like an option: `->-=.5`
+\tikzset{->-/.style={decoration={markings, mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+endtemplate
+
+
+template |math.expr|
+\pgfmathsetmacro __\var__ {__calculation__}
+endtemplate
+
+
+template |math.if|
+\pgfmathsetmacro \__okShowTextNAngleHarder__ {ifthenelse(__180 - \angleHardNegative>\minAngleText__,"{__\color{red}harder}__","{}")}
+endtemplate
+
+
+template |set.layer.declare|
+\pgfdeclarelayer{__background__}
+endtemplate
+
+
+template |set.layer.order|
+\pgfsetlayers{__background__, __main__}
+endtemplate
+
+
+template |set.layer.apply|
+\begin{pgfonlayer}{__layer name__}
+    ____
+\end{pgfonlayer}
 endtemplate
