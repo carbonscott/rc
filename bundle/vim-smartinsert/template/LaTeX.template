@@ -262,7 +262,7 @@ ____
 endtemplate
 
 template |code.mint.inline|
-\mintinline[escapeinside=||]{text}{____}
+\mintinline[breaklines,escapeinside=||]{text}{____}
 endtemplate
 
 
@@ -289,4 +289,11 @@ template |gray.block|
 ____
 
 }
+endtemplate
+
+
+template |\begin.center|
+\begin{center}
+____
+\end{center}
 endtemplate

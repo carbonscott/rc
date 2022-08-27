@@ -32,6 +32,15 @@ template |main|
 endtemplate
 
 
+template |\begin.tikzpicture|
+\begin{tikzpicture}[x=1in, y=1in, z=1in]
+
+    ____
+
+\end{tikzpicture}
+endtemplate
+
+
 template |draw.line.simple|
 \draw (__A__) -- (__B__);
 endtemplate
@@ -71,7 +80,7 @@ endtemplate
 
 
 template |draw.rectangle|
-\draw (__0,0__) rectangle (__1,1__)
+\draw (__0,0__) rectangle (__1,1__);
 endtemplate
 
 
