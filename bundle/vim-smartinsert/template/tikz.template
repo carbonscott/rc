@@ -90,12 +90,12 @@ endtemplate
 
 
 template |def.coordinate|
-\coordinate [__label=left:$A$__] (__A__) at (__0,0__);
+\coordinate [__label=left:$A$__] (__coord_name__) at (__0,0__);
 endtemplate
 
 
 template |def.node|
-\node [__label=left:$A$__] at (____) {__text__};
+\node [__label=left:$A$__] (__node_name__) at (__coord_name__) {__text__};
 endtemplate
 
 
