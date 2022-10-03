@@ -150,7 +150,10 @@ endtemplate
 
 
 template |figure.include|
-\includegraphics[__width=\textwidth,height=0.8\textheight,keepaspectratio__]{__figures/IP.PNG__}
+\includegraphics[__width=\textwidth__,
+                 __height=0.8\textheight__,
+                 trim={0in 0in 0in __0.2__in},
+                 keepaspectratio,]{__figures/IP.PNG__}
 endtemplate
 
 
@@ -296,4 +299,9 @@ template |\begin.center|
 \begin{center}
 ____
 \end{center}
+endtemplate
+
+
+template |def.operator|
+\DeclareMathOperator*{__\argmax}{__arg\,max__}
 endtemplate

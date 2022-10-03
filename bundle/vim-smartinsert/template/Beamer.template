@@ -123,7 +123,10 @@ endtemplate
 template |figure.full|
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=__1.0\textwidth,keepaspectratio__]{__./figures/ESTMs.png__}
+    \includegraphics[__width=\textwidth__,
+                     __height=0.8\textheight__,
+                     trim={0in 0in 0in __0.2__in},
+                     keepaspectratio,]{__figures/IP.PNG__}
 \end{figure}
 endtemplate
 

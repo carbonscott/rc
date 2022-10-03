@@ -106,6 +106,16 @@ endtemplate
 
 
 template |math.expr|
+\pgfmathparse{____}
+endtemplate
+
+
+template |math.expr.result|
+\pgfmathresult
+endtemplate
+
+
+template |math.macro|
 \pgfmathsetmacro __\var__ {__calculation__}
 endtemplate
 
