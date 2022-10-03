@@ -303,5 +303,5 @@ endtemplate
 
 
 template |def.operator|
-\DeclareMathOperator*{__\argmax}{__arg\,max__}
+\DeclareMathOperator*{__\argmax__}{__arg\,max__}
 endtemplate
