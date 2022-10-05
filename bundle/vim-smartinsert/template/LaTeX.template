@@ -265,7 +265,7 @@ ____
 endtemplate
 
 template |code.mint.inline|
-\mintinline[breaklines,escapeinside=||]{text}{____}
+\mintinline[breaklines,escapeinside=||]{__text__}{____}
 endtemplate
 
 
