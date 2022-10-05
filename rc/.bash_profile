@@ -84,3 +84,7 @@ function conda.end {
 }
 # <<< conda initialize <<<
 
+
+# pass
+[[ -r "/opt/local/share/bash-completion/completions/pass" ]] && \
+    source "/opt/local/share/bash-completion/completions/pass"
