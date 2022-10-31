@@ -1,23 +1,19 @@
 "key mapping: ->
 noremap <F9> :set hlsearch<CR>
 noremap <F10> :set nohlsearch<CR>
-" noremap [cl :clist<CR>
-" noremap [cn :cnext<CR>
-" noremap [cp :cprevious<CR>
+
 "tab
-" noremap [t :tabnew<CR>
 noremap [n :tabn<CR>
-"inoremap <c-Tab> <c-o>:tabn<CR>
 noremap [p :tabp<CR>
 noremap <F7> :set list<CR>
 noremap <F8> :set nolist<CR>
+
 " buffer next, previous
 noremap <F4> :ls<CR>:buffer 
-" noremap [ba :ls<CR>:buffer 
 nnoremap <F2> :hide bp<CR>
 nnoremap <F3> :hide bn<CR>
-" noremap [du :diffupdate<CR>
 nnoremap [vw bve
+
 "======= map 0 and $ =====
 nnoremap <s-h> g^
 vnoremap <s-h> g^
@@ -25,21 +21,12 @@ sunmap <s-h>
 nnoremap <s-l> g_
 vnoremap <s-l> g_
 sunmap <s-l>
+
 "navigate escalted
-" nnoremap <c-h> 2h
-" nnoremap <c-l> 2l
 nnoremap <c-j> 2j
 nnoremap <c-k> 2k
-" vnoremap <c-h> 2h
-" vnoremap <c-l> 2l
 vnoremap <c-j> 2j
 vnoremap <c-k> 2k
-
-"nnoremap <c-k>k zz
-"nnoremap <c-k>l zt
-"nnoremap <c-k>j zb
-" nnoremap <c-l> zt
-" nnoremap <c-j> zb
 
 "delete buffer
 nnoremap <silent> [bd :bd<CR>
@@ -52,10 +39,6 @@ nnoremap <silent> [bn :bn<CR>
 nnoremap <silent> [bp :bp<CR>
 
 "resize window
-"nnoremap <silent> [l :vertical resize +2<CR>
-"nnoremap <silent> [h :vertical resize -2<CR>
-"nnoremap <silent> [k :resize -2<CR>
-"nnoremap <silent> [j :resize +2<CR>
 nnoremap <silent> <c-right> :vertical resize +2<CR>
 nnoremap <silent> <c-left> :vertical resize -2<CR>
 nnoremap <silent> <c-down> :resize -2<CR>
@@ -63,6 +46,7 @@ nnoremap <silent> <c-up> :resize +2<CR>
 
 "underline a single line
 nnoremap <silent> [ul yypv0$r-
+
 " map when insert
 inoremap <c-h> <ESC>i
 "inoremap <c-a> <c-o>a
@@ -75,6 +59,7 @@ inoremap <c-l> <c-o>a
 "inoremap <c-R> <c-o>e
 inoremap <c-f> <c-o>e<c-o>a
 inoremap <c-e> <c-o>b
+
 "======= cmd navigation =======
 cnoremap <c-h> <left>
 cnoremap <c-l> <right>
@@ -115,12 +100,6 @@ sunmap _
 "show file info
 nnoremap <f5> :!./%<CR>
 
-"quickfix window switch
-":. => current line in command line mode
-":cc goto line
-" nnoremap [cw :cw<CR>:setlocal nornu<CR>
-" nnoremap [<CR> :.cc<CR>
-
 "rebind the number from 6 to 0 to be reached from <c-1> to <c-5> {
 nnoremap [1 6
 nnoremap [2 7
@@ -134,12 +113,6 @@ vnoremap [4 9
 vnoremap [5 0
 "}
 
-" ab for [ ]
-" ab [ [ ]
-" ab perl Perl
-
-" nnoremap  [fc :source ~/.vim/settings/ThoughtRCColor.vim<CR>
-
 " remap increment due to tmux prefix key 
 "nnoremap <c-b> <c-a>
 
@@ -150,12 +123,12 @@ nnoremap [vl :loadview<CR>
 hi CurrentStep ctermfg=White
 nnoremap <silent> [hh :let map_current = matchaddpos('CurrentStep',[line('.')])<CR>
 vnoremap <silent> [hv :<c-u>let map_current = matchaddpos("CurrentStep", 
-																										 \[[
-																										 \  line('.'),
-																										 \  getpos("'<")[2],
-																										 \  getpos("'>")[2] + 1 - getpos("'<")[2]
-																										 \]]
-																										 \)<CR>
+\[[
+\  line('.'),
+\  getpos("'<")[2],
+\  getpos("'>")[2] + 1 - getpos("'<")[2]
+\]]
+\)<CR>
 
 " nnoremap [hr :echo getmatches()<CR>
 
@@ -168,10 +141,6 @@ nmap <silent> [hk :<c-u>call matchdelete(map_current)<CR>[hh
 nnoremap [hm :call matchdelete()<Left>
 
 " quick double space...
-" nnoremap [<Space> i<Space><Space><c-[>i
-" inoremap {<Space> {<Space><Space>}<Left><Left>
-" inoremap (<Space> (<Space><Space>)<Left><Left>
-" inoremap [<Space> [<Space><Space>]<Left><Left>
 inoremap {} {}<Left>
 inoremap () ()<Left>
 inoremap [] []<Left>
@@ -194,34 +163,12 @@ cnoremap {} {}<Left>
 " speical letter
 inoremap [vv ^
 
-" finding placeholder ____ 
-" nnoremap <silent> [j :call search('____')<CR>ve<c-g>
-" snoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
-" vnoremap <silent> [j :<c-u>call search('____')<CR>ve<c-g>
-" 
-" nnoremap <silent> [k :call search('____','b')<CR>ve<c-g>
-" snoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
-" vnoremap <silent> [k :<c-u>call search('____','b')<CR>ve<c-g>
-" 
-" inoremap <silent> [j <c-[>:call search('____')<CR>ve<c-g>
-" inoremap <silent> [k <c-[>:call search('____','b')<CR>ve<c-g>
-
 " adding whitespace by number
 nnoremap <silent> [<space> i<space><esc>
-" nnoremap <silent> [<space> :let s:n_space = input()<CR>:eval "normal ".s:n_space."a <CR>"
-" nnoremap <silent> [<space> :exe "normal ".input("How many chars to input: ","10")."a "
-
-" enable functional operator syntax...
-" nnoremap [ff :source ~/.vim/settings/syntax.vim<CR>
 
 " enable the todo list custom highlighting...
 let g:todo_done_switch = 0
 nnoremap <silent> [t :source ~/.vim/syntax/custom_highlight.vim<CR>
-
-" copy line in insert mode
-" <c-i> is like <tab>
-"// snoremap <c-i> <c-[>yypgv<c-g>
-"// vnoremap <c-i> <c-[>yypgv<c-g>
 
 " unmap not frequently used keystrokes
 " <Nop> means no operation...
@@ -233,10 +180,6 @@ noremap gh gH<c-g>
 
 " quick print
 noremap [o :g//#<left><left>
-
-"// " turn on virtualedit when c-v is used
-"// nnoremap v :let &virtualedit="all"<CR>v
-"// nnoremap <c-v> :let &virtualedit="all"<CR><c-v>
 
 " turn on cursor column by keybindings...
 function! <SID>find_cursor()
@@ -270,3 +213,7 @@ vnoremap <leader>vv :w !xsel -i -b<CR>:redraw<CR>
 
 " <BS> for nohlsearch
 nnoremap <BS> :nohlsearch<CR>
+
+" Allow enabling/disenabling paste mode...
+command! -nargs=0 PasteOn  :set paste
+command! -nargs=0 PasteOff :set nopaste
