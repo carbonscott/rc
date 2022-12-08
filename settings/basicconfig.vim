@@ -34,8 +34,8 @@ set ruler
 set formatoptions+=j "Make the comments notation invisible while joining or spliting lines
 set backspace=indent,eol,start
 
-" let find command do recursive search...
-set path=**
+" let find command to search the current directory only...
+set path=,,
 
 " search highlight
 set incsearch
