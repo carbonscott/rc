@@ -28,6 +28,8 @@ if exists("loaded_Focus")
 endif
 let loaded_Focus = 1
 
+let g:focus_mode_on = 0
+
 " Only supports vim 8.0 and above...
 if v:version < 800
     finish
@@ -189,10 +191,12 @@ function! s:focus_on()
         setlocal mouse-=a
 
         " Turn off relative number...
-        setlocal nornu
+        " setlocal nornu
 
         " Disable cursor jumping with navigation key...
         call s:maps_nop()
+
+        let g:focus_mode_on = 1
 
         redraw
         echom 'Focus mode is on...'
@@ -216,6 +220,8 @@ function! s:focus_off()
     call s:kill_win( t:win_right )
     call s:kill_win( t:win_top )
     call s:kill_win( t:win_bottom )
+
+    let g:focus_mode_on = 0
     redraw
     echom 'Focus mode is off...'
 endfunction
@@ -225,6 +231,18 @@ endfunction
 command! -nargs=0 Focus call s:focus_on()
 command! -nargs=0 FocusOff call s:focus_off()
 nnoremap ZQ :qa!<cr>
+
+
+" [[[ CUSTOMIZE SHORTCUT ]]]
+function! <SID>toggle_focus()
+    if g:focus_mode_on
+        call s:focus_off()
+    else
+        call s:focus_on()
+    endif
+endfunction
+nnoremap [F :call <SID>toggle_focus()<CR>
+
 
 
 " [[[ END ]]]
