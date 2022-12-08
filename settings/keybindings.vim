@@ -217,3 +217,18 @@ nnoremap <BS> :nohlsearch<CR>
 " Allow enabling/disenabling paste mode...
 command! -nargs=0 PasteOn  :set paste
 command! -nargs=0 PasteOff :set nopaste
+
+
+" Shortcut to enable or disable relative line number...
+function! <SID>toggle_relative_line_number()
+    let l:on = &rnu
+    let l:choice = {
+    \   0 : "rnu"  ,
+    \   1 : "nornu",
+    \ }
+    exe "normal! :set " . l:choice[l:on] . "\<CR>"
+    exe "normal! :redraw "
+    exe "normal! :set " . l:choice[l:on] . "\<CR>"
+    exe "normal! :redraw "
+endfunction
+nnoremap [N :call <SID>toggle_relative_line_number()<CR>
