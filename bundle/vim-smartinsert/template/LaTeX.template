@@ -1,26 +1,39 @@
-template |go|
-\documentclass[a4paper]{report}    
-\usepackage[a4paper,left=2.6cm,right=2.4cm,top=2.54cm,bottom=2.54cm]{geometry} % ...set margin
-\usepackage[utf8]{inputenc}                                                    % ...unicode enable
-\usepackage{graphicx}                                                          % ...graphic support
-\usepackage{bm}                                                                % ...bold face in equation
-\usepackage{fancyhdr}                                                          % ...header and footer
-\usepackage{amsmath}                                                           % ...math
-\usepackage{listings}                                                          % ...code
-\usepackage{xcolor}                                                            % ...text color
-\usepackage{xparse}                                                            % ...parse syntax
+template |texnotes.template|
+\documentclass[a4paper]{article}
 
-% Constants...
-\setlength\parindent{0pt}
+\usepackage{style}   % Custom style
+\usepackage{more}    % More custom style
 
-% Macro...
-% ...code
-\NewDocumentCommand{\codeword}{v}{\texttt{\textcolor{blue}{#1}}}
+% Font
+% CAVEAT: latex2e only class might not support neither native or xe font at all
+% Use pdflatex to compile documents (default)
+%% \usepackage{nativefont}
+% Use xelatex to compile documents
+%% \usepackage{xefont}
 
-\title{____}
+\includeonly
+{
+    sections/__01.tex__,
+}
 
 \begin{document}
-____
+
+    % Metadata
+    % Backward-compatible with latex2e
+    % Otherwise, it's okay to keep metadata ahead of begin{document}
+    \title{____}
+    \author{Cong Wang}
+
+    \maketitle
+
+    % Contents
+    \include{sections/__01.tex__}
+
+    % Bibliography
+    \bibliographystyle{plainnat}
+    %% \bibliographystyle{cell}
+    \bibliography{bibliography}
+
 \end{document}
 endtemplate
 
