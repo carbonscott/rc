@@ -104,7 +104,11 @@ endfunction
 
 function! s:setoff()
     " Vertical separator...
-    set fillchars+=vert:\
+    " set fillchars+=vert:\
+    setlocal fillchars=
+
+    " Show min infor in statusline
+    setlocal statusline=%r
 endfunction
 
 
