@@ -113,12 +113,15 @@ endfunction
 
 
 function! s:maps_nop()
-    let winkeys = [ "h", "j", "k", "l", "w", "W",
+    let winkeys = [ "h", "j", "k", "l", "w",
                   \ "q", "n", "c", "o", "p", "s",
+                  \ "x", "b", "v", "n", "m", "t",
+                  \ "r", "y", "u", "i", "r",
                   \  "<Up>", "<Down>", "<Left>", "<Right>" ]
 
     for k in winkeys
         execute 'nnoremap <c-w>'.k.' <nop>'
+        execute 'nnoremap <c-w>'.toupper(k).' <nop>'
         execute 'nnoremap <c-w>'.'<c-'.k.'>'.' <nop>'
     endfor
 endfunction
