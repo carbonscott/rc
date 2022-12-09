@@ -105,16 +105,16 @@ endfunction
 function! s:setoff()
     " Vertical separator...
     " set fillchars+=vert:\
-    setlocal fillchars=
+    set fillchars=
 
     " Show min infor in statusline
-    setlocal statusline=%r
+    set statusline=%h
 endfunction
 
 
 function! s:maps_nop()
     let winkeys = [ "h", "j", "k", "l", "w", "W",
-                  \ "q", "n", "c", "o", "p",
+                  \ "q", "n", "c", "o", "p", "s",
                   \  "<Up>", "<Down>", "<Left>", "<Right>" ]
 
     for k in winkeys
