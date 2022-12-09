@@ -119,6 +119,7 @@ function! s:maps_nop()
 
     for k in winkeys
         execute 'nnoremap <c-w>'.k.' <nop>'
+        execute 'nnoremap <c-w>'.'<c-'.k.'>'.' <nop>'
     endfor
 endfunction
 
