@@ -1,7 +1,7 @@
 " Copyright (c) 2020 Cong Wang
-" 
+"
 " MIT License
-" 
+"
 " Permission is hereby granted, free of charge, to any person obtaining
 " a copy of this software and associated documentation files (the
 " "Software"), to deal in the Software without restriction, including
@@ -9,10 +9,10 @@
 " distribute, sublicense, and/or sell copies of the Software, and to
 " permit persons to whom the Software is furnished to do so, subject to
 " the following conditions:
-" 
+"
 " The above copyright notice and this permission notice shall be
 " included in all copies or substantial portions of the Software.
-" 
+"
 " THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 " EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 " MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -41,6 +41,9 @@ set cpo&vim
 
 " [[[ UTILITY ]]]
 function! s:padding_window(panel_size, prefix_direction)
+    " Do not list this buffer...
+    setlocal nobuflisted
+
     " Create a padding to the left and move cursor back to previosu window...
     setlocal nornu
 
@@ -101,12 +104,14 @@ endfunction
 
 function! s:setoff()
     " Vertical separator...
-    set fillchars+=vert:\ 
+    set fillchars+=vert:\
 endfunction
 
 
 function! s:maps_nop()
-    let winkeys = [ "h", "j", "k", "l" ]
+    let winkeys = [ "h", "j", "k", "l", "w", "W",
+                  \ "q", "n", "c", "o", "p",
+                  \  "<Up>", "<Down>", "<Left>", "<Right>" ]
 
     for k in winkeys
         execute 'nnoremap <c-w>'.k.' <nop>'
@@ -114,6 +119,17 @@ function! s:maps_nop()
 endfunction
 
 
+function! s:rand_str(num)
+    let rand_list = []
+    for i in range(a:num)
+        " 26 char long, starting with 65 (=A in ascii)...
+        let rand_list = rand_list + [rand() % 26 + 65]
+    endfor
+
+    let rand_str = join(map(rand_list, {_, val -> nr2char(val)}), '')
+
+    return rand_str
+endfunction
 
 
 " [[[ MAIN ]]]
@@ -147,24 +163,36 @@ function! s:focus_on()
         let adjusted_height = 0
     endif
 
+    " Fetch the current filename...
+    let g:buffer_current     = expand('%') == '' ? s:rand_str(16) : expand('%')
+    let l:buffer_placeholder = "." . g:buffer_current
+
     " Split windows...
     if adjusted_width == 1
         " ...Left
-        vertical topleft new   
+        " vertical topleft new
+        let split_cmd = 'vertical topleft split ' . l:buffer_placeholder
+        call execute(split_cmd)
         let t:win_left = s:padding_window(panel_width, "vertical")
 
         " ...Right
-        vertical botright new  
+        " vertical botright new
+        let split_cmd = 'vertical botright split ' . l:buffer_placeholder
+        call execute(split_cmd)
         let t:win_right = s:padding_window(panel_width, "vertical")
     endif
 
     if adjusted_height == 1
         " ...Top
-        split new   
+        " split new
+        let split_cmd = 'split ' . l:buffer_placeholder
+        call execute(split_cmd)
         let t:win_top = s:padding_window(panel_height, "")
 
         " ...Bottom
-        rightbelow split new   
+        " rightbelow split new
+        let split_cmd = 'rightbelow split ' . l:buffer_placeholder
+        call execute(split_cmd)
         let t:win_bottom = s:padding_window(panel_height, "")
     endif
 
@@ -174,7 +202,7 @@ function! s:focus_on()
         call s:setoff()
 
         " Set colors for the follow items...
-        let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn' ] 
+        let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn' ]
         "                                                 ^^^^^^^^^^^^
         " StatueLine non-current window.........................:
 
