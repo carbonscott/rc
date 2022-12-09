@@ -252,10 +252,10 @@ endfunction
 
 
 function! s:focus_off()
-    call s:kill_win( t:win_left )
-    call s:kill_win( t:win_right )
-    call s:kill_win( t:win_top )
-    call s:kill_win( t:win_bottom )
+    if exists("t:win_left")   | call s:kill_win( t:win_left )   | endif
+    if exists("t:win_right")  | call s:kill_win( t:win_right )  | endif
+    if exists("t:win_top")    | call s:kill_win( t:win_top )    | endif
+    if exists("t:win_bottom") | call s:kill_win( t:win_bottom ) | endif
 
     let g:focus_mode_on = 0
     redraw
