@@ -1,3 +1,6 @@
+# Set up Data directory...
+export DATA_ROOT=$HOME/OneDrive
+
 # Source bash config...
 alias sb="source ~/.bash_profile"
 alias sbvi="vi ~/.bash_profile"
@@ -11,17 +14,17 @@ export PATH="$HOME/.local/bin:$PATH"
 source ~/.vim/rc/bash_functions.sh
 
 # Add bash alias...
-source ~/.vim/rc/bash_alias.sh
+source ~/.vim/rc/bash_alias.slac.sh
 
 # Python executable path...
-source ~/.vim/rc/bash_executable.sh
+source ~/.vim/rc/bash_executable.slac.sh
 
 # Add env for apps...
 source ~/.vim/rc/bash_env.sh
 
 # Set default editor...
-export VISUAL="vim"
-export EDITOR="vim"
+export VISUAL="nvim"
+export EDITOR="nvim"
 
 # Applescript...
 source ~/.vim/rc/applescripts.sh
@@ -37,6 +40,16 @@ alias perl="perl5.28"
 if [[ $OSTYPE == 'darwin'* ]]; then
     export CLICOLOR=1
 fi
+
+##############
+# Load plugins
+##############
+function load.plugins {
+    source $HOME/.vim/rc/plugins/my.tex.sh
+    source $HOME/.vim/rc/plugins/my.paper.sh
+}
+load.plugins
+
 
 ## ### BEGIN ATSAS Installer ###
 ## export ATSAS=/Users/cwang31/Dropbox/software/ATSAS
@@ -79,5 +92,19 @@ function conda.end {
     export PATH=`echo $PATH | sed "s_${HOME}/.local/miniconda3/bin:__g"`
     export PATH=`echo $PATH | sed "s_${HOME}/.local/miniconda3/condabin:__g"`
 }
+
+function conda.restart {
+    conda.start
+    conda activate $1
+}
 # <<< conda initialize <<<
 
+function conda.ml-py3.9 {
+    conda.start
+    conda activate ml-py3.9
+}
+
+
+# pass
+[[ -r "/opt/local/share/bash-completion/completions/pass" ]] && \
+    source "/opt/local/share/bash-completion/completions/pass"
