@@ -471,3 +471,46 @@ print("""\
 Welcome to __GnuplotPy3___{VERSION}""".format( VERSION = version ) )
 print()
 endtemplate
+
+
+template |doc.function|
+"""
+Return __a matrix with ones on the diagonal and zeros elsewhere.__
+
+Parameters
+----------
+__param__ : __int__
+
+Returns
+-------
+__value__ : __int__
+
+Examples
+--------
+>>> 
+
+"""
+endtemplate
+
+
+template |doc.class|
+"""
+__ClassName(ParentClass)__
+
+__What this class does__
+
+Attributes
+----------
+__attr__ : __type__
+
+Parameters
+----------
+
+__param__ : __type__
+
+Examples
+--------
+>>>
+
+"""
+endtemplate
