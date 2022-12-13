@@ -495,7 +495,7 @@ endtemplate
 
 template |doc.class|
 """
-__ClassName(ParentClass)__
+__ClassName(params)__
 
 __What this class does__
 
