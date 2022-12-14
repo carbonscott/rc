@@ -77,7 +77,7 @@ endfunction
 "=======================
 function! prompt#msearch()
     " Bring up the buffer list...
-    execute "marks"
+    execute "marks 'A-Za-z"
 
     let s:cmd = ""
 
