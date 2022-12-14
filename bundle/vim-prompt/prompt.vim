@@ -50,6 +50,9 @@ endfunction
 " Search buffers...
 "=======================
 function! prompt#bsearch()
+    " Bring up the buffer list...
+    execute "buffers"
+
     let s:cmd = ""
 
     while (s:cmd ==# "") 
