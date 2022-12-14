@@ -72,8 +72,35 @@ function! prompt#bsearch()
 endfunction
 
 
+"=======================
+" Search marks...
+"=======================
+function! prompt#msearch()
+    " Bring up the buffer list...
+    execute "marks"
+
+    let s:cmd = ""
+
+    while (s:cmd ==# "") 
+        " search prompt with "search for file in path option enabled"...
+        let s:buffer = input("mark> ", "")
+        let s:cmd = "normal! `" . s:buffer
+
+        echon "\n"
+
+        " don't execute it if \<c-[> or \<esc> is entered...
+        if s:buffer !=# ""
+            execute s:cmd
+        endif
+
+        redraw
+    endwhile
+endfunction
+
+
 nnoremap [r :call prompt#run()<CR>
 nnoremap [c :call prompt#csearch()<CR>
+nnoremap [M :call prompt#msearch()<CR>
 nnoremap [bb :call prompt#bsearch()<CR>
 
 
