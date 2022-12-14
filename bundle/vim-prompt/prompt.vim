@@ -83,7 +83,8 @@ function! prompt#msearch()
 
     while (s:cmd ==# "") 
         " search prompt with "search for file in path option enabled"...
-        let s:buffer = input("mark> ", "")
+        " let s:buffer = input("mark> ", "")
+        let s:buffer = nr2char(getchar())
         let s:cmd = "normal! `" . s:buffer
 
         echon "\n"
