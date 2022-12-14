@@ -52,12 +52,14 @@ endfunction
 function! wordsubstitute#run3()
     execute "normal! gv\"ay"
 
+    let s:cursor_pos = getpos('.')
+
     let s:search_block = @a
     let s:search_block = escape(s:search_block,'.~/()\/[]')
 
     let @/ = s:search_block
     let s:search_cmd = "normal! /".@/."/\<CR>"
-    execute s:search_cmd."N"
+    call setpos('.', s:cursor_pos)
 endfunction
 
 
@@ -66,12 +68,15 @@ endfunction
 function! wordsubstitute#run32()
     execute "normal! gv\"ay"
 
+    let s:cursor_pos = getpos('.')
+
     let s:search_block = @a
     let s:search_block = escape(s:search_block,'.~/()\/[]')
 
     let @/ = '\<'.s:search_block.'\>'
     let s:search_cmd = "normal! /".@/."/\<CR>"
-    execute s:search_cmd."N"
+
+    call setpos('.', s:cursor_pos)
 endfunction
 
 function! wordsubstitute#run4()
