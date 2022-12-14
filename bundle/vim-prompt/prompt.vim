@@ -101,7 +101,7 @@ endfunction
 
 nnoremap [r :call prompt#run()<CR>
 nnoremap [c :call prompt#csearch()<CR>
-nnoremap [M :call prompt#msearch()<CR>
+nnoremap [bm :call prompt#msearch()<CR>
 nnoremap [bb :call prompt#bsearch()<CR>
 
 
