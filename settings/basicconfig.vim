@@ -3,14 +3,13 @@
 let mapleader = "["
 
 " settings
-set wildmenu
 set rnu
 set nonumber
 set tabstop=1
 set softtabstop=1
 set expandtab
 set shiftwidth=2
-set mouse=a
+set mouse-=a
 set nolist
 
 " Set up shady characters, but vim doesn't understand it directly without exec
@@ -28,6 +27,7 @@ set textwidth=0
 set laststatus=0
 set statusline+=%F
 set formatoptions+=Mm
+
 "ignore searching these files
 set wildignore += "*.a, *.o, *.bmp, *.jpg, *.png, *.ico, *.swp, *.tmp, *.git, *.pdf, *.aux"
 set ruler
