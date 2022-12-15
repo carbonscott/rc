@@ -35,8 +35,24 @@ nnoremap <silent> [bd :bd<CR>
 nnoremap <silent> [bx :q<CR>
 
 "next/prev buffer
-nnoremap <silent> [bn :bn<CR>
-nnoremap <silent> [bp :bp<CR>
+function <SID>goto_buffer(cmd)
+    if  !exists('g:winview_dict')
+        let g:winview_dict = {}
+    endif
+
+    let bufnr = bufnr()
+    let g:winview_dict[bufnr] = winsaveview()
+
+    execute a:cmd
+
+    let bufnr = bufnr()
+    if has_key(g:winview_dict, bufnr)
+        let winview = g:winview_dict[bufnr]
+        call winrestview(winview)
+    endif
+endfunction
+nnoremap <silent> [bn :call <SID>goto_buffer('bn')<CR>
+nnoremap <silent> [bp :call <SID>goto_buffer('bp')<CR>
 
 "resize window
 nnoremap <silent> <c-right> :vertical resize +2<CR>
