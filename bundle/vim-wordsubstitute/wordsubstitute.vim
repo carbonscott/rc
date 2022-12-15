@@ -52,14 +52,20 @@ endfunction
 function! wordsubstitute#run3()
     execute "normal! gv\"ay"
 
-    let s:cursor_pos = getpos('.')
+    execute 'set hlsearch'
+
+    " let s:cursor_pos = getpos('.')
+    " let s:winview    = winsaveview()
 
     let s:search_block = @a
     let s:search_block = escape(s:search_block,'.~/()\/[]')
-
     let @/ = s:search_block
-    let s:search_cmd = "normal! /".@/."/\<CR>"
-    call setpos('.', s:cursor_pos)
+
+    call search(@/, 'n')
+
+    " let s:search_cmd = "normal! /".@/."/\<CR>"
+    " call setpos('.', s:cursor_pos)
+    " call winrestview(s:winview)
 endfunction
 
 
@@ -68,16 +74,17 @@ endfunction
 function! wordsubstitute#run32()
     execute "normal! gv\"ay"
 
-    let s:cursor_pos = getpos('.')
+    execute 'set hlsearch'
 
     let s:search_block = @a
     let s:search_block = escape(s:search_block,'.~/()\/[]')
-
     let @/ = '\<'.s:search_block.'\>'
-    let s:search_cmd = "normal! /".@/."/\<CR>"
 
-    call setpos('.', s:cursor_pos)
+    call search(@/, 'n')
 endfunction
+
+
+
 
 function! wordsubstitute#run4()
     let s:original_pos = getpos('.')
@@ -98,7 +105,7 @@ function! wordsubstitute#run4()
     let s:visual_block = @a
     let s:visual_block = substitute(s:visual_block,
                        \ '\([~./()\?\/\\]\)',
-                       \	'\="\\".submatch(0)',
+                       \ '\="\\".submatch(0)',
                        \ 'g'
                        \ )
 
@@ -111,11 +118,11 @@ function! wordsubstitute#run4()
 endfunction
 
 
-vnoremap [gg :<c-u>call wordsubstitute#run1()<CR>
-vnoremap [g/ :<c-u>call wordsubstitute#run3()<CR>nN
-vnoremap [g? :<c-u>call wordsubstitute#run32()<CR>nN
-snoremap [gc <c-g>:<c-u>call wordsubstitute#run4()<CR>
-vnoremap [gc :<c-u>call wordsubstitute#run4()<CR>
+vnoremap <silent> [gg :<c-u>call wordsubstitute#run1()<CR>
+vnoremap <silent> [g/ :<c-u>set hlsearch<CR>:<c-u>call wordsubstitute#run3()<CR>
+vnoremap <silent> [g? :<c-u>set hlsearch<CR>:<c-u>call wordsubstitute#run32()<CR>
+snoremap <silent> [gc <c-g>:<c-u>call wordsubstitute#run4()<CR>
+vnoremap <silent> [gc :<c-u>call wordsubstitute#run4()<CR>
 
 
 let &cpo = s:cpo_save
