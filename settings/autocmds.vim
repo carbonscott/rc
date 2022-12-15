@@ -5,7 +5,8 @@ function <SID>save_win_state()
         let g:winview_dict = {}
     endif
 
-    let bufnr = bufnr()
+    " [COMPATIBLE] Compatiable with vim 7.4
+    let bufnr = bufnr("%")
     let g:winview_dict[bufnr] = winsaveview()
 endfunction
 
@@ -15,7 +16,8 @@ function <SID>load_win_state()
         let g:winview_dict = {}
     endif
 
-    let bufnr = bufnr()
+    " [COMPATIBLE] Compatiable with vim 7.4
+    let bufnr = bufnr("%")
     if has_key(g:winview_dict, bufnr)
         let winview = g:winview_dict[bufnr]
         call winrestview(winview)
