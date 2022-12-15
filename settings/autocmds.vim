@@ -1,3 +1,33 @@
+" ~~~~Global BufEnter event~~~~
+" Save window state
+function <SID>save_win_state()
+    if  !exists('g:winview_dict')
+        let g:winview_dict = {}
+    endif
+
+    let bufnr = bufnr()
+    let g:winview_dict[bufnr] = winsaveview()
+endfunction
+
+" Load window state
+function <SID>load_win_state()
+    if  !exists('g:winview_dict')
+        let g:winview_dict = {}
+    endif
+
+    let bufnr = bufnr()
+    if has_key(g:winview_dict, bufnr)
+        let winview = g:winview_dict[bufnr]
+        call winrestview(winview)
+    endif
+endfunction
+augroup WinState
+    autocmd!
+    autocmd BufEnter * call <SID>load_win_state()
+    autocmd BufLeave * call <SID>save_win_state()
+augroup END
+
+
 " ~~~~turn off colorcolumn~~~~
 function! DeleteMatchedColor()
     let items=getmatches()
