@@ -46,7 +46,7 @@ endif
 highlight clear Search
 highlight clear IncSearch
 highlight clear NextSearch
-highlight default Search    cterm=bold ctermfg=cyan ctermbg=None
+highlight default Search    cterm=bold ctermfg=5 ctermbg=None
 highlight default IncSearch cterm=bold ctermfg=red ctermbg=None
 highlight default link NextSearch IncSearch
 
