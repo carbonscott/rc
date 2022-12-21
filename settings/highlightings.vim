@@ -51,10 +51,7 @@ let s:ErrorMsg_ctermfg = { "light" : 255, "dark" : 15, w:null : 'NONE' }
 execute 'hi ErrorMsg ctermfg= '. s:ErrorMsg_ctermfg[s:BG_COLOR]
 
 " Fold...
-" ...10 for solarized
-" hi Folded cterm=None ctermfg=10 ctermbg=None
-" ...8 for non-solarized
-hi Folded cterm=None ctermfg=8 ctermbg=None
+hi Folded cterm=None ctermfg=7 ctermbg=None
 
 " Comment...
 hi MyComment ctermfg=darkgray
