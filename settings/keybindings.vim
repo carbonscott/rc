@@ -232,3 +232,6 @@ function! <SID>toggle_relative_line_number()
     exe "normal! :redraw "
 endfunction
 nnoremap [N :call <SID>toggle_relative_line_number()<CR>
+
+" Join a visually selected text, copy it and undo...
+vnoremap [Y Jgv"+yu
