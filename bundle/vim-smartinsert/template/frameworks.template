@@ -112,3 +112,38 @@ George H. Heilmeier, a former DARPA director (1975-1977), crafted a set of quest
 - How long will it take?
 - What are the mid-term and final “exams” to check for success?
 endtemplate
+
+
+template |plan.weekly|
+# Week __1__
+
+
+## Where do things stand now?
+
+__CONTENT__
+
+
+## Where do I want things to to go?
+
+__CONTENT__
+
+
+## What should I do to move things in the desired direction?
+
+
+__CONTENT__
+
+
+endtemplate
+
+
+template |capture.quick|
+__Describe your thoughts__
+endtemplate
+
+
+template |capture.literature|
+__Describe the information to save__
+
+__Specify the source__
+endtemplate
