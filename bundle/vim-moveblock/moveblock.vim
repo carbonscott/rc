@@ -1,3 +1,40 @@
+" Copyright (c) 2020-2023 Cong Wang
+" 
+" MIT License
+" 
+" Permission is hereby granted, free of charge, to any person obtaining
+" a copy of this software and associated documentation files (the
+" "Software"), to deal in the Software without restriction, including
+" without limitation the rights to use, copy, modify, merge, publish,
+" distribute, sublicense, and/or sell copies of the Software, and to
+" permit persons to whom the Software is furnished to do so, subject to
+" the following conditions:
+" 
+" The above copyright notice and this permission notice shall be
+" included in all copies or substantial portions of the Software.
+" 
+" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+" NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+" LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+" OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+" WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+" If already loaded, we're done...
+if exists("loaded_MoveBlock")
+    finish
+endif
+let loaded_MoveBlock = 1
+
+
+let s:cpo_save = &cpo
+set cpo&vim
+
+
+" [[[ Implementation ]]]
+
 function! s:virtpos(expr)
     return add(getpos(a:expr),virtcol(a:expr))
 endfunction
@@ -6,21 +43,32 @@ function! s:mk_sel(x)
     return 2*a:x[0] + a:x[1]
 endfunction
 
-function! moveblock#h(choice) 
-let l:choices = {
-\   'left'  : ['h','hP'],           
-\   'right' : ['l','p'], 
-\}
-let l:next      = l:choices[a:choice][0]
-let l:paste_mode= l:choices[a:choice][1]
-exe "normal! gv" . "d". l:paste_mode
+function! moveblock#h(choice)
+    " Save original virtualedit setting...
+    let s:virtualedit = &virtualedit
+    let &virtualedit  = "all"
+
+    let l:choices = {
+    \   'left'  : ['h','hP'],
+    \   'right' : ['l','p'], 
+    \}
+    let l:next      = l:choices[a:choice][0]
+    let l:paste_mode= l:choices[a:choice][1]
+    exe "normal! gv" . "d". l:paste_mode
+
+    " Restore original virtualedit setting...
+    let &virtualedit = s:virtualedit
 endfunction
 
 function! moveblock#v(choice)
-    " Get info from visual block...  
+    " Save original virtualedit setting...
+    let s:virtualedit = &virtualedit
+    let &virtualedit  = "all"
+
+    " Get info from visual block...
     " Initialize cursor position...
-    exe "normal! gv"                
-    let l:cur = s:virtpos('.')         
+    exe "normal! gv"
+    let l:cur = s:virtpos('.')
     let l:vb = {
     \   "'<" : s:virtpos("'<"),
     \   "'>" : s:virtpos("'>")
@@ -104,16 +152,19 @@ function! moveblock#v(choice)
 
     exe "normal! " . (l:motion[a:choice] ? "kP" : "jP")
 
-    let g:cur    = l:cur
-    let g:item   = s:mk_sel(l:mode)
-    let g:act    = l:act
-    let g:br     = l:br
-    let g:mode   = l:mode
-    let g:xyz_tl = l:xyz_tl
-    let g:xyz_br = l:xyz_br
-    let g:W      = l:W
-    let g:H      = l:H
-    let g:bases  = l:bases
+    " let g:cur    = l:cur
+    " let g:item   = s:mk_sel(l:mode)
+    " let g:act    = l:act
+    " let g:br     = l:br
+    " let g:mode   = l:mode
+    " let g:xyz_tl = l:xyz_tl
+    " let g:xyz_br = l:xyz_br
+    " let g:W      = l:W
+    " let g:H      = l:H
+    " let g:bases  = l:bases
+
+    " Restore original virtualedit setting...
+    let &virtualedit = s:virtualedit
 endfunction
 
 vnoremap  <UP>    :<c-u> call moveblock#v('up')<CR>
@@ -124,5 +175,9 @@ vnoremap  <LEFT>  :<c-u> call moveblock#h('left')<CR>
        \:normal! gvhoho<CR>
 vnoremap  <RIGHT> :<c-u> call moveblock#h('right')<CR>
        \:normal! gvlolo<CR>
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
 
 finish
