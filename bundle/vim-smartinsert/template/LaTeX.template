@@ -318,3 +318,8 @@ endtemplate
 template |def.operator|
 \DeclareMathOperator*{__\argmax__}{__arg\,max__}
 endtemplate
+
+
+template |divider|
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DIVIDER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+endtemplate
