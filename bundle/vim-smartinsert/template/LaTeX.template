@@ -70,10 +70,6 @@ template |\parskip|
 \parskip
 endtemplate
 
-template |\parindent|
-\parindent
-endtemplate
-
 template |\indent|
 \indent
 endtemplate
@@ -332,4 +328,20 @@ endtemplate
 
 template |text.fg.color|
 \textcolor{__blue!30__}{__blue__}
+endtemplate
+
+
+template |\begin.quote|
+\begin{quote}
+____
+\end{quote}
+endtemplate
+
+
+template |indent.block|
+{\setlength{\parindent}{20pt}
+
+    __CONTENT__
+
+}
 endtemplate
