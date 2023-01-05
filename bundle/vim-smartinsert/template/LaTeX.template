@@ -323,3 +323,13 @@ endtemplate
 template |divider|
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DIVIDER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 endtemplate
+
+
+template |text.bgcolor|
+\colorbox{__blue!30__}{__blue__}
+endtemplate
+
+
+template |text.bgcolor|
+\textcolor{__blue!30__}{__blue__}
+endtemplate
