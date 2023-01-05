@@ -325,11 +325,11 @@ template |divider|
 endtemplate
 
 
-template |text.bgcolor|
+template |text.bg.color|
 \colorbox{__blue!30__}{__blue__}
 endtemplate
 
 
-template |text.bgcolor|
+template |text.fg.color|
 \textcolor{__blue!30__}{__blue__}
 endtemplate
