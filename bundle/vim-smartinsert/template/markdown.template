@@ -79,3 +79,8 @@ __comment__
 
 -->
 endtemplate
+
+
+template |divider|
+<!------------------------- DIVIDER  -------------------------><hr/>
+endtemplate
