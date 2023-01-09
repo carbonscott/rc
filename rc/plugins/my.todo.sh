@@ -1,7 +1,7 @@
 # ENV for todo
 export DATA_TODO=$DATA_ROOT/todo
 function my.todo.updatedb {
-    export MY_FILE_TODO=`find $DATA_TODO -iname '*.tex'`
+    export MY_TEX_TODO=`find $DATA_TODO -iname '*.tex'`
 }
 
 function todo.new {
