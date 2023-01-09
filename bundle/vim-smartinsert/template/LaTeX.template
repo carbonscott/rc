@@ -345,3 +345,8 @@ template |indent.block|
 
 }
 endtemplate
+
+
+template |hl.todo|
+\colorbox{yellow!30}{__TODO__} __CONTENT__
+endtemplate
