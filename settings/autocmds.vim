@@ -81,6 +81,13 @@ augroup LaTeXSetup
     autocmd BufEnter *.tex if hlexists('texBoldItalStyle') | syntax clear texBoldItalStyle | endif
     autocmd BufEnter *.tex if hlexists('texItalBoldStyle') | syntax clear texItalBoldStyle | endif
     autocmd BufEnter *.tex if hlexists('texOnlyMath')      | syntax clear texOnlyMath      | endif
+
+    " Solve the disfunctional syntax highlighting due to the use of dollar signs in lstlisting 
+    autocmd BufEnter *.tex syn region texZone start="\\begin{lstlisting}" end="\\end{lstlisting}\|%stopzone\>"
+    autocmd BufEnter *.tex syn region texZone  start="\\lstinputlisting" end="{\s*[a-zA-Z/.0-9_^]\+\s*}"
+    autocmd BufEnter *.tex syn match texInputFile "\\lstinline\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
+
+    " Refresh
     autocmd BufEnter *.tex redraw
     autocmd BufEnter *.tex echom 'TeX file detected...'
     autocmd BufLeave *.tex set wildignore-=*.log,*.pdf,*.aux
