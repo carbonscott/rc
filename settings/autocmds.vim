@@ -82,7 +82,8 @@ augroup LaTeXSetup
     autocmd BufEnter *.tex if hlexists('texItalBoldStyle') | syntax clear texItalBoldStyle | endif
     autocmd BufEnter *.tex if hlexists('texOnlyMath')      | syntax clear texOnlyMath      | endif
 
-    " Solve the disfunctional syntax highlighting due to the use of dollar signs in lstlisting 
+    " Solve the disfunctional syntax highlighting due to the use of dollar signs in lstlisting...
+    " Refer to https://stackoverflow.com/questions/6738902/vim-syntax-highlighting-with-and-lstlistings-lstinline
     autocmd BufEnter *.tex syn region texZone start="\\begin{lstlisting}" end="\\end{lstlisting}\|%stopzone\>"
     autocmd BufEnter *.tex syn region texZone  start="\\lstinputlisting" end="{\s*[a-zA-Z/.0-9_^]\+\s*}"
     autocmd BufEnter *.tex syn match texInputFile "\\lstinline\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
