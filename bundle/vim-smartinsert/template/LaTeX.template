@@ -349,3 +349,8 @@ endtemplate
 template |hl.todo|
 \colorbox{yellow!30}{__TODO__} __CONTENT__
 endtemplate
+
+
+template |parident|
+\setlength{\parindent}{0.5in}
+endtemplate
