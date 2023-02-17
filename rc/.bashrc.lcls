@@ -6,39 +6,14 @@ fi
 # Source bash config...
 alias sb="source ~/.bashrc"
 
-# Manage $PATH... 
-export PATH="/opt/local/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-## export PATH="$HOME/Library/Python/2.7/bin:$PATH"
-
 # Add bash functions...
 source ~/.vim/rc/bash_functions.sh
 
 # Add bash alias...
 source ~/.vim/rc/bash_alias.psana.sh
 
-# Add directory shotcuts...
-source ~/.vim/rc/quick_directories
-
-# Python executable path...
-source ~/.vim/rc/bash_executable.sh
-
-# Add env for apps...
-source ~/.vim/rc/bash_env.sh
-
-# Set default editor...
-export VISUAL="nvim"
-export EDITOR="nvim"
-
-# Applescript...
-source ~/.vim/rc/applescripts.sh
-
 # Set default look of bash...
 export PS1='[\u@\h \W]\$ '
-
-# For MacOS Catalina or later...
-export BASH_SILENCE_DEPRECATION_WARNING=1
-alias perl="perl5.28"
 
 # Turn on CLI color...
 if [[ $OSTYPE == 'darwin'* ]]; then
@@ -54,8 +29,9 @@ function conda.start {
 
     export LOADED_ANA="YES"
 }
-function conda.cwang31 {
-    [ "${LOADED_CWANG31}" = "YES" ] && echo 'ana-ml-py3 has been loaded!!!' && return 0
+
+function conda.ana-py3-ml {
+    [ "${LOADED_ANAPY3ML}" = "YES" ] && echo 'ana-ml-py3 has been loaded!!!' && return 0
 
     echo 'Loading ana-py3...'
     source /reg/g/psdm/etc/psconda.sh -py3
@@ -63,7 +39,38 @@ function conda.cwang31 {
     echo 'Loading ana-ml-py3...'
     conda activate /reg/data/ana03/scratch/cwang31/conda/ana-py3
 
-    export LOADED_CWANG31="YES"
+    export LOADED_ANAPY3ML="YES"
+}
+
+function conda.pf {
+    [ "${LOADED_PEAKNET}" = "YES" ] && echo 'peaknet env has been loaded!!!' && return 0
+
+    echo 'Loading ana-py3...'
+    source /reg/g/psdm/etc/psconda.sh -py3
+
+    echo 'Loading peaknet...'
+    conda activate /reg/data/ana03/scratch/cwang31/conda/peaknet
+
+    export LOADED_PEAKNET="YES"
+}
+
+function conda.slacgpt {
+    [ "${LOADED_SLACGPT}" = "YES" ] && echo 'peaknet env has been loaded!!!' && return 0
+
+    echo 'Loading ana-py3...'
+    source /reg/g/psdm/etc/psconda.sh -py3
+
+    echo 'Loading slacgpt...'
+    conda activate /reg/data/ana03/scratch/cwang31/conda/slacgpt
+
+    export LOADED_SLACGPT="YES"
+}
+
+function conda.reset_env {
+    export LOADED_ANA=""
+    export LOADED_ANAPY3ML=""
+    export LOADED_PEAKNET=""
+    export LOADED_SLACGPT=""
 }
 ## function conda.yoon82 {
 ##     conda activate /reg/data/ana03/scratch/yoon82/conda/ana-py3
@@ -77,6 +84,7 @@ export HTTPS_PROXY=http://psproxy:3128
 
 # data
 export DATA_CONG=/reg/data/ana03/scratch/cwang31
+export DATA_EXP=/reg/d/psdm
 
 # psocake
 function psocake2.start ()
@@ -84,7 +92,7 @@ function psocake2.start ()
     [ "${LOADED_PSOCAKE2}" = "YES" ] && echo 'psocake2 has been loaded!!!' && return 0
 
     echo 'Loading psocake2...'
-    source /reg/g/psdm/etc/psconda.sh
+    source /reg/g/psdm/etc/psconda.sh -py2
     export PATH="/cds/home/y/yoon82/Software/py2/psocake/app:$PATH"
     export PYTHONPATH="/cds/home/y/yoon82/Software/py2/psocake:$PYTHONPATH"
 
@@ -106,7 +114,7 @@ function psocake3.start ()
     [ "${LOADED_PSOCAKE3}" = "YES" ] && echo 'psocake3 has been loaded!!!' && return 0
 
     echo 'Loading psocake3...'
-    source /reg/g/psdm/etc/psconda.sh -py3
+    source /reg/g/psdm/etc/psconda.sh
     export PATH="/cds/home/y/yoon82/Software/py3/psocake/app:$PATH"
     export PYTHONPATH="/cds/home/y/yoon82/Software/py3/psocake:$PYTHONPATH"
 
@@ -156,6 +164,13 @@ function yum-local.start ()
 
 # alias to log into psana that inherit BG_COLOR variable...
 alias psana.login="ssh -t -X psana BG_COLOR=$BG_COLOR exec bash"
+function sshlogin {
+    ssh -t -X $1 BG_COLOR=$BG_COLOR exec bash
+}
 
 # alias to log into cori that inherit BG_COLOR variable...
 alias nersc.login="ssh -i $HOME/.ssh/nersc -t -X cori.nersc.gov BG_COLOR=$BG_COLOR exec bash"
+
+# Set default editor...
+export VISUAL="vim"
+export EDITOR="vim"
