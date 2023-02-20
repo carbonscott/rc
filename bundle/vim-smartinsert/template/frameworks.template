@@ -147,3 +147,18 @@ __Describe the information to save__
 
 __Specify the source__
 endtemplate
+
+
+template |reflection|
+WHAT
+
+  __BLANK__
+
+SO WHAT
+
+  __BLANK__
+
+NOW WHAT
+
+  __BLANK__
+endtemplate
