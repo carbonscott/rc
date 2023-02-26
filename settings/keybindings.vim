@@ -235,3 +235,11 @@ nnoremap [N :call <SID>toggle_relative_line_number()<CR>
 
 " Join a visually selected text, copy it and undo...
 vnoremap [Y Jgv"+yu
+
+" vipgq without moving cursor...
+function! <SID>vipgq_no_cursor_move()
+    let l:pos_prev = getpos('.')
+    exe "normal! vipgq"
+    call setpos('.', l:pos_prev)
+endfunction
+nnoremap [gq :call <SID>vipgq_no_cursor_move()<CR>
