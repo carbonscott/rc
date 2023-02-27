@@ -28,8 +28,8 @@ nnoremap <c-k> 2k
 vnoremap <c-j> 2j
 vnoremap <c-k> 2k
 
-"delete buffer
-nnoremap <silent> [bd :bd<CR>
+" "delete buffer
+" nnoremap <silent> [bd :bd<CR>
 
 "close files
 nnoremap <silent> [bx :q<CR>
@@ -243,3 +243,17 @@ function! <SID>vipgq_no_cursor_move()
     call setpos('.', l:pos_prev)
 endfunction
 nnoremap [gq :call <SID>vipgq_no_cursor_move()<CR>
+
+" bd without disrupt the focus mode...
+function! <SID>bd_no_disrupt_focus()
+    " Early exit...
+    if !exists("g:focus_mode_on") | return 0 | endif
+
+    " Okay, if focus is on???
+    if g:focus_mode_on
+        call ToggleFocus()
+        exe "bd"
+        call ToggleFocus()
+    endif
+endfunction
+nnoremap [bd :call <SID>bd_no_disrupt_focus()<CR>
