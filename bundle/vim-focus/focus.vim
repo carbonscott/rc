@@ -279,7 +279,14 @@ function! <SID>toggle_focus()
 endfunction
 nnoremap [F :call <SID>toggle_focus()<CR>
 
-
+" [[[ GLOBAL API ]]]
+function! g:ToggleFocus()
+    if g:focus_mode_on
+        call s:focus_off()
+    else
+        call s:focus_on()
+    endif
+endfunction
 
 " [[[ END ]]]
 let &cpo = s:cpo_save
