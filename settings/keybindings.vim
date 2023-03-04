@@ -251,9 +251,9 @@ function! <SID>bd_no_disrupt_focus()
 
     " Okay, if focus is on???
     if g:focus_mode_on
-        call ToggleFocus()
+        if exists("*ToggleFocus") | call ToggleFocus() | endif
         exe "bd"
-        call ToggleFocus()
+        if exists("*ToggleFocus") | call ToggleFocus() | endif
     endif
 endfunction
-nnoremap [bd :call <SID>bd_no_disrupt_focus()<CR>
+nnoremap <silent> [bd :call <SID>bd_no_disrupt_focus()<CR>
