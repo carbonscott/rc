@@ -246,14 +246,19 @@ nnoremap [gq :call <SID>vipgq_no_cursor_move()<CR>
 
 " bd without disrupt the focus mode...
 function! <SID>bd_no_disrupt_focus()
-    " Early exit...
-    if !exists("g:focus_mode_on") | return 0 | endif
-
-    " Okay, if focus is on???
-    if g:focus_mode_on
-        if exists("*ToggleFocus") | call ToggleFocus() | endif
+    " If focus mode is not supported???
+    if !exists("g:focus_mode_on")
+        " Delete the buffer and done...
         exe "bd"
-        if exists("*ToggleFocus") | call ToggleFocus() | endif
+        return 0
+    endif
+
+    " If focus mode is supported and on???
+    if g:focus_mode_on
+        " Toggle focus and delete buffer...
+        call ToggleFocus()
+        exe "bd"
+        call ToggleFocus()
     endif
 endfunction
 nnoremap <silent> [bd :call <SID>bd_no_disrupt_focus()<CR>
