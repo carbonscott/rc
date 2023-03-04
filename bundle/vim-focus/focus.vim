@@ -28,12 +28,12 @@ if exists("loaded_Focus")
 endif
 let loaded_Focus = 1
 
-let g:focus_mode_on = 0
-
 " Only supports vim 8.0 and above...
 if v:version < 800
     finish
 endif
+
+let g:focus_mode_on = 0
 
 let s:cpo_save = &cpo
 set cpo&vim
