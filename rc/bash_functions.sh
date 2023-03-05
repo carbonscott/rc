@@ -65,3 +65,26 @@ function passcp {
     printf "                                               \r"
     printf "The password has been cleared.\n"
 }
+
+
+# [[[ TMUX ]]]
+function tns {
+    SESSION=$1;
+    SOCKET=${2:-default};
+    if [ -n "$SESSION" ]; then
+        tmux -L "$SOCKET" new-session -s "$SESSION";
+    fi
+}
+
+function tls {
+    SOCKET=${1:-default};
+    tmux -L "$SOCKET" list-sessions;
+}
+
+function tas {
+    SESSION=$1;
+    SOCKET=${2:-default};
+    if [ -n "$SESSION" ]; then
+        tmux -L "$SOCKET" attach-session -t "$SESSION";
+    fi
+}
