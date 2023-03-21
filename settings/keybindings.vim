@@ -256,6 +256,6 @@ function! <SID>bd_no_disrupt_focus()
     " If focus mode is supported and on???
     if g:focus_mode_on | call ToggleFocus() | endif
     exe "bd"
-    if g:focus_mode_on | call ToggleFocus() | endif
+    if !g:focus_mode_on | call ToggleFocus() | endif
 endfunction
 nnoremap <silent> [bd :call <SID>bd_no_disrupt_focus()<CR>
