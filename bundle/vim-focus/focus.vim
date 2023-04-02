@@ -188,7 +188,7 @@ function! <SID>focus_toggle()
 
     " Fetch the current filename...
     let g:buffer_current     = expand('%') == '' ? s:rand_str(16) : expand('%')
-    let l:buffer_placeholder = "." . g:buffer_current
+    let l:buffer_placeholder = "." . g:buffer_current . "." . s:rand_str(16)
 
     " Split windows...
     if adjusted_width == 1
