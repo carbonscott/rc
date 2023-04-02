@@ -253,13 +253,21 @@ function! <SID>bd_no_disrupt_focus()
         return 0
     endif
 
+    let s:bufnr_orig = bufnr('%')
     let s:focus_mode_orig = g:focus_mode_on
+
+    " Fetch the number of opened buffers
+    let s:num_buf = len(getbufinfo({'buflisted' : 1}))
 
     " If focus mode is supported???
     if s:focus_mode_orig
-        call ToggleFocus()
-        exe "bd"
-        call ToggleFocus()
+        if s:num_buf > 1
+            exe "bp"
+            exe "bd " . s:bufnr_orig
+        else
+            redraw
+            echom "No action is taken as this is the last buffer..."
+        endif
     else
         exe "bd"
     endif
