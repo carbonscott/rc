@@ -253,9 +253,15 @@ function! <SID>bd_no_disrupt_focus()
         return 0
     endif
 
-    " If focus mode is supported and on???
-    if g:focus_mode_on | call ToggleFocus() | endif
-    exe "bd"
-    if !g:focus_mode_on | call ToggleFocus() | endif
+    let s:focus_mode_orig = g:focus_mode_on
+
+    " If focus mode is supported???
+    if s:focus_mode_orig
+        call ToggleFocus()
+        exe "bd"
+        call ToggleFocus()
+    else
+        exe "bd"
+    endif
 endfunction
 nnoremap <silent> [bd :call <SID>bd_no_disrupt_focus()<CR>
