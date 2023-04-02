@@ -108,7 +108,8 @@ function! s:setoff()
     set fillchars=
 
     " Show min infor in statusline
-    set statusline=%h
+    " set statusline=%h
+    set statusline=%F
 endfunction
 
 
@@ -141,7 +142,21 @@ endfunction
 
 
 " [[[ MAIN ]]]
-function! s:focus_on()
+function! <SID>focus_toggle()
+    " Toggle it off if focus mode is already on???
+    if g:focus_mode_on
+        if exists("t:win_left")   | call s:kill_win( t:win_left )   | endif
+        if exists("t:win_right")  | call s:kill_win( t:win_right )  | endif
+        if exists("t:win_top")    | call s:kill_win( t:win_top )    | endif
+        if exists("t:win_bottom") | call s:kill_win( t:win_bottom ) | endif
+
+        let g:focus_mode_on = !g:focus_mode_on
+        redraw
+        echom 'Focus mode is off...'
+
+        return
+    endif
+
     " Compute the panel size...
     " The center window should have 90 characters long
     let win_center_width = 90
@@ -232,7 +247,7 @@ function! s:focus_on()
         " Disable cursor jumping with navigation key...
         call s:maps_nop()
 
-        let g:focus_mode_on = 1
+        let g:focus_mode_on = !g:focus_mode_on
 
         redraw
         echom 'Focus mode is on...'
@@ -251,41 +266,17 @@ function! s:kill_win(win_id)
 endfunction
 
 
-function! s:focus_off()
-    if exists("t:win_left")   | call s:kill_win( t:win_left )   | endif
-    if exists("t:win_right")  | call s:kill_win( t:win_right )  | endif
-    if exists("t:win_top")    | call s:kill_win( t:win_top )    | endif
-    if exists("t:win_bottom") | call s:kill_win( t:win_bottom ) | endif
-
-    let g:focus_mode_on = 0
-    redraw
-    echom 'Focus mode is off...'
-endfunction
-
-
 " [[[ CUSTOMIZE COMMAND ]]]
-command! -nargs=0 Focus call s:focus_on()
-command! -nargs=0 FocusOff call s:focus_off()
+command! -nargs=0 FocusToggle call <SID>focus_toggle()
 nnoremap ZQ :qa!<cr>
 
 
 " [[[ CUSTOMIZE SHORTCUT ]]]
-function! <SID>toggle_focus()
-    if g:focus_mode_on
-        call s:focus_off()
-    else
-        call s:focus_on()
-    endif
-endfunction
-nnoremap [F :call <SID>toggle_focus()<CR>
+nnoremap [F :call <SID>focus_toggle()<CR>
 
 " [[[ GLOBAL API ]]]
 function! g:ToggleFocus()
-    if g:focus_mode_on
-        call s:focus_off()
-    else
-        call s:focus_on()
-    endif
+    call <SID>focus_toggle()
 endfunction
 
 " [[[ END ]]]
