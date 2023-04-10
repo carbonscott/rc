@@ -66,6 +66,14 @@ function conda.slacgpt {
     export LOADED_SLACGPT="YES"
 }
 
+function conda.psana1.drp {
+    echo 'Loading ana-py3...'
+    source /reg/g/psdm/etc/psconda.sh -py3
+
+    echo 'Loading drp compatible conda...'
+    conda activate ana-4.0.49-py3
+}
+
 function conda.reset_env {
     export LOADED_ANA=""
     export LOADED_ANAPY3ML=""
@@ -83,7 +91,7 @@ export HTTP_PROXY=http://psproxy:3128
 export HTTPS_PROXY=http://psproxy:3128
 
 # data
-export DATA_CONG=/reg/data/ana03/scratch/cwang31
+export DATA_ROOT=/reg/data/ana03/scratch/cwang31
 export DATA_EXP=/reg/d/psdm
 
 # psocake
@@ -115,6 +123,7 @@ function psocake3.start ()
 
     echo 'Loading psocake3...'
     source /reg/g/psdm/etc/psconda.sh
+    conda activate ana-4.0.45-py3
     export PATH="/cds/home/y/yoon82/Software/py3/psocake/app:$PATH"
     export PYTHONPATH="/cds/home/y/yoon82/Software/py3/psocake:$PYTHONPATH"
 
@@ -134,15 +143,12 @@ function psocake3.start ()
 # psocake
 function psocake-test.start ()
 {
-    [ "${LOADED_PSOCAKE_TEST}" = "YES" ] && echo 'psocake2 has been loaded!!!' && return 0
-
-    echo 'Loading psocake2...'
     source /reg/g/psdm/etc/psconda.sh
-    export PATH="/cds/home/c/cwang31/software/psocake/app:$PATH"
-    export PYTHONPATH="/cds/home/c/cwang31/software/psocake:$PYTHONPATH"
-    source /reg/g/cfel/crystfel/crystfel-0.8.0/setup-sh
+    export PATH="/cds/home/c/cwang31/codes/psocake/app:$PATH"
+    export PYTHONPATH="/cds/home/c/cwang31/codes/psocake:$PYTHONPATH"
 
-    export LOADED_PSOCAKE_TEST="YES"
+    # CrystFEL
+    source /reg/g/cfel/crystfel/crystfel-0.9.1/setup-sh
 }
 
 
