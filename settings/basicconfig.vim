@@ -46,3 +46,9 @@ set nowildmenu
 
 " Filetype indent off...
 filetype indent off
+
+" Deal with keyboard control issue in vim9
+if v:version >= 900
+    set keyprotocol=
+    let &term=&term
+endif
