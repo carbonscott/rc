@@ -48,7 +48,7 @@ set nowildmenu
 filetype indent off
 
 " Deal with keyboard control issue in vim9
-if v:version >= 900
+if v:version >= 900 && exists("&keyprotocol")
     set keyprotocol=
     let &term=&term
 endif
