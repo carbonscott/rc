@@ -104,21 +104,21 @@ endtemplate
 
 template |align.center|
 \begin{center}
-    ____
+____
 \end{center}
 endtemplate
 
 template |itemize|
 \begin{itemize}
 
-    ____
+____
 
 \end{itemize}
 endtemplate
 
 template |enumerate|
 \begin{enumerate}
-    ____
+____
 \end{enumerate}
 endtemplate
 
@@ -178,21 +178,21 @@ endtemplate
 
 template |equation|
 \begin{equation}
-    ____
+____
 \end{equation}
 endtemplate
 
 
 template |equation.nonumber|
 \begin{equation*}
-    ____
+____
 \end{equation*}
 endtemplate
 
 
 template |aligned|
 \begin{aligned}
-    ____
+____
 \end{aligned}
 endtemplate
 
@@ -281,11 +281,11 @@ template |table.example|
 \renewcommand{\arraystretch}{1.2}
 %% \resizebox{1.0\textwidth}{!}{
     \begin{tabular}{  | l | l l l | }
-        \hline
-        Experiment        &  Sample Size & Batch Size   & Accuracy \\
-        \hline
-        1-20220404222507  &  6000        & 30           & 0.85   \\
-        \hline
+    \hline
+    Experiment        &  Sample Size & Batch Size   & Accuracy \\
+    \hline
+    1-20220404222507  &  6000        & 30           & 0.85   \\
+    \hline
     \end{tabular}
 %% }
 endtemplate
@@ -340,7 +340,7 @@ endtemplate
 template |indent.block|
 {\setlength{\parindent}{20pt}
 
-    __CONTENT__
+__CONTENT__
 
 }
 endtemplate
