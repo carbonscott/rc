@@ -140,6 +140,27 @@ function psocake3.start ()
 }
 
 
+function crystfel.start ()
+{
+    # Source crystfel if indexamajig hasn't been found...
+    if ! which indexamajig &> /dev/null; then
+        # CrystFEL
+        echo "Configuring CrystFEL..."
+        source /reg/g/cfel/crystfel/crystfel-0.9.1/setup-sh
+    fi
+
+    # CCP4
+    source /reg/common/package/ccp4-7.1/bin/ccp4.setup-sh
+
+    # XDS
+    # Specify a correct path to xds if not found...
+    if ! which xds &> /dev/null; then
+        echo "Configuring XDS..."
+        export PATH=/reg/common/package/XDS-INTEL64_Linux_x86_64:$PATH
+    fi
+}
+
+
 # psocake
 function psocake-test.start ()
 {
@@ -174,9 +195,18 @@ function sshlogin {
     ssh -t -X $1 BG_COLOR=$BG_COLOR exec bash
 }
 
+# alias to log into s3df that inherit BG_COLOR variable...
+alias s3df.login="ssh -t -X s3dfdtn.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash"
+
+# alias to log into cori that inherit BG_COLOR variable...
+alias s3df_data.login="ssh -t -X cwang31@s3dfdtn.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash"
+
 # alias to log into cori that inherit BG_COLOR variable...
 alias nersc.login="ssh -i $HOME/.ssh/nersc -t -X cori.nersc.gov BG_COLOR=$BG_COLOR exec bash"
 
 # Set default editor...
 export VISUAL="vim"
 export EDITOR="vim"
+
+
+export HOST_S3DF="s3dfdtn.slac.stanford.edu"
