@@ -34,7 +34,7 @@ function conda.ana-py3-ml {
     [ "${LOADED_ANAPY3ML}" = "YES" ] && echo 'ana-ml-py3 has been loaded!!!' && return 0
 
     echo 'Loading ana-py3...'
-    source /reg/g/psdm/etc/psconda.sh -py3
+    source /reg/g/psdm/etc/psconda.sh
 
     echo 'Loading ana-ml-py3...'
     conda activate /reg/data/ana03/scratch/cwang31/conda/ana-py3
@@ -42,16 +42,37 @@ function conda.ana-py3-ml {
     export LOADED_ANAPY3ML="YES"
 }
 
-function conda.pf {
+function conda.pf.bak {
     [ "${LOADED_PEAKNET}" = "YES" ] && echo 'peaknet env has been loaded!!!' && return 0
 
     echo 'Loading ana-py3...'
-    source /reg/g/psdm/etc/psconda.sh -py3
+    source /reg/g/psdm/etc/psconda.sh
 
     echo 'Loading peaknet...'
     conda activate /reg/data/ana03/scratch/cwang31/conda/peaknet
 
     export LOADED_PEAKNET="YES"
+}
+
+function conda.pf {
+    [ "${LOADED_PEAKNET}" = "YES" ] && echo 'peaknet env has been loaded!!!' && return 0
+
+    echo 'Loading ana-py3...'
+    source /reg/g/psdm/etc/psconda.sh
+
+    echo 'Loading peaknet...'
+    conda activate /cds/sw/package/conda_envs/cwang31/peaknet-1.0
+
+    export LOADED_PEAKNET="YES"
+}
+
+function conda.pf-ana {
+    echo 'Loading psana1...'
+    source /reg/g/psdm/etc/psconda.sh
+
+    echo 'Loading peaknet...'
+    conda activate /reg/data/ana03/scratch/cwang31/conda/peaknet.ana-4.0.48-py3
+
 }
 
 function conda.slacgpt {
@@ -164,12 +185,17 @@ function crystfel.start ()
 # psocake
 function psocake-test.start ()
 {
-    source /reg/g/psdm/etc/psconda.sh
+    # Psocake
+    echo "Configuring psocake..."
     export PATH="/cds/home/c/cwang31/codes/psocake/app:$PATH"
     export PYTHONPATH="/cds/home/c/cwang31/codes/psocake:$PYTHONPATH"
 
-    # CrystFEL
-    source /reg/g/cfel/crystfel/crystfel-0.9.1/setup-sh
+    # Source crystfel if indexamajig hasn't been found...
+    if ! which indexamajig &> /dev/null; then
+        # CrystFEL
+        echo "Configuring CrystFEL..."
+        source /reg/g/cfel/crystfel/crystfel-0.9.1/setup-sh
+    fi
 }
 
 
@@ -201,8 +227,11 @@ alias s3df.login="ssh -t -X s3dfdtn.slac.stanford.edu BG_COLOR=$BG_COLOR exec ba
 # alias to log into cori that inherit BG_COLOR variable...
 alias s3df_data.login="ssh -t -X cwang31@s3dfdtn.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash"
 
+# alias to log into s3df that inherit BG_COLOR variable...
+alias sdf.login="ssh -t -X sdf-login.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash"
+
 # alias to log into cori that inherit BG_COLOR variable...
-alias nersc.login="ssh -i $HOME/.ssh/nersc -t -X cori.nersc.gov BG_COLOR=$BG_COLOR exec bash"
+alias nersc.login="ssh -i $HOME/.ssh/nersc -t -X perlmutter-p1.nersc.gov BG_COLOR=$BG_COLOR exec bash"
 
 # Set default editor...
 export VISUAL="vim"
