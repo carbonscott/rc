@@ -88,3 +88,9 @@ function tas {
         tmux -L "$SOCKET" attach-session -t "$SESSION";
     fi
 }
+
+
+# Show all sockets used by tmux...
+function tmux.show_sockets {
+    lsof -U | grep '^tmux'
+}
