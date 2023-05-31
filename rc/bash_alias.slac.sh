@@ -19,10 +19,10 @@ alias lst="ls -lrt "
 # Add u+x to a file...
 alias x1="chmod u+x "
 
-# Tmux related...
-alias tls='tmux list-sessions'
-alias tas='tmux attach-session -t '
-alias tns='tmux new-session -s '
+## # Tmux related...
+## alias tls='tmux list-sessions'
+## alias tas='tmux attach-session -t '
+## alias tns='tmux new-session -s '
 
 # more or less
 alias m='more'
@@ -49,3 +49,5 @@ alias d="cd $HOME/$SYNC_FOLDER"
 
 # About using virtualenv for Python environment...
 alias active="source ./venv/bin/activate"
+
+
