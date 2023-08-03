@@ -482,7 +482,7 @@ Arguments:
     __param__ : __int__
         __explain__
 
-Returns
+Returns:
 
     __value__ : __int__
         __explain__
