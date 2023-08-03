@@ -477,19 +477,15 @@ template |doc.function|
 """
 Return __a matrix with ones on the diagonal and zeros elsewhere.__
 
-Parameters
-----------
-__param__ : __int__
-    __explain__
+Arguments:
+
+    __param__ : __int__
+        __explain__
 
 Returns
--------
-__value__ : __int__
-    __explain__
 
-Examples
---------
->>> 
+    __value__ : __int__
+        __explain__
 
 """
 endtemplate
@@ -497,24 +493,12 @@ endtemplate
 
 template |doc.class|
 """
-__ClassName(params)__
-
 __What this class does__
 
-Attributes
-----------
-__attr__ : __type__
-    __explain__
+Attributes:
 
-Parameters
-----------
-
-__param__ : __type__
-    __explain__
-
-Examples
---------
->>>
+    __attr__ : __type__
+        __explain__
 
 """
 endtemplate
