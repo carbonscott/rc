@@ -112,8 +112,18 @@ export HTTP_PROXY=http://psproxy:3128
 export HTTPS_PROXY=http://psproxy:3128
 
 # data
-export DATA_ROOT=/reg/data/ana03/scratch/cwang31
+if   [[ $HOSTNAME == psana* ]]; then
+    export DATA_ROOT=/reg/data/ana03/scratch/cwang31
+elif [[ $HOSTNAME == *srcf*  ]]; then
+    export DATA_ROOT=/cds/data/drpsrcf/users/cwang31
+fi
 export DATA_EXP=/reg/d/psdm
+
+# Use local bin
+function globus.start ()
+{
+    export PATH="/cds/home/c/cwang31/.local/bin:$PATH"
+}
 
 # psocake
 function psocake2.start ()
@@ -182,6 +192,27 @@ function crystfel.start ()
 }
 
 
+function crystfel-gui.start ()
+{
+    # Source crystfel if indexamajig hasn't been found...
+    if ! which indexamajig &> /dev/null; then
+        # CrystFEL
+        echo "Configuring CrystFEL..."
+        ## source /reg/g/cfel/crystfel/crystfel-0.9.1/setup-sh
+        export PATH=/cds/sw/package/crystfel/crystfel-0.10.1/bin:$PATH
+    fi
+
+    # CCP4
+    source /reg/common/package/ccp4-7.1/bin/ccp4.setup-sh
+
+    # XDS
+    # Specify a correct path to xds if not found...
+    if ! which xds &> /dev/null; then
+        echo "Configuring XDS..."
+        export PATH=/reg/common/package/XDS-INTEL64_Linux_x86_64:$PATH
+    fi
+}
+
 # psocake
 function psocake-test.start ()
 {
@@ -233,9 +264,21 @@ alias sdf.login="ssh -t -X sdf-login.slac.stanford.edu BG_COLOR=$BG_COLOR exec b
 # alias to log into cori that inherit BG_COLOR variable...
 alias nersc.login="ssh -i $HOME/.ssh/nersc -t -X perlmutter-p1.nersc.gov BG_COLOR=$BG_COLOR exec bash"
 
+# alias to log into drp-gpu that inherit BG_COLOR variable...
+alias drp-gpu.login="ssh -t -X drp-srcf-gpu002 BG_COLOR=$BG_COLOR exec bash"
+
+alias hdfview='/reg/g/psdm/sw/releases/ana-current/arch/x86_64-rhel7-gcc48-opt/bin/hdfview'
+
 # Set default editor...
 export VISUAL="vim"
 export EDITOR="vim"
 
 
 export HOST_S3DF="s3dfdtn.slac.stanford.edu"
+
+
+function globus.endpoint.load ()
+{
+    export source_ep="aa4fcdaf-6d04-11e5-ba46-22000b92c6ec"
+    export dest_ep="6bdc7956-fc0f-4ad2-989c-7aa5ee643a79"
+}
