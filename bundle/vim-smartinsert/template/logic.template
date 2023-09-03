@@ -11,15 +11,15 @@ template |True|
 endtemplate
 
 template |belongs to|
-∈ 
+∈ ____
 endtemplate
 
 template |is subset of|
-⊆ 
+⊆ ____
 endtemplate
 
 template |is an absolute subset of|
-⊂ 
+⊂ ____
 endtemplate
 
 template |is equivalent to|
