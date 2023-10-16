@@ -94,3 +94,14 @@ function tas {
 function tmux.show_sockets {
     lsof -U | grep '^tmux'
 }
+
+
+function tss {
+    SOCKET=${1:-"00"};
+    SAVE_PATH=${2:-"$HOME/tmux.history"}
+    {
+        echo "___/ $(hostname):$SOCKET \___"
+        echo "$(date)"
+        tmux -L "$SOCKET" list-sessions
+    } >> $SAVE_PATH
+}
