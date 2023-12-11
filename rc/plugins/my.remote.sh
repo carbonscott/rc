@@ -27,3 +27,10 @@ function psana.login {
 function nersc.login {
     ssh -t -X cwang31@perlmutter.nersc.gov BG_COLOR=$BG_COLOR exec bash
 }
+
+
+function s3df.login {
+    ssh -t -X cwang31@s3dflogin.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash
+}
+
+
