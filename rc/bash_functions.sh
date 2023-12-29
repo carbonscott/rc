@@ -105,3 +105,9 @@ function tss {
         tmux -L "$SOCKET" list-sessions
     } >> $SAVE_PATH
 }
+
+
+# Files modified within last 24h
+function find.24h {
+    find . -mtime -1h -type f
+}
