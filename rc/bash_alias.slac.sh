@@ -49,5 +49,3 @@ alias d="cd $HOME/$SYNC_FOLDER"
 
 # About using virtualenv for Python environment...
 alias active="source ./venv/bin/activate"
-
-

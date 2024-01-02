@@ -157,3 +157,9 @@ function tns.main() {
     # Attach to the tmux session...
     tmux -L "$socket" attach-session -t "$session_name"
 }
+
+
+# Files modified within last 24h
+function find.24h {
+    find . -mtime -1h -type f
+}
