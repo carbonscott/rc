@@ -30,8 +30,10 @@ function s2f {
 
 # [[[ Terminal ]]]
 function clc {
-    ## echo -n -e "\033]0;$1\007"
-    echo -n -e "\033]0;$@\007"
+    local char_title_start="\033]0;"
+    local char_title_end="\007"
+    local user_input="$@"
+    echo -n -e "${char_title_start}${user_input}${char_title_end}"
 }
 alias clear='clear; clc '
 
@@ -72,6 +74,11 @@ function tns {
     SESSION=$1;
     SOCKET=${2:-default};
     if [ -n "$SESSION" ]; then
+        local char_title_start="\033]0;"
+        local char_title_end="\007"
+        local user_input="$SESSION"
+        echo -n -e "${char_title_start}${user_input}${char_title_end}"
+
         tmux -L "$SOCKET" new-session -s "$SESSION";
     fi
 }
@@ -85,6 +92,11 @@ function tas {
     SESSION=$1;
     SOCKET=${2:-default};
     if [ -n "$SESSION" ]; then
+        local char_title_start="\033]0;"
+        local char_title_end="\007"
+        local user_input="$SESSION"
+        echo -n -e "${char_title_start}${user_input}${char_title_end}"
+
         tmux -L "$SOCKET" attach-session -t "$SESSION";
     fi
 }
@@ -104,4 +116,44 @@ function tss {
         echo "$(date)"
         tmux -L "$SOCKET" list-sessions
     } >> $SAVE_PATH
+}
+
+
+function tns.main() {
+    # Define the session name and the list of windows...
+    local session_name="main"
+    local windows=("todo" "capture" "notes" "projects")
+    local socket="00"
+    local data_root=$DATA_ROOT
+
+    # Change the title of the current terminal window...
+    local char_title_start="\033]0;"
+    local char_title_end="\007"
+    local user_input="main"
+    echo -n -e "${char_title_start}${user_input}${char_title_end}"
+
+    # Start a new tmux session...
+    tmux -L "$socket" new-session -d -s "$session_name"
+
+    # Iterate over the window array...
+    for i in "${!windows[@]}"; do
+        local window="${windows[$i]}"
+
+        if [ $i -eq 0 ]; then
+            # Rename the first window and change directory...
+            tmux -L "$socket" rename-window -t "${session_name}:0" "$window"
+        else
+            # Create new windows and change directory...
+            tmux -L "$socket" new-window -t "$session_name" -n "$window"
+        fi
+
+        # Change to the directory with the same name as the window...
+        tmux -L "$socket" send-keys -t "${session_name}:${window}" "cd ${data_root}/${window};clear" C-m
+    done
+
+    $ Switch to the "todo" window...
+    tmux -L "$socket" select-window -t "${session_name}:todo"
+
+    # Attach to the tmux session...
+    tmux -L "$socket" attach-session -t "$session_name"
 }

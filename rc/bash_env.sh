@@ -3,22 +3,22 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 
-if [[ $(uname -s) == Darwin ]]; then
-    # Phenix
-    alias init_phenix='source /Applications/phenix-1.15-3459/phenix_env.sh'
-
-    # CCP4
-    alias init_ccp4='source /Applications/ccp4-7.0/bin/ccp4.setup-sh'
-
-    # VMD
-    alias vmd='/Applications/VMD\ 1.9.4a51-x86_64-Rev9.app/Contents/MacOS/startup.command'
-else
-    # Phenix
-    alias init_phenix='source /opt/xtal/phenix-1.18.2-3874/phenix_env.sh'
-
-    # CCP4
-    alias init_ccp4='source /opt/xtal/ccp4-7.1/bin/ccp4.setup-sh'
-fi
+## if [[ $(uname -s) == Darwin ]]; then
+##     # Phenix
+##     alias init_phenix='source /Applications/phenix-1.15-3459/phenix_env.sh'
+## 
+##     # CCP4
+##     alias init_ccp4='source /Applications/ccp4-7.0/bin/ccp4.setup-sh'
+## 
+##     # VMD
+##     alias vmd='/Applications/VMD\ 1.9.4a51-x86_64-Rev9.app/Contents/MacOS/startup.command'
+## else
+##     # Phenix
+##     alias init_phenix='source /opt/xtal/phenix-1.18.2-3874/phenix_env.sh'
+## 
+##     # CCP4
+##     alias init_ccp4='source /opt/xtal/ccp4-7.1/bin/ccp4.setup-sh'
+## fi
 
 
 
