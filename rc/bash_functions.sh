@@ -122,7 +122,7 @@ function tss {
 function tns.main() {
     # Define the session name and the list of windows...
     local session_name="main"
-    local windows=("todo" "capture" "notes" "projects")
+    local windows=("time" "capture" "notes" "projects")
     local socket="00"
     local data_root=$DATA_ROOT
 
@@ -151,8 +151,8 @@ function tns.main() {
         tmux -L "$socket" send-keys -t "${session_name}:${window}" "cd ${data_root}/${window};clear" C-m
     done
 
-    $ Switch to the "todo" window...
-    tmux -L "$socket" select-window -t "${session_name}:todo"
+    $ Switch to the first window...
+    tmux -L "$socket" select-window -t "${session_name}:${windows[0]}"
 
     # Attach to the tmux session...
     tmux -L "$socket" attach-session -t "$session_name"
