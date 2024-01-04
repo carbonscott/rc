@@ -161,5 +161,5 @@ function tns.main() {
 
 # Files modified within last 24h
 function find.24h {
-    find . -mtime -1h -type f
+    find . -mtime -24h -type f
 }
