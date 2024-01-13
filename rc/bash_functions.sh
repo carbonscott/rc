@@ -122,7 +122,7 @@ function tss {
 function tns.main() {
     # Define the session name and the list of windows...
     local session_name="main"
-    local windows=("time" "capture" "notes" "projects")
+    local windows=("time" "capture" "notes" "projects" "relations")
     local socket="00"
     local data_root=$DATA_ROOT
 
