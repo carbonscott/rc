@@ -1,4 +1,5 @@
 function pslogin.login {
+    pass -c slac.unix    # A shortcut mainly used for convenience
     ssh -t -X cwang31@pslogin.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash
 }
 
@@ -20,16 +21,19 @@ function pslogin.login {
 #   User cwang31
 ###############################################################################
 function psana.login {
+    pass -c slac.unix    # A shortcut mainly used for convenience
     ssh -t -X cwang31@psana BG_COLOR=$BG_COLOR exec bash
 }
 
 
 function nersc.login {
+    pass -c slac.unix    # A shortcut mainly used for convenience
     ssh -t -X cwang31@perlmutter.nersc.gov BG_COLOR=$BG_COLOR exec bash
 }
 
 
 function s3df.login {
+    pass -c slac.unix    # A shortcut mainly used for convenience
     ssh -t -X cwang31@s3dflogin.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash
 }
 
