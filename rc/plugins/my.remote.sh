@@ -38,3 +38,9 @@ function s3df.login {
 }
 
 
+function olcf.login {
+    pass -c olcf.pin    # A shortcut mainly used for convenience
+    ssh -t -X cwang31@home.ccs.ornl.gov BG_COLOR=$BG_COLOR exec bash
+}
+
+
