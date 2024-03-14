@@ -44,3 +44,9 @@ function olcf.login {
 }
 
 
+function pc100146.login {
+    pass -c slac.win    # A shortcut mainly used for convenience
+    ssh -t -X cwang31@pc100146.local BG_COLOR=$BG_COLOR exec bash
+}
+
+
