@@ -163,8 +163,8 @@ function! <SID>focus_toggle()
     let win_width = winwidth(0)
     let panel_width = ( win_width - win_center_width ) / 2
 
-    " The center window should have 40 characters tall
-    let win_center_height = 50
+    " The center window should have 50 characters tall
+    let win_center_height = exists("g:FOCUS_H") ? g:FOCUS_H : 50
     let win_height = winheight(0)
     let panel_height = ( win_height - win_center_height ) / 2
 
