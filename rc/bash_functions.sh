@@ -164,3 +164,40 @@ function find.24h {
     #find . -mtime -24h -type f
     find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mtime -24h -print
 }
+
+
+sns ()
+{
+    # Disabling XON/XOFF Flow Control
+    stty -ixon
+
+    SESSION=$1;
+    if [ -n "$SESSION" ]; then
+        local char_title_start="\033]0;";
+        local char_title_end="\007";
+        local user_input="$SESSION";
+        echo -n -e "${char_title_start}${user_input}${char_title_end}";
+        screen -S "$SESSION";
+    fi
+}
+
+sas ()
+{
+    # Disabling XON/XOFF Flow Control
+    stty -ixon
+
+    SESSION=$1;
+    if [ -n "$SESSION" ]; then
+        local char_title_start="\033]0;";
+        local char_title_end="\007";
+        local user_input="$SESSION";
+        echo -n -e "${char_title_start}${user_input}${char_title_end}";
+        screen -d -r "$SESSION";
+    fi
+}
+
+sls ()
+{
+    screen -ls;
+}
+
