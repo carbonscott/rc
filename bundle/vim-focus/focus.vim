@@ -128,11 +128,34 @@ function! s:maps_nop()
 endfunction
 
 
+" [RAND STRING]
+" Pseudo-constants for the LCG parameters
+let s:LCG_MULTIPLIER = 1664525
+let s:LCG_INCREMENT  = 1013904223
+let s:LCG_MODULUS    = 4294967296
+
+" Seed variable
+let s:seed = -1
+
+" Function to initialize the seed based on high-resolution timer
+function! s:init_seed()
+    let s:seed = reltime()[1]  " Use the microsecond part of the current time
+endfunction
+
+" Linear Congruential Generator (LCG) for pseudorandom number generation
+function! s:rand()
+    if s:seed == -1
+        call s:init_seed()
+    endif
+    let s:seed = (s:LCG_MULTIPLIER * s:seed + s:LCG_INCREMENT) % s:LCG_MODULUS
+    return s:seed
+endfunction
+
 function! s:rand_str(num)
     let rand_list = []
     for i in range(a:num)
         " 26 char long, starting with 65 (=A in ascii)...
-        let rand_list = rand_list + [rand() % 26 + 65]
+        let rand_list = rand_list + [s:rand() % 26 + 65]
     endfor
 
     let rand_str = join(map(rand_list, {_, val -> nr2char(val)}), '')
@@ -159,7 +182,7 @@ function! <SID>focus_toggle()
 
     " Compute the panel size...
     " The center window should have 90 characters long
-    let win_center_width = 90
+    let win_center_width = exists("g:FOCUS_W") ? g:FOCUS_W : 90
     let win_width = winwidth(0)
     let panel_width = ( win_width - win_center_width ) / 2
 
