@@ -166,6 +166,20 @@ function find.24h {
     find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mtime -1 -print
 }
 
+find.mtime ()
+{
+    if [ $# -eq 0 ]; then
+        echo "Usage: find.mtime <day>"
+        return 1
+    fi
+
+    # Retrieving the number of days from the first argument
+    local days=$1
+
+    # Using -mmin to specify the number of days
+    find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mmin -"$days" -print
+}
+
 find.mmin ()
 {
     if [ $# -eq 0 ]; then
