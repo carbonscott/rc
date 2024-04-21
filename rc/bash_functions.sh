@@ -177,7 +177,7 @@ find.mtime ()
     local days=$1
 
     # Using -mmin to specify the number of days
-    find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mmin -"$days" -print
+    find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mtime -"$days" -print
 }
 
 find.mmin ()
