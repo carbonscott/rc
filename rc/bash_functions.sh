@@ -159,13 +159,28 @@ function tns.main() {
 }
 
 
+# [[[ Find ]]]
 # Files modified within last 24h
 function find.24h {
     #find . -mtime -24h -type f
     find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mtime -1 -print
 }
 
+find.mmin ()
+{
+    if [ $# -eq 0 ]; then
+        echo "Usage: find.mmin <minutes>"
+        return 1
+    fi
 
+    # Retrieving the number of minutes from the first argument
+    local minutes=$1
+
+    # Using -mmin to specify the number of minutes
+    find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mmin -"$minutes" -print
+}
+
+# [[[ Screen ]]]
 sns ()
 {
     # Disabling XON/XOFF Flow Control
