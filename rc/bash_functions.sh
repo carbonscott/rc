@@ -162,7 +162,7 @@ function tns.main() {
 # Files modified within last 24h
 function find.24h {
     #find . -mtime -24h -type f
-    find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mtime -24h -print
+    find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mtime -1 -print
 }
 
 
