@@ -194,6 +194,38 @@ find.mmin ()
     find . \( -type d -name .git -or -name '.DS_Store' \) -prune -o -type f -mmin -"$minutes" -print
 }
 
+findmod ()
+{
+    if [ $# -lt 2 ]; then
+        echo "Usage: findmod <mmin|mtime> <minutes>"
+        return 1
+    fi
+
+    local time_type=$1
+    local time=$2
+    local ignore_file=".findignore"
+    local path="."
+
+    # Checking for the existence of the .findignore file
+    local prune_conditions=""
+    if [ -f "$ignore_file" ]; then
+        # Constructing the exclusion pattern from the ignore file
+        while IFS= read -r line; do
+            if [[ -n "$line" ]]; then
+                prune_conditions="$prune_conditions -name $line -or "
+            fi
+        done < "$ignore_file"
+        if [[ -n "$prune_conditions" ]]; then
+            prune_conditions="${prune_conditions%-or }"  # Removing the trailing '-or'
+            prune_conditions="\( -type d \( $prune_conditions \) \) -prune -o"  # Complete the prune condition
+        fi
+    fi
+
+    # Using eval to execute the dynamically constructed find command
+    eval "find $path $prune_conditions -type f -$time_type -\"$time\" -print"
+}
+
+
 # [[[ Screen ]]]
 sns ()
 {
