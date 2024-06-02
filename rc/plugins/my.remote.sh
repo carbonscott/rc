@@ -50,3 +50,14 @@ function pc100146.login {
 }
 
 
+function summit.login {
+    # Set up the folloing in the .ssh/config
+    # --------------------------------------
+    # Host summit3
+    # HostName login3.summit.olcf.ornl.gov
+    # User cwang31
+    # ProxyJump home.ccs.ornl.gov
+    # --------------------------------------
+    pass -c olcf.pin    # A shortcut mainly used for convenience
+    ssh -t -X summit3 BG_COLOR=$BG_COLOR exec bash
+}
