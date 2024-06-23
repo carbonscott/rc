@@ -262,3 +262,12 @@ sls ()
     screen -ls;
 }
 
+
+# [[[ Power ]]]
+function pm.sleep_off {
+    pmset -a disablesleep 1
+}
+
+function pm.sleep_on {
+    pmset -a disablesleep 0
+}
