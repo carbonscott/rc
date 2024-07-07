@@ -302,6 +302,10 @@ function! g:ToggleFocus()
     call <SID>focus_toggle()
 endfunction
 
+" [[[ MY PREFERENCE ]]]
+let g:FOCUS_W=120
+let g:FOCUS_H=120
+
 " [[[ END ]]]
 let &cpo = s:cpo_save
 unlet s:cpo_save
