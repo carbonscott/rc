@@ -27,7 +27,7 @@ function psana.login {
 
 
 function nersc.login {
-    pass -c slac.unix    # A shortcut mainly used for convenience
+    pass -c nersc    # A shortcut mainly used for convenience
     ssh -t -X cwang31@perlmutter.nersc.gov BG_COLOR=$BG_COLOR exec bash
 }
 
