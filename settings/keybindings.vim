@@ -9,7 +9,7 @@ noremap <F7> :set list<CR>
 noremap <F8> :set nolist<CR>
 
 " buffer next, previous
-noremap <F4> :ls<CR>:buffer 
+noremap <F4> :ls<CR>:buffer
 nnoremap <F2> :hide bp<CR>
 nnoremap <F3> :hide bn<CR>
 nnoremap [vw bve
@@ -22,11 +22,11 @@ nnoremap <s-l> g_
 vnoremap <s-l> g_
 sunmap <s-l>
 
-"navigate escalted
-nnoremap <c-j> 2j
-nnoremap <c-k> 2k
-vnoremap <c-j> 2j
-vnoremap <c-k> 2k
+" "navigate escalted
+" nnoremap <c-j> 2j
+" nnoremap <c-k> 2k
+" vnoremap <c-j> 2j
+" vnoremap <c-k> 2k
 
 " "delete buffer
 " nnoremap <silent> [bd :bd<CR>
@@ -48,21 +48,27 @@ nnoremap <silent> <c-up> :resize +2<CR>
 nnoremap <silent> [ul yypv0$r-
 
 " map when insert
-inoremap <c-h> <ESC>i
+"inoremap <c-h> <ESC>i
+inoremap <c-b> <ESC>i
 "inoremap <c-a> <c-o>a
 inoremap <c-g> <c-k>
-inoremap <F7> <c-o>:set list<CR>
-inoremap <F8> <c-o>:set nolist<CR>
-inoremap <c-j> <c-o>j
-inoremap <c-k> <c-o>k
-inoremap <c-l> <c-o>a
+"inoremap <F7> <c-o>:set list<CR>
+"inoremap <F8> <c-o>:set nolist<CR>
+"inoremap <c-j> <c-o>j
+inoremap <c-n> <c-o>j
+"inoremap <c-k> <c-o>k
+inoremap <c-p> <c-o>k
+"inoremap <c-l> <c-o>a
+inoremap <c-f> <c-o>a
 "inoremap <c-R> <c-o>e
-inoremap <c-f> <c-o>e<c-o>a
-inoremap <c-e> <c-o>b
+"inoremap <c-f> <c-o>e<c-o>a
+"inoremap <c-e> <c-o>b
+inoremap <c-a> <c-o>0
+inoremap <c-e> <c-o>$
 
 "======= cmd navigation =======
-cnoremap <c-h> <left>
-cnoremap <c-l> <right>
+"cnoremap <c-h> <left>
+"cnoremap <c-l> <right>
 
 "======= map 0 and $ =====
 "nnoremap <s-h> 0
@@ -204,7 +210,7 @@ command! -nargs=0 Readonly :set readonly
 command! -nargs=0 NoReadonly :set noreadonly
 
 " Leave space in ()
-inoremap <c-b> <space><space><left>
+" inoremap <c-b> <space><space><left>
 
 
 " Use xsel for clipboard management in vim...
