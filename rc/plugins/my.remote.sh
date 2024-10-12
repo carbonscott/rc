@@ -1,3 +1,7 @@
+function sshlogin {
+    ssh -t -X $1 BG_COLOR=$BG_COLOR exec bash
+}
+
 function pslogin.login {
     pass -c slac.unix    # A shortcut mainly used for convenience
     ssh -t -X cwang31@pslogin.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash
