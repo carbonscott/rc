@@ -32,3 +32,20 @@ function! Nospace()
     call setpos('.', s:pos_current)
 endfunction
 command! -nargs=0 Nospace call Nospace()
+
+
+" Toggle visual line navigation with <F2>
+function! ToggleVisualNavigation()
+    if exists('g:visual_navigation_enabled') && g:visual_navigation_enabled
+        unmap j
+        unmap k
+        let g:visual_navigation_enabled = 0
+        echo "Normal navigation enabled"
+    else
+        nnoremap j gj
+        nnoremap k gk
+        let g:visual_navigation_enabled = 1
+        echo "Visual navigation enabled"
+    endif
+endfunction
+command! -nargs=0 ToggleVisualNavigation call ToggleVisualNavigation()
