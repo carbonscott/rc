@@ -44,6 +44,8 @@ function! ToggleVisualNavigation()
     else
         nnoremap j gj
         nnoremap k gk
+        vnoremap j gj
+        vnoremap k gk
         let g:visual_navigation_enabled = 1
         echo "Visual navigation enabled"
     endif
