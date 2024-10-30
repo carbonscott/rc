@@ -73,7 +73,7 @@ endif
 augroup LaTeXSetup
     autocmd! 
     autocmd BufEnter *.tex set filetype=tex
-    autocmd BufEnter *.tex execute "set textwidth=80" 
+    autocmd BufEnter *.tex execute "set textwidth=0"
     autocmd BufEnter *.tex syntax on
     autocmd BufEnter *.tex set shiftwidth=4
     autocmd BufEnter *.tex set wildignore+=*.log,*.pdf,*.aux
