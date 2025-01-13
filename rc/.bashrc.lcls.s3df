@@ -42,10 +42,21 @@ if [[ $OSTYPE == 'darwin'* ]]; then
     export CLICOLOR=1
 fi
 
+function prompt.update {
+    export PS1="\u@\h in [\w] (conda:$(if [ -n \"\$CONDA_DEFAULT_ENV\" ]; then echo \$CONDA_DEFAULT_ENV; fi))\n\$ "
+}
+prompt.update
 
 function conda.start {
     echo 'Loading ana-py3...'
     source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
+    prompt.update
+}
+
+function miniconda.start {
+    echo 'Loading /sdf/scratch/users/c/cwang31/miniforge3/bin/conda...'
+    eval "$(/sdf/scratch/users/c/cwang31/miniforge3/bin/conda shell.bash hook)"
+    prompt.update
 }
 
 function conda.ml {
@@ -53,11 +64,31 @@ function conda.ml {
     source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
 
     echo 'Loading ml.cong...'
-    conda activate ml.cong
+    conda activate /sdf/data/lcls/ds/prj/prjcwang31/results/conda/ana-4.0.58-py3-ml
+
+    prompt.update
+}
+
+function conda.jax {
+    echo 'Loading ana-py3...'
+    source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
+
+    echo 'Loading jax.2024_1227...'
+    conda activate /sdf/scratch/lcls/ds/prj/prjcwang31/scratch/conda/jax.2024_1227
+
+    prompt.update
+}
+
+function node.milano.srun {
+    salloc --partition milano --exclusive -A lcls:prjdat21 --time=24:00:00
 }
 
 function node.ampere.srun {
-    srun --partition ampere -n 1 -A lcls:prjdat21 --gpus=1 --time=01:00:00 --pty /bin/bash
+    salloc --partition ampere --exclusive -n 4 -A lcls:prjdat21 --gpus=4 --time=24:00:00
+}
+
+function node.ada.srun {
+    salloc --partition ada --exclusive -n 10 -A lcls:prjdat21 --gpus=10 --time=24:00:00
 }
 
 
@@ -81,6 +112,14 @@ function psocake3.start ()
     ## export LOADED_PSOCAKE3="YES"
 }
 
+function btx.start ()
+{
+    conda.start
+
+    echo 'Loading btx...'
+    export PATH=/sdf/group/lcls/ds/tools/btx/stable/scripts:$PATH
+}
+
 ## function conda.psana1.drp {
 ##     echo 'Loading ana-py3...'
 ##     source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
@@ -94,7 +133,8 @@ function psocake3.start ()
 ## export HTTPS_PROXY=http://psproxy:3128
 
 # data
-export DATA_ROOT=/sdf/scratch/cwang31
+export DATA_SCRATCH=/sdf/scratch/users/c/cwang31
+export DATA_ROOT=/sdf/data/lcls/ds/prj/prjcwang31
 
 
 # yum
@@ -121,10 +161,6 @@ function sshlogin {
 
 # alias to log into nersc
 alias nersc.login="ssh -i $HOME/.ssh/nersc -t -X perlmutter-p1.nersc.gov BG_COLOR=$BG_COLOR exec bash"
-
-function prompt.update {
-    export PS1="\u@\h in \w [conda:$(conda env list | grep '*' | awk '{print $1}')]\n\$ "
-}
 
 
 # Set default editor...
