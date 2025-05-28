@@ -26,25 +26,25 @@ function pslogin.login {
 ###############################################################################
 function psana.login {
     pass -c slac.unix    # A shortcut mainly used for convenience
-    ssh -t -X cwang31@psana BG_COLOR=$BG_COLOR exec bash
+    ssh -t -X cwang31@psana BG_COLOR=$BG_COLOR TERM=xterm-256color exec bash
 }
 
 
 function nersc.login {
     pass -c nersc    # A shortcut mainly used for convenience
-    ssh -t -X cwang31@perlmutter.nersc.gov BG_COLOR=$BG_COLOR exec bash
+    ssh -t -X cwang31@perlmutter.nersc.gov BG_COLOR=$BG_COLOR TERM=xterm-256color exec bash
 }
 
 
 function s3df.login {
     pass -c slac.unix    # A shortcut mainly used for convenience
-    ssh -t -X cwang31@s3dflogin.slac.stanford.edu BG_COLOR=$BG_COLOR exec bash
+    ssh -t -X cwang31@s3dflogin.slac.stanford.edu BG_COLOR=$BG_COLOR TERM=xterm-256color exec bash
 }
 
 
 function olcf.login {
     pass -c olcf.pin    # A shortcut mainly used for convenience
-    ssh -t -X cwang31@home.ccs.ornl.gov BG_COLOR=$BG_COLOR exec bash
+    ssh -t -X cwang31@home.ccs.ornl.gov BG_COLOR=$BG_COLOR TERM=xterm-256color exec bash
 }
 
 
