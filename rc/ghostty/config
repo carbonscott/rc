@@ -15,10 +15,12 @@ window-decoration = true
 macos-titlebar-style = tabs
 
 # Theme
-theme = Apple System Colors Light
+## theme = Apple System Colors Light
+theme = Builtin Solarized Light
 
 # Background opacity (1.0 = fully opaque)
-background-opacity = 0.95
+background-opacity = 0.90
+background-blur = 20
 
 # Cursor
 cursor-style = block
