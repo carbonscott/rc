@@ -1,0 +1,51 @@
+# Ghostty Configuration
+# Documentation: https://ghostty.org/docs/config
+
+# Environment variables
+env = BG_COLOR=light
+
+# Font settings
+font-family = "SF Mono"
+font-size = 14
+
+# Window appearance
+window-padding-x = 12
+window-padding-y = 12
+window-decoration = true
+macos-titlebar-style = tabs
+
+# Theme
+theme = Apple System Colors Light
+
+# Background opacity (1.0 = fully opaque)
+background-opacity = 0.95
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+cursor-opacity = 0.8
+cursor-text = cell-background
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Shell integration (enables directory tracking, command status, etc.)
+shell-integration = bash
+shell-integration-features = no-cursor,ssh-env
+
+# Quick terminal (press global hotkey to show/hide)
+# Uncomment to enable:
+# macos-option-as-alt = true
+
+# Keybindings
+keybind = ctrl+left_bracket=text:\x1b
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# Scrollback
+scrollback-limit = 10000
+
+# macOS specific
+macos-non-native-fullscreen = false
