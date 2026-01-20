@@ -42,6 +42,8 @@ quick-terminal-position = center
 
 # Keybindings
 keybind = ctrl+left_bracket=text:\x1b
+keybind = ctrl+m=text:\x0d
+keybind = ctrl+i=text:\x09
 keybind = global:opt+space=toggle_quick_terminal
 
 # Clipboard
