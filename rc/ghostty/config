@@ -5,7 +5,7 @@
 env = BG_COLOR=light
 
 # Font settings
-font-family = "SF Mono"
+font-family = "SF Mono Regular"
 font-size = 14
 
 # Window appearance
@@ -15,8 +15,7 @@ window-decoration = true
 macos-titlebar-style = tabs
 
 # Theme
-## theme = Apple System Colors Light
-theme = Builtin Solarized Light
+theme = Monokai Pro Light Sun
 
 # Background opacity (1.0 = fully opaque)
 background-opacity = 0.90
@@ -27,6 +26,7 @@ cursor-style = block
 cursor-style-blink = false
 cursor-opacity = 0.8
 cursor-text = cell-background
+cursor-color = #000000
 
 # Mouse
 mouse-hide-while-typing = true
@@ -38,9 +38,11 @@ shell-integration-features = no-cursor,ssh-env
 # Quick terminal (press global hotkey to show/hide)
 # Uncomment to enable:
 # macos-option-as-alt = true
+quick-terminal-position = center
 
 # Keybindings
 keybind = ctrl+left_bracket=text:\x1b
+keybind = global:opt+space=toggle_quick_terminal
 
 # Clipboard
 clipboard-read = allow
