@@ -271,3 +271,28 @@ function pm.sleep_off {
 function pm.sleep_on {
     sudo pmset -a disablesleep 0
 }
+
+# [[[ K8S ]]]
+kgsec ()
+{
+    kubectl get secret "$@" -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+}
+
+kex ()
+{
+    kubectl exec -it "$@" -- sh -c 'if [ -x "/bin/bash" ]; then /bin/bash; else /bin/sh; fi'
+}
+
+kubens() {
+    if [ -z "$1" ]; then
+        # If no namespace is provided, show current namespace
+        current_ns=$(kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null)
+        echo "Active namespace is \"$current_ns\"."
+    else
+        # Switch to the provided namespace
+        current_context=$(kubectl config current-context)
+        kubectl config set-context --current --namespace="$1" > /dev/null
+        echo "Context \"$current_context\" modified."
+        echo "Active namespace is \"$1\"."
+    fi
+}
