@@ -7,7 +7,7 @@ source $HOME/.vim/bundle/vim-smartfold/smartfold.vim
 source $HOME/.vim/bundle/vim-misc/vmisc.vim
 source $HOME/.vim/bundle/vim-clearhi/ClearHi.vim
 source $HOME/.vim/bundle/vim-smartinsert/smartinsert.vim
-source $HOME/.vim/bundle/vim-slashsearch/slashsearch.vim
+" source $HOME/.vim/bundle/vim-slashsearch/slashsearch.vim
 source $HOME/.vim/bundle/vim-alignchar/alignchar.vim
 source $HOME/.vim/bundle/vim-center/goto_center.vim
 source $HOME/.vim/bundle/vim-moveblock/moveblock.vim
@@ -15,6 +15,7 @@ source $HOME/.vim/bundle/vim-morespaces/morespaces.vim
 source $HOME/.vim/bundle/vim-hlsearch/hlsearch.vim
 source $HOME/.vim/bundle/vim-blinkcursor/blinkcursor.vim
 source $HOME/.vim/bundle/vim-focus/focus.vim
+source $HOME/.vim/bundle/vim-min-easymotion/plugin/min-easymotion.vim
 
 
 " NOT MINE...
