@@ -15,10 +15,10 @@ window-decoration = true
 macos-titlebar-style = tabs
 
 # Theme
-theme = Monokai Pro Light Sun
+theme = Builtin Solarized Light
 
 # Background opacity (1.0 = fully opaque)
-background-opacity = 0.90
+background-opacity = 1.0
 background-blur = 20
 
 # Cursor
