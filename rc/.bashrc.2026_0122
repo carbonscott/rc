@@ -1,0 +1,200 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# SLAC S3DF - source all files under ~/.profile.d
+if [[ -e ~/.profile.d && -n "$(ls -A ~/.profile.d/)" ]]; then
+  source <(cat $(find -L  ~/.profile.d -name '*.conf'))
+fi
+
+
+
+
+# ___/ User specific aliases and functions \___
+
+# Source bash config...
+alias sb="source ~/.bashrc"
+
+# Add bash functions...
+source ~/.vim/rc/bash_functions.sh
+
+# Add bash alias...
+source ~/.vim/rc/bash_alias.psana.sh
+
+# Claude CLI setup...
+source ~/.vim/rc/claude_setup.sh
+
+# Set default look of bash...
+export PS1='[\u@\h \W]\$ '
+
+# Turn on CLI color...
+if [[ $OSTYPE == 'darwin'* ]]; then
+    export CLICOLOR=1
+fi
+
+function prompt.update {
+    export PS1="\u@\h in [\w] (conda:$(if [ -n \"\$CONDA_DEFAULT_ENV\" ]; then echo \$CONDA_DEFAULT_ENV; fi))\n\$ "
+}
+prompt.update
+
+function conda.start {
+    echo 'Loading ana-py3...'
+    source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
+    prompt.update
+}
+
+function miniconda.start {
+    echo 'Loading /sdf/scratch/users/c/cwang31/miniforge3/bin/conda...'
+    eval "$(/sdf/scratch/users/c/cwang31/miniforge3/bin/conda shell.bash hook)"
+    prompt.update
+}
+
+function conda.ml {
+    echo 'Loading ana-py3...'
+    source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
+
+    echo 'Loading ml.cong...'
+    conda activate /sdf/scratch/users/c/cwang31/miniconda/ana-4.0.59-torch
+
+    prompt.update
+}
+
+function conda.jax {
+    echo 'Loading ana-py3...'
+    source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
+
+    echo 'Loading jax.2024_1227...'
+    conda activate /sdf/scratch/lcls/ds/prj/prjcwang31/scratch/conda/jax.2024_1227
+
+    prompt.update
+}
+
+function node.milano.srun {
+    salloc --partition milano --exclusive -A lcls:prjdat21 --time=24:00:00
+}
+
+function node.ampere.srun {
+    salloc --partition ampere --exclusive -n 4 -A lcls:prjdat21 --gpus=4 --time=24:00:00
+}
+
+function node.ada.srun {
+    salloc --partition ada --exclusive -n 10 -A lcls:prjdat21 --gpus=10 --time=24:00:00
+}
+
+
+function psocake3.start ()
+{
+    echo 'Loading psocake3...'
+    ## source /reg/g/psdm/etc/psconda.sh
+    ## conda activate ana-4.0.45-py3
+    export PATH="/sdf/home/c/cwang31/codes/psocake/app:$PATH"
+    export PYTHONPATH="/sdf/home/c/cwang31/codes/psocake:$PYTHONPATH"
+
+    # CrystFEL
+    source /sdf/home/c/cwang31/codes/psocake/plugins/setup.sh
+
+    # CCP4
+    source /sdf/group/lcls/ds/tools/ccp4-8.0/bin/ccp4.setup-sh
+
+    # XDS
+    export PATH=/sdf/group/lcls/ds/tools/XDS-INTEL64_Linux_x86_64:$PATH
+
+    ## export LOADED_PSOCAKE3="YES"
+}
+
+function btx.start ()
+{
+    conda.start
+
+    echo 'Loading btx...'
+    export PATH=/sdf/group/lcls/ds/tools/btx/stable/scripts:$PATH
+}
+
+## function conda.psana1.drp {
+##     echo 'Loading ana-py3...'
+##     source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
+## 
+##     echo 'Loading drp compatible conda...'
+##     conda activate ana-4.0.49-py3
+## }
+
+## # Conda proxy
+## export HTTP_PROXY=http://psproxy:3128
+## export HTTPS_PROXY=http://psproxy:3128
+
+# data
+export DATA_SCRATCH=/sdf/scratch/users/c/cwang31
+export DATA_ROOT=/sdf/data/lcls/ds/prj/prjcwang31
+
+export DATA_COPILOT=/sdf/group/lcls/ds/dm/apps/prod/appdata/elogCoPilot
+
+# yum
+function yum-local.start ()
+{
+    [ "${LOADED_YUMLOCAL}" = "YES" ] && echo 'yum-local has been loaded!!!' && return 0
+
+    export PATH="$HOME/.local/usr/sbin:$HOME/.local/usr/bin:$HOME/.local/bin:$PATH"
+
+    export MANPATH="$HOME/.local/usr/share/man:$MANPATH"
+
+    ## L='/lib:/lib64:/usr/lib:/usr/lib64'
+    export LD_LIBRARY_PATH="$HOME/.local/usr/lib:$HOME/.local/usr/lib64:$LD_LIBRARY_PATH"
+
+    export LOADED_YUMLOCAL="YES"
+}
+
+
+# alias to log into psana that inherit BG_COLOR variable...
+alias psana.login="ssh -t -X psana BG_COLOR=$BG_COLOR exec bash"
+function sshlogin {
+    ssh -t -X $1 BG_COLOR=$BG_COLOR exec bash
+}
+
+# alias to log into nersc
+alias nersc.login="ssh -i $HOME/.ssh/nersc -t -X perlmutter-p1.nersc.gov BG_COLOR=$BG_COLOR exec bash"
+
+
+# Set default editor...
+export VISUAL="vim"
+export EDITOR="vim"
+
+export CLAUDE_CONFIG_DIR="/sdf/data/lcls/ds/prj/prjcwang31/results/configs/.claude"
+
+function nvm.start {
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+export PATH="/sdf/home/c/cwang31/.pixi/bin:$PATH"
+export PATH=$HOME/go/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$HOME/local/nginx/sbin:$PATH
+
+function minikeyvalue.start {
+  export PATH=$HOME/go/bin:$PATH
+  export GOPATH=$HOME/go
+  export PATH=$HOME/local/nginx/sbin:$PATH
+}
+
+export DAQ_LOG_DIR=/sdf/data/lcls/ds/prj/prjdat21/results/appdata/daq_logs.db
+source /sdf/scratch/users/c/cwang31/proj-lcls-catalog/env.sh
+
+# opencode (requires nvm for npm-installed version)
+export OPENCODE_CONFIG_DIR="$HOME/.config/opencode"
+
+# Redirect caches away from HOME
+export npm_config_cache=/sdf/data/lcls/ds/prj/prjcwang31/results/configs/.cache/npm
+export XDG_CACHE_HOME=/sdf/data/lcls/ds/prj/prjcwang31/results/configs/.cache
