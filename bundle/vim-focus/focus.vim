@@ -339,31 +339,10 @@ function! s:focus_toggle()
     endif
 endfunction
 
-" [[[ RESIZE FUNCTIONS ]]]
-function! s:resize_width(delta)
-    if !exists('t:focus_main_buf')
-        return
-    endif
-    let t:focus_width = t:focus_width + a:delta
-    call s:resize_pads()
-endfunction
-
-function! s:resize_height(delta)
-    if !exists('t:focus_main_buf')
-        return
-    endif
-    let t:focus_height = t:focus_height + a:delta
-    call s:resize_pads()
-endfunction
-
 " [[[ COMMANDS AND MAPPINGS ]]]
 command! -nargs=0 FocusToggle call s:focus_toggle()
 
-nnoremap <silent> <leader>FF :call <SID>focus_toggle()<CR>
-nnoremap <silent> <leader>Fh :<C-u>call <SID>resize_width(-5 * (v:count1))<CR>
-nnoremap <silent> <leader>Fl :<C-u>call <SID>resize_width(5 * (v:count1))<CR>
-nnoremap <silent> <leader>Fj :<C-u>call <SID>resize_height(-5 * (v:count1))<CR>
-nnoremap <silent> <leader>Fk :<C-u>call <SID>resize_height(5 * (v:count1))<CR>
+nnoremap <silent> <leader>F :call <SID>focus_toggle()<CR>
 
 " [[[ GLOBAL API ]]]
 function! g:ToggleFocus()
