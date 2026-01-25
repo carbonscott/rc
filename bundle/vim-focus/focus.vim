@@ -21,128 +21,70 @@
 " OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 " WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-" [[[ COMPATIBLITY ]]]
-" If already loaded, we're done...
+" [[[ COMPATIBILITY ]]]
 if exists("loaded_Focus")
     finish
 endif
 let loaded_Focus = 1
 
-" Only supports vim 8.0 and above...
 if v:version < 800
     finish
 endif
 
-let g:focus_mode_on = 0
-
 let s:cpo_save = &cpo
 set cpo&vim
 
+" [[[ CONFIGURATION ]]]
+" Width/height can be absolute (80) or percentage ('85%')
+let g:FOCUS_W = get(g:, 'FOCUS_W', 80)
+let g:FOCUS_H = get(g:, 'FOCUS_H', '85%')
 
 " [[[ UTILITY ]]]
-function! s:padding_window(panel_size, prefix_direction)
-    " Do not list this buffer...
-    setlocal nobuflisted
-
-    " Create a padding to the left and move cursor back to previosu window...
-    setlocal nornu
-
-    " Set the width (with vertical prefix) or height...
-    execute printf('%s resize %s', a:prefix_direction, a:panel_size)
-
-    setlocal nomodifiable
-    call s:fill_window_by_emptyline()
-
-    " Get the window id...
-    let win_id = win_getid()
-
-    " Focus on the last window...
-    execute winnr('#') . 'wincmd w'
-
-    return win_id
-endfunction
-
-function! s:fill_window_by_emptyline()
-    let win_height = winheight(0) - line('$')
-    if win_height > 0
-        setlocal modifiable
-        call append(0, repeat([''], win_height))
-        normal! gg
-        setlocal nomodifiable
+" Parse size expression: absolute number or percentage string
+function! s:relsz(expr, limit)
+    if type(a:expr) == v:t_number
+        return a:expr
     endif
+    if a:expr !~ '%$'
+        return str2nr(a:expr)
+    endif
+    return a:limit * str2nr(a:expr[:-2]) / 100
 endfunction
 
 function! s:get_color(group, attr)
-  return synIDattr(synIDtrans(hlID(a:group)), a:attr)
+    return synIDattr(synIDtrans(hlID(a:group)), a:attr)
 endfunction
 
 function! s:set_color(group, attr, color)
-  let gui = has('gui_running') || has('termguicolors') && &termguicolors
-  execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
+    let gui = has('gui_running') || has('termguicolors') && &termguicolors
+    execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
 endfunction
 
-function! Getenv(env)
-" Auto switch bg color...
-" getenv() is not available in older version of vim
+function! s:getenv(env)
     let cmd = 'echo $' . a:env
     let ret = system(cmd)
     let res = substitute(ret, '\n', '', 'g')
-    if  res == '' | let res = 'NONE' | endif
-    return res
+    return res == '' ? 'NONE' : res
 endfunction
-
 
 function! s:color_echo(info, color)
-    " This function is used to prompt the warning information!
-    execute printf('hi WarningColor ctermfg = %s', a:color)
-    execute 'echohl WarningColor'
-    echon  a:info
-    execute 'echohl NONE'
-    execute 'hi clear WarningColor'
+    execute printf('hi WarningColor ctermfg=%s', a:color)
+    echohl WarningColor
+    echon a:info
+    echohl NONE
+    hi clear WarningColor
 endfunction
 
-
-function! s:setoff()
-    " Vertical separator...
-    " set fillchars+=vert:\
-    set fillchars=
-
-    " Show min infor in statusline
-    " set statusline=%h
-    set statusline=%F
-endfunction
-
-
-function! s:maps_nop()
-    let winkeys = [ "h", "j", "k", "l", "w",
-                  \ "q", "n", "c", "o", "p", "s",
-                  \ "x", "b", "v", "n", "m", "t",
-                  \ "r", "y", "u", "i", "r",
-                  \  "<Up>", "<Down>", "<Left>", "<Right>" ]
-
-    for k in winkeys
-        execute 'nnoremap <c-w>'.k.' <nop>'
-        execute 'nnoremap <c-w>'.toupper(k).' <nop>'
-        execute 'nnoremap <c-w>'.'<c-'.k.'>'.' <nop>'
-    endfor
-endfunction
-
-
-" [RAND STRING]
-" Pseudo-constants for the LCG parameters
+" [[[ RANDOM STRING ]]]
 let s:LCG_MULTIPLIER = 1664525
 let s:LCG_INCREMENT  = 1013904223
 let s:LCG_MODULUS    = 4294967296
-
-" Seed variable
 let s:seed = -1
 
-" Function to initialize the seed based on high-resolution timer
 function! s:init_seed()
-    let s:seed = reltime()[1]  " Use the microsecond part of the current time
+    let s:seed = reltime()[1]
 endfunction
 
-" Linear Congruential Generator (LCG) for pseudorandom number generation
 function! s:rand()
     if s:seed == -1
         call s:init_seed()
@@ -154,159 +96,255 @@ endfunction
 function! s:rand_str(num)
     let rand_list = []
     for i in range(a:num)
-        " 26 char long, starting with 65 (=A in ascii)...
         let rand_list = rand_list + [s:rand() % 26 + 65]
     endfor
-
-    let rand_str = join(map(rand_list, {_, val -> nr2char(val)}), '')
-
-    return rand_str
+    return join(map(rand_list, {_, val -> nr2char(val)}), '')
 endfunction
 
+" [[[ CORE FUNCTIONS ]]]
+function! s:tranquilize()
+    let color_items = ['VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
+    let bg_color = s:getenv('BG_COLOR')
+    let fg_color = bg_color == 'light' ? 'white' : 'black'
+    for grp in color_items
+        call s:set_color(grp, 'fg', fg_color)
+        call s:set_color(grp, 'bg', 'NONE')
+        call s:set_color(grp, '', 'NONE')
+    endfor
+endfunction
 
-" [[[ MAIN ]]]
-function! <SID>focus_toggle()
-    " Toggle it off if focus mode is already on???
-    if g:focus_mode_on
-        if exists("t:win_left")   | call s:kill_win( t:win_left )   | endif
-        if exists("t:win_right")  | call s:kill_win( t:win_right )  | endif
-        if exists("t:win_top")    | call s:kill_win( t:win_top )    | endif
-        if exists("t:win_bottom") | call s:kill_win( t:win_bottom ) | endif
+function! s:repel()
+    " Bounce back if cursor enters a padding window
+    if exists('t:focus_main_win') && win_getid() != t:focus_main_win
+        let cur_win = win_getid()
+        if (exists('t:win_left') && cur_win == t:win_left) ||
+         \ (exists('t:win_right') && cur_win == t:win_right) ||
+         \ (exists('t:win_top') && cur_win == t:win_top) ||
+         \ (exists('t:win_bottom') && cur_win == t:win_bottom)
+            call win_gotoid(t:focus_main_win)
+        endif
+    endif
+endfunction
 
-        let g:focus_mode_on = !g:focus_mode_on
-        redraw
-        echom 'Focus mode is off...'
-
+function! s:resize_pads()
+    if !exists('t:focus_main_win')
         return
     endif
 
-    " Compute the panel size...
-    " The center window should have 90 characters long
-    let win_center_width = exists("g:FOCUS_W") ? g:FOCUS_W : 90
-    let win_width = winwidth(0)
-    let panel_width = ( win_width - win_center_width ) / 2
+    let win_width = &columns
+    let win_height = &lines - 1  " Account for command line
+    let center_width = s:relsz(t:focus_width, win_width)
+    let center_height = s:relsz(t:focus_height, win_height)
+    let panel_width = (win_width - center_width) / 2
+    let panel_height = (win_height - center_height) / 2
 
-    " The center window should have 50 characters tall
-    let win_center_height = exists("g:FOCUS_H") ? g:FOCUS_H : 50
-    let win_height = winheight(0)
-    let panel_height = ( win_height - win_center_height ) / 2
-
-    " Short-circuit if win_width is not large enough to hold the center window...
-    let adjusted_width = 1
-    if panel_width <= 0
-        redraw
-        let warn_msg = printf('The window width is less than %s.', win_center_width)
-        call s:color_echo( warn_msg, 'red' )
-        let adjusted_width = 0
+    if exists('t:win_left') && win_id2win(t:win_left) > 0
+        call win_execute(t:win_left, 'vertical resize ' . max([1, panel_width]))
     endif
-
-    " Short-circuit if win_height is not large enough to hold the center window...
-    let adjusted_height = 1
-    if panel_height <= 0
-        redraw
-        let warn_msg = printf('The window height is less than %s.', win_center_height)
-        call s:color_echo( warn_msg, 'red' )
-        let adjusted_height = 0
+    if exists('t:win_right') && win_id2win(t:win_right) > 0
+        call win_execute(t:win_right, 'vertical resize ' . max([1, panel_width]))
     endif
-
-    " Fetch the current filename...
-    let g:buffer_current     = expand('%') == '' ? s:rand_str(16) : expand('%')
-    let l:buffer_placeholder = "." . g:buffer_current . "." . s:rand_str(16)
-
-    " Split windows...
-    if adjusted_width == 1
-        " ...Left
-        " vertical topleft new
-        let split_cmd = 'vertical topleft split ' . l:buffer_placeholder
-        call execute(split_cmd)
-        let t:win_left = s:padding_window(panel_width, "vertical")
-
-        " ...Right
-        " vertical botright new
-        let split_cmd = 'vertical botright split ' . l:buffer_placeholder
-        call execute(split_cmd)
-        let t:win_right = s:padding_window(panel_width, "vertical")
+    if exists('t:win_top') && win_id2win(t:win_top) > 0
+        call win_execute(t:win_top, 'resize ' . max([1, panel_height]))
     endif
-
-    if adjusted_height == 1
-        " ...Top
-        " split new
-        let split_cmd = 'split ' . l:buffer_placeholder
-        call execute(split_cmd)
-        let t:win_top = s:padding_window(panel_height, "")
-
-        " ...Bottom
-        " rightbelow split new
-        let split_cmd = 'rightbelow split ' . l:buffer_placeholder
-        call execute(split_cmd)
-        let t:win_bottom = s:padding_window(panel_height, "")
-    endif
-
-    " Apply other transformation...
-    if adjusted_width + adjusted_height > 0
-        " Turn off settings...
-        call s:setoff()
-
-        " Set colors for the follow items...
-        let s:color_items = [ 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn' ]
-        "                                                 ^^^^^^^^^^^^
-        " StatueLine non-current window.........................:
-
-        " Auto choose bg color based on the terminal setting...
-        let g:BG_COLOR = Getenv('BG_COLOR')
-        let s:fg_color = g:BG_COLOR == 'light' ? 'white' : 'black'
-        for grp in s:color_items
-            call s:set_color(grp, 'fg', s:fg_color)
-            call s:set_color(grp, 'bg', 'NONE')
-            call s:set_color(grp, ''  , 'NONE')    " Everything else
-        endfor
-
-        " Turn off mouse interaction...
-        setlocal mouse-=a
-
-        " Turn off relative number...
-        " setlocal nornu
-
-        " Disable cursor jumping with navigation key...
-        call s:maps_nop()
-
-        let g:focus_mode_on = !g:focus_mode_on
-
-        redraw
-        echom 'Focus mode is on...'
+    if exists('t:win_bottom') && win_id2win(t:win_bottom) > 0
+        call win_execute(t:win_bottom, 'resize ' . max([1, panel_height]))
     endif
 endfunction
 
+function! s:padding_window(panel_size, prefix_direction)
+    setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+    setlocal nornu nonu nocursorline nocursorcolumn winfixwidth winfixheight
+    setlocal statusline=\
+
+    execute printf('%s resize %s', a:prefix_direction, a:panel_size)
+
+    " Fill with empty lines
+    let win_height = winheight(0) - line('$')
+    if win_height > 0
+        setlocal modifiable
+        call append(0, repeat([''], win_height))
+        normal! gg
+        setlocal nomodifiable
+    endif
+
+    let win_id = win_getid()
+    execute winnr('#') . 'wincmd w'
+    return win_id
+endfunction
 
 function! s:kill_win(win_id)
-    " Go to the window to close...
-    let is_ok = win_gotoid( a:win_id )
-
-    " Delete the buffer of the window...
+    let is_ok = win_gotoid(a:win_id)
     if is_ok
         bdelete!
     endif
 endfunction
 
+function! s:save_settings()
+    let t:focus_revert = {
+        \ 'fillchars': &fillchars,
+        \ 'statusline': &statusline,
+        \ 'mouse': &mouse
+        \ }
+    let t:focus_cursor = [line('.'), col('.')]
+endfunction
 
-" [[[ CUSTOMIZE COMMAND ]]]
-command! -nargs=0 FocusToggle call <SID>focus_toggle()
-nnoremap ZQ :qa!<cr>
+function! s:restore_settings()
+    if exists('t:focus_revert')
+        let &fillchars = t:focus_revert.fillchars
+        let &statusline = t:focus_revert.statusline
+        let &mouse = t:focus_revert.mouse
+    endif
+    if exists('t:focus_cursor')
+        call cursor(t:focus_cursor[0], t:focus_cursor[1])
+    endif
+    " Restore colors by reloading colorscheme
+    if exists('g:colors_name')
+        execute 'colorscheme ' . g:colors_name
+    endif
+endfunction
 
+function! s:setup_autocmds()
+    augroup Focus
+        autocmd!
+        autocmd VimResized * call s:resize_pads()
+        autocmd ColorScheme * call s:tranquilize()
+        autocmd WinEnter * call s:repel()
+    augroup END
+endfunction
 
-" [[[ CUSTOMIZE SHORTCUT ]]]
-nnoremap [F :call <SID>focus_toggle()<CR>
+function! s:clear_autocmds()
+    augroup Focus
+        autocmd!
+    augroup END
+endfunction
+
+" [[[ MAIN ]]]
+function! s:focus_on()
+    let win_width = winwidth(0)
+    let win_height = winheight(0)
+
+    " Store current dimensions (convert percentage to absolute for resizing)
+    let t:focus_width = s:relsz(g:FOCUS_W, win_width)
+    let t:focus_height = s:relsz(g:FOCUS_H, win_height)
+
+    let panel_width = (win_width - t:focus_width) / 2
+    let panel_height = (win_height - t:focus_height) / 2
+
+    " Warn if window too small
+    let can_width = 1
+    let can_height = 1
+    if panel_width <= 0
+        call s:color_echo(printf('Window width is less than %s.', t:focus_width), 'red')
+        let can_width = 0
+    endif
+    if panel_height <= 0
+        call s:color_echo(printf('Window height is less than %s.', t:focus_height), 'red')
+        let can_height = 0
+    endif
+    if !can_width && !can_height
+        return
+    endif
+
+    " Save settings and cursor
+    call s:save_settings()
+    let t:focus_main_win = win_getid()
+
+    " Generate placeholder buffer name
+    let buffer_name = expand('%') == '' ? s:rand_str(16) : expand('%')
+    let placeholder = '.' . buffer_name . '.' . s:rand_str(16)
+
+    " Create padding windows
+    if can_width
+        execute 'vertical topleft split ' . placeholder
+        let t:win_left = s:padding_window(panel_width, 'vertical')
+
+        execute 'vertical botright split ' . placeholder
+        let t:win_right = s:padding_window(panel_width, 'vertical')
+    endif
+
+    if can_height
+        execute 'topleft split ' . placeholder
+        let t:win_top = s:padding_window(panel_height, '')
+
+        execute 'rightbelow split ' . placeholder
+        let t:win_bottom = s:padding_window(panel_height, '')
+    endif
+
+    " Apply settings
+    set fillchars=
+    set statusline=%F
+    setlocal mouse-=a
+
+    " Apply colors and setup autocmds
+    call s:tranquilize()
+    call s:setup_autocmds()
+
+    redraw
+    echom 'Focus mode is on'
+endfunction
+
+function! s:focus_off()
+    " Clear autocmds first
+    call s:clear_autocmds()
+
+    " Close padding windows
+    if exists('t:win_left')   | call s:kill_win(t:win_left)   | endif
+    if exists('t:win_right')  | call s:kill_win(t:win_right)  | endif
+    if exists('t:win_top')    | call s:kill_win(t:win_top)    | endif
+    if exists('t:win_bottom') | call s:kill_win(t:win_bottom) | endif
+
+    " Restore settings
+    call s:restore_settings()
+
+    " Clean up tab variables
+    unlet! t:win_left t:win_right t:win_top t:win_bottom
+    unlet! t:focus_main_win t:focus_revert t:focus_cursor
+    unlet! t:focus_width t:focus_height
+
+    redraw
+    echom 'Focus mode is off'
+endfunction
+
+function! s:focus_toggle()
+    if exists('#Focus#VimResized')
+        call s:focus_off()
+    else
+        call s:focus_on()
+    endif
+endfunction
+
+" [[[ RESIZE FUNCTIONS ]]]
+function! s:resize_width(delta)
+    if !exists('t:focus_main_win')
+        return
+    endif
+    let t:focus_width = t:focus_width + a:delta
+    call s:resize_pads()
+endfunction
+
+function! s:resize_height(delta)
+    if !exists('t:focus_main_win')
+        return
+    endif
+    let t:focus_height = t:focus_height + a:delta
+    call s:resize_pads()
+endfunction
+
+" [[[ COMMANDS AND MAPPINGS ]]]
+command! -nargs=0 FocusToggle call s:focus_toggle()
+
+nnoremap <silent> <leader>FF :call <SID>focus_toggle()<CR>
+nnoremap <silent> <leader>Fh :<C-u>call <SID>resize_width(-5 * (v:count1))<CR>
+nnoremap <silent> <leader>Fl :<C-u>call <SID>resize_width(5 * (v:count1))<CR>
+nnoremap <silent> <leader>Fj :<C-u>call <SID>resize_height(-5 * (v:count1))<CR>
+nnoremap <silent> <leader>Fk :<C-u>call <SID>resize_height(5 * (v:count1))<CR>
 
 " [[[ GLOBAL API ]]]
 function! g:ToggleFocus()
-    call <SID>focus_toggle()
+    call s:focus_toggle()
 endfunction
-
-" [[[ MY PREFERENCE ]]]
-let g:FOCUS_W=120
-let g:FOCUS_H=120
 
 " [[[ END ]]]
 let &cpo = s:cpo_save
 unlet s:cpo_save
-finish
