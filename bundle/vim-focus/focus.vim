@@ -27,7 +27,7 @@ if exists("loaded_Focus")
 endif
 let loaded_Focus = 1
 
-if v:version < 800
+if v:version < 704
     finish
 endif
 
@@ -42,7 +42,8 @@ let g:FOCUS_H = get(g:, 'FOCUS_H', '85%')
 " [[[ UTILITY ]]]
 " Parse size expression: absolute number or percentage string
 function! s:relsz(expr, limit)
-    if type(a:expr) == v:t_number
+    " type() == 0 means number (v:t_number requires Vim 8.0+)
+    if type(a:expr) == 0
         return a:expr
     endif
     if a:expr !~ '%$'
@@ -98,7 +99,29 @@ function! s:rand_str(num)
     for i in range(a:num)
         let rand_list = rand_list + [s:rand() % 26 + 65]
     endfor
-    return join(map(rand_list, {_, val -> nr2char(val)}), '')
+    " Avoid lambda syntax for Vim 7.4 compatibility
+    return join(map(rand_list, 'nr2char(v:val)'), '')
+endfunction
+
+" [[[ WINDOW HELPERS (Vim 7.4 compatible) ]]]
+" Execute command in window containing buffer, then return
+function! s:win_do(bufnr, cmd)
+    let winnr = bufwinnr(a:bufnr)
+    if winnr > 0
+        let cur = winnr()
+        execute winnr . 'wincmd w'
+        execute a:cmd
+        execute cur . 'wincmd w'
+    endif
+endfunction
+
+" Close window containing buffer and delete the buffer
+function! s:win_close(bufnr)
+    let winnr = bufwinnr(a:bufnr)
+    if winnr > 0
+        execute winnr . 'wincmd w'
+        bdelete!
+    endif
 endfunction
 
 " [[[ CORE FUNCTIONS ]]]
@@ -115,19 +138,22 @@ endfunction
 
 function! s:repel()
     " Bounce back if cursor enters a padding window
-    if exists('t:focus_main_win') && win_getid() != t:focus_main_win
-        let cur_win = win_getid()
-        if (exists('t:win_left') && cur_win == t:win_left) ||
-         \ (exists('t:win_right') && cur_win == t:win_right) ||
-         \ (exists('t:win_top') && cur_win == t:win_top) ||
-         \ (exists('t:win_bottom') && cur_win == t:win_bottom)
-            call win_gotoid(t:focus_main_win)
+    if exists('t:focus_main_buf')
+        let cur = winnr()
+        let main_winnr = bufwinnr(t:focus_main_buf)
+        if cur != main_winnr
+            if (exists('t:buf_left') && cur == bufwinnr(t:buf_left)) ||
+             \ (exists('t:buf_right') && cur == bufwinnr(t:buf_right)) ||
+             \ (exists('t:buf_top') && cur == bufwinnr(t:buf_top)) ||
+             \ (exists('t:buf_bottom') && cur == bufwinnr(t:buf_bottom))
+                execute main_winnr . 'wincmd w'
+            endif
         endif
     endif
 endfunction
 
 function! s:resize_pads()
-    if !exists('t:focus_main_win')
+    if !exists('t:focus_main_buf')
         return
     endif
 
@@ -138,17 +164,17 @@ function! s:resize_pads()
     let panel_width = (win_width - center_width) / 2
     let panel_height = (win_height - center_height) / 2
 
-    if exists('t:win_left') && win_id2win(t:win_left) > 0
-        call win_execute(t:win_left, 'vertical resize ' . max([1, panel_width]))
+    if exists('t:buf_left')
+        call s:win_do(t:buf_left, 'vertical resize ' . max([1, panel_width]))
     endif
-    if exists('t:win_right') && win_id2win(t:win_right) > 0
-        call win_execute(t:win_right, 'vertical resize ' . max([1, panel_width]))
+    if exists('t:buf_right')
+        call s:win_do(t:buf_right, 'vertical resize ' . max([1, panel_width]))
     endif
-    if exists('t:win_top') && win_id2win(t:win_top) > 0
-        call win_execute(t:win_top, 'resize ' . max([1, panel_height]))
+    if exists('t:buf_top')
+        call s:win_do(t:buf_top, 'resize ' . max([1, panel_height]))
     endif
-    if exists('t:win_bottom') && win_id2win(t:win_bottom) > 0
-        call win_execute(t:win_bottom, 'resize ' . max([1, panel_height]))
+    if exists('t:buf_bottom')
+        call s:win_do(t:buf_bottom, 'resize ' . max([1, panel_height]))
     endif
 endfunction
 
@@ -168,17 +194,11 @@ function! s:padding_window(panel_size, prefix_direction)
         setlocal nomodifiable
     endif
 
-    let win_id = win_getid()
+    let bufnr = bufnr('%')
     execute winnr('#') . 'wincmd w'
-    return win_id
+    return bufnr
 endfunction
 
-function! s:kill_win(win_id)
-    let is_ok = win_gotoid(a:win_id)
-    if is_ok
-        bdelete!
-    endif
-endfunction
 
 function! s:save_settings()
     let t:focus_revert = {
@@ -252,27 +272,27 @@ function! s:focus_on()
 
     " Save settings and cursor
     call s:save_settings()
-    let t:focus_main_win = win_getid()
+    let t:focus_main_buf = bufnr('%')
 
     " Generate placeholder buffer name
     let buffer_name = expand('%') == '' ? s:rand_str(16) : expand('%')
     let placeholder = '.' . buffer_name . '.' . s:rand_str(16)
 
-    " Create padding windows
+    " Create padding windows (store buffer numbers, not window numbers)
     if can_width
         execute 'vertical topleft split ' . placeholder
-        let t:win_left = s:padding_window(panel_width, 'vertical')
+        let t:buf_left = s:padding_window(panel_width, 'vertical')
 
         execute 'vertical botright split ' . placeholder
-        let t:win_right = s:padding_window(panel_width, 'vertical')
+        let t:buf_right = s:padding_window(panel_width, 'vertical')
     endif
 
     if can_height
         execute 'topleft split ' . placeholder
-        let t:win_top = s:padding_window(panel_height, '')
+        let t:buf_top = s:padding_window(panel_height, '')
 
         execute 'rightbelow split ' . placeholder
-        let t:win_bottom = s:padding_window(panel_height, '')
+        let t:buf_bottom = s:padding_window(panel_height, '')
     endif
 
     " Apply settings
@@ -293,18 +313,18 @@ function! s:focus_off()
     " Clear autocmds first
     call s:clear_autocmds()
 
-    " Close padding windows
-    if exists('t:win_left')   | call s:kill_win(t:win_left)   | endif
-    if exists('t:win_right')  | call s:kill_win(t:win_right)  | endif
-    if exists('t:win_top')    | call s:kill_win(t:win_top)    | endif
-    if exists('t:win_bottom') | call s:kill_win(t:win_bottom) | endif
+    " Close padding windows (using buffer numbers, order doesn't matter)
+    if exists('t:buf_bottom') | call s:win_close(t:buf_bottom) | endif
+    if exists('t:buf_top')    | call s:win_close(t:buf_top)    | endif
+    if exists('t:buf_right')  | call s:win_close(t:buf_right)  | endif
+    if exists('t:buf_left')   | call s:win_close(t:buf_left)   | endif
 
     " Restore settings
     call s:restore_settings()
 
     " Clean up tab variables
-    unlet! t:win_left t:win_right t:win_top t:win_bottom
-    unlet! t:focus_main_win t:focus_revert t:focus_cursor
+    unlet! t:buf_left t:buf_right t:buf_top t:buf_bottom
+    unlet! t:focus_main_buf t:focus_revert t:focus_cursor
     unlet! t:focus_width t:focus_height
 
     redraw
@@ -321,7 +341,7 @@ endfunction
 
 " [[[ RESIZE FUNCTIONS ]]]
 function! s:resize_width(delta)
-    if !exists('t:focus_main_win')
+    if !exists('t:focus_main_buf')
         return
     endif
     let t:focus_width = t:focus_width + a:delta
@@ -329,7 +349,7 @@ function! s:resize_width(delta)
 endfunction
 
 function! s:resize_height(delta)
-    if !exists('t:focus_main_win')
+    if !exists('t:focus_main_buf')
         return
     endif
     let t:focus_height = t:focus_height + a:delta
