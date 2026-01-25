@@ -138,6 +138,34 @@ function! s:SortByDistance(targets, cur_line, cur_col)
   return map(scored, 'v:val[1]')
 endfunction
 
+" Collect line targets (first non-blank char of each visible line)
+function! s:CollectLineTargets()
+  let targets = []
+  let [top, bottom] = s:GetVisibleBounds()
+  let cur_line = line('.')
+
+  for lnum in range(top, bottom)
+    " Skip current line
+    if lnum == cur_line
+      continue
+    endif
+
+    let line = getline(lnum)
+    " Find first non-blank character
+    let col = match(line, '\S') + 1
+    if col == 0
+      " Empty or whitespace-only line - use column 1
+      let col = 1
+    endif
+    call add(targets, [lnum, col])
+  endfor
+
+  " Sort by distance from cursor
+  let targets = s:SortByDistance(targets, cur_line, col('.'))
+
+  return targets
+endfunction
+
 " Assign label keys to targets
 " Returns: list of [label_string, [line, col]]
 function! s:AssignLabels(targets)
@@ -424,11 +452,50 @@ function! s:VisualJump()
   call s:EasyMotion(escaped, 2, 'v')
 endfunction
 
+function! s:LineJump()
+  let targets = s:CollectLineTargets()
+
+  if empty(targets)
+    echo 'No lines'
+    return
+  endif
+
+  let labels = s:AssignLabels(targets)
+  call s:ShowLabels(labels)
+  call s:PromptAndJump(labels, 'n')
+endfunction
+
+function! s:VisualLineJump()
+  let targets = s:CollectLineTargets()
+
+  if empty(targets)
+    echo 'No lines'
+    normal! gv
+    return
+  endif
+
+  let labels = s:AssignLabels(targets)
+  call s:ShowLabels(labels)
+  call s:PromptAndJump(labels, 'v')
+endfunction
+
+function! s:WordJump()
+  call s:EasyMotion('\<\w', 2)
+endfunction
+
+function! s:VisualWordJump()
+  call s:EasyMotion('\<\w', 2, 'v')
+endfunction
+
 " ============================================================================
 " Mappings
 " ============================================================================
 
 nnoremap <silent> <Leader>f :call <SID>Jump()<CR>
 xnoremap <silent> <Leader>f :<C-u>call <SID>VisualJump()<CR>
+nnoremap <silent> <Leader>l :call <SID>LineJump()<CR>
+xnoremap <silent> <Leader>l :<C-u>call <SID>VisualLineJump()<CR>
+nnoremap <silent> <Leader>w :call <SID>WordJump()<CR>
+xnoremap <silent> <Leader>w :<C-u>call <SID>VisualWordJump()<CR>
 
 " vim: set sw=2 ts=2 et:
