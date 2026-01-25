@@ -38,7 +38,7 @@ let s:Visual_ctermfg = { "light" : 255, "dark" : 15, w:null : 'NONE' }
 execute  'hi Visual ctermfg= ' . s:Visual_ctermfg[s:BG_COLOR] . ' ctermbg=33'
 
 " Column...
-hi ColorColumn ctermbg=magenta
+hi ColorColumn ctermfg=white ctermbg=magenta
 call matchadd('ColorColumn','\%81v',200)
 
 " Completion...
