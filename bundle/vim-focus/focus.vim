@@ -206,7 +206,8 @@ function! s:save_settings()
         \ 'statusline': &statusline,
         \ 'mouse': &mouse,
         \ 'number': &number,
-        \ 'relativenumber': &relativenumber
+        \ 'relativenumber': &relativenumber,
+        \ 'textwidth': &textwidth
         \ }
     let t:focus_cursor = [line('.'), col('.')]
 endfunction
@@ -218,6 +219,7 @@ function! s:restore_settings()
         let &mouse = t:focus_revert.mouse
         let &number = t:focus_revert.number
         let &relativenumber = t:focus_revert.relativenumber
+        let &textwidth = t:focus_revert.textwidth
     endif
     if exists('t:focus_cursor')
         call cursor(t:focus_cursor[0], t:focus_cursor[1])
@@ -300,6 +302,7 @@ function! s:focus_on()
     set statusline=%F
     setlocal mouse-=a
     setlocal nonumber norelativenumber
+    set textwidth=0
 
     " Apply colors and setup autocmds
     call s:tranquilize()
