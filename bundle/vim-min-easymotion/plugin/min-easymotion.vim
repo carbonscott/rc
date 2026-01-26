@@ -324,6 +324,9 @@ endfunction
 " Prompt user and handle jump
 " mode: 'n' = normal, 'v' = visual
 function! s:PromptAndJump(labels, mode)
+  " Save cursor position so we can restore it if user cancels
+  let save_cursor = getpos('.')
+
   " Build lookup tables
   let single_keys = {}
   let group_keys = {}
@@ -394,9 +397,11 @@ function! s:PromptAndJump(labels, mode)
       normal! gv
     endif
 
-    " Jump if we have a valid target
+    " Jump if we have a valid target, otherwise restore cursor
     if !empty(jump_pos)
       call cursor(jump_pos[0], jump_pos[1])
+    else
+      call setpos('.', save_cursor)
     endif
   endtry
 endfunction
