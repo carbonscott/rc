@@ -52,6 +52,20 @@ function! s:relsz(expr, limit)
     return a:limit * str2nr(a:expr[:-2]) / 100
 endfunction
 
+" Parse named parameters from command args (e.g., "w=80 h=50%")
+function! s:parse_focus_args(args)
+    let result = {'w': '', 'h': ''}
+    let w_match = matchstr(a:args, 'w=\zs[0-9]\+%\?')
+    if w_match != ''
+        let result.w = w_match
+    endif
+    let h_match = matchstr(a:args, 'h=\zs[0-9]\+%\?')
+    if h_match != ''
+        let result.h = h_match
+    endif
+    return result
+endfunction
+
 function! s:get_color(group, attr)
     return synIDattr(synIDtrans(hlID(a:group)), a:attr)
 endfunction
@@ -207,9 +221,18 @@ function! s:save_settings()
         \ 'mouse': &mouse,
         \ 'number': &number,
         \ 'relativenumber': &relativenumber,
-        \ 'textwidth': &textwidth
+        \ 'textwidth': &textwidth,
+        \ 'colorcolumn_matches': []
         \ }
     let t:focus_cursor = [line('.'), col('.')]
+
+    " Save and remove existing ColorColumn matches
+    for m in getmatches()
+        if m.group ==# 'ColorColumn'
+            call add(t:focus_revert.colorcolumn_matches, m)
+            call matchdelete(m.id)
+        endif
+    endfor
 endfunction
 
 function! s:restore_settings()
@@ -220,6 +243,14 @@ function! s:restore_settings()
         let &number = t:focus_revert.number
         let &relativenumber = t:focus_revert.relativenumber
         let &textwidth = t:focus_revert.textwidth
+
+        " Restore ColorColumn matches
+        if exists('t:focus_cc_match')
+            silent! call matchdelete(t:focus_cc_match)
+        endif
+        for m in t:focus_revert.colorcolumn_matches
+            call matchadd(m.group, m.pattern, m.priority)
+        endfor
     endif
     if exists('t:focus_cursor')
         call cursor(t:focus_cursor[0], t:focus_cursor[1])
@@ -246,13 +277,17 @@ function! s:clear_autocmds()
 endfunction
 
 " [[[ MAIN ]]]
-function! s:focus_on()
+" Optional params: a:1 = width, a:2 = height (empty string means use default)
+function! s:focus_on(...)
+    let width = a:0 >= 1 && a:1 != '' ? a:1 : g:FOCUS_W
+    let height = a:0 >= 2 && a:2 != '' ? a:2 : g:FOCUS_H
+
     let win_width = winwidth(0)
     let win_height = winheight(0)
 
     " Store current dimensions (convert percentage to absolute for resizing)
-    let t:focus_width = s:relsz(g:FOCUS_W, win_width)
-    let t:focus_height = s:relsz(g:FOCUS_H, win_height)
+    let t:focus_width = s:relsz(width, win_width)
+    let t:focus_height = s:relsz(height, win_height)
 
     let panel_width = (win_width - t:focus_width) / 2
     let panel_height = (win_height - t:focus_height) / 2
@@ -275,6 +310,9 @@ function! s:focus_on()
     " Save settings and cursor
     call s:save_settings()
     let t:focus_main_buf = bufnr('%')
+
+    " Add ColorColumn at width+1 to show line length limit
+    let t:focus_cc_match = matchadd('ColorColumn', '\%' . (t:focus_width + 1) . 'v', 200)
 
     " Generate placeholder buffer name
     let buffer_name = expand('%') == '' ? s:rand_str(16) : expand('%')
@@ -328,28 +366,61 @@ function! s:focus_off()
     " Clean up tab variables
     unlet! t:buf_left t:buf_right t:buf_top t:buf_bottom
     unlet! t:focus_main_buf t:focus_revert t:focus_cursor
-    unlet! t:focus_width t:focus_height
+    unlet! t:focus_width t:focus_height t:focus_cc_match
 
     redraw
     echom 'Focus mode is off'
 endfunction
 
-function! s:focus_toggle()
-    if exists('#Focus#VimResized')
-        call s:focus_off()
-    else
-        call s:focus_on()
+" Main dispatcher: handles :Focus command with optional named params
+function! s:focus(args)
+    let is_active = exists('#Focus#VimResized')
+
+    " No arguments: toggle mode
+    if a:args == ''
+        if is_active
+            call s:focus_off()
+        else
+            call s:focus_on()
+        endif
+        return
     endif
+
+    " Has arguments: parse and enter focus mode
+    let params = s:parse_focus_args(a:args)
+
+    " If already in focus mode, exit first then re-enter with new dimensions
+    if is_active
+        call s:focus_off()
+    endif
+
+    call s:focus_on(params.w, params.h)
 endfunction
 
 " [[[ COMMANDS AND MAPPINGS ]]]
-command! -nargs=0 FocusToggle call s:focus_toggle()
+" :Focus [w=WIDTH] [h=HEIGHT] - enter focus mode with optional dimensions
+" :Focus (no args) - toggle focus mode
+command! -nargs=* Focus call s:focus(<q-args>)
 
-nnoremap <silent> <leader>F :call <SID>focus_toggle()<CR>
+" Explicit exit command
+command! -nargs=0 FocusOff call s:focus_off()
+
+" Backwards compatibility
+command! -nargs=0 FocusToggle call s:focus('')
+
+nnoremap <silent> <leader>F :Focus<CR>
 
 " [[[ GLOBAL API ]]]
 function! g:ToggleFocus()
-    call s:focus_toggle()
+    call s:focus('')
+endfunction
+
+function! g:Focus(...)
+    if a:0 == 0
+        call s:focus('')
+    else
+        call s:focus(a:1)
+    endif
 endfunction
 
 " [[[ END ]]]
