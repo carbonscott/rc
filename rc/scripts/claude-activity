@@ -1,4 +1,4 @@
-#!/usr/bin/env -S UV_CACHE_DIR=/sdf/data/lcls/ds/prj/prjdat21/results/cwang31/.UV_CACHE uv run --script
+#!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.10"
 # dependencies = ["textual>=0.90"]
