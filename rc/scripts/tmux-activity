@@ -263,7 +263,7 @@ class TmuxActivityApp(App):
     BINDINGS = [
         Binding("q", "quit", "Quit"),
         Binding("r", "refresh", "Refresh"),
-        Binding("k", "kill_session", "Kill"),
+        Binding("x", "kill_session", "Kill"),
         Binding("slash", "search", "Search"),
         Binding("escape", "close_search", "Close search", show=False),
     ]
@@ -390,8 +390,8 @@ class TmuxActivityApp(App):
             self._window_cache[key] = get_windows(sess["socket"], sess["name"])
         return self._window_cache[key]
 
-    def _search_is_active(self) -> bool:
-        return "visible" in self.query_one("#search-bar", Input).classes
+    def _search_has_focus(self) -> bool:
+        return self.query_one("#search-bar", Input).has_focus
 
     # --- Key handlers ---
 
@@ -408,8 +408,8 @@ class TmuxActivityApp(App):
         elif row["type"] == "window":
             self._jump_to_window(row["session"], row["window"])
 
-    def key_right(self) -> None:
-        """Expand session."""
+    def _expand_row(self) -> None:
+        """Expand the current session row."""
         table = self.query_one("#main-table", DataTable)
         idx = table.cursor_row
         if idx is None or idx >= len(self._row_data):
@@ -421,8 +421,8 @@ class TmuxActivityApp(App):
                 self._expanded.add(key)
                 self._rebuild_table()
 
-    def key_left(self) -> None:
-        """Collapse session."""
+    def _collapse_row(self) -> None:
+        """Collapse the current session row (or parent if on a window)."""
         table = self.query_one("#main-table", DataTable)
         idx = table.cursor_row
         if idx is None or idx >= len(self._row_data):
@@ -434,16 +434,45 @@ class TmuxActivityApp(App):
                 self._expanded.discard(key)
                 self._rebuild_table()
         elif row["type"] == "window":
-            # Collapse parent session and move cursor to it
             key = self._session_key(row["session"])
             self._expanded.discard(key)
             self._rebuild_table()
-            # Find the parent session row
             for i, r in enumerate(self._row_data):
                 if r["type"] == "session" and self._session_key(r["session"]) == key:
                     table = self.query_one("#main-table", DataTable)
                     table.move_cursor(row=i)
                     break
+
+    def key_right(self) -> None:
+        self._expand_row()
+
+    def key_left(self) -> None:
+        self._collapse_row()
+
+    def key_l(self) -> None:
+        if not self._search_has_focus():
+            self._expand_row()
+
+    def key_h(self) -> None:
+        if not self._search_has_focus():
+            self._collapse_row()
+
+    def key_j(self) -> None:
+        if not self._search_has_focus():
+            self.query_one("#main-table", DataTable).action_cursor_down()
+
+    def key_k(self) -> None:
+        if not self._search_has_focus():
+            self.query_one("#main-table", DataTable).action_cursor_up()
+
+    def key_g(self) -> None:
+        if not self._search_has_focus():
+            self.query_one("#main-table", DataTable).move_cursor(row=0)
+
+    def key_upper_g(self) -> None:
+        if not self._search_has_focus():
+            table = self.query_one("#main-table", DataTable)
+            table.move_cursor(row=table.row_count - 1)
 
     def _toggle_session(self, sess: dict) -> None:
         key = self._session_key(sess)
@@ -473,12 +502,12 @@ class TmuxActivityApp(App):
             self.exit(result=("copy", cmd))
 
     def action_quit(self) -> None:
-        if self._search_is_active():
+        if self._search_has_focus():
             return
-        super().action_quit()
+        self.exit()
 
     def action_kill_session(self) -> None:
-        if self._search_is_active():
+        if self._search_has_focus():
             return
         table = self.query_one("#main-table", DataTable)
         idx = table.cursor_row
@@ -522,9 +551,13 @@ class TmuxActivityApp(App):
 
     def action_close_search(self) -> None:
         search_bar = self.query_one("#search-bar", Input)
-        search_bar.remove_class("visible")
-        self._filter_text = ""
-        self._rebuild_table()
+        if "visible" in search_bar.classes:
+            search_bar.remove_class("visible")
+            search_bar.value = ""
+            self._filter_text = ""
+            self._rebuild_table()
+        else:
+            self.exit()
 
     @on(Input.Changed, "#search-bar")
     def on_search_changed(self, event: Input.Changed) -> None:
@@ -537,7 +570,7 @@ class TmuxActivityApp(App):
         self.query_one("#main-table", DataTable).focus()
 
     def action_refresh(self) -> None:
-        if self._search_is_active():
+        if self._search_has_focus():
             return
         self._load_data()
         self.notify("Refreshed")
