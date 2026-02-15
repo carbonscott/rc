@@ -9,10 +9,13 @@ from __future__ import annotations
 
 import json
 import os
+import platform
 import signal
 import subprocess
 from datetime import datetime
 from pathlib import Path
+
+IS_LINUX = platform.system() == "Linux"
 
 from textual import on
 from textual.app import App, ComposeResult
@@ -73,10 +76,17 @@ def get_uid() -> int:
     return os.getuid()
 
 
+def get_tmux_socket_dir() -> Path:
+    """Get the tmux socket directory, respecting $TMUX_TMPDIR."""
+    tmpdir = os.environ.get("TMUX_TMPDIR")
+    if tmpdir:
+        return Path(tmpdir)
+    return Path(f"/tmp/tmux-{os.getuid()}")
+
+
 def get_tmux_sockets() -> list[str]:
     """Find all tmux sockets for the current user."""
-    uid = get_uid()
-    tmux_dir = Path(f"/tmp/tmux-{uid}")
+    tmux_dir = get_tmux_socket_dir()
     if not tmux_dir.is_dir():
         return []
     return [s.name for s in sorted(tmux_dir.iterdir()) if s.is_socket()]
@@ -107,6 +117,28 @@ def get_all_tmux_panes() -> dict[int, dict]:
     return pane_map
 
 
+def get_ppid(pid: int) -> int | None:
+    """Get the parent PID of a process, cross-platform."""
+    if IS_LINUX:
+        try:
+            status = Path(f"/proc/{pid}/status").read_text()
+            for line in status.splitlines():
+                if line.startswith("PPid:"):
+                    return int(line.split()[1])
+        except Exception:
+            return None
+    else:
+        try:
+            out = subprocess.run(
+                ["ps", "-o", "ppid=", "-p", str(pid)],
+                capture_output=True, text=True, timeout=3,
+            )
+            return int(out.stdout.strip())
+        except Exception:
+            return None
+    return None
+
+
 def find_tmux_pane(pid: int, pane_map: dict[int, dict]) -> dict | None:
     """Walk the parent chain of a PID to find its tmux pane."""
     visited = set()
@@ -117,17 +149,32 @@ def find_tmux_pane(pid: int, pane_map: dict[int, dict]) -> dict | None:
         visited.add(current)
         if current in pane_map:
             return pane_map[current]
-        try:
-            status = Path(f"/proc/{current}/status").read_text()
-            for line in status.splitlines():
-                if line.startswith("PPid:"):
-                    current = int(line.split()[1])
-                    break
-            else:
-                break
-        except Exception:
+        parent = get_ppid(current)
+        if parent is None:
             break
+        current = parent
     return None
+
+
+def get_process_cwd(pid: int) -> str:
+    """Get a process's working directory, cross-platform."""
+    if IS_LINUX:
+        try:
+            return os.readlink(f"/proc/{pid}/cwd")
+        except Exception:
+            return ""
+    else:
+        try:
+            out = subprocess.run(
+                ["lsof", "-a", "-p", str(pid), "-d", "cwd", "-Fn"],
+                capture_output=True, text=True, timeout=3,
+            )
+            for line in out.stdout.splitlines():
+                if line.startswith("n"):
+                    return line[1:]
+        except Exception:
+            return ""
+    return ""
 
 
 def get_active_processes() -> list[dict]:
@@ -135,14 +182,16 @@ def get_active_processes() -> list[dict]:
     uid = get_uid()
     try:
         out = subprocess.run(
-            ["ps", "-u", str(uid), "-o", "pid,etime,comm", "--no-headers"],
+            ["ps", "-u", str(uid), "-o", "pid,etime,comm"],
             capture_output=True, text=True, timeout=5,
         )
     except Exception:
         return []
 
     claude_pids = []
-    for line in out.stdout.strip().splitlines():
+    # Skip header line
+    lines = out.stdout.strip().splitlines()[1:]
+    for line in lines:
         parts = line.split()
         if len(parts) < 3:
             continue
@@ -157,11 +206,7 @@ def get_active_processes() -> list[dict]:
     pane_map = get_all_tmux_panes()
     results = []
     for pid, etime, comm in claude_pids:
-        cwd = ""
-        try:
-            cwd = os.readlink(f"/proc/{pid}/cwd")
-        except Exception:
-            pass
+        cwd = get_process_cwd(pid)
         pane = find_tmux_pane(pid, pane_map)
         tmux_loc = ""
         if pane:

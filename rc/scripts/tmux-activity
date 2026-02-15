@@ -68,9 +68,17 @@ def copy_to_clipboard(text: str) -> bool:
 # Data collection
 # ---------------------------------------------------------------------------
 
+def get_tmux_socket_dir() -> Path:
+    """Get the tmux socket directory, respecting $TMUX_TMPDIR."""
+    tmpdir = os.environ.get("TMUX_TMPDIR")
+    if tmpdir:
+        return Path(tmpdir)
+    return Path(f"/tmp/tmux-{os.getuid()}")
+
+
 def get_tmux_sockets() -> list[str]:
     """Find all tmux sockets for the current user."""
-    tmux_dir = Path(f"/tmp/tmux-{os.getuid()}")
+    tmux_dir = get_tmux_socket_dir()
     if not tmux_dir.is_dir():
         return []
     return [s.name for s in sorted(tmux_dir.iterdir()) if s.is_socket()]
