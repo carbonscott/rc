@@ -1,0 +1,563 @@
+#!/usr/bin/env -S UV_CACHE_DIR=/sdf/data/lcls/ds/prj/prjdat21/results/cwang31/.UV_CACHE uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["textual>=0.90"]
+# ///
+"""tmux-activity — browse all tmux sessions/windows across all sockets."""
+
+from __future__ import annotations
+
+import os
+import subprocess
+from datetime import datetime
+from pathlib import Path
+
+from textual import on
+from textual.app import App, ComposeResult
+from textual.binding import Binding
+from textual.screen import ModalScreen
+from textual.containers import Vertical
+from textual.widgets import DataTable, Footer, Header, Input, Static
+
+
+# ---------------------------------------------------------------------------
+# Helpers (shared pattern with claude-activity)
+# ---------------------------------------------------------------------------
+
+def get_current_tmux_socket() -> str:
+    """Get the current tmux socket name from $TMUX env var."""
+    tmux_env = os.environ.get("TMUX", "")
+    if not tmux_env:
+        return ""
+    socket_path = tmux_env.split(",")[0]
+    return Path(socket_path).name
+
+
+def get_current_tmux_session() -> str:
+    """Get the current tmux session name."""
+    try:
+        out = subprocess.run(
+            ["tmux", "display-message", "-p", "#{session_name}"],
+            capture_output=True, text=True, timeout=3,
+        )
+        return out.stdout.strip()
+    except Exception:
+        return ""
+
+
+def copy_to_clipboard(text: str) -> bool:
+    """Try to copy text to clipboard. Returns True on success."""
+    for cmd in [["xclip", "-selection", "clipboard"],
+                ["xsel", "--clipboard", "--input"],
+                ["pbcopy"]]:
+        try:
+            subprocess.run(cmd, input=text.encode(), timeout=3,
+                           capture_output=True, check=True)
+            return True
+        except Exception:
+            continue
+    try:
+        subprocess.run(["tmux", "set-buffer", text],
+                       timeout=3, capture_output=True, check=True)
+        return True
+    except Exception:
+        return False
+
+
+# ---------------------------------------------------------------------------
+# Data collection
+# ---------------------------------------------------------------------------
+
+def get_tmux_sockets() -> list[str]:
+    """Find all tmux sockets for the current user."""
+    tmux_dir = Path(f"/tmp/tmux-{os.getuid()}")
+    if not tmux_dir.is_dir():
+        return []
+    return [s.name for s in sorted(tmux_dir.iterdir()) if s.is_socket()]
+
+
+def get_all_sessions() -> list[dict]:
+    """Scan all sockets and return session info sorted by last activity."""
+    sessions = []
+    for sock in get_tmux_sockets():
+        try:
+            out = subprocess.run(
+                ["tmux", "-L", sock, "list-sessions", "-F",
+                 "#{session_name}\t#{session_created}\t#{session_attached}\t#{session_windows}\t#{session_activity}"],
+                capture_output=True, text=True, timeout=5,
+            )
+            if out.returncode != 0:
+                continue
+            for line in out.stdout.strip().splitlines():
+                parts = line.split("\t")
+                if len(parts) < 5:
+                    continue
+                sessions.append({
+                    "socket": sock,
+                    "name": parts[0],
+                    "created": int(parts[1]) if parts[1].isdigit() else 0,
+                    "attached": int(parts[2]) if parts[2].isdigit() else 0,
+                    "windows": int(parts[3]) if parts[3].isdigit() else 0,
+                    "activity": int(parts[4]) if parts[4].isdigit() else 0,
+                })
+        except Exception:
+            continue
+    sessions.sort(key=lambda s: s["activity"], reverse=True)
+    return sessions
+
+
+def get_windows(socket: str, session: str) -> list[dict]:
+    """List windows for a given session."""
+    windows = []
+    try:
+        out = subprocess.run(
+            ["tmux", "-L", socket, "list-windows", "-t", session, "-F",
+             "#{window_index}\t#{window_name}\t#{window_panes}\t#{window_active}"],
+            capture_output=True, text=True, timeout=5,
+        )
+        if out.returncode != 0:
+            return []
+        for line in out.stdout.strip().splitlines():
+            parts = line.split("\t")
+            if len(parts) < 4:
+                continue
+            windows.append({
+                "index": parts[0],
+                "name": parts[1],
+                "panes": int(parts[2]) if parts[2].isdigit() else 1,
+                "active": parts[3] == "1",
+            })
+    except Exception:
+        pass
+    # Get pane info (command and cwd) for each window
+    try:
+        out = subprocess.run(
+            ["tmux", "-L", socket, "list-panes", "-t", session, "-s", "-F",
+             "#{window_index}\t#{pane_current_command}\t#{pane_current_path}\t#{pane_active}"],
+            capture_output=True, text=True, timeout=5,
+        )
+        if out.returncode == 0:
+            # Group by window, keep the active pane's info
+            pane_info: dict[str, dict] = {}
+            for line in out.stdout.strip().splitlines():
+                parts = line.split("\t")
+                if len(parts) < 4:
+                    continue
+                win_idx = parts[0]
+                is_active = parts[3] == "1"
+                if win_idx not in pane_info or is_active:
+                    pane_info[win_idx] = {
+                        "command": parts[1],
+                        "cwd": parts[2],
+                    }
+            for win in windows:
+                info = pane_info.get(win["index"], {})
+                win["command"] = info.get("command", "")
+                win["cwd"] = info.get("cwd", "")
+    except Exception:
+        pass
+    return windows
+
+
+def shorten_path(path: str, max_len: int = 40) -> str:
+    """Shorten a path for display."""
+    if len(path) <= max_len:
+        return path
+    parts = path.split("/")
+    for n in range(len(parts), 0, -1):
+        short = ".../" + "/".join(parts[-n:])
+        if len(short) <= max_len:
+            return short
+    return path[-max_len:]
+
+
+def format_activity(ts: int) -> str:
+    """Format a unix timestamp to a human-readable date."""
+    if ts == 0:
+        return ""
+    try:
+        return datetime.fromtimestamp(ts).strftime("%b %d %H:%M")
+    except Exception:
+        return "?"
+
+
+# ---------------------------------------------------------------------------
+# Confirmation screen
+# ---------------------------------------------------------------------------
+
+class ConfirmKillScreen(ModalScreen[bool]):
+    """Modal dialog to confirm killing a session."""
+
+    BINDINGS = [
+        Binding("y", "confirm", "Yes"),
+        Binding("n", "cancel", "No"),
+        Binding("escape", "cancel", "Cancel"),
+    ]
+
+    def __init__(self, socket: str, session: str) -> None:
+        super().__init__()
+        self.sock = socket
+        self.sess = session
+
+    def compose(self) -> ComposeResult:
+        yield Vertical(
+            Static(f"Kill tmux session '{self.sess}' on socket {self.sock}?",
+                   classes="confirm-title"),
+            Static("[y] Yes  [n] No", classes="confirm-actions"),
+            classes="confirm-dialog",
+        )
+
+    def action_confirm(self) -> None:
+        self.dismiss(True)
+
+    def action_cancel(self) -> None:
+        self.dismiss(False)
+
+
+# ---------------------------------------------------------------------------
+# Main app
+# ---------------------------------------------------------------------------
+
+class TmuxActivityApp(App):
+    """tmux session browser."""
+
+    CSS = """
+    Screen {
+        background: $surface;
+    }
+
+    #main-table {
+        height: 1fr;
+    }
+
+    .confirm-dialog {
+        dock: bottom;
+        height: auto;
+        max-height: 8;
+        background: $warning-darken-2;
+        padding: 1 2;
+        border: thick $warning;
+    }
+
+    .confirm-title {
+        text-style: bold;
+        color: $text;
+    }
+
+    .confirm-actions {
+        margin-top: 1;
+        text-style: bold;
+    }
+
+    #search-bar {
+        dock: bottom;
+        height: 3;
+        display: none;
+    }
+
+    #search-bar.visible {
+        display: block;
+    }
+    """
+
+    BINDINGS = [
+        Binding("q", "quit", "Quit"),
+        Binding("r", "refresh", "Refresh"),
+        Binding("k", "kill_session", "Kill"),
+        Binding("slash", "search", "Search"),
+        Binding("escape", "close_search", "Close search", show=False),
+    ]
+
+    TITLE = "tmux-activity"
+
+    def compose(self) -> ComposeResult:
+        yield Header()
+        yield DataTable(id="main-table")
+        yield Input(placeholder="Filter sessions...", id="search-bar")
+        yield Footer()
+
+    def on_mount(self) -> None:
+        self._expanded: set[str] = set()
+        self._row_data: list[dict] = []
+        self._all_sessions: list[dict] = []
+        self._window_cache: dict[str, list[dict]] = {}
+        self._filter_text = ""
+        self._current_socket = get_current_tmux_socket()
+        self._current_session = get_current_tmux_session()
+        self._load_data()
+
+    def _load_data(self) -> None:
+        """Fetch all sessions and rebuild table."""
+        self._all_sessions = get_all_sessions()
+        self._window_cache.clear()
+        self._rebuild_table()
+
+    def _session_key(self, sess: dict) -> str:
+        return f"{sess['socket']}:{sess['name']}"
+
+    def _rebuild_table(self) -> None:
+        """Rebuild the flat table with tree-like indentation."""
+        table = self.query_one("#main-table", DataTable)
+
+        # Remember cursor position
+        old_cursor = table.cursor_row if table.row_count > 0 else 0
+
+        table.clear(columns=True)
+        table.add_columns("Socket", "Session", "Win", "Panes", "Status",
+                          "Last Activity", "Command/Path")
+        table.cursor_type = "row"
+
+        self._row_data = []
+        filter_lower = self._filter_text.lower()
+
+        for sess in self._all_sessions:
+            key = self._session_key(sess)
+
+            # Filtering: match socket, session name
+            if filter_lower:
+                searchable = f"{sess['socket']} {sess['name']}".lower()
+                if filter_lower not in searchable:
+                    # Also check windows if expanded
+                    if key in self._expanded:
+                        windows = self._get_windows(sess)
+                        win_match = any(
+                            filter_lower in f"{w['name']} {w.get('cwd', '')} {w.get('command', '')}".lower()
+                            for w in windows
+                        )
+                        if not win_match:
+                            continue
+                    else:
+                        continue
+
+            # Status
+            is_current = (sess["socket"] == self._current_socket
+                          and sess["name"] == self._current_session)
+            if is_current:
+                status = "attached *"
+            elif sess["attached"] > 0:
+                status = "attached"
+            else:
+                status = "detached"
+
+            # Session row
+            expand_marker = "▸" if key not in self._expanded else "▾"
+            table.add_row(
+                sess["socket"],
+                f"{expand_marker} {sess['name']}",
+                str(sess["windows"]),
+                "",
+                status,
+                format_activity(sess["activity"]),
+                "",
+            )
+            self._row_data.append({"type": "session", "session": sess})
+
+            # Expanded windows
+            if key in self._expanded:
+                windows = self._get_windows(sess)
+                for win in windows:
+                    cwd_short = shorten_path(win.get("cwd", ""), max_len=35)
+                    cmd = win.get("command", "")
+                    path_display = cwd_short if cwd_short else cmd
+
+                    table.add_row(
+                        "",
+                        f"    {win['index']}: {win['name']}",
+                        "",
+                        str(win["panes"]),
+                        "",
+                        "",
+                        path_display,
+                    )
+                    self._row_data.append({
+                        "type": "window",
+                        "session": sess,
+                        "window": win,
+                    })
+
+        # Restore cursor
+        if table.row_count > 0:
+            table.move_cursor(row=min(old_cursor, table.row_count - 1))
+        # Only focus table if search bar isn't active
+        search_bar = self.query_one("#search-bar", Input)
+        if "visible" not in search_bar.classes:
+            table.focus()
+
+    def _get_windows(self, sess: dict) -> list[dict]:
+        """Get windows for a session, with caching."""
+        key = self._session_key(sess)
+        if key not in self._window_cache:
+            self._window_cache[key] = get_windows(sess["socket"], sess["name"])
+        return self._window_cache[key]
+
+    def _search_is_active(self) -> bool:
+        return "visible" in self.query_one("#search-bar", Input).classes
+
+    # --- Key handlers ---
+
+    @on(DataTable.RowSelected)
+    def on_row_selected(self, event: DataTable.RowSelected) -> None:
+        """Enter key: toggle session or jump to window."""
+        table = self.query_one("#main-table", DataTable)
+        idx = table.cursor_row
+        if idx is None or idx >= len(self._row_data):
+            return
+        row = self._row_data[idx]
+        if row["type"] == "session":
+            self._toggle_session(row["session"])
+        elif row["type"] == "window":
+            self._jump_to_window(row["session"], row["window"])
+
+    def key_right(self) -> None:
+        """Expand session."""
+        table = self.query_one("#main-table", DataTable)
+        idx = table.cursor_row
+        if idx is None or idx >= len(self._row_data):
+            return
+        row = self._row_data[idx]
+        if row["type"] == "session":
+            key = self._session_key(row["session"])
+            if key not in self._expanded:
+                self._expanded.add(key)
+                self._rebuild_table()
+
+    def key_left(self) -> None:
+        """Collapse session."""
+        table = self.query_one("#main-table", DataTable)
+        idx = table.cursor_row
+        if idx is None or idx >= len(self._row_data):
+            return
+        row = self._row_data[idx]
+        if row["type"] == "session":
+            key = self._session_key(row["session"])
+            if key in self._expanded:
+                self._expanded.discard(key)
+                self._rebuild_table()
+        elif row["type"] == "window":
+            # Collapse parent session and move cursor to it
+            key = self._session_key(row["session"])
+            self._expanded.discard(key)
+            self._rebuild_table()
+            # Find the parent session row
+            for i, r in enumerate(self._row_data):
+                if r["type"] == "session" and self._session_key(r["session"]) == key:
+                    table = self.query_one("#main-table", DataTable)
+                    table.move_cursor(row=i)
+                    break
+
+    def _toggle_session(self, sess: dict) -> None:
+        key = self._session_key(sess)
+        if key in self._expanded:
+            self._expanded.discard(key)
+        else:
+            self._expanded.add(key)
+        self._rebuild_table()
+
+    def _jump_to_window(self, sess: dict, win: dict) -> None:
+        """Jump to a tmux window."""
+        target = f"{sess['name']}:{win['index']}"
+        if self._current_socket and self._current_socket == sess["socket"]:
+            # Same socket — switch-client (seamless)
+            subprocess.run(
+                ["tmux", "-L", sess["socket"], "switch-client", "-t", target],
+                timeout=5,
+            )
+            self.exit()
+        elif not self._current_socket:
+            # Not inside tmux — can attach directly
+            cmd = f"tmux -L {sess['socket']} attach -t {target}"
+            self.exit(result=("direct", cmd))
+        else:
+            # Inside tmux, different socket — need to detach first
+            cmd = f"tmux -L {sess['socket']} attach -t {target}"
+            self.exit(result=("copy", cmd))
+
+    def action_quit(self) -> None:
+        if self._search_is_active():
+            return
+        super().action_quit()
+
+    def action_kill_session(self) -> None:
+        if self._search_is_active():
+            return
+        table = self.query_one("#main-table", DataTable)
+        idx = table.cursor_row
+        if idx is None or idx >= len(self._row_data):
+            return
+        row = self._row_data[idx]
+        if row["type"] != "session":
+            self.notify("Select a session to kill", severity="warning")
+            return
+        sess = row["session"]
+
+        # Don't kill current session
+        if (sess["socket"] == self._current_socket
+                and sess["name"] == self._current_session):
+            self.notify("Cannot kill current session", severity="warning")
+            return
+
+        def on_confirm(result: bool) -> None:
+            if result:
+                try:
+                    subprocess.run(
+                        ["tmux", "-L", sess["socket"], "kill-session",
+                         "-t", sess["name"]],
+                        timeout=5, capture_output=True,
+                    )
+                    self.notify(f"Killed session '{sess['name']}'")
+                    self._expanded.discard(self._session_key(sess))
+                    self._load_data()
+                except Exception as e:
+                    self.notify(f"Error: {e}", severity="error")
+
+        self.push_screen(
+            ConfirmKillScreen(sess["socket"], sess["name"]),
+            on_confirm,
+        )
+
+    def action_search(self) -> None:
+        search_bar = self.query_one("#search-bar", Input)
+        search_bar.add_class("visible")
+        search_bar.focus()
+
+    def action_close_search(self) -> None:
+        search_bar = self.query_one("#search-bar", Input)
+        search_bar.remove_class("visible")
+        self._filter_text = ""
+        self._rebuild_table()
+
+    @on(Input.Changed, "#search-bar")
+    def on_search_changed(self, event: Input.Changed) -> None:
+        self._filter_text = event.value.strip()
+        self._rebuild_table()
+
+    @on(Input.Submitted, "#search-bar")
+    def on_search_submitted(self, event: Input.Submitted) -> None:
+        """Focus back to table after pressing Enter in search."""
+        self.query_one("#main-table", DataTable).focus()
+
+    def action_refresh(self) -> None:
+        if self._search_is_active():
+            return
+        self._load_data()
+        self.notify("Refreshed")
+
+
+if __name__ == "__main__":
+    app = TmuxActivityApp()
+    result = app.run()
+    if isinstance(result, tuple):
+        mode, cmd = result
+        if mode == "direct":
+            # Not in tmux — exec directly into the attach command
+            args = cmd.split()
+            os.execvp(args[0], args)
+        else:  # "copy"
+            copied = copy_to_clipboard(cmd)
+            print(f"\n  {cmd}")
+            if copied:
+                print("  (copied to clipboard — detach with Ctrl-b d, then paste)\n")
+            else:
+                print("  (detach with Ctrl-b d, then run the command above)\n")
+    elif result:
+        print(result)

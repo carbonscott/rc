@@ -1,0 +1,590 @@
+#!/usr/bin/env -S UV_CACHE_DIR=/sdf/data/lcls/ds/prj/prjdat21/results/cwang31/.UV_CACHE uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["textual>=0.90"]
+# ///
+"""Claude Activity Dashboard — see all your Claude sessions across tmux."""
+
+from __future__ import annotations
+
+import json
+import os
+import signal
+import subprocess
+from datetime import datetime
+from pathlib import Path
+
+from textual import on
+from textual.app import App, ComposeResult
+from textual.binding import Binding
+from textual.containers import Horizontal, Vertical
+from textual.screen import ModalScreen
+from textual.widgets import (
+    DataTable,
+    Footer,
+    Header,
+    Input,
+    Label,
+    Static,
+    TabbedContent,
+    TabPane,
+)
+
+CLAUDE_DIR = Path.home() / ".claude"
+HISTORY_FILE = CLAUDE_DIR / "history.jsonl"
+PROJECTS_DIR = CLAUDE_DIR / "projects"
+
+
+def get_current_tmux_socket() -> str:
+    """Get the current tmux socket name from $TMUX env var.
+    Format: /tmp/tmux-UID/SOCKET,PID,N
+    """
+    tmux_env = os.environ.get("TMUX", "")
+    if not tmux_env:
+        return ""
+    socket_path = tmux_env.split(",")[0]  # /tmp/tmux-18262/00
+    return Path(socket_path).name  # 00
+
+
+def copy_to_clipboard(text: str) -> bool:
+    """Try to copy text to clipboard. Returns True on success."""
+    for cmd in [["xclip", "-selection", "clipboard"],
+                ["xsel", "--clipboard", "--input"],
+                ["pbcopy"]]:
+        try:
+            subprocess.run(cmd, input=text.encode(), timeout=3,
+                           capture_output=True, check=True)
+            return True
+        except Exception:
+            continue
+    # Try tmux's buffer as last resort
+    try:
+        subprocess.run(["tmux", "set-buffer", text],
+                       timeout=3, capture_output=True, check=True)
+        return True
+    except Exception:
+        return False
+
+
+# ---------------------------------------------------------------------------
+# Data collection
+# ---------------------------------------------------------------------------
+
+def get_uid() -> int:
+    return os.getuid()
+
+
+def get_tmux_sockets() -> list[str]:
+    """Find all tmux sockets for the current user."""
+    uid = get_uid()
+    tmux_dir = Path(f"/tmp/tmux-{uid}")
+    if not tmux_dir.is_dir():
+        return []
+    return [s.name for s in sorted(tmux_dir.iterdir()) if s.is_socket()]
+
+
+def get_all_tmux_panes() -> dict[int, dict]:
+    """Map pane shell PIDs to their tmux location across all sockets."""
+    pane_map: dict[int, dict] = {}
+    for sock in get_tmux_sockets():
+        try:
+            out = subprocess.run(
+                ["tmux", "-L", sock, "list-panes", "-a",
+                 "-F", "#{pane_pid}\t#{session_name}\t#{window_index}\t#{pane_index}"],
+                capture_output=True, text=True, timeout=5,
+            )
+            for line in out.stdout.strip().splitlines():
+                parts = line.split("\t")
+                if len(parts) == 4:
+                    pid = int(parts[0])
+                    pane_map[pid] = {
+                        "socket": sock,
+                        "session": parts[1],
+                        "window": parts[2],
+                        "pane": parts[3],
+                    }
+        except Exception:
+            continue
+    return pane_map
+
+
+def find_tmux_pane(pid: int, pane_map: dict[int, dict]) -> dict | None:
+    """Walk the parent chain of a PID to find its tmux pane."""
+    visited = set()
+    current = pid
+    for _ in range(15):
+        if current in visited or current <= 1:
+            break
+        visited.add(current)
+        if current in pane_map:
+            return pane_map[current]
+        try:
+            status = Path(f"/proc/{current}/status").read_text()
+            for line in status.splitlines():
+                if line.startswith("PPid:"):
+                    current = int(line.split()[1])
+                    break
+            else:
+                break
+        except Exception:
+            break
+    return None
+
+
+def get_active_processes() -> list[dict]:
+    """Find all running Claude processes with their directories and tmux panes."""
+    uid = get_uid()
+    try:
+        out = subprocess.run(
+            ["ps", "-u", str(uid), "-o", "pid,etime,comm", "--no-headers"],
+            capture_output=True, text=True, timeout=5,
+        )
+    except Exception:
+        return []
+
+    claude_pids = []
+    for line in out.stdout.strip().splitlines():
+        parts = line.split()
+        if len(parts) < 3:
+            continue
+        pid_str, etime = parts[0], parts[1]
+        comm = " ".join(parts[2:])
+        if "claude" in comm.lower() or "2.1." in comm:
+            try:
+                claude_pids.append((int(pid_str), etime, comm))
+            except ValueError:
+                continue
+
+    pane_map = get_all_tmux_panes()
+    results = []
+    for pid, etime, comm in claude_pids:
+        cwd = ""
+        try:
+            cwd = os.readlink(f"/proc/{pid}/cwd")
+        except Exception:
+            pass
+        pane = find_tmux_pane(pid, pane_map)
+        tmux_loc = ""
+        if pane:
+            tmux_loc = f"{pane['socket']}:{pane['session']}:{pane['window']}.{pane['pane']}"
+        results.append({
+            "pid": pid,
+            "directory": cwd,
+            "uptime": etime,
+            "tmux": tmux_loc,
+            "socket": pane["socket"] if pane else "",
+            "target": f"{pane['session']}:{pane['window']}.{pane['pane']}" if pane else "",
+        })
+    return results
+
+
+def shorten_path(path: str, max_len: int = 60) -> str:
+    """Shorten a path for display, keeping the meaningful end."""
+    if len(path) <= max_len:
+        return path
+    parts = path.split("/")
+    # Try keeping last N components
+    for n in range(len(parts), 0, -1):
+        short = ".../" + "/".join(parts[-n:])
+        if len(short) <= max_len:
+            return short
+    return path[-max_len:]
+
+
+def get_recent_projects(limit: int = 30) -> list[dict]:
+    """Parse history.jsonl for recent unique projects."""
+    if not HISTORY_FILE.exists():
+        return []
+    projects: dict[str, dict] = {}
+    for line in HISTORY_FILE.read_text().splitlines():
+        try:
+            entry = json.loads(line)
+            proj = entry.get("project", "")
+            ts = entry.get("timestamp", 0)
+            display = entry.get("display", "")
+            if proj and ts:
+                # Keep most recent entry per project
+                if proj not in projects or ts > projects[proj]["timestamp"]:
+                    projects[proj] = {
+                        "project": proj,
+                        "timestamp": ts,
+                        "display": display[:120],
+                    }
+        except Exception:
+            continue
+    sorted_projects = sorted(projects.values(), key=lambda x: -x["timestamp"])
+    return sorted_projects[:limit]
+
+
+def get_all_sessions(limit: int = 50) -> list[dict]:
+    """Aggregate sessions from all projects' sessions-index.json."""
+    sessions = []
+    if not PROJECTS_DIR.is_dir():
+        return []
+    for idx_file in PROJECTS_DIR.glob("*/sessions-index.json"):
+        try:
+            data = json.loads(idx_file.read_text())
+            for entry in data.get("entries", []):
+                modified = entry.get("modified")
+                if not modified:
+                    continue
+                sessions.append({
+                    "project": entry.get("projectPath", ""),
+                    "modified": modified,
+                    "first_prompt": (entry.get("firstPrompt") or "")[:120],
+                    "messages": entry.get("messageCount", 0),
+                })
+        except Exception:
+            continue
+    sessions.sort(key=lambda x: x["modified"], reverse=True)
+    return sessions[:limit]
+
+
+def search_history(keyword: str, limit: int = 50) -> list[dict]:
+    """Search history.jsonl for prompts matching a keyword."""
+    if not HISTORY_FILE.exists():
+        return []
+    keyword_lower = keyword.lower()
+    results = []
+    for line in HISTORY_FILE.read_text().splitlines():
+        try:
+            entry = json.loads(line)
+            display = entry.get("display", "")
+            if keyword_lower in display.lower():
+                results.append({
+                    "project": entry.get("project", ""),
+                    "timestamp": entry.get("timestamp", 0),
+                    "display": display[:120],
+                })
+        except Exception:
+            continue
+    results.sort(key=lambda x: -x["timestamp"])
+    return results[:limit]
+
+
+def format_timestamp(ts_ms: int) -> str:
+    """Format a millisecond timestamp to a human-readable date."""
+    try:
+        return datetime.fromtimestamp(ts_ms / 1000).strftime("%Y-%m-%d %H:%M")
+    except Exception:
+        return "?"
+
+
+def format_iso_date(iso_str: str) -> str:
+    """Format an ISO date string to a shorter form."""
+    try:
+        dt = datetime.fromisoformat(iso_str.replace("Z", "+00:00"))
+        return dt.strftime("%Y-%m-%d %H:%M")
+    except Exception:
+        return iso_str[:16] if len(iso_str) >= 16 else iso_str
+
+
+def clean_prompt(text: str) -> str:
+    """Strip command markup from prompt text for display."""
+    import re
+    text = re.sub(r"<[^>]+>", "", text)
+    return text.strip()[:100]
+
+
+# ---------------------------------------------------------------------------
+# Confirmation screen
+# ---------------------------------------------------------------------------
+
+class ConfirmKillScreen(ModalScreen[bool]):
+    """Modal dialog to confirm killing a process."""
+
+    BINDINGS = [
+        Binding("y", "confirm", "Yes"),
+        Binding("n", "cancel", "No"),
+        Binding("escape", "cancel", "Cancel"),
+    ]
+
+    def __init__(self, pid: int, directory: str) -> None:
+        super().__init__()
+        self.pid = pid
+        self.directory = directory
+
+    def compose(self) -> ComposeResult:
+        yield Vertical(
+            Static(f"Kill Claude process PID {self.pid}?", classes="confirm-title"),
+            Static(f"Directory: {self.directory}", classes="confirm-detail"),
+            Static("[y] Yes  [n] No", classes="confirm-actions"),
+            classes="confirm-dialog",
+        )
+
+    def action_confirm(self) -> None:
+        self.dismiss(True)
+
+    def action_cancel(self) -> None:
+        self.dismiss(False)
+
+
+# ---------------------------------------------------------------------------
+# Main app
+# ---------------------------------------------------------------------------
+
+class ClaudeActivityApp(App):
+    """Claude Activity Dashboard."""
+
+    CSS = """
+    Screen {
+        background: $surface;
+    }
+
+    #active-table, #recent-table, #sessions-table, #search-table {
+        height: 1fr;
+    }
+
+    .confirm-dialog {
+        dock: bottom;
+        height: auto;
+        max-height: 8;
+        background: $warning-darken-2;
+        padding: 1 2;
+        border: thick $warning;
+    }
+
+    .confirm-title {
+        text-style: bold;
+        color: $text;
+    }
+
+    .confirm-detail {
+        color: $text-muted;
+    }
+
+    .confirm-actions {
+        margin-top: 1;
+        text-style: bold;
+    }
+
+    #search-input {
+        margin-bottom: 1;
+    }
+
+    .status-bar {
+        dock: bottom;
+        height: 1;
+        background: $accent;
+        color: $text;
+        padding: 0 1;
+    }
+    """
+
+    BINDINGS = [
+        Binding("q", "quit", "Quit"),
+        Binding("r", "refresh", "Refresh"),
+        Binding("k", "kill_process", "Kill", show=True),
+        Binding("tab", "next_tab", "Next Tab", priority=True),
+        Binding("shift+tab", "prev_tab", "Prev Tab", priority=True),
+    ]
+
+    TITLE = "Claude Activity"
+
+    def compose(self) -> ComposeResult:
+        yield Header()
+        with TabbedContent("Active", "Recent", "Sessions", "Search"):
+            with TabPane("Active", id="tab-active"):
+                yield DataTable(id="active-table")
+            with TabPane("Recent", id="tab-recent"):
+                yield DataTable(id="recent-table")
+            with TabPane("Sessions", id="tab-sessions"):
+                yield DataTable(id="sessions-table")
+            with TabPane("Search", id="tab-search"):
+                yield Input(placeholder="Type to search history...", id="search-input")
+                yield DataTable(id="search-table")
+        yield Footer()
+
+    TAB_IDS = ["tab-active", "tab-recent", "tab-sessions", "tab-search"]
+
+    def action_next_tab(self) -> None:
+        tc = self.query_one(TabbedContent)
+        current = tc.active or ""
+        try:
+            idx = self.TAB_IDS.index(current)
+            next_id = self.TAB_IDS[(idx + 1) % len(self.TAB_IDS)]
+        except ValueError:
+            next_id = self.TAB_IDS[0]
+        tc.active = next_id
+
+    def action_prev_tab(self) -> None:
+        tc = self.query_one(TabbedContent)
+        current = tc.active or ""
+        try:
+            idx = self.TAB_IDS.index(current)
+            prev_id = self.TAB_IDS[(idx - 1) % len(self.TAB_IDS)]
+        except ValueError:
+            prev_id = self.TAB_IDS[0]
+        tc.active = prev_id
+
+    def on_mount(self) -> None:
+        self._load_active()
+        self._load_recent()
+        self._load_sessions()
+        # Focus the table so arrow keys work immediately
+        self.query_one("#active-table", DataTable).focus()
+
+    @on(TabbedContent.TabActivated)
+    def on_tab_activated(self, event: TabbedContent.TabActivated) -> None:
+        """Focus the DataTable when switching tabs."""
+        tab_id = event.pane.id or ""
+        table_map = {
+            "tab-active": "#active-table",
+            "tab-recent": "#recent-table",
+            "tab-sessions": "#sessions-table",
+            "tab-search": "#search-input",  # focus input on search tab
+        }
+        target = table_map.get(tab_id)
+        if target:
+            self.query_one(target).focus()
+
+    @on(DataTable.RowSelected)
+    def on_row_selected(self, event: DataTable.RowSelected) -> None:
+        """Handle Enter on a table row based on which tab is active."""
+        tab_id = self._get_active_tab_id()
+        if tab_id == "tab-active":
+            self._jump_to_active()
+        elif tab_id == "tab-recent":
+            self._select_recent()
+
+    def _load_active(self) -> None:
+        table = self.query_one("#active-table", DataTable)
+        table.clear(columns=True)
+        table.add_columns("PID", "Directory", "Uptime", "Tmux Location")
+        table.cursor_type = "row"
+        self._active_data = get_active_processes()
+        for proc in self._active_data:
+            table.add_row(
+                str(proc["pid"]),
+                shorten_path(proc["directory"], max_len=50),
+                proc["uptime"],
+                proc["tmux"] or "(orphan)",
+            )
+
+    def _load_recent(self) -> None:
+        table = self.query_one("#recent-table", DataTable)
+        table.clear(columns=True)
+        table.add_columns("Date", "Project", "Last Prompt")
+        table.cursor_type = "row"
+        self._recent_data = get_recent_projects()
+        for proj in self._recent_data:
+            table.add_row(
+                format_timestamp(proj["timestamp"]),
+                shorten_path(proj["project"], max_len=50),
+                clean_prompt(proj["display"]),
+            )
+
+    def _load_sessions(self) -> None:
+        table = self.query_one("#sessions-table", DataTable)
+        table.clear(columns=True)
+        table.add_columns("Date", "Project", "First Prompt", "Msgs")
+        table.cursor_type = "row"
+        self._sessions_data = get_all_sessions()
+        for sess in self._sessions_data:
+            table.add_row(
+                format_iso_date(sess["modified"]),
+                shorten_path(sess["project"], max_len=45),
+                clean_prompt(sess["first_prompt"]),
+                str(sess["messages"]),
+            )
+
+    @on(Input.Submitted, "#search-input")
+    def do_search(self, event: Input.Submitted) -> None:
+        keyword = event.value.strip()
+        if not keyword:
+            return
+        table = self.query_one("#search-table", DataTable)
+        table.clear(columns=True)
+        table.add_columns("Date", "Project", "Prompt")
+        table.cursor_type = "row"
+        results = search_history(keyword)
+        for r in results:
+            table.add_row(
+                format_timestamp(r["timestamp"]),
+                shorten_path(r["project"], max_len=45),
+                clean_prompt(r["display"]),
+            )
+
+    def action_refresh(self) -> None:
+        self._load_active()
+        self._load_recent()
+        self._load_sessions()
+        self.notify("Refreshed")
+
+    def _get_active_tab_id(self) -> str:
+        tc = self.query_one(TabbedContent)
+        if tc.active:
+            return tc.active
+        return ""
+
+    def action_kill_process(self) -> None:
+        if self._get_active_tab_id() != "tab-active":
+            self.notify("Kill only works on the Active tab", severity="warning")
+            return
+        table = self.query_one("#active-table", DataTable)
+        if table.cursor_row is None or table.cursor_row >= len(self._active_data):
+            return
+        proc = self._active_data[table.cursor_row]
+        if not proc["pid"]:
+            return
+
+        def on_confirm(result: bool) -> None:
+            if result:
+                try:
+                    os.kill(proc["pid"], signal.SIGTERM)
+                    self.notify(f"Sent SIGTERM to PID {proc['pid']}")
+                    self._load_active()
+                except ProcessLookupError:
+                    self.notify("Process already exited", severity="warning")
+                except PermissionError:
+                    self.notify("Permission denied", severity="error")
+
+        self.push_screen(
+            ConfirmKillScreen(proc["pid"], proc["directory"]),
+            on_confirm,
+        )
+
+    def _jump_to_active(self) -> None:
+        table = self.query_one("#active-table", DataTable)
+        if table.cursor_row is None or table.cursor_row >= len(self._active_data):
+            return
+        proc = self._active_data[table.cursor_row]
+        if not proc["socket"] or not proc["target"]:
+            self.notify("No tmux pane found for this process", severity="warning")
+            return
+        current_socket = get_current_tmux_socket()
+        if current_socket and current_socket == proc["socket"]:
+            # Same socket — switch-client works seamlessly
+            subprocess.run(
+                ["tmux", "-L", proc["socket"], "switch-client",
+                 "-t", proc["target"]],
+                timeout=5,
+            )
+            self.exit()
+        else:
+            # Different socket — copy command and print it
+            cmd = f"tmux -L {proc['socket']} attach -t {proc['target']}"
+            self.exit(result=cmd)
+
+    def _select_recent(self) -> None:
+        table = self.query_one("#recent-table", DataTable)
+        if table.cursor_row is None or table.cursor_row >= len(self._recent_data):
+            return
+        proj = self._recent_data[table.cursor_row]
+        # Print path and exit (usable as: cd $(claude-activity))
+        self.exit(result=proj["project"])
+
+
+if __name__ == "__main__":
+    app = ClaudeActivityApp()
+    result = app.run()
+    if isinstance(result, str) and result.startswith("tmux "):
+        # Cross-socket jump command
+        copied = copy_to_clipboard(result)
+        print(f"\n  {result}")
+        if copied:
+            print("  (copied to clipboard — detach with Ctrl-b d, then paste)\n")
+        else:
+            print("  (detach with Ctrl-b d, then run the command above)\n")
+    elif result:
+        print(result)
