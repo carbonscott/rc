@@ -17,14 +17,13 @@ from pathlib import Path
 from textual import on
 from textual.app import App, ComposeResult
 from textual.binding import Binding
-from textual.containers import Horizontal, Vertical
+from textual.containers import Vertical
 from textual.screen import ModalScreen
 from textual.widgets import (
     DataTable,
     Footer,
     Header,
     Input,
-    Label,
     Static,
     TabbedContent,
     TabPane,
@@ -229,6 +228,7 @@ def get_all_sessions(limit: int = 50) -> list[dict]:
                 if not modified:
                     continue
                 sessions.append({
+                    "session_id": entry.get("sessionId", ""),
                     "project": entry.get("projectPath", ""),
                     "modified": modified,
                     "first_prompt": (entry.get("firstPrompt") or "")[:120],
@@ -238,28 +238,6 @@ def get_all_sessions(limit: int = 50) -> list[dict]:
             continue
     sessions.sort(key=lambda x: x["modified"], reverse=True)
     return sessions[:limit]
-
-
-def search_history(keyword: str, limit: int = 50) -> list[dict]:
-    """Search history.jsonl for prompts matching a keyword."""
-    if not HISTORY_FILE.exists():
-        return []
-    keyword_lower = keyword.lower()
-    results = []
-    for line in HISTORY_FILE.read_text().splitlines():
-        try:
-            entry = json.loads(line)
-            display = entry.get("display", "")
-            if keyword_lower in display.lower():
-                results.append({
-                    "project": entry.get("project", ""),
-                    "timestamp": entry.get("timestamp", 0),
-                    "display": display[:120],
-                })
-        except Exception:
-            continue
-    results.sort(key=lambda x: -x["timestamp"])
-    return results[:limit]
 
 
 def format_timestamp(ts_ms: int) -> str:
@@ -331,7 +309,7 @@ class ClaudeActivityApp(App):
         background: $surface;
     }
 
-    #active-table, #recent-table, #sessions-table, #search-table {
+    #active-table, #recent-table, #sessions-table {
         height: 1fr;
     }
 
@@ -358,44 +336,42 @@ class ClaudeActivityApp(App):
         text-style: bold;
     }
 
-    #search-input {
-        margin-bottom: 1;
+    #search-bar {
+        dock: bottom;
+        height: 3;
+        display: none;
     }
 
-    .status-bar {
-        dock: bottom;
-        height: 1;
-        background: $accent;
-        color: $text;
-        padding: 0 1;
+    #search-bar.visible {
+        display: block;
     }
     """
 
     BINDINGS = [
         Binding("q", "quit", "Quit"),
         Binding("r", "refresh", "Refresh"),
-        Binding("k", "kill_process", "Kill", show=True),
+        Binding("x", "kill_process", "Kill"),
+        Binding("slash", "search", "Search"),
         Binding("tab", "next_tab", "Next Tab", priority=True),
         Binding("shift+tab", "prev_tab", "Prev Tab", priority=True),
+        Binding("escape", "close_search", "Close search", show=False),
     ]
 
     TITLE = "Claude Activity"
 
     def compose(self) -> ComposeResult:
         yield Header()
-        with TabbedContent("Active", "Recent", "Sessions", "Search"):
+        with TabbedContent("Active", "Recent", "Sessions"):
             with TabPane("Active", id="tab-active"):
                 yield DataTable(id="active-table")
             with TabPane("Recent", id="tab-recent"):
                 yield DataTable(id="recent-table")
             with TabPane("Sessions", id="tab-sessions"):
                 yield DataTable(id="sessions-table")
-            with TabPane("Search", id="tab-search"):
-                yield Input(placeholder="Type to search history...", id="search-input")
-                yield DataTable(id="search-table")
+        yield Input(placeholder="Filter...", id="search-bar")
         yield Footer()
 
-    TAB_IDS = ["tab-active", "tab-recent", "tab-sessions", "tab-search"]
+    TAB_IDS = ["tab-active", "tab-recent", "tab-sessions"]
 
     def action_next_tab(self) -> None:
         tc = self.query_one(TabbedContent)
@@ -418,10 +394,10 @@ class ClaudeActivityApp(App):
         tc.active = prev_id
 
     def on_mount(self) -> None:
+        self._filter_text = ""
         self._load_active()
         self._load_recent()
         self._load_sessions()
-        # Focus the table so arrow keys work immediately
         self.query_one("#active-table", DataTable).focus()
 
     @on(TabbedContent.TabActivated)
@@ -432,7 +408,6 @@ class ClaudeActivityApp(App):
             "tab-active": "#active-table",
             "tab-recent": "#recent-table",
             "tab-sessions": "#sessions-table",
-            "tab-search": "#search-input",  # focus input on search tab
         }
         target = table_map.get(tab_id)
         if target:
@@ -446,14 +421,22 @@ class ClaudeActivityApp(App):
             self._jump_to_active()
         elif tab_id == "tab-recent":
             self._select_recent()
+        elif tab_id == "tab-sessions":
+            self._resume_session()
 
     def _load_active(self) -> None:
         table = self.query_one("#active-table", DataTable)
         table.clear(columns=True)
         table.add_columns("PID", "Directory", "Uptime", "Tmux Location")
         table.cursor_type = "row"
-        self._active_data = get_active_processes()
-        for proc in self._active_data:
+        self._active_data = []
+        filter_lower = self._filter_text.lower()
+        for proc in get_active_processes():
+            if filter_lower:
+                searchable = f"{proc['pid']} {proc['directory']} {proc['tmux']}".lower()
+                if filter_lower not in searchable:
+                    continue
+            self._active_data.append(proc)
             table.add_row(
                 str(proc["pid"]),
                 shorten_path(proc["directory"], max_len=50),
@@ -466,8 +449,14 @@ class ClaudeActivityApp(App):
         table.clear(columns=True)
         table.add_columns("Date", "Project", "Last Prompt")
         table.cursor_type = "row"
-        self._recent_data = get_recent_projects()
-        for proj in self._recent_data:
+        self._recent_data = []
+        filter_lower = self._filter_text.lower()
+        for proj in get_recent_projects():
+            if filter_lower:
+                searchable = f"{proj['project']} {proj['display']}".lower()
+                if filter_lower not in searchable:
+                    continue
+            self._recent_data.append(proj)
             table.add_row(
                 format_timestamp(proj["timestamp"]),
                 shorten_path(proj["project"], max_len=50),
@@ -479,8 +468,14 @@ class ClaudeActivityApp(App):
         table.clear(columns=True)
         table.add_columns("Date", "Project", "First Prompt", "Msgs")
         table.cursor_type = "row"
-        self._sessions_data = get_all_sessions()
-        for sess in self._sessions_data:
+        self._sessions_data = []
+        filter_lower = self._filter_text.lower()
+        for sess in get_all_sessions():
+            if filter_lower:
+                searchable = f"{sess['project']} {sess['first_prompt']}".lower()
+                if filter_lower not in searchable:
+                    continue
+            self._sessions_data.append(sess)
             table.add_row(
                 format_iso_date(sess["modified"]),
                 shorten_path(sess["project"], max_len=45),
@@ -488,24 +483,18 @@ class ClaudeActivityApp(App):
                 str(sess["messages"]),
             )
 
-    @on(Input.Submitted, "#search-input")
-    def do_search(self, event: Input.Submitted) -> None:
-        keyword = event.value.strip()
-        if not keyword:
-            return
-        table = self.query_one("#search-table", DataTable)
-        table.clear(columns=True)
-        table.add_columns("Date", "Project", "Prompt")
-        table.cursor_type = "row"
-        results = search_history(keyword)
-        for r in results:
-            table.add_row(
-                format_timestamp(r["timestamp"]),
-                shorten_path(r["project"], max_len=45),
-                clean_prompt(r["display"]),
-            )
+    def _reload_current_tab(self) -> None:
+        tab_id = self._get_active_tab_id()
+        if tab_id == "tab-active":
+            self._load_active()
+        elif tab_id == "tab-recent":
+            self._load_recent()
+        elif tab_id == "tab-sessions":
+            self._load_sessions()
 
     def action_refresh(self) -> None:
+        if self._search_has_focus():
+            return
         self._load_active()
         self._load_recent()
         self._load_sessions()
@@ -517,7 +506,64 @@ class ClaudeActivityApp(App):
             return tc.active
         return ""
 
+    def _search_has_focus(self) -> bool:
+        return self.query_one("#search-bar", Input).has_focus
+
+    def _get_active_table(self) -> DataTable | None:
+        tab_table = {
+            "tab-active": "#active-table",
+            "tab-recent": "#recent-table",
+            "tab-sessions": "#sessions-table",
+        }
+        selector = tab_table.get(self._get_active_tab_id())
+        if selector:
+            return self.query_one(selector, DataTable)
+        return None
+
+    # --- Vim keybindings ---
+
+    def key_j(self) -> None:
+        if not self._search_has_focus():
+            table = self._get_active_table()
+            if table:
+                table.action_cursor_down()
+
+    def key_k(self) -> None:
+        if not self._search_has_focus():
+            table = self._get_active_table()
+            if table:
+                table.action_cursor_up()
+
+    def key_h(self) -> None:
+        if not self._search_has_focus():
+            self.action_prev_tab()
+
+    def key_l(self) -> None:
+        if not self._search_has_focus():
+            self.action_next_tab()
+
+    def key_g(self) -> None:
+        if not self._search_has_focus():
+            table = self._get_active_table()
+            if table:
+                table.move_cursor(row=0)
+
+    def key_upper_g(self) -> None:
+        if not self._search_has_focus():
+            table = self._get_active_table()
+            if table:
+                table.move_cursor(row=table.row_count - 1)
+
+    # --- Actions ---
+
+    def action_quit(self) -> None:
+        if self._search_has_focus():
+            return
+        self.exit()
+
     def action_kill_process(self) -> None:
+        if self._search_has_focus():
+            return
         if self._get_active_tab_id() != "tab-active":
             self.notify("Kill only works on the Active tab", severity="warning")
             return
@@ -554,37 +600,106 @@ class ClaudeActivityApp(App):
             return
         current_socket = get_current_tmux_socket()
         if current_socket and current_socket == proc["socket"]:
-            # Same socket — switch-client works seamlessly
+            # Same socket — switch-client (seamless)
             subprocess.run(
                 ["tmux", "-L", proc["socket"], "switch-client",
                  "-t", proc["target"]],
                 timeout=5,
             )
             self.exit()
-        else:
-            # Different socket — copy command and print it
+        elif not current_socket:
+            # Not inside tmux — can attach directly
             cmd = f"tmux -L {proc['socket']} attach -t {proc['target']}"
-            self.exit(result=cmd)
+            self.exit(result=("direct", cmd))
+        else:
+            # Inside tmux, different socket — need to detach first
+            cmd = f"tmux -L {proc['socket']} attach -t {proc['target']}"
+            self.exit(result=("copy", cmd))
+
+    def _resume_session(self) -> None:
+        table = self.query_one("#sessions-table", DataTable)
+        if table.cursor_row is None or table.cursor_row >= len(self._sessions_data):
+            return
+        sess = self._sessions_data[table.cursor_row]
+        if not sess["session_id"]:
+            self.notify("No session ID found", severity="warning")
+            return
+        project = sess["project"]
+        sid = sess["session_id"]
+        current_socket = get_current_tmux_socket()
+        if not current_socket:
+            cmd = f"cd {project} && claude --resume {sid}"
+            self.exit(result=("resume", cmd))
+        else:
+            self.exit(result=("resume_tmux", (current_socket, project, sid)))
 
     def _select_recent(self) -> None:
         table = self.query_one("#recent-table", DataTable)
         if table.cursor_row is None or table.cursor_row >= len(self._recent_data):
             return
         proj = self._recent_data[table.cursor_row]
-        # Print path and exit (usable as: cd $(claude-activity))
-        self.exit(result=proj["project"])
+        project = proj["project"]
+        current_socket = get_current_tmux_socket()
+        if not current_socket:
+            cmd = f"cd {project} && claude"
+            self.exit(result=("resume", cmd))
+        else:
+            self.exit(result=("launch_tmux", (current_socket, project)))
+
+    def action_search(self) -> None:
+        search_bar = self.query_one("#search-bar", Input)
+        search_bar.add_class("visible")
+        search_bar.focus()
+
+    def action_close_search(self) -> None:
+        search_bar = self.query_one("#search-bar", Input)
+        if "visible" in search_bar.classes:
+            search_bar.remove_class("visible")
+            search_bar.value = ""
+            self._filter_text = ""
+            self._reload_current_tab()
+        else:
+            self.exit()
+
+    @on(Input.Changed, "#search-bar")
+    def on_search_changed(self, event: Input.Changed) -> None:
+        self._filter_text = event.value.strip()
+        self._reload_current_tab()
+
+    @on(Input.Submitted, "#search-bar")
+    def on_search_submitted(self, event: Input.Submitted) -> None:
+        table = self._get_active_table()
+        if table:
+            table.focus()
 
 
 if __name__ == "__main__":
     app = ClaudeActivityApp()
     result = app.run()
-    if isinstance(result, str) and result.startswith("tmux "):
-        # Cross-socket jump command
-        copied = copy_to_clipboard(result)
-        print(f"\n  {result}")
-        if copied:
-            print("  (copied to clipboard — detach with Ctrl-b d, then paste)\n")
-        else:
-            print("  (detach with Ctrl-b d, then run the command above)\n")
-    elif result:
-        print(result)
+    if isinstance(result, tuple):
+        mode = result[0]
+        if mode == "direct":
+            args = result[1].split()
+            os.execvp(args[0], args)
+        elif mode == "copy":
+            cmd = result[1]
+            copied = copy_to_clipboard(cmd)
+            print(f"\n  {cmd}")
+            if copied:
+                print("  (copied to clipboard — detach with Ctrl-b d, then paste)\n")
+            else:
+                print("  (detach with Ctrl-b d, then run the command above)\n")
+        elif mode == "resume":
+            os.execlp("bash", "bash", "-c", result[1])
+        elif mode == "resume_tmux":
+            socket, project, sid = result[1]
+            subprocess.run([
+                "tmux", "-L", socket, "new-window", "-c", project,
+                "claude", "--resume", sid,
+            ], timeout=5)
+        elif mode == "launch_tmux":
+            socket, project = result[1]
+            subprocess.run([
+                "tmux", "-L", socket, "new-window", "-c", project,
+                "claude",
+            ], timeout=5)
