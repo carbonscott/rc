@@ -36,6 +36,6 @@ exec "$VERSIONS_DIR/$LATEST" "$@"
 WRAPPER
 
     chmod +x "$TARGET"
-    echo "claude.setup: Created wrapper at $TARGET"
+    ## echo "claude.setup: Created wrapper at $TARGET"
 }
 claude.setup
