@@ -38,4 +38,8 @@ WRAPPER
     chmod +x "$TARGET"
     ## echo "claude.setup: Created wrapper at $TARGET"
 }
-claude.setup
+# Only run once per shell session
+if [ -z "$_CLAUDE_SETUP_DONE" ]; then
+    claude.setup
+    export _CLAUDE_SETUP_DONE=1
+fi
