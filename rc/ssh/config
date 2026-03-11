@@ -1,0 +1,157 @@
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 30
+
+# ----------------------------------------------------------------------- #
+#  pcds
+# ----------------------------------------------------------------------- #
+Host pslogin.slac.stanford.edu
+  HostName pslogin.slac.stanford.edu
+  User cwang31
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+## Host psana
+##   HostName psana
+##   User cwang31
+##   ProxyJump pslogin.slac.stanford.edu
+
+# ----------------------------------------------------------------------- #
+#  drp srcf
+# ----------------------------------------------------------------------- #
+Host drp-srcf-gpu*
+  User cwang31
+  ProxyJump psbuild-rhel7-01
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+Host psbuild-rhel7-01
+  User cwang31
+  ProxyJump s3dflogin-mfa.slac.stanford.edu
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+Host psbuild-rocky9-01
+  User cwang31
+  ProxyJump s3dflogin-mfa.slac.stanford.edu
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+## Host drp-srcf-gpu001
+##   HostName drp-srcf-gpu001
+##   User cwang31
+##   ProxyJump pslogin.slac.stanford.edu
+## 
+## Host drp-srcf-gpu002
+##   HostName drp-srcf-gpu002
+##   User cwang31
+##   ProxyJump pslogin.slac.stanford.edu
+
+# ----------------------------------------------------------------------- #
+#  perlmutter
+# ----------------------------------------------------------------------- #
+Host perlmutter.nersc.gov
+  HostName perlmutter.nersc.gov
+  User cwang31
+
+## Host login*
+##   ProxyJump perlmutter.nersc.gov
+##   User cwang31
+##   ## PreferredAuthentications keyboard-interactive,password
+
+Host login*
+  ProxyJump cwang31@home.ccs.ornl.gov
+  User cwang31
+  ## PreferredAuthentications keyboard-interactive,password
+
+# ----------------------------------------------------------------------- #
+#  s3df
+# ----------------------------------------------------------------------- #
+Host psana
+  User cwang31
+  ProxyJump s3dflogin-mfa.slac.stanford.edu
+  PreferredAuthentications keyboard-interactive,password
+
+Host sdfiana*
+  User cwang31
+  ProxyJump s3dflogin-mfa.slac.stanford.edu
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+## Host sdfiana*
+##   User cwang31
+##   ProxyJump s3dflogin-mfa.slac.stanford.edu
+##   PreferredAuthentications keyboard-interactive,password
+##   ControlMaster auto
+##   ControlPath ~/.ssh/sockets/%r@%h-%p
+##   ControlPersist 8760h
+
+Host sdfampere*
+  User cwang31
+  ProxyJump s3dflogin-mfa.slac.stanford.edu
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+Host sdfada*
+  User cwang31
+  ProxyJump s3dflogin-mfa.slac.stanford.edu
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+Host sdfmilan*
+  User cwang31
+  ProxyJump s3dflogin-mfa.slac.stanford.edu
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+# ----------------------------------------------------------------------- #
+#  olcf
+# ----------------------------------------------------------------------- #
+Host frontier-login*
+  HostName %h.frontier.olcf.ornl.gov
+  User cwang31
+  ProxyJump home.ccs.ornl.gov
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+Host summit3
+  HostName login3.summit.olcf.ornl.gov
+  User cwang31
+  ProxyJump home.ccs.ornl.gov
+  PreferredAuthentications keyboard-interactive,password
+
+Host *.ccs.ornl.gov
+  PreferredAuthentications keyboard-interactive,password
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 8760h
+
+# ----------------------------------------------------------------------- #
+#  misc
+# ----------------------------------------------------------------------- #
+Host label-studio
+  HostName sdfiana001
+  User cwang31
+  ProxyJump s3dflogin-mfa.slac.stanford.edu
+
+Host label-studio-drp
+  HostName drp-srcf-gpu002
+  User cwang31
+  ProxyJump pslogin.slac.stanford.edu
