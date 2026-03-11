@@ -15,7 +15,7 @@ window-decoration = true
 macos-titlebar-style = tabs
 
 # Theme
-theme = Builtin Solarized Light
+theme = iTerm2 Solarized Light
 
 # Background opacity (1.0 = fully opaque)
 background-opacity = 1.0
@@ -31,8 +31,11 @@ cursor-color = #000000
 # Mouse
 mouse-hide-while-typing = true
 
+# Shell
+command = /bin/bash -l
+
 # Shell integration (enables directory tracking, command status, etc.)
-shell-integration = bash
+shell-integration = none
 shell-integration-features = no-cursor,ssh-env
 
 # Quick terminal (press global hotkey to show/hide)
