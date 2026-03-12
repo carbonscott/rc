@@ -1,0 +1,54 @@
+# Reload all feeds on startup
+auto-reload yes
+reload-time 30
+
+# Number of articles to keep per feed
+max-items 100
+
+# Browser to open links
+browser "open -a Safari %u"
+
+# Confirm before quitting
+confirm-exit yes
+
+# Display
+show-read-feeds yes
+show-read-articles yes
+feed-sort-order unreadarticlecount-asc
+article-sort-order date-desc
+text-width 80
+
+# Key bindings (vim-style)
+bind-key j down
+bind-key k up
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key l open
+bind-key h quit
+bind-key u toggle-article-read
+bind-key ^D pagedown
+bind-key ^U pageup
+
+# Colors (Solarized Light)
+# Requires light-background terminal. Based on https://github.com/newsboat/newsboat/blob/master/contrib/colorschemes/solarized-light
+color background         default   default
+color listnormal         default   default
+color listnormal_unread  default   default
+color listfocus          white     yellow
+color listfocus_unread   white     yellow
+color info               default   white
+color article            default   default
+
+highlight article "^(Title):.*$" blue default
+highlight article "https?://[^ ]+" red default
+highlight article "\\[image\\ [0-9]+\\]" green default
+
+# Formatting
+feedlist-format     "%4i %n %11u %t"
+articlelist-format   "%4i %f %D  %?T?|%-17T|  ?%t"
+datetime-format     "%b %d"
+
+# Notifications (macOS)
+notify-program "/opt/homebrew/bin/newsboat"

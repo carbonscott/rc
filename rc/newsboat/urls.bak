@@ -1,0 +1,58 @@
+# YouTube Channels — Top watches
+# Format: YouTube RSS feed URL "~Display Name" tags
+https://www.youtube.com/feeds/videos.xml?channel_id=UCpXdQhy6kb5CTD8hKlmOL3w "~OKC Thunder" youtube sports nba
+https://www.youtube.com/feeds/videos.xml?channel_id=UCKSXs4jiLetyWsW5Lba3ZjQ "~marimo" youtube tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNzxskTA3w-2mVgCEYfiezQ "~Maybe Someday" youtube music lofi
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw "~Bread on Penguins" youtube music lofi
+https://www.youtube.com/feeds/videos.xml?channel_id=UCkDZB2Cy0KiJmvoC-PTfM2A "~David Lombardi" youtube sports nfl
+https://www.youtube.com/feeds/videos.xml?channel_id=UCUyeluBRhGPCW4rPe_UvBZQ "~The PrimeTime" youtube programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCeIOarQkwmGhimim9cDUTng "~San Francisco 49ers" youtube sports nfl
+https://www.youtube.com/feeds/videos.xml?channel_id=UCoi0sH40GlLvNl9TZB40Qeg "~CalmCode" youtube programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UC3HPbvB6f58X_7SMIp6OPYw "~Thinking Basketball" youtube sports nba
+https://www.youtube.com/feeds/videos.xml?channel_id=UCBJycsmduvYEL83R_U4JriQ "~Marques Brownlee" youtube tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UCkf4VIqu3Acnfzuk3kRIFwA "~gotbletu" youtube programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA "~Veritasium" youtube science
+https://www.youtube.com/feeds/videos.xml?channel_id=UCLXzq85ijg2LwJWFrz4pkmw "~Speakeasy" youtube music
+https://www.youtube.com/feeds/videos.xml?channel_id=UCrDwWp7EBBv4NwvScIpBDOA "~Anthropic" youtube ai
+https://www.youtube.com/feeds/videos.xml?channel_id=UCLKPca3kwwd-B59HNr-_lvA "~AI Engineer" youtube ai
+https://www.youtube.com/feeds/videos.xml?channel_id=UCGc8qUcCnXI9eFiqsn1OUMQ "~Somewhere in France" youtube music french
+https://www.youtube.com/feeds/videos.xml?channel_id=UCTVHQ9GMFYLalQDynyXNTKQ "~Charm TV" youtube programming
+
+# Tech / Programming Blogs
+https://blog.rust-lang.org/feed.xml "~Rust Blog" tech programming
+https://simonwillison.net/atom/everything/ "~Simon Willison" tech ai
+https://jvns.ca/atom.xml "~Julia Evans" tech programming
+https://danluu.com/atom.xml "~Dan Luu" tech programming
+https://marimo.io/blog/rss.xml "~marimo Blog" tech programming
+
+# AI / ML
+https://www.anthropic.com/rss.xml "~Anthropic Blog" ai
+https://openai.com/blog/rss.xml "~OpenAI Blog" ai
+https://lilianweng.github.io/index.xml "~Lilian Weng" ai ml
+
+# News
+https://hnrss.org/frontpage "~Hacker News" tech news
+https://lobste.rs/rss "~Lobsters" tech news
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXDDXMlj8TXD7-BuaSoQYoA youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCV03SRZXJEz-hchIAogeJOg youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCDq7SjbgRKty5TgGafW8Clg youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwgKmJM4ZJQRJ-U5NjvR2dg youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJgIbYl6C5no72a0NUAPcTA youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMLtBahI5DMrt0NPvDSoIRQ youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCaiL2GDNpLYH6Wokkk1VNcg youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UChk6TQce1EJMn6_liKdHDog youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UConVfxXodg78Tzh5nNu85Ew youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA youtube ai-engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXUPKJO5MZQN11PqgIvyuvQ youtube ai-engineering
+https://koaning.io/feed.xml "~Vincent Warmerdam" tech programming
+https://vickiboykis.com/index.xml "~Vicki Boykis" tech programming
+https://sebastianraschka.com/rss_feed.xml "~Sebastian Raschka" tech programming
+https://huyenchip.com/feed.xml "~Chip Huyen" tech programming
+https://hamel.dev/index.xml "~Hamel Husain" tech programming
+https://karpathy.github.io/feed.xml "~Andrej Karpathy" tech programming
+https://lemire.me/blog/feed/ "~Daniel Lemire" tech programming
+https://earthmover.io/feed/ "~Earthmover" tech programming
+https://zarr.dev/feed.xml "~Zarr" tech programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCI0h2Qt48_knp6ykYm3OkZw "~Earthmover" youtube tech
