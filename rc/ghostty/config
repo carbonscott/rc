@@ -15,7 +15,7 @@ window-decoration = true
 macos-titlebar-style = tabs
 
 # Theme
-theme = iTerm2 Solarized Light
+config-file = ?auto/theme.ghostty
 
 # Background opacity (1.0 = fully opaque)
 background-opacity = 1.0
