@@ -279,3 +279,9 @@ function! <SID>bd_no_disrupt_focus()
     endif
 endfunction
 nnoremap <silent> [bd :call <SID>bd_no_disrupt_focus()<CR>
+
+" Visual select, then <leader>e to wrap selection and drop cursor in the comment
+vnoremap <leader>e c⟦<C-r>"⟧«»<Esc>i
+
+" Insert an empty anchored comment at cursor
+inoremap <leader>E ⟦⟧«»<Esc>2hi
